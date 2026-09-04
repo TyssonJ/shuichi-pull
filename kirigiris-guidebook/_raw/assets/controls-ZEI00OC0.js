@@ -1,0 +1,2 @@
+var e=`<!-- Not rendered. Source of truth: src/views/controls.ts. The controls view builds DOM from a GROUPS array; this file is preserved only so grep on Russian strings finds the redirect. -->
+`;export{e as default};

@@ -1,0 +1,610 @@
+{
+  "categories": [
+    {
+      "id": "court",
+      "title": "Суд и общение",
+      "achievements": [
+        {
+          "id": "verdict-precision",
+          "name": "Точность вердикта",
+          "condition": "Выберите верного убийцу на голосовании",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "thats-wrong",
+          "name": "Это не так!",
+          "condition": "Поучаствуйте в дебатах",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hasty-choice",
+          "name": "Поспешный выбор",
+          "condition": "Проиграйте на первом суде",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hot-case",
+          "name": "Горячее дело",
+          "condition": "Перейдите к голосованию менее чем через четыре с половиной минуты после начала суда и вычислите убийцу",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "case-streak",
+          "name": "Череда раскрытых дел",
+          "condition": "В рамках одной игры успешно раскройте четыре дела или больше",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "hold-it",
+          "name": "Погодите минутку!",
+          "condition": "Предъявите улику на классном суде",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "orator",
+          "name": "Оратор",
+          "condition": "Победите в дебатах",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "cost-of-error",
+          "name": "Цена ошибки",
+          "condition": "Вынесите неверный вердикт на голосовании",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "despair-loop",
+          "name": "Петля отчаяния",
+          "condition": "Погибните как убийца после голосования",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "agreed",
+          "name": "Согласен!",
+          "condition": "Выразите согласие игроку на классном суде",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "drawn-out-case",
+          "name": "Затяжное дело",
+          "condition": "Проведите на суде более девяти минут",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Игровые события",
+      "achievements": [
+        {
+          "id": "eternal-roulette",
+          "name": "Вечная рулетка",
+          "condition": "Примите участие в событии \"Рулетка отчаяния\"",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "blank-shot",
+          "name": "Холостой выстрел",
+          "condition": "Во время события \"Рулетка отчаяния\" выстрелите в себя и останьтесь в живых",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "fatal-shooter",
+          "name": "Роковой стрелок",
+          "condition": "Во время события \"Рулетка отчаяния\" получите роль стрелка",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "living-target",
+          "name": "Живая мишень",
+          "condition": "Во время события \"Рулетка отчаяния\" получите роль мишени",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "own-executioner",
+          "name": "Сам себе палач",
+          "condition": "Во время события \"Рулетка отчаяния\" выстрелите в себя и погибните",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "regrettable-luck",
+          "name": "Прискорбное невезенье",
+          "condition": "Погибните от рук стрелка во время события \"Рулетка отчаяния\"",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "despair-roulette",
+          "name": "Рулетка отчаяния",
+          "condition": "Примите участие в событии \"Рулетка отчаяния\" в первый раз",
+          "reward": 10,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "investigation",
+      "title": "Расследование и улики",
+      "achievements": [
+        {
+          "id": "trace-collector",
+          "name": "Коллекционер следов",
+          "condition": "Соберите отпечатки",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "great-detective-2",
+          "name": "Великий сыщик 2.0",
+          "condition": "Найдите улики",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Социальное взаимодействие",
+      "achievements": [
+        {
+          "id": "waiter",
+          "name": "Ждун",
+          "condition": "Пробудьте в лобби",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "treasure-hunter",
+          "name": "Искатель сокровищ",
+          "condition": "Обыщите контейнеры",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "spendthrift",
+          "name": "Транжира",
+          "condition": "Потратьте мономонеты на товары из мономашины в быстрой игре",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "undying-hope",
+          "name": "Незатухающая надежда",
+          "condition": "Спаситесь из академии",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "lend-a-shoulder",
+          "name": "Подать плечо",
+          "condition": "Поднимите на плечи уникальных игроков",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "assassin",
+          "name": "Ассасин",
+          "condition": "Совершите скрытное убийство в игре",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "goodbye-hope",
+          "name": "Прощай, Надежда - Здравствуй, Отчаяние",
+          "condition": "Победите в роли убийцы, играя за персонажа из Danganronpa 2: GD",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "killing-harmony",
+          "name": "Убийственная Гармония",
+          "condition": "Победите в роли убийцы, играя за персонажа из Danganronpa V3: KH",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hope-in-a-cage",
+          "name": "Надежда в Клетке Отчаяния",
+          "condition": "Победите в роли убийцы, играя за персонажа из Danganronpa: THH",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "childish-despair",
+          "name": "Детское Отчаяние",
+          "condition": "Победите в роли убийцы, играя за персонажа из Danganronpa: UDG",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "dont-move",
+          "name": "Не двигайся",
+          "condition": "Свяжите игрока",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "two-birds-one-blast",
+          "name": "Одним взрывом двух зайцев",
+          "condition": "Убейте взрывом двух игроков",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "air-full-of-hope",
+          "name": "Воздух пропитанный надеждой",
+          "condition": "Почините очиститель воздуха",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "hypothermia",
+          "name": "Переохлаждение",
+          "condition": "Погибните от переохлаждения",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "insomnia",
+          "name": "Бессонница",
+          "condition": "Опустите шкалу сна до нуля и пробудьте в таком состоянии три минуты",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "trip-up",
+          "name": "Подножка",
+          "condition": "Отбейтесь от нападения и сбейте игрока с ног в игре",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "knockout",
+          "name": "Нокаут",
+          "condition": "Оглушите игрока в игре",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "overheating",
+          "name": "Перегрев",
+          "condition": "Погибните от перегрева или огня",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "taste-of-death",
+          "name": "Вкус смерти",
+          "condition": "Погибните от яда",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "raw-eater",
+          "name": "Сыроед",
+          "condition": "Съешьте сырой ингредиент",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "expelled-by-request",
+          "name": "Отчислен по собственному",
+          "condition": "Совершите самоубийство в игре",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "jacks-victim",
+          "name": "Жертва Сё",
+          "condition": "Убейте игрока ножницами, играя за Сё",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "thief",
+          "name": "Вор",
+          "condition": "Обкрадите игрока в игре",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "diet-gone-wrong",
+          "name": "Диета пошла не по плану",
+          "condition": "Погибните от голода",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "killer",
+          "name": "Убийца",
+          "condition": "Совершите убийство в игре",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "partner",
+          "name": "Напарник",
+          "condition": "Поднимите на ноги игроков",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hugger",
+          "name": "Обнимашкин",
+          "condition": "Обнимите уникальных игроков",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "cleaner",
+          "name": "Уборщик",
+          "condition": "Отмойте полы от луж крови и грязи",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "good-night",
+          "name": "Спокойной ночи, малыши",
+          "condition": "Восстановите шкалу бодрствования с помощью сна",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "kitty",
+          "name": "Котик",
+          "condition": "Погладьте кота в лобби",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "super-pc",
+          "name": "Супер-ПК",
+          "condition": "Почините суперкомпьютер",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "first-step-to-escape",
+          "name": "Первый шаг на пути к спасению",
+          "condition": "Почините электрощиток",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "ice-cube",
+          "name": "Льдышка",
+          "condition": "Войдите в капсулу и заморозьте себя",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "ready-made-fan",
+          "name": "Любитель готового",
+          "condition": "В течение игры не крафтите еду",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "traps",
+      "title": "Ловушки и саботаж",
+      "achievements": [
+        {
+          "id": "bon-appetit",
+          "name": "Бон аппетит",
+          "condition": "Отравите еду",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "chemical-weapon",
+          "name": "Химическое оружие",
+          "condition": "Скрафтите и установите ловушку с газом",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "novice-hunter",
+          "name": "Начинающий охотник",
+          "condition": "Скрафтите и установите капкан",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "kaboom",
+          "name": "Кабум!",
+          "condition": "Скрафтите и установите взрывную ловушку",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "oops",
+          "name": "Упс!",
+          "condition": "Погибните от собственной ловушки",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "stealth",
+      "title": "Скрытность и укрытия",
+      "achievements": [
+        {
+          "id": "almost-a-ninja",
+          "name": "Ниндзя... почти",
+          "condition": "Пройдите разное расстояние в полном приседе",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "safe-in-the-locker",
+          "name": "В шкафу безопасно",
+          "condition": "Спрячьтесь в шкафу и просидите там минуту",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "keyhole",
+          "name": "Замочная скважина",
+          "condition": "Проведите успешные взломы отмычкой",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "title": "Инженерия и крафт",
+      "achievements": [
+        {
+          "id": "trap-master",
+          "name": "Мастер ловушек",
+          "condition": "Скрафтите ловушки",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "apprentice",
+          "name": "Подмастерье",
+          "condition": "Скрафтите необычный механизм",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "genius-mechanic",
+          "name": "Гениальный механик",
+          "condition": "Скрафтите очень редкий механизм",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "skilled-inventor",
+          "name": "Умелый изобретатель",
+          "condition": "Скрафтите редкий механизм",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "medicine",
+      "title": "Медицина",
+      "achievements": [
+        {
+          "id": "medic",
+          "name": "Санитар",
+          "condition": "Успешно и своевременно примените бинты, шины, аптечки",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "ultimate-chemist",
+          "name": "Абсолютный химик",
+          "condition": "Скрафтите легендарный медикамент",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "field-medic",
+          "name": "Полевой медик",
+          "condition": "Скрафтите редкий медикамент",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "masterful-elixir",
+          "name": "Искусный эликсир",
+          "condition": "Скрафтите очень редкий медикамент",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "antidote",
+          "name": "Антидот",
+          "condition": "Успешно и своевременно примените антидот на других игроках",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "apothecary",
+          "name": "Аптекарь",
+          "condition": "Скрафтите аптечку или лекарства",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "novice-chemist",
+          "name": "Химик-новичок",
+          "condition": "Скрафтите необычный медикамент",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "cooking",
+      "title": "Готовка",
+      "achievements": [
+        {
+          "id": "novice-cook",
+          "name": "Начинающий повар",
+          "condition": "Приготовьте необычное блюдо",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "talented-chef",
+          "name": "Талантливый шеф",
+          "condition": "Приготовьте редкое блюдо",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "royal-dinner",
+          "name": "Королевский ужин",
+          "condition": "Приготовьте очень редкое блюдо",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "head-chef",
+          "name": "Шеф-повар",
+          "condition": "Приготовьте блюда",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": "Особые",
+      "achievements": [
+        {
+          "id": "developer-online",
+          "name": "Разработчик онлайн",
+          "condition": "Сыграйте с разработчиком в быструю игру",
+          "reward": 30,
+          "tier": 4
+        }
+      ]
+    }
+  ]
+}

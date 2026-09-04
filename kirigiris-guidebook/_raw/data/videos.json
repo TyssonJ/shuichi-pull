@@ -1,0 +1,88 @@
+[
+  {
+    "id": "beginner-guide",
+    "sections": ["gameloop"],
+    "ru": {
+      "videoId": "UVTlHIj589E",
+      "title": "Danganronpa Online — всё, что нужно знать новичку",
+      "durationSeconds": 2297
+    },
+    "en": {
+      "videoId": "fdiaVeEvqJk",
+      "title": "Danganronpa Online | Everything You Need to Know",
+      "durationSeconds": 2399
+    }
+  },
+  {
+    "id": "detective-basics",
+    "sections": ["detective"],
+    "ru": {
+      "videoId": "lSRakc-tJ8Y",
+      "title": "Danganronpa Online — основы игры на детективе",
+      "durationSeconds": 2532,
+      "chapters": [
+        {
+          "id": "class-trial",
+          "label": "Классный суд",
+          "startSeconds": 2099,
+          "endSeconds": 2294
+        }
+      ]
+    },
+    "en": {
+      "videoId": "WGGXfhj1Kno",
+      "title": "Danganronpa Online — Detective Basics",
+      "durationSeconds": 2533,
+      "chapters": [
+        {
+          "id": "class-trial",
+          "label": "Class Trial",
+          "startSeconds": 2087,
+          "endSeconds": 2278
+        }
+      ]
+    }
+  },
+  {
+    "id": "hopes-peak-map",
+    "sections": ["maps"],
+    "ru": {
+      "videoId": "F-43JtGE-aw",
+      "title": "Danganronpa Online — обзор карты Пик Надежды",
+      "durationSeconds": 1926
+    },
+    "en": {
+      "videoId": "RDnCi870OY4",
+      "title": "Danganronpa Online — Hope's Peak Map Guide",
+      "durationSeconds": 1965
+    }
+  },
+  {
+    "id": "hiding-evidence",
+    "sections": ["detective"],
+    "ru": {
+      "videoId": "m1H7QNz9I-I",
+      "title": "Danganronpa Online — где убийцы прячут улики",
+      "durationSeconds": 762
+    },
+    "en": {
+      "videoId": "1jn1oGcwWEo",
+      "title": "Danganronpa Online — Where Killers Hide Evidence",
+      "durationSeconds": 767
+    }
+  },
+  {
+    "id": "channel-trailer",
+    "sections": [],
+    "ru": {
+      "videoId": "VtUS2beF9dg",
+      "title": "Kirigiri's Press — трейлер канала",
+      "durationSeconds": 66
+    },
+    "en": {
+      "videoId": "fbjDY4Z8n1g",
+      "title": "Kirigiri's Press — Channel Trailer",
+      "durationSeconds": 71
+    }
+  }
+]

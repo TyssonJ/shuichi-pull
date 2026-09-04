@@ -1,0 +1,610 @@
+{
+  "categories": [
+    {
+      "id": "court",
+      "title": "Court and Communication",
+      "achievements": [
+        {
+          "id": "verdict-precision",
+          "name": "Verdict Precision",
+          "condition": "Pick the correct killer in the vote",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "thats-wrong",
+          "name": "That's Wrong!",
+          "condition": "Take part in a debate",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hasty-choice",
+          "name": "Hasty Choice",
+          "condition": "Lose your first trial",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hot-case",
+          "name": "Hot Case",
+          "condition": "Reach the vote less than four and a half minutes into the trial and identify the killer",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "case-streak",
+          "name": "Case Streak",
+          "condition": "Solve four or more cases in a single game",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "hold-it",
+          "name": "Hold It a Minute!",
+          "condition": "Present a piece of evidence at a class trial",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "orator",
+          "name": "Orator",
+          "condition": "Win a debate",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "cost-of-error",
+          "name": "The Cost of Error",
+          "condition": "Cast the wrong verdict in the vote",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "despair-loop",
+          "name": "Despair Loop",
+          "condition": "Die as the killer after the vote",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "agreed",
+          "name": "Agreed!",
+          "condition": "Show agreement with a player at a class trial",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "drawn-out-case",
+          "name": "Drawn-Out Case",
+          "condition": "Spend more than nine minutes in a trial",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Game Events",
+      "achievements": [
+        {
+          "id": "eternal-roulette",
+          "name": "Eternal Roulette",
+          "condition": "Take part in the \"Despair Roulette\" event",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "blank-shot",
+          "name": "Blank Shot",
+          "condition": "Shoot yourself during the \"Despair Roulette\" event and survive",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "fatal-shooter",
+          "name": "Fatal Shooter",
+          "condition": "Be given the Shooter role during the \"Despair Roulette\" event",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "living-target",
+          "name": "Living Target",
+          "condition": "Be given the target role during the \"Despair Roulette\" event",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "own-executioner",
+          "name": "My Own Executioner",
+          "condition": "Shoot yourself during the \"Despair Roulette\" event and die",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "regrettable-luck",
+          "name": "Regrettable Luck",
+          "condition": "Die at the Shooter’s hands during the \"Despair Roulette\" event",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "despair-roulette",
+          "name": "Despair Roulette",
+          "condition": "Take part in the \"Despair Roulette\" event for the first time",
+          "reward": 10,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "investigation",
+      "title": "Investigation and Clues",
+      "achievements": [
+        {
+          "id": "trace-collector",
+          "name": "Trace Collector",
+          "condition": "Collect fingerprints",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "great-detective-2",
+          "name": "Great Detective 2.0",
+          "condition": "Find evidence",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Social Interaction",
+      "achievements": [
+        {
+          "id": "waiter",
+          "name": "The Waiting One",
+          "condition": "Spend time in the lobby",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "treasure-hunter",
+          "name": "Treasure Hunter",
+          "condition": "Search containers",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "spendthrift",
+          "name": "Spendthrift",
+          "condition": "Spend Monocoins on Monomachine goods in a quick game",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "undying-hope",
+          "name": "Undying Hope",
+          "condition": "Escape the academy",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "lend-a-shoulder",
+          "name": "Lend a Shoulder",
+          "condition": "Carry unique players on your shoulders",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "assassin",
+          "name": "Assassin",
+          "condition": "Commit a stealth kill in a game",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "goodbye-hope",
+          "name": "Goodbye Hope, Hello Despair",
+          "condition": "Win as the killer playing a character from Danganronpa 2: GD",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "killing-harmony",
+          "name": "Killing Harmony",
+          "condition": "Win as the killer playing a character from Danganronpa V3: KH",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hope-in-a-cage",
+          "name": "Hope in a Cage of Despair",
+          "condition": "Win as the killer playing a character from Danganronpa: THH",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "childish-despair",
+          "name": "Childish Despair",
+          "condition": "Win as the killer playing a character from Danganronpa: UDG",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "dont-move",
+          "name": "Don’t Move",
+          "condition": "Tie up a player",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "two-birds-one-blast",
+          "name": "Two Birds, One Blast",
+          "condition": "Kill two players with one explosion",
+          "reward": 20,
+          "tier": 3
+        },
+        {
+          "id": "air-full-of-hope",
+          "name": "Air Full of Hope",
+          "condition": "Repair the air purifier",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "hypothermia",
+          "name": "Hypothermia",
+          "condition": "Die of hypothermia",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "insomnia",
+          "name": "Insomnia",
+          "condition": "Drop your sleep bar to zero and stay that way for three minutes",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "trip-up",
+          "name": "Trip Up",
+          "condition": "Fend off an attack and knock a player off their feet in a game",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "knockout",
+          "name": "Knockout",
+          "condition": "Stun a player in a game",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "overheating",
+          "name": "Overheating",
+          "condition": "Die of overheating or fire",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "taste-of-death",
+          "name": "The Taste of Death",
+          "condition": "Die of poison",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "raw-eater",
+          "name": "Raw Eater",
+          "condition": "Eat a raw ingredient",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "expelled-by-request",
+          "name": "Expelled at Own Request",
+          "condition": "Commit suicide in a game",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "jacks-victim",
+          "name": "Jack’s Victim",
+          "condition": "Kill a player with the scissors while playing as Genocide Jack",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "thief",
+          "name": "Thief",
+          "condition": "Rob a player in a game",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "diet-gone-wrong",
+          "name": "The Diet Went Wrong",
+          "condition": "Die of hunger",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "killer",
+          "name": "Killer",
+          "condition": "Commit a murder in a game",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "partner",
+          "name": "Partner",
+          "condition": "Get players back on their feet",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "hugger",
+          "name": "Hugger",
+          "condition": "Hug unique players",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "cleaner",
+          "name": "Cleaner",
+          "condition": "Scrub floors clean of blood pools and dirt",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "good-night",
+          "name": "Good Night, Little Ones",
+          "condition": "Restore your wakefulness bar by sleeping",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "kitty",
+          "name": "Kitty",
+          "condition": "Pet the cat in the lobby",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "super-pc",
+          "name": "Super PC",
+          "condition": "Repair the supercomputer",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "first-step-to-escape",
+          "name": "First Step Toward Escape",
+          "condition": "Repair the electrical panel",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "ice-cube",
+          "name": "Ice Cube",
+          "condition": "Enter a capsule and freeze yourself",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "ready-made-fan",
+          "name": "Ready-Made Fan",
+          "condition": "Go a whole game without crafting food",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "traps",
+      "title": "Traps and Sabotage",
+      "achievements": [
+        {
+          "id": "bon-appetit",
+          "name": "Bon Appétit",
+          "condition": "Poison food",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "chemical-weapon",
+          "name": "Chemical Weapon",
+          "condition": "Craft and place a gas trap",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "novice-hunter",
+          "name": "Novice Hunter",
+          "condition": "Craft and place a bear trap",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "kaboom",
+          "name": "Kaboom!",
+          "condition": "Craft and place an explosive trap",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "oops",
+          "name": "Oops!",
+          "condition": "Die to your own trap",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "stealth",
+      "title": "Stealth and Hiding",
+      "achievements": [
+        {
+          "id": "almost-a-ninja",
+          "name": "Ninja… Almost",
+          "condition": "Cover some distance in a full crouch",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "safe-in-the-locker",
+          "name": "Safe in the Locker",
+          "condition": "Hide in a locker and stay there for a minute",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "keyhole",
+          "name": "Keyhole",
+          "condition": "Pick locks successfully with a lockpick",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "title": "Engineering and Crafting",
+      "achievements": [
+        {
+          "id": "trap-master",
+          "name": "Trap Master",
+          "condition": "Craft traps",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "apprentice",
+          "name": "Apprentice",
+          "condition": "Craft an uncommon mechanism",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "genius-mechanic",
+          "name": "Genius Mechanic",
+          "condition": "Craft a very rare mechanism",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "skilled-inventor",
+          "name": "Skilled Inventor",
+          "condition": "Craft a rare mechanism",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "medicine",
+      "title": "Medicine",
+      "achievements": [
+        {
+          "id": "medic",
+          "name": "Medic",
+          "condition": "Apply bandages, splints and first-aid kits successfully and in time",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "ultimate-chemist",
+          "name": "Ultimate Chemist",
+          "condition": "Craft a legendary medicine",
+          "reward": 10,
+          "tier": 2
+        },
+        {
+          "id": "field-medic",
+          "name": "Field Medic",
+          "condition": "Craft a rare medicine",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "masterful-elixir",
+          "name": "Masterful Elixir",
+          "condition": "Craft a very rare medicine",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "antidote",
+          "name": "Antidote",
+          "condition": "Apply an antidote to other players successfully and in time",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "apothecary",
+          "name": "Apothecary",
+          "condition": "Craft a first-aid kit or medicines",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "novice-chemist",
+          "name": "Novice Chemist",
+          "condition": "Craft an uncommon medicine",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "cooking",
+      "title": "Cooking",
+      "achievements": [
+        {
+          "id": "novice-cook",
+          "name": "Novice Cook",
+          "condition": "Cook an uncommon dish",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "talented-chef",
+          "name": "Talented Chef",
+          "condition": "Cook a rare dish",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "royal-dinner",
+          "name": "Royal Dinner",
+          "condition": "Cook a very rare dish",
+          "reward": 5,
+          "tier": 1
+        },
+        {
+          "id": "head-chef",
+          "name": "Head Chef",
+          "condition": "Cook dishes",
+          "reward": 5,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": "Special",
+      "achievements": [
+        {
+          "id": "developer-online",
+          "name": "Developer Online",
+          "condition": "Play a quick game with a developer",
+          "reward": 30,
+          "tier": 4
+        }
+      ]
+    }
+  ]
+}

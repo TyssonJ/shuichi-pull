@@ -1,0 +1,1492 @@
+{
+  "schemaVersion": 1,
+  "attackModes": [
+    {
+      "id": "light",
+      "label": "LMB (light hit)"
+    },
+    {
+      "id": "heavy",
+      "label": "LMB (heavy hit/swing)"
+    },
+    {
+      "id": "rmb",
+      "label": "RMB"
+    }
+  ],
+  "bodyZones": [
+    {
+      "id": "limbs",
+      "label": "legs/arms"
+    },
+    {
+      "id": "torso",
+      "label": "chest(back)/stomach"
+    },
+    {
+      "id": "head",
+      "label": "head"
+    }
+  ],
+  "weapons": [
+    {
+      "id": "молоток",
+      "name": "Молоток",
+      "damageType": "Дробящее",
+      "damageTypeColor": "blunt",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a blunt weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "15",
+          "damageMin": 15,
+          "damageMax": 15,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "60",
+          "damageMin": 60,
+          "damageMax": 60,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "свинцовая_труба",
+      "name": "Свинцовая труба",
+      "damageType": "Дробящее",
+      "damageTypeColor": "blunt",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a blunt weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "15",
+          "damageMin": 15,
+          "damageMax": 15,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "60",
+          "damageMin": 60,
+          "damageMax": 60,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "разводной_ключ",
+      "name": "Разводной ключ",
+      "damageType": "Дробящее",
+      "damageTypeColor": "blunt",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a blunt weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "15",
+          "damageMin": 15,
+          "damageMax": 15,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "60",
+          "damageMin": 60,
+          "damageMax": 60,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "бейсбольная_бита",
+      "name": "Бейсбольная бита",
+      "damageType": "Дробящее",
+      "damageTypeColor": "blunt",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a blunt weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "17-18",
+          "damageMin": 17,
+          "damageMax": 18,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "70",
+          "damageMin": 70,
+          "damageMax": 70,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "140",
+          "damageMin": 140,
+          "damageMax": 140,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "лом",
+      "name": "Лом",
+      "damageType": "Дробящее",
+      "damageTypeColor": "blunt",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a blunt weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "13-14",
+          "damageMin": 13,
+          "damageMax": 14,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "55",
+          "damageMin": 55,
+          "damageMax": 55,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "110",
+          "damageMin": 110,
+          "damageMax": 110,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "27-28",
+          "damageMin": 27,
+          "damageMax": 28,
+          "critDamage": "110",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "110",
+          "damageMin": 110,
+          "damageMax": 110,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nFracture and deformation of the left leg indicate a powerful blow from a blunt weapon, likely to disable mobility.",
+            "Multiple injuries are recorded on the body:\nA fracture of the left arm indicates a targeted blow from a blunt object, likely intended to immobilize.",
+            "Multiple injuries are recorded on the body:\nTrauma to the right leg attests to a strong blow from a blunt object, delivered with aim.",
+            "Multiple injuries are recorded on the body:\nInjuries to the right arm attest to a strong blunt blow delivered at close range."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nTrauma to the abdomen indicates a strong blow from a blunt weapon at close range.",
+            "Multiple injuries are recorded on the body:\nFractures and dents in the chest indicate a powerful blow from a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nSevere trauma is recorded in the head area, characteristic of a blow from a blunt weapon."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "катана",
+      "name": "Катана",
+      "damageType": "Колото-режущее",
+      "damageTypeColor": "stab-cut",
+      "bleed": true,
+      "ohko": false,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a sharp blade.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "18, 19, 20",
+          "damageMin": 18,
+          "damageMax": 18,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "71, 72, 78",
+          "damageMin": 71,
+          "damageMax": 71,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "143, 156",
+          "damageMin": 143,
+          "damageMax": 143,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "disabled": true
+        },
+        "heavy.torso": {
+          "disabled": true
+        },
+        "heavy.head": {
+          "disabled": true
+        },
+        "rmb.limbs": {
+          "damageLabel": "24, 25",
+          "damageMin": 24,
+          "damageMax": 24,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.\nThe wounds were apparently inflicted with a blunt object.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.\nThe wounds were apparently inflicted with a blunt object.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.\nThe wounds were apparently inflicted with a blunt object.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon.\nThe wounds were apparently inflicted with a blunt object."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "97",
+          "damageMin": 97,
+          "damageMax": 97,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.\nThe wounds were apparently inflicted with a blunt object.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area.\nThe wounds were apparently inflicted with a blunt object."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "195",
+          "damageMin": 195,
+          "damageMax": 195,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found.\nThe wounds were apparently inflicted with a blunt object."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "кухонный_нож",
+      "name": "Кухонный нож",
+      "damageType": "Колото-режущее",
+      "damageTypeColor": "stab-cut",
+      "bleed": true,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a sharp blade.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "15",
+          "damageMin": 15,
+          "damageMax": 15,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "60",
+          "damageMin": 60,
+          "damageMax": 60,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "bleed": true,
+          "critDamage": "60",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "bleed": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "кухонный_топор",
+      "name": "Кухонный топор",
+      "damageType": "Колото-режущее",
+      "damageTypeColor": "stab-cut",
+      "bleed": false,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a sharp blade.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "15",
+          "damageMin": 15,
+          "damageMax": 15,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "60",
+          "damageMin": 60,
+          "damageMax": 60,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "пожарный_топор",
+      "name": "Пожарный топор",
+      "damageType": "Колото-режущее",
+      "damageTypeColor": "stab-cut",
+      "bleed": false,
+      "ohko": false,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a sharp blade.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "25",
+          "damageMin": 25,
+          "damageMax": 25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "100",
+          "damageMin": 100,
+          "damageMax": 100,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "100",
+          "damageMin": 100,
+          "damageMax": 100,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "30",
+          "damageMin": 30,
+          "damageMax": 30,
+          "critDamage": "120",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "120",
+          "damageMin": 120,
+          "damageMax": 120,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "100",
+          "damageMin": 100,
+          "damageMax": 100,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ножницы_сё",
+      "name": "Ножницы Сё",
+      "damageType": "Колото-режущее",
+      "damageTypeColor": "stab-cut",
+      "bleed": true,
+      "ohko": true,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a sharp blade.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "16-17",
+          "damageMin": 16,
+          "damageMax": 17,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "65",
+          "damageMin": 65,
+          "damageMax": 65,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "130",
+          "damageMin": 130,
+          "damageMax": 130,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "25",
+          "damageMin": 25,
+          "damageMax": 25,
+          "bleed": true,
+          "critDamage": "100",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nDeep cut wounds inflicted by a sharp blade are recorded on the left leg.",
+            "Multiple injuries are recorded on the body:\nDeep cuts characteristic of a sharp cutting weapon are found on the left arm.",
+            "Multiple injuries are recorded on the body:\nStab-and-cut injuries to the right leg indicate the use of a bladed weapon.",
+            "Multiple injuries are recorded on the body:\nChopping and stab-and-cut wounds on the right arm indicate the use of a bladed weapon."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "100",
+          "damageMin": 100,
+          "damageMax": 100,
+          "bleed": true,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nStab-and-cut wounds to the abdomen are recorded, accompanied by heavy blood loss.",
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut wound affecting vital organs is found in the chest area."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "HP → 0",
+          "ohko": true,
+          "bleed": true,
+          "critDamage": "HP → 0",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nA deep stab-and-cut injury to the head, inflicted by a sharp blade, is found."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "disabled": true
+        },
+        "rmb.torso": {
+          "disabled": true
+        },
+        "rmb.head": {
+          "disabled": true
+        }
+      }
+    },
+    {
+      "id": "лопата",
+      "name": "Лопата",
+      "damageType": "Гибридное",
+      "damageTypeColor": "hybrid",
+      "bleed": false,
+      "ohko": false,
+      "stealthKill": "Stealth kill:\nMultiple injuries are recorded on the body: The fatal blow was delivered from behind, indicating a deliberate, stealthy kill with a hybrid weapon.",
+      "cells": {
+        "light.limbs": {
+          "damageLabel": "17-18",
+          "damageMin": 17,
+          "damageMax": 18,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe left-leg injury is of a mixed nature, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe left-arm injury combines blunt impact and laceration, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe right-leg injuries combine impact and laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe right-arm injuries combine signs of blunt and cutting force, characteristic of a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "light.torso": {
+          "damageLabel": "70",
+          "damageMin": 70,
+          "damageMax": 70,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe abdominal injury combines blunt deformation and tissue laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe chest injuries show signs of impact-cutting force, characteristic of a hybrid weapon."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "light.head": {
+          "damageLabel": "140",
+          "damageMin": 140,
+          "damageMax": 140,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe skull injury combines marks of impact and laceration, indicating a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "heavy.limbs": {
+          "damageLabel": "35",
+          "damageMin": 35,
+          "damageMax": 35,
+          "critDamage": "140",
+          "critProbability": "rare",
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe left-leg injury is of a mixed nature, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe left-arm injury combines blunt impact and laceration, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe right-leg injuries combine impact and laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe right-arm injuries combine signs of blunt and cutting force, characteristic of a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "heavy.torso": {
+          "damageLabel": "140",
+          "damageMin": 140,
+          "damageMax": 140,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe abdominal injury combines blunt deformation and tissue laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe chest injuries show signs of impact-cutting force, characteristic of a hybrid weapon."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "heavy.head": {
+          "damageLabel": "100",
+          "damageMin": 100,
+          "damageMax": 100,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe skull injury combines marks of impact and laceration, indicating a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        },
+        "rmb.limbs": {
+          "damageLabel": "0.25",
+          "damageMin": 0.25,
+          "damageMax": 0.25,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe left-leg injury is of a mixed nature, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe left-arm injury combines blunt impact and laceration, indicating a hybrid weapon.",
+            "Multiple injuries are recorded on the body:\nThe right-leg injuries combine impact and laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe right-arm injuries combine signs of blunt and cutting force, characteristic of a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Left leg",
+            "Left arm",
+            "Right leg",
+            "Right arm"
+          ]
+        },
+        "rmb.torso": {
+          "damageLabel": "1",
+          "damageMin": 1,
+          "damageMax": 1,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe abdominal injury combines blunt deformation and tissue laceration, characteristic of a hybrid tool.",
+            "Multiple injuries are recorded on the body:\nThe chest injuries show signs of impact-cutting force, characteristic of a hybrid weapon."
+          ],
+          "forensicLabels": [
+            "Abdomen",
+            "Chest (back)"
+          ]
+        },
+        "rmb.head": {
+          "damageLabel": "2",
+          "damageMin": 2,
+          "damageMax": 2,
+          "forensic": [
+            "Multiple injuries are recorded on the body:\nThe skull injury combines marks of impact and laceration, indicating a hybrid tool."
+          ],
+          "forensicLabels": [
+            "Head"
+          ]
+        }
+      }
+    }
+  ]
+}

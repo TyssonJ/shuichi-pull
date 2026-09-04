@@ -1,0 +1,2 @@
+var e=`<!-- Not rendered. Source of truth: src/views/controls.ts (GROUPS array + the locale-keyed controls-data modules). This file mirrors content/ru/controls.md so the locale-completeness check finds the redirect counterpart. -->
+`;export{e as default};

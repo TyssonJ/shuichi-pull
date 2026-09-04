@@ -1,0 +1,1086 @@
+# 15 - Mapa da academia / midia por local (secao 04)
+
+Panoramas, imagens e comparacoes de mapa por local. Caminhos sob https://kirigiris.press/guidebook/assets/
+
+
+## AV Room  (AV-комната)
+  - panoramas:
+    - locations/AV Room_1_floor.jpg
+  - containers:
+    -
+      - name: Тумба с ящиками у стола (2 шт.)
+      - images:
+        - items_spawn_container/Тумба с ящиками у стола в AV-комнате (2 шт.) (1F).jpg
+
+## Art Room  (Артрум)
+  - panoramas:
+    - locations/артрум_3_floor.jpg
+    - locations/артрум_статуя_3_floor.jpg
+  - containers:
+    -
+      - name: Урна
+      - images:
+        - items_spawn_container/Урна в артруме (3F).jpg
+    -
+      - name: Красный шкафчик
+      - images:
+        - items_spawn_container/Красный шкафчик в артруме (3F).jpg
+
+## Art Room (Storage)  (Артрум (подсобка))
+  - panoramas:
+    - locations/артрум_подсобка_3_floor.jpg
+  - containers:
+    -
+      - name: Синий шкафчик (2 шт.)
+      - images:
+        - items_spawn_container/Синий шкафчик (2 шт.) в подсобке артрума (3F).jpg
+    -
+      - name: Стеллаж с коробками
+      - images:
+        - items_spawn_container/Стеллаж с коробками в подсобке артрума (3F).jpg
+    -
+      - name: Верхний отсек красного шкафчика
+      - images:
+        - items_spawn_container/Верхний отсек красного шкафчика в подсобке артрума (3F).jpg
+    -
+      - name: Красный шкафчик (2 шт.)
+      - images:
+        - items_spawn_container/Красный шкафчик (2 шт.) в подсобке артрума (3F).jpg
+    -
+      - name: Стеллаж с коробками (4 шт.)
+      - images:
+        - items_spawn_container/Стеллаж с коробками (4 шт.) в подсобке артрума (3F).jpg
+    -
+      - name: Тумба (4 шт.)
+      - images:
+        - items_spawn_container/Тумба (4 шт.) в подсобке артрума (3F).jpg
+    -
+      - name: Красный набор инструментов
+      - images:
+        - items_spawn_container/Красный набор инструментов в подсобке артрума (3F).jpg
+    -
+      - name: Синий шкаф (2 шт.)
+      - images:
+        - items_spawn_container/Синий шкаф (2 шт.) в подсобке артрума (3F).jpg
+
+## Bathhouse  (Баня)
+  - panoramas:
+    - locations/баня_1_floor.jpg
+    - locations/баня_предбанная_комната_1_floor.jpg
+    - locations/баня_ресепшн_1_floor.jpg
+    - locations/баня_шкафчики_1_floor.jpg
+  - containers:
+    -
+      - name: Комод у ресепшена
+      - images:
+        - items_spawn_container/Комод у ресепшена в бане (1F).jpg
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна (2 шт.) в бане (1F).jpg
+
+## Pool (Storage)  (Бассейн (подсобка))
+  - panoramas:
+    - locations/подсобка_бассеин_2_floor.jpg
+  - containers:
+    -
+      - name: Стеллажи (2 шт.)
+      - images:
+        - items_spawn_container/Стеллажи (2 шт.) в подсобке бассейна (2F).jpg
+    -
+      - name: Ведро со шваброй
+      - images:
+        - items_spawn_container/Ведро со шваброй в подсобке бассейна (2F).jpg
+
+## Pool (Locker Room)  (Бассейн (раздевалка))
+  - panoramas:
+    - locations/бассеин_2_floor.jpg
+    - locations/вход_бассеин_2_floor.jpg
+    - locations/вход_в_бойлерную_бассеин_2_floor.jpg
+    - locations/вход_раздевалки_2_floor.jpg
+    - locations/женская_раздевалка_2_floor.jpg
+    - locations/закрытый_бассеин_2_floor.jpg
+    - locations/кнопки_бассеин_2_floor.jpg
+    - locations/мужская_раздевалка_2_floor.jpg
+    - locations/открытый_бассеин_2_floor.jpg
+  - containers:
+    -
+      - name: Шкафчики (4 шт.)
+      - images:
+        - items_spawn_container/Шкафчики (4 шт.) в раздевалке бассейна (2F).jpg
+
+## Library  (Библиотека)
+  - panoramas:
+    - locations/библиотека_2_floor_3.jpg
+    - locations/библиотека_супер-компьютер_2_floor_1.jpg
+    - locations/библиотека_супер-компьютер_2_floor_2.jpg
+  - containers:
+    -
+      - name: Синие шкафчики (2 шт.) у суперкомпьютера
+      - images:
+        - items_spawn_container/Синие шкафчики (2 шт.) у суперкомпьютера в библиотеке (2F).jpg
+    -
+      - name: Красный шкафчик у суперкомпьютера
+      - images:
+        - items_spawn_container/Красный шкафчик у суперкомпьютера в библиотеке (2F).jpg
+    -
+      - name: Стол
+      - images:
+        - items_spawn_container/Стол в библиотеке (2F).jpg
+    -
+      - name: Книжные шкафы (2 шт.) у стола
+      - images:
+        - items_spawn_container/Книжные шкафы (2 шт.) у стола в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип A, 4 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип A, 4 шт.) в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип B, 2 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип B, 2 шт.) в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип C, 1 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип C, 1 шт.) в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип D, 6 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип D, 6 шт.) в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип E, 1 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип E, 1 шт.) в библиотеке (2F).jpg
+    -
+      - name: Книжный стеллаж (тип F, 1 шт.)
+      - images:
+        - items_spawn_container/Книжный стеллаж (тип F, 1 шт.) в библиотеке (2F).jpg
+
+## Boiler Room  (Бойлерная)
+  - panoramas:
+    - locations/бойлерная_1_floor_1.jpg
+    - locations/бойлерная_1_floor_2.jpg
+    - locations/вход_в_бассеин_бойлерная_1_floor_1.jpg
+    - locations/вход_в_бассеин_бойлерная_1_floor_2.jpg
+  - containers:
+    -
+      - name: Насосная установка
+      - images:
+        - items_spawn_container/Насосная установка в бойлерной спортзала (Basement).jpg
+    -
+      - name: Синий паллетный ящик
+      - images:
+        - items_spawn_container/Синий паллетный ящик в бойлерной спортзала (Basement).jpg
+    -
+      - name: Синий шкафчик
+      - images:
+        - items_spawn_container/Синий шкафчик в бойлерной спортзала (Basement).jpg
+
+## Botanical Garden  (Ботанический сад)
+  - panoramas:
+    - locations/ботанический_сад_5_floor.jpg
+    - locations/вход_техническое_помещение_ботанический_сад_5_floor.jpg
+  - containers:
+    -
+      - name: Красный ящик в курятнике
+      - images:
+        - items_spawn_container/Красный ящик в курятнике в ботаническом саду (5F).jpg
+    -
+      - name: Клумба (5 шт.)
+      - images:
+        - items_spawn_container/Клумба (5 шт.) в ботаническом саду (5F).jpg
+
+## Lobby  (Вестибюль)
+  - panoramas:
+    - locations/вестибюль_1_floor_1.jpg
+    - locations/вестибюль_1_floor_2.jpg
+  - containers:
+    -
+      - name: Шкафчики (3 шт.)
+      - images:
+        - items_spawn_container/Шкафчики в вестибюле (3 шт.) (1F).jpg
+
+## Recreation Room  (Игровая комната)
+  - panoramas:
+    - locations/комната_развлечений_2_floor.jpg
+  - containers:
+    -
+      - name: Музыкальный автомат «Stereo»
+      - images:
+        - items_spawn_container/Музыкальный автомат «Stereo» в комнате развлечений (3F).jpg
+    -
+      - name: Игровой автомат
+      - images:
+        - items_spawn_container/Игровой автомат в комнате развлечений (3F).jpg
+
+## Headmaster's Office  (Кабинет директора)
+  - panoramas:
+    - locations/кабинет_директора_4_floor.jpg
+  - containers:
+    -
+      - name: Стол
+      - images:
+        - items_spawn_container/Стол в кабинете директора (4F).jpg
+
+## Staff Room  (Комната персонала)
+  - panoramas:
+    - locations/комната_персонала_1_floor_1.jpg
+    - locations/комната_персонала_1_floor_2.jpg
+    - locations/комната_персонала_1_floor_3.jpg
+    - locations/комната_персонала_1_floor_4.jpg
+  - containers:
+    -
+      - name: Металлический картотечный шкаф (6 шт.)
+      - images:
+        - items_spawn_container/Металлический картотечный шкаф в комнате персонала (6 шт.) (1F).jpg
+    -
+      - name: Зелёные сетчатые шкафчики (6 шт.)
+      - images:
+        - items_spawn_container/Зелёные сетчатые шкафчики в комнате персонала (6 шт.) (1F).jpg
+    -
+      - name: Системный блок (6 шт.)
+      - images:
+        - items_spawn_container/Системный блок в комнате персонала (6 шт.) (1F).jpg
+    -
+      - name: Шкафчики (у скамейки)
+      - images:
+        - items_spawn_container/Шкафчики (у скамейки) в комнате персонала (1F).jpg
+    -
+      - name: Диспенсер воды (2 шт.)
+      - images:
+        - items_spawn_container/Диспенсер воды в комнате персонала (2 шт.) (1F).png
+
+## Dormitory Rooms  (Комнаты общежития)
+  - panoramas:
+    - locations/комната_общежития_1_floor_1.jpg
+    - locations/комната_общежития_1_floor_2.jpg
+    - locations/комната_общежития_1_floor_3.jpg
+    - locations/комната_общежития_1_floor_4.jpg
+  - containers:
+    -
+      - name: Тумба
+      - images:
+        - items_spawn_container/Статичные предметы/Hammer_в_тумбе_в_комнате_общежития_1_floor.jpg
+
+## Hallway  (Коридор)
+  - panoramas:
+    - locations/коридор_2_floor_1.jpg
+    - locations/коридор_2_floor_2.jpg
+    - locations/коридор_2_floor_3.jpg
+    - locations/коридор_2_floor_4.jpg
+    - locations/коридор_2_floor_5.jpg
+    - locations/коридор_2_floor_6.jpg
+  - containers:
+    -
+      - name: Урна у торгового автомата
+      - images:
+        - items_spawn_container/Урна в коридоре рядом с торговым автоматом (2F).jpg
+    -
+      - name: Кофейная стойка у торгового автомата
+      - images:
+        - items_spawn_container/Кофейная стойка у торгового автомата (2F).jpg
+
+## Kitchen  (Кухня)
+  - panoramas:
+    - locations/кухня_1_floor_1.jpg
+    - locations/кухня_1_floor_2.jpg
+    - locations/столовая_1_floor_1.jpg
+    - locations/столовая_1_floor_2.jpg
+  - containers:
+    -
+      - name: Подставка для ножей
+      - images:
+        - items_spawn_container/Подставка для ножей на кухне (1F).jpg
+    -
+      - name: Металлический мусорный бак (2 шт.)
+      - images:
+        - items_spawn_container/Металлический мусорный бак (2 шт.) на кухне (1F).jpg
+    -
+      - name: Кофейная стойка
+      - images:
+        - items_spawn_container/Кофейная стойка на кухне (1F).jpg
+    -
+      - name: Упаковка хлеба
+      - images:
+        - items_spawn_container/Упаковка хлеба на кухне (1F).jpg
+    -
+      - name: Ящик «Fresh Fruits» (2 шт.)
+      - images:
+        - items_spawn_container/Ящик «Fresh Fruits» (2 шт.) на кухне (1F).jpg
+    -
+      - name: Холодильник (8 шт.)
+      - images:
+        - items_spawn_container/Холодильник (8 шт.) на кухне (1F).jpg
+    -
+      - name: Белый мусорный бак «TRASH»
+      - images:
+        - items_spawn_container/Белый мусорный бак с надписью «TRASH» на кухне (1F).jpg
+
+## Physics Lab  (Лаборатория физики)
+  - panoramas:
+    - locations/лаборатория_3_floor_1.jpg
+    - locations/лаборатория_воздухоочиститель_3_floor.jpg
+    - locations/лаборатория_лифт_3_floor.jpg
+  - containers:
+    -
+      - name: Красный шкафчик у воздухоочистителя
+      - images:
+        - items_spawn_container/Красный шкафчик у воздухоочистителя в лаборатории физики (3F).jpg
+    -
+      - name: Красный ящик с инструментами
+      - images:
+        - items_spawn_container/Красный ящик с инструментами в лаборатории физики (3F).jpg
+
+## Physics Lab (Storage)  (Лаборатория физики (подсобка))
+  - panoramas:
+    - locations/лаборатория_подсобка_3_floor.jpg
+  - containers:
+    -
+      - name: Урна
+      - images:
+        - items_spawn_container/Урна в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Синий шкафчик (слева)
+      - images:
+        - items_spawn_container/Синий шкафчик (слева) в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Синий шкафчик (2 шт.) (справа)
+      - images:
+        - items_spawn_container/Синий шкафчик (2 шт.) (справа) в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Коробки
+      - images:
+        - items_spawn_container/Коробки в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Верхний отсек белого шкафа
+      - images:
+        - items_spawn_container/Верхний отсек белого шкафа в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Верхний отсек синего шкафчика (слева)
+      - images:
+        - items_spawn_container/Верхний отсек синего шкафчика (слева) в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Настенный шкаф (справа)
+      - images:
+        - items_spawn_container/Настенный шкаф (справа) в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Нижний отсек белого шкафа
+      - images:
+        - items_spawn_container/Нижний отсек белого шкафа в подсобке лаборатории физики (3F).jpg
+    -
+      - name: Стеллаж в подсобке (2 шт.)
+      - images:
+        - items_spawn_container/Стеллаж в подсобке (2 шт.) лаборатории физики (3F).jpg
+    -
+      - name: Угловой шкаф (3 шт.)
+      - images:
+        - items_spawn_container/Угловой шкаф (3 шт.) в подсобке лаборатории физики (3F).jpg
+
+## Chemistry Lab  (Лаборатория химии)
+  - panoramas:
+    - locations/хим.лаборатория_4_floor_1.jpg
+    - locations/хим.лаборатория_4_floor_2.jpg
+    - locations/хим.лаборатория_4_floor_3.jpg
+  - containers:
+    -
+      - name: Лабораторный шкаф (нижний, 3 шт.) A2-B2-C2
+      - images:
+        - items_spawn_container/Лабораторный шкаф (нижний, 3 шт.) (A2-B2-C2) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (верхний слева) A1
+      - images:
+        - items_spawn_container/Лабораторный шкаф (верхний слева) (A1) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (верхний посередине) B1
+      - images:
+        - items_spawn_container/Лабораторный шкаф (верхний посередине, B1) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (верхний справа) C1
+      - images:
+        - items_spawn_container/Лабораторный шкаф (верхний справа, C1) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (нижний, 3 шт.) A1-B1-C1
+      - images:
+        - items_spawn_container/Лабораторный шкаф (нижний, 3 шт.) (A1-B1-C1) в лаборатории химии (4F).jpg
+    -
+      - name: Компьютер (тип B)
+      - images:
+        - items_spawn_container/Компьютер (тип B) в лаборатории химии (4F).jpg
+    -
+      - name: Компьютер (тип А)
+      - images:
+        - items_spawn_container/Компьютер (тип А) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (D1-D2, 4 шт.)
+      - images:
+        - items_spawn_container/Лабораторный шкаф (D1-D2, 4шт.) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (верхний посередине) B2
+      - images:
+        - items_spawn_container/Лабораторный шкаф (верхний посередине, B2) в лаборатории химии (4F).jpg
+    -
+      - name: Лабораторный шкаф (верхний слева и справа, 2 шт.) A2-C2
+      - images:
+        - items_spawn_container/Лабораторный шкаф (верхний слева и справа, 2 шт.) (A2-C2) в лаборатории химии (4F).jpg
+    -
+      - name: Настенный шкаф
+      - images:
+        - items_spawn_container/Настенный шкаф в лаборатории химии (4F).jpg
+
+## Shop  (Магазин)
+  - panoramas:
+    - locations/магазин_1_floor.jpg
+  - containers:
+    -
+      - name: Магнитола (2 шт.)
+      - images:
+        - items_spawn_container/Магнитола (2 шт.) в магазине (1F).jpg
+    -
+      - name: Телевизор за стойкой
+      - images:
+        - items_spawn_container/Телевизор за стойкой в магазине (1F).jpg
+    -
+      - name: Промышленный генератор
+      - images:
+        - items_spawn_container/Промышленный генератор в магазине (1F).jpg
+    -
+      - name: Стеллаж с инструментами
+      - images:
+        - items_spawn_container/Стеллаж с инструментами в магазине (1F).jpg
+    -
+      - name: Деревянный ящик (правый)
+      - images:
+        - items_spawn_container/Деревянный ящик (правый) в магазине (1F).jpg
+    -
+      - name: Деревянный ящик (посередине)
+      - images:
+        - items_spawn_container/Деревянный ящик (посередине) в магазине (1F).jpg
+    -
+      - name: Деревянный ящик (левый)
+      - images:
+        - items_spawn_container/Деревянный ящик (левый) в магазине (1F).jpg
+    -
+      - name: Телевизор (на полке)
+      - images:
+        - items_spawn_container/Телевизор (на полке) в магазине (1F).jpg
+    -
+      - name: Ящик для инструментов
+      - images:
+        - items_spawn_container/Ящик для инструментов в магазине (1F).jpg
+
+## Infirmary  (Медпункт)
+  - panoramas:
+    - locations/медпункт_1_floor_1.jpg
+    - locations/медпункт_1_floor_2.jpg
+    - locations/медпункт_1_floor_3.jpg
+    - locations/медпункт_1_floor_4.jpg
+  - containers:
+    -
+      - name: Тумба с выдвижными ящиками
+      - images:
+        - items_spawn_container/Тумба с выдвижными ящиками в медпункте (1F).jpg
+    -
+      - name: Системный блок
+      - images:
+        - items_spawn_container/Системный блок в медпункте (1F).jpg
+    -
+      - name: Мусорное ведро
+      - images:
+        - items_spawn_container/Мусорное ведро в медпункте (1F).jpg
+    -
+      - name: Компьютер
+      - images:
+        - items_spawn_container/Компьютер в медпункте (1F).jpg
+    -
+      - name: Телевизор (2 шт.)
+      - images:
+        - items_spawn_container/Телевизор (2 шт.) в медпункте (1F).jpg
+    -
+      - name: Металлический картотечный шкаф
+      - images:
+        - items_spawn_container/Металлический картотечный шкаф в медпункте (1F).jpg
+    -
+      - name: Белый шкаф с дверцами
+      - images:
+        - items_spawn_container/Белый шкаф с дверцами в медпункте (1F).jpg
+    -
+      - name: Металлический картотечный шкаф (у принтера)
+      - images:
+        - items_spawn_container/Металлический картотечный шкаф (у принтера) в медпункте (1F).jpg
+    -
+      - name: Медицинский компьютерный терминал (3 шт.)
+      - images:
+        - items_spawn_container/Медицинский компьютерный терминал (3 шт.) в медпункте (1F).jpg
+    -
+      - name: Медицинский шкаф
+      - images:
+        - items_spawn_container/Медицинский шкаф в медпункте (1F).jpg
+    -
+      - name: Архивный шкаф
+      - images:
+        - items_spawn_container/Архивный шкаф в медпункте (1F).jpg
+    -
+      - name: Металлический картотечный шкаф (у доски)
+      - images:
+        - items_spawn_container/Металлический картотечный шкаф (у доски) в медпункте (1F).jpg
+    -
+      - name: Картонная коробка «Mal co. Shipping»
+      - images:
+        - items_spawn_container/Картонная коробка «Mal co. Shipping» в медпункте (1F).jpg
+    -
+      - name: Белый шкаф с дверцами (2 шт., у коробки)
+      - images:
+        - items_spawn_container/Белый шкаф с дверцами (2 шт., у коробки) в медпункте (1F).jpg
+    -
+      - name: Синяя тумба с ящиками
+      - images:
+        - items_spawn_container/Синяя тумба с ящиками в медпункте (1F).jpg
+    -
+      - name: Архивный шкаф (у медверстака)
+      - images:
+        - items_spawn_container/Архивный шкаф (у медверстака) в медпункте (1F).jpg
+    -
+      - name: Настенные аптечные шкафчики (2 шт.)
+      - images:
+        - items_spawn_container/Настенные аптечные шкафчики (2 шт.) в медпункте (1F).jpg
+    -
+      - name: Медицинский компьютерный терминал (2 шт.) у медверстака
+      - images:
+        - items_spawn_container/Медицинский компьютерный терминал (2 шт.) у медверстака в медпункте (1F).jpg
+    -
+      - name: Синий шкафчик у медверстака
+      - images:
+        - items_spawn_container/Синий шкафчик у медверстака в медпункте (1F).jpg
+
+## Incinerator  (Мусоросжигатель)
+  - panoramas:
+    - locations/мусоросжигатель_рубильник_1_floor.jpg
+    - locations/мусоросжигатель_машина_1_floor_2.jpg
+    - locations/мусоросжигатель_машина_1_floor_1.jpg
+    - locations/мусоросжигатель_1_floor.jpg
+    - locations/вентиляция_в_мусоросжигатель_спальная_комната_директора_заброшенное_общежитие_2_floor_3.jpg
+    - locations/вентиляция_в_мусоросжигатель_спальная_комната_директора_заброшенное_общежитие_2_floor_2.jpg
+    - locations/вентиляция_в_мусоросжигатель_спальная_комната_директора_заброшенное_общежитие_2_floor_1.jpg
+  - containers:
+    -
+      - name: Стол у мусоросжигателя
+      - images:
+        - items_spawn_container/Стол у мусоросжигателя (1F).jpg
+    -
+      - name: Красный шкафчик
+      - images:
+        - items_spawn_container/Красный шкафчик в мусоросжигателе (1F).jpg
+    -
+      - name: Стол около машины
+      - images:
+        - items_spawn_container/Стол около машины в мусоросжигателе (1F).jpg
+    -
+      - name: Бочки с топливом
+      - images:
+        - items_spawn_container/Бочки с топливом в мусоросжигателе (1F).jpg
+    -
+      - name: Ведро с шваброй
+      - images:
+        - items_spawn_container/Ведро с шваброй в мусоросжигателе (1F).jpg
+    -
+      - name: Стеллаж с чистящими средствами
+      - images:
+        - items_spawn_container/Стеллаж с чистящими средствами в мусоросжигателе (1F).jpg
+    -
+      - name: Ведро со шваброй
+      - images:
+        - items_spawn_container/Ведро со шваброй в мусоросжигателе (1F).jpg
+    -
+      - name: Fire Axe
+      - images:
+        - items_spawn_container/Fire Axe в мусоросжигателе (1F).jpg
+
+## Laundry Room  (Прачечная)
+  - panoramas:
+    - locations/прачечная_1_floor.jpg
+    - locations/прачечная_гладильные доски_1_floor.jpg
+    - locations/прачечная_подсобка_1_floor.jpg
+  - containers:
+    -
+      - name: Коробки с моющими средствами и вторая полка стеллажа (2 шт.)
+      - images:
+        - items_spawn_container/Коробки с моющими средствами и вторая полка стеллажа (2 шт.) в прачечной (1F).jpg
+    -
+      - name: Полка с тканью
+      - images:
+        - items_spawn_container/Полка с тканью в прачечной (1F).jpg
+    -
+      - name: Стиральная машина (тип B, 4 шт.)
+      - images:
+        - items_spawn_container/Стиральная машина (тип B, 4 шт.) в прачечной (1F).jpg
+    -
+      - name: Стиральная машина у раковин (2 шт.)
+      - images:
+        - items_spawn_container/Стиральная машина у раковин (2 шт.) в прачечной (1F).jpg
+    -
+      - name: Стеллаж с моющими средствами (2 шт.)
+      - images:
+        - items_spawn_container/Стеллаж (2 шт.) с моющими средствами в прачечной (1F).jpg
+    -
+      - name: Стиральная машина (тип А, 2 шт.)
+      - images:
+        - items_spawn_container/Стиральная машина (тип А, 2 шт.) в прачечной (1F).jpg
+
+## Garden by the Dormitories  (Сад у общежитий)
+  - panoramas:
+    - locations/второй_сад_1_floor_1.jpg
+    - locations/второй_сад_1_floor_2.jpg
+  - containers:
+    -
+      - name: Урна напротив сада
+      - images:
+        - items_spawn_container/Урна напротив сада у общежития (1F).jpg
+    -
+      - name: Кусты (9 шт.)
+      - images:
+        - items_spawn_container/Кусты (9 шт.) в саду у общежития (1F).jpg
+    -
+      - name: Урна (3 шт.)
+      - images:
+        - items_spawn_container/Урна (3 шт.) в саду у общежития (1F).jpg
+
+## Garden by the Cafeteria  (Сад у столовой)
+  - panoramas:
+    - locations/первый_сад_1_floor.jpg
+  - containers:
+    -
+      - name: Клумба (8 шт.)
+      - images:
+        - items_spawn_container/Клумба в саду (8 шт.) у столовой (1F).jpg
+    -
+      - name: Shovel
+      - images:
+        - items_spawn_container/Shovel в саду у столовой (1F).jpg
+
+## Storeroom  (Склад)
+  - panoramas:
+    - locations/склад_1_floor_1.jpg
+    - locations/склад_1_floor_2.jpg
+  - containers:
+    -
+      - name: Стеллаж с продуктами (6 шт.)
+      - images:
+        - items_spawn_container/Стеллаж с продуктами (6 шт.) на складе (1F).jpg
+    -
+      - name: Стеллаж с ресурсами (тип D, 2 шт.)
+      - images:
+        - items_spawn_container/Стеллаж с ресурсами (Тип D, 2 шт.) на складе (1F).jpg
+    -
+      - name: Стеллаж с ресурсами (тип B, 13 шт.)
+      - images:
+        - items_spawn_container/Стеллаж c ресурсами (Тип B, 13 шт.) на складе (1F).jpg
+    -
+      - name: Стеллаж с ресурсами (тип А)
+      - images:
+        - items_spawn_container/Стеллаж c ресурсами (Тип А, 1 шт.) на складе (1F).jpg
+    -
+      - name: Стеллаж с ресурсами (тип E)
+      - images:
+        - items_spawn_container/Стеллаж с ресурсами (Тип E, 1 шт.) на складе (1F).jpg
+    -
+      - name: Стеллаж с ресурсами (тип С, 13 шт.)
+      - images:
+        - items_spawn_container/Стеллаж с ресурсами (Тип С, 13 шт.) на складе (1F).jpg
+
+## Storeroom (Freezer)  (Склад (морозильная))
+  - panoramas:
+    - locations/морозилка_1_floor_1.jpg
+    - locations/морозилка_1_floor_2.jpg
+    - locations/морозилка_1_floor_3.jpg
+  - containers:
+    -
+      - name: Стеллаж в морозильной камере (10 шт.)
+      - images:
+        - items_spawn_container/Стеллаж в морозильной камере (10 шт.) склада (1F).jpg
+
+## Gym  (Спортзал)
+  - panoramas:
+    - locations/верстак_1_floor.jpg
+    - locations/вход_техническое_помещение_спортзал_1_floor.jpg
+    - locations/комната_за_сценой_1_floor_1.jpg
+    - locations/комната_за_сценой_1_floor_2.jpg
+    - locations/левый_проход_за_посадочными_местами_в_спортзале_1_floor.jpg
+    - locations/мост_в_спортзале_1_floor.jpg
+    - locations/правый_проход_за_посадочными_местами_в_спортзале_1_floor.jpg
+    - locations/спортзал_1_floor_1.jpg
+    - locations/спортзал_1_floor_2.jpg
+    - locations/спортзал_1_floor_3.jpg
+    - locations/спортзал_мусорки_1_floor.jpg
+    - locations/электрощиток_1_floor_1.jpg
+    - locations/электрощиток_1_floor_2.jpg
+  - containers:
+    -
+      - name: Шкафчики (3 шт.) у верстака
+      - images:
+        - items_spawn_container/Шкафчики (3 шт.) у верстака в спортзале (1F).jpg
+    -
+      - name: Металлический контейнер напротив шкафчиков у верстака
+      - images:
+        - items_spawn_container/Металлический контейнер напротив шкафчиков у верстака в спортзале (1F).jpg
+    -
+      - name: Зеленый контейнер напротив верстака
+      - images:
+        - items_spawn_container/Зеленый контейнер напротив верстака в спортзале (1F).jpg
+    -
+      - name: Маленький компрессор воздуха у электрощитка
+      - images:
+        - items_spawn_container/Маленький компрессор воздуха у электрощитка в спортзале (1F).jpg
+    -
+      - name: Большой компрессор воздуха у электрощитка
+      - images:
+        - items_spawn_container/Большой компрессор воздуха у электрощитка в спортзале (1F).jpg
+    -
+      - name: Шкафчики (2 шт.) у электрощитка
+      - images:
+        - items_spawn_container/Шкафчики (2 шт.) у электрощитка в спортзале (1F).jpg
+    -
+      - name: Красный контейнер справа от электрощитка
+      - images:
+        - items_spawn_container/Красный контейнер справа от электрощитка (1F).jpg
+    -
+      - name: Маленький компрессор воздуха за сценой
+      - images:
+        - items_spawn_container/Маленький компрессор воздуха за сценой в спортзале (1F).jpg
+    -
+      - name: Container для инструментов за сценой
+      - images:
+        - items_spawn_container/Container для инструментов за сценой в спортзале (1F).jpg
+    -
+      - name: Мусорки (4 шт.)
+      - images:
+        - items_spawn_container/Мусорки (4 шт.) в спортзале (1F).jpg
+    -
+      - name: Портфель на мосту
+      - images:
+        - items_spawn_container/Портфель на мосту в спортзале (1F).jpg
+    -
+      - name: Toolbox на мосту
+      - images:
+        - items_spawn_container/Toolbox на мосту в спортзале (1F).jpg
+    -
+      - name: Toolbox слева от электрощитка
+      - images:
+        - items_spawn_container/Toolbox слева от электрощитка (1F).jpg
+
+## Utility Room (3F)  (Техническое помещение (3 этаж))
+  - panoramas:
+    - locations/вход_техническое_помещение_3_floor.jpg
+    - locations/вентиляция_техническое_помещение_3_floor.jpg
+    - locations/техническое_помещение_3_floor_1.jpg
+    - locations/техническое_помещение_3_floor_2.jpg
+    - locations/техническое_помещение_3_floor_3.jpg
+  - containers:
+    -
+      - name: Картонные коробки (3 шт.)
+      - images:
+        - items_spawn_container/Картонные коробки (3 шт.) в техническом помещении (3F).jpg
+    -
+      - name: Синий шкаф (3 шт.)
+      - images:
+        - items_spawn_container/Синий шкаф (3 шт.) в техническом помещении (3F).jpg
+
+## Utility Room (between 3F & 4F)  (Техническое помещение (между 3 и 4))
+  - panoramas:
+    - locations/техническое_помещение_4_floor_1.jpg
+    - locations/техническое_помещение_4_floor_2.jpg
+    - locations/техническое_помещение_4_floor_3.jpg
+    - locations/техническое_помещение_4_floor_4.jpg
+    - locations/техническое_помещение_4_floor_5.jpg
+  - containers:
+    -
+      - name: Стеллаж с коробками
+      - images:
+        - items_spawn_container/Стеллаж с коробками в техническом помещении (between 3F & 4F).jpg
+    -
+      - name: Синий паллетный ящик
+      - images:
+        - items_spawn_container/Синий паллетный ящик в техническом помещении (between 3F & 4F).jpg
+    -
+      - name: Шкафчики (2 шт.)
+      - images:
+        - items_spawn_container/Шкафчики (2 шт.) в техническом помещении (between 3F & 4F).jpg
+    -
+      - name: Стеллаж с коробками (16 шт.)
+      - images:
+        - items_spawn_container/Стеллаж с коробками (16 шт.) в техническом помещении (between 3F & 4F).jpg
+    -
+      - name: Шкафчики (4 шт.)
+      - images:
+        - items_spawn_container/Шкафчики (4 шт.) в техническом помещении (between 3F & 4F).jpg
+
+## Utility Room (5F)  (Техническое помещение (5 этаж))
+  - panoramas:
+    - locations/техническое_помещение_5_floor_1.jpg
+    - locations/техническое_помещение_5_floor_2.jpg
+  - containers:
+    -
+      - name: Синий паллетный ящик
+      - images:
+        - items_spawn_container/Синий паллетный ящик в техническом помещении (5F).jpg
+    -
+      - name: Коробки (3 шт.) — левая верхняя, верхняя и нижняя посередине
+      - images:
+        - items_spawn_container/Левая верхняя, верхняя и нижняя посередине коробки (3 шт.) в техническом помещении (5F).jpg
+    -
+      - name: Коробки (3 шт.) — левая нижняя, правая нижняя, правая верхняя
+      - images:
+        - items_spawn_container/Левая нижняя, правая нижняя и правая верхняя коробки (3 шт.) в техническом помещении (5F).jpg
+    -
+      - name: Синий шкафчик (посередине)
+      - images:
+        - items_spawn_container/Синий шкафчик (посередине) в техническом помещении (5F).jpg
+    -
+      - name: Синий шкафчик (слева и справа, 2 шт.)
+      - images:
+        - items_spawn_container/Синий шкафчик (слева и справа, 2 шт.) в техническом помещении (5F).jpg
+    -
+      - name: Промышленный насос
+      - images:
+        - items_spawn_container/Промышленный насос в техническом помещении (5F).jpg
+
+## Restroom  (Туалет)
+  - panoramas:
+    - locations/женский_туалет_4_floor.jpg
+    - locations/мужской_туалет_4_floor.jpg
+  - containers:
+    -
+      - name: Ведро с шваброй (2 шт.)
+      - images:
+        - items_spawn_container/Ведро с шваброй в туалете (2 шт.) (4F).jpg
+    -
+      - name: Ведро со шваброй (2 шт.)
+      - images:
+        - items_spawn_container/Ведро со шваброй в туалетах (2 шт.) (4F).jpg
+
+## Restroom by the Dormitory  (Туалет у общежития)
+  - panoramas:
+    - locations/женский_туалет_рядом_с_общежитием_1_floor.jpg
+    - locations/мужской_туалет_рядом_с_общежитием_1_floor.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна в туалете (2 шт.) у общежития (1F).jpg
+
+## Restrooms by the Gym  (Туалеты у спортзала)
+  - panoramas:
+    - locations/женский_туалет_рядом_со_спортзалом_1_floor.jpg
+    - locations/мужской_туалет_рядом_со_спортзалом_1_floor.jpg
+  - containers:
+    -
+      - name: Ведро с шваброй
+      - images:
+        - items_spawn_container/Ведро с шваброй в туалетах возле спортзала (1F).jpg
+    -
+      - name: Ведро со шваброй (2 шт.)
+      - images:
+        - items_spawn_container/Ведро со шваброй в туалетах (2 шт.) возле спортзала (1F).jpg
+
+## Staff Room  (Учительская)
+  - panoramas:
+    - locations/учительская_4_floor.jpg
+  - containers:
+    -
+      - name: Компьютер
+      - images:
+        - items_spawn_container/Компьютер в учительской (4F).jpg
+    -
+      - name: Стол (тип B, 2 шт.)
+      - images:
+        - items_spawn_container/Стол (тип B, 2 шт.) в учительской (4F).jpg
+    -
+      - name: Стол (тип А, 9 шт.)
+      - images:
+        - items_spawn_container/Стол (тип А, 9 шт.) в учительской (4F).jpg
+
+## Classroom (1F)  (Школьный кабинет (1 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_1_floor_1.jpg
+    - locations/школьный_кабинет_1_floor_2.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна в школьном кабинете (2 шт.) (1F).jpg
+
+## Classroom (2F)  (Школьный кабинет (2 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_2_floor_1.jpg
+    - locations/школьный_кабинет_2_floor_2.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна (2 шт.) в школьном кабинете (2F).jpg
+
+## Classroom (3F)  (Школьный кабинет (3 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_3_floor_1.jpg
+    - locations/школьный_кабинет_3_floor_2.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна (2 шт.) в школьном кабинете (3F).jpg
+
+## Classroom (4F)  (Школьный кабинет (4 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_4_floor_1.jpg
+    - locations/школьный_кабинет_4_floor_2.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна в школьном кабинете (2 шт.) (4F).jpg
+
+## Classroom (5F)  (Школьный кабинет (5 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_5_floor_1.jpg
+    - locations/школьный_кабинет_5_floor_2.jpg
+  - containers:
+    -
+      - name: Урна (2 шт.)
+      - images:
+        - items_spawn_container/Урна в школьном кабинете (2 шт.) (5F).jpg
+
+## Classroom with Bloodstains (5F)  (Школьный кабинет с кровавыми пятнами (5 этаж))
+  - panoramas:
+    - locations/школьный_кабинет_с_кровавыми_пятнами_5_floor.jpg
+  - containers:
+    -
+      - name: Коробка с кровавыми следами
+      - images:
+        - items_spawn_container/Коробка_в_школьном_кабинете_с_кровавыми_следами_5_floor.jpg
+
+## Library (Archive)  (Библиотека (архив))
+  - panoramas:
+    - locations/библиотека_2_floor_1.jpg
+    - locations/библиотека_вентиляция_2_floor.jpg
+    - locations/библиотека_2_floor_2.jpg
+  - containers:
+    -
+      - name: Книжные стеллажи (2 шт.) слева от входа
+      - images:
+        - items_spawn_container/Книжные стеллажи (2 шт.) слева от входа в архив библиотеки (2F).jpg
+    -
+      - name: Книжные стеллажи (2 шт.) справа от тележки
+      - images:
+        - items_spawn_container/Книжные стеллажи (2 шт.) справа от тележки в архиве библиотеки (2F).jpg
+    -
+      - name: Книжный стеллаж слева от тележки
+      - images:
+        - items_spawn_container/Книжный стеллаж слева от тележки в архиве библиотеки (2F).jpg
+    -
+      - name: Книжный стеллаж у стремянки
+      - images:
+        - items_spawn_container/Книжный стеллаж у стремянки в архиве библиотеки (2F).jpg
+    -
+      - name: Металлический стеллаж
+      - images:
+        - items_spawn_container/Металлический стеллаж в архиве библиотеки (2F).jpg
+    -
+      - name: Тележка с коробками
+      - images:
+        - items_spawn_container/Тележка с коробками в архиве библиотеки (2F).jpg
+
+## Men's Restroom (Secret Room)  (Мужской туалет (секретная комната))
+  - panoramas:
+    - locations/потайная_комната_мужской_туалет_2_floor.jpg
+    - locations/потайная_комната_мужской_туалет_2_floor_2.jpg
+  - containers:
+    -
+      - name: Металлический контейнер
+      - images:
+        - items_spawn_container/Металлический контейнер в секретной комнате в мужском туалете (2F).jpg
+
+## Abandoned Dorm Floor (Secret Room)  (Заброшенный этаж общежития (секретная комната))
+  - panoramas:
+    - locations/спальная_комната_директора_заброшенное_общежитие_2_floor_3.jpg
+    - locations/спальная_комната_директора_заброшенное_общежитие_2_floor_2.jpg
+    - locations/спальная_комната_директора_заброшенное_общежитие_2_floor_1.jpg
+    - locations/спальная_комната_директора_заброшенное_общежитие_2_floor_4.jpg
+  - containers:
+    -
+      - name: Металлический шкафчик (6 шт.)
+      - images:
+        - items_spawn_container/Металлический шкафчик (6 шт.) в секретной комнате спальни директора на заброшенном floorе общежития (2F).jpg
+
+## Abandoned Dorm Floor (Giraffe Room)  (Заброшенный этаж общежития (комната с жирафом))
+  - panoramas:
+    - locations/шкафчики_заброшенное_общежитие_2_floor_2.jpg
+    - locations/шкафчики_заброшенное_общежитие_2_floor_1.jpg
+  - containers:
+    -
+      - name: Синие шкафы (4 шт.)
+      - images:
+        - items_spawn_container/Синие шкафы (4 шт.) в комнате с рисунком жирафа на заброшенном floorе общежития (2F).jpg
+    -
+      - name: Шкафчики (6 шт.)
+      - images:
+        - items_spawn_container/Шкафчики (6 шт.) в комнате с рисунком жирафа на заброшенном floorе общежития (2F).jpg
+    -
+      - name: Тумба (2 шт.)
+      - images:
+        - items_spawn_container/Тумба (2 шт.) в комнате с рисунком жирафа на заброшенном floorе общежития (2F).jpg
+
+## Abandoned Dorm Floor  (Заброшенный этаж общежития)
+  - panoramas:
+    - locations/заброшенное_общежитие_2_floor_1.jpg
+    - locations/заброшенное_общежитие_2_floor_4.jpg
+    - locations/заброшенное_общежитие_2_floor_3.jpg
+    - locations/заброшенное_общежитие_2_floor_2.jpg
+    - locations/вход_в_заброшенное_общежитие_1_floor.jpg
+    - locations/коридор_заброшенное_общежитие_2_floor_1.jpg
+    - locations/коридор_заброшенное_общежитие_2_floor_2.jpg
+    - locations/коридор_заброшенное_общежитие_2_floor_3.jpg
+    - locations/коридор_заброшенное_общежитие_2_floor_4.jpg
+  - containers:
+    -
+      - name: Стол с ящиками в спальной комнате
+      - images:
+        - items_spawn_container/Стол с ящиками в спальной комнате на заброшенном floorе общежития (2F).jpg
+    -
+      - name: Урна в туалете (2 шт.)
+      - images:
+        - items_spawn_container/Урна в туалете (2 шт.) на заброшенном floorе общежития (2F).jpg
+    -
+      - name: Урна у скамеек
+      - images:
+        - items_spawn_container/Урна у скамеек на заброшенном floorе общежития (2F).jpg
+
+## Biology Lab  (Биолаборатория)
+  - panoramas:
+    - locations/биолаборатория_5_floor.jpg
+  - containers:
+    -
+      - name: Шкаф (тип B, 2 шт.)
+      - images:
+        - items_spawn_container/Шкаф (тип B, 2 шт.) в биолаборатории (5F).jpg
+    -
+      - name: Шкаф (тип А, 3 шт.)
+      - images:
+        - items_spawn_container/Шкаф (тип А, 3 шт.) в биолаборатории (5F).jpg
+
+## Restrooms (2F)  (Туалеты (2 этаж))
+  - panoramas:
+    - locations/женский_туалет_2_floor.jpg
+    - locations/мужской_туалет_2_floor.jpg
+  - containers:
+    -
+      - name: Ведро со шваброй (2 шт.)
+      - images:
+        - items_spawn_container/Ведро со шваброй в туалетах (2 шт.) (2F).jpg
+
+## Dojo  (Додзё)
+  - panoramas:
+    - locations/додзе_5_floor.jpg
+  - containers:
+    -
+      - name: Katana
+      - images:
+        - items_spawn_container/Katana в додзё (5F).jpg
