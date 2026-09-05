@@ -26,3 +26,29 @@ describe('buscar', () => {
     expect(buscar('a')).toEqual([]);
   });
 });
+
+describe('buscar em todas as seções', () => {
+  it('acha item pelo nome em português', () => {
+    const r = buscar('sucata enferrujada');
+    expect(r[0].tipo).toBe('item');
+    expect(r[0].url).toBe('/itens/rusty-scrap-metal/');
+  });
+
+  it('acha item pelo nome em inglês', () => {
+    expect(buscar('Rusty Scrap').some((x) => x.id === 'rusty-scrap-metal')).toBe(true);
+  });
+
+  it('acha local', () => {
+    const r = buscar('ginasio');
+    expect(r.some((x) => x.tipo === 'local')).toBe(true);
+  });
+
+  it('põe na frente quem começa com o termo', () => {
+    const r = buscar('pano');
+    expect(r[0].titulo.toLowerCase().startsWith('pano')).toBe(true);
+  });
+
+  it('marca o tipo de cada resultado', () => {
+    expect(buscar('chihiro')[0].tipo).toBe('personagem');
+  });
+});
