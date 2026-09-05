@@ -1,6 +1,7 @@
 import { Faixa } from '@/components/layout/Faixa';
 import { Boot } from '@/components/alter-ego/Boot';
 import { listarPersonagens } from '@/lib/dados';
+import { spriteDoPersonagem } from '@/lib/sprites';
 
 export default function Inicio() {
   const total = listarPersonagens().length;
@@ -28,6 +29,7 @@ export default function Inicio() {
       </section>
 
       <Faixa numero="01" titulo="ELENCO" variante="teal" url="/elenco/"
+        sprite={spriteDoPersonagem('shuichi-saihara')}
         descricao={`${total} alunos: atributos, velocidade, itens iniciais e dicas de RP.`} />
       <Faixa numero="02" titulo="ITENS" variante="papel" url="/itens/"
         descricao="162 itens: peso, raridade, onde spawnam e o que craftam." />

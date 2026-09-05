@@ -16,7 +16,7 @@
     "percepcao": 7,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/makoto-naegi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -42,7 +42,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/byakuya-togami-ultimate-affluent-progeny.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -68,7 +68,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kiyotaka-ishimaru.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -99,7 +99,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kyoko-kirigiri.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -130,7 +130,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/sayaka-maizono.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -161,7 +161,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/celestia-ludenberg.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -187,7 +187,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/junko-enoshima-ultimate-fashionista.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -213,7 +213,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/toko-fukawa.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -244,7 +244,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/aoi-asahina.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -280,7 +280,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/sakura-ogami.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -311,7 +311,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/hifumi-yamada.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -342,7 +342,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/leon-kuwata.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -362,7 +362,7 @@
     "percepcao": 2,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/yasuhiro-hagakure.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -393,7 +393,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/mukuro-ikusaba.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -419,7 +419,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/junko-enoshima-ultimate-analyst.webp",
+    "sprite": "/sprites/junko/Danganronpa_1_Junko_Enoshima_Halfbody_Sprite_(Mobile)_(1).webp",
     "traducaoRevisada": false
   },
   {
@@ -450,7 +450,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/chihiro-fujisaki.webp",
+    "sprite": "/sprites/chihiro/Chihiro_Fujisaki_Halfbody_Sprite_(1).webp",
     "traducaoRevisada": false
   },
   {
@@ -481,7 +481,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/mondo-owada.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -507,7 +507,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/hajime-hinata.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -538,7 +538,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/nagito-komaeda.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -564,7 +564,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/gundham-tanaka.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -584,7 +584,7 @@
     "percepcao": 7,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/fuyuhiko-kuzuryu.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -615,7 +615,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/ibuki-mioda.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -646,7 +646,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/sonia-nevermind.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -677,7 +677,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/chiaki-nanami.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -703,7 +703,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/mikan-tsumiki.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -729,7 +729,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/peko-pekoyama.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -749,7 +749,7 @@
     "percepcao": 8,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/mahiru-koizumi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -780,7 +780,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/akane-owari.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -806,7 +806,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/hiyoko-saionji.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -837,7 +837,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/byakuya-togami-ultimate-imposter.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -873,7 +873,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/nekomaru-nidai.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -893,7 +893,7 @@
     "percepcao": 5,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/teruteru-hanamura.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -913,7 +913,7 @@
     "percepcao": 6,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/kazuichi-soda.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -933,7 +933,7 @@
     "percepcao": 9,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/ryoko-otonashi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -959,7 +959,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/shuichi-saihara.webp",
+    "sprite": "/sprites/shuichi/DRS_-_Shuichi_Saihara_Sprite_(Uniform)_(01).webp",
     "traducaoRevisada": false
   },
   {
@@ -995,7 +995,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kokichi-oma.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1021,7 +1021,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/k1-b0.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1047,7 +1047,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/kaito-momota.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1073,7 +1073,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/rantaro-amami.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1099,7 +1099,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/korekiyo-shinguji.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1130,7 +1130,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/gonta-gokuhara.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1156,7 +1156,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kaede-akamatsu.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1187,7 +1187,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/maki-harukawa.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1218,7 +1218,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/tenko-chabashira.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1238,7 +1238,7 @@
     "percepcao": 8,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/miu-iruma.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1269,7 +1269,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/himiko-yumeno.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1300,7 +1300,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kirumi-tojo.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1326,7 +1326,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/tsumugi-shirogane.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1352,7 +1352,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/angie-yonaga.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1378,7 +1378,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/ryoma-hoshi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1398,7 +1398,7 @@
     "percepcao": 6,
     "vida": 100,
     "etiquetas": [],
-    "sprite": "/sprites/komaru-naegi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1424,7 +1424,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/jataro-kemuri.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1455,7 +1455,7 @@
         "bom": false
       }
     ],
-    "sprite": "/sprites/masaru-daimon.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1486,7 +1486,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/nagisa-shingetsu.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1512,7 +1512,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/kotoko-utsugi.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   },
   {
@@ -1538,7 +1538,7 @@
         "bom": true
       }
     ],
-    "sprite": "/sprites/monaca-towa.webp",
+    "sprite": "/sprites/silhueta.svg",
     "traducaoRevisada": false
   }
 ]

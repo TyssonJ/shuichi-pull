@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" role="img" aria-hidden="true">
+  <rect width="200" height="280" fill="#17171D"/>
+  <g fill="#2A2A33">
+    <circle cx="100" cy="92" r="38"/>
+    <path d="M100 140c-40 0-70 26-70 60v80h140v-80c0-34-30-60-70-60z"/>
+  </g>
+  <text x="100" y="262" text-anchor="middle" font-family="monospace" font-size="13" fill="#7A7A88">
+    sem sprite
+  </text>
+</svg>

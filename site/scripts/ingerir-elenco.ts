@@ -4,6 +4,7 @@ import { traduzirRuEn } from '../lib/glossario';
 import { extrairValor } from '../lib/atributos';
 import { traduzirPt } from '../lib/traducoes';
 import { validarPersonagens, type Personagem, type Etiqueta } from '../lib/schema';
+import { spriteDoPersonagem } from '../lib/sprites';
 
 const BRUTO = path.join(
   process.cwd(), '..', 'kirigiris-guidebook', '_raw', 'data', 'en', 'data.json'
@@ -76,7 +77,7 @@ export function ingerirElenco(): Personagem[] {
         jogo: jogo.game,
         velocidade, mochila, percepcao, vida,
         etiquetas,
-        sprite: `/sprites/${id}.webp`,
+        sprite: spriteDoPersonagem(id),
         traducaoRevisada: false,
       });
     }
