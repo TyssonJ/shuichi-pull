@@ -1,0 +1,1544 @@
+[
+  {
+    "id": "makoto-naegi",
+    "nome": "Makoto Naegi",
+    "talento": {
+      "pt": "Sortudo Supremo",
+      "en": "Ultimate Lucky Student"
+    },
+    "descricao": {
+      "pt": "An ordinary high-schooler who got into the academy through a lottery. His main strength is unshakable optimism and faith in his friends.",
+      "en": "An ordinary high-schooler who got into the academy through a lottery. His main strength is unshakable optimism and faith in his friends."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 190,
+    "mochila": 14,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/makoto-naegi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "byakuya-togami-ultimate-affluent-progeny",
+    "nome": "Byakuya Togami",
+    "talento": {
+      "pt": "Herdeiro Supremo",
+      "en": "Ultimate Affluent Progeny"
+    },
+    "descricao": {
+      "pt": "Heir to the powerful Togami financial empire, who came through a brutal family struggle for the right to lead. He treats taking part in the killing game as an intellectual contest, regarding everyone else as mere pawns.",
+      "en": "Heir to the powerful Togami financial empire, who came through a brutal family struggle for the right to lead. He treats taking part in the killing game as an intellectual contest, regarding everyone else as mere pawns."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 200,
+    "mochila": 15,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/byakuya-togami-ultimate-affluent-progeny.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kiyotaka-ishimaru",
+    "nome": "Kiyotaka Ishimaru",
+    "talento": {
+      "pt": "Bússola Moral Suprema",
+      "en": "Ultimate Moral Compass"
+    },
+    "descricao": {
+      "pt": "Grandson of a former prime minister, who has devoted his life to restoring his family's honor through fanatical adherence to the rules. Kiyotaka despises laziness and believes that hard work matters more than talent. He is always in motion, maintaining perfect discipline, but his bluntness keeps him from noticing hidden nuances.",
+      "en": "Grandson of a former prime minister, who has devoted his life to restoring his family's honor through fanatical adherence to the rules. Kiyotaka despises laziness and believes that hard work matters more than talent. He is always in motion, maintaining perfect discipline, but his bluntness keeps him from noticing hidden nuances."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 205,
+    "mochila": 15,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kiyotaka-ishimaru.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kyoko-kirigiri",
+    "nome": "Kyoko Kirigiri",
+    "talento": {
+      "pt": "Detetive Supremo",
+      "en": "Ultimate Detective"
+    },
+    "descricao": {
+      "pt": "A mysterious girl whose past is shrouded in secrecy even to herself. She possesses phenomenal observation and deduction skills inherited from a family of hereditary detectives. Kyoko is used to suppressing her emotions, which gives her a colossal advantage in survival.",
+      "en": "A mysterious girl whose past is shrouded in secrecy even to herself. She possesses phenomenal observation and deduction skills inherited from a family of hereditary detectives. Kyoko is used to suppressing her emotions, which gives her a colossal advantage in survival."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 200,
+    "mochila": 14,
+    "percepcao": 10,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kyoko-kirigiri.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "sayaka-maizono",
+    "nome": "Sayaka Maizono",
+    "talento": {
+      "pt": "Ídolo Pop Suprema",
+      "en": "Ultimate Pop Sensation"
+    },
+    "descricao": {
+      "pt": "The Ultimate Pop Sensation and leader of a popular idol group. Behind her dazzling stage smile hides incredible determination and a willingness to do anything to preserve her dream.",
+      "en": "The Ultimate Pop Sensation and leader of a popular idol group. Behind her dazzling stage smile hides incredible determination and a willingness to do anything to preserve her dream."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 205,
+    "mochila": 14,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Sleep 5% less often",
+        "en": "Sleep 5% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/sayaka-maizono.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "celestia-ludenberg",
+    "nome": "Celestia Ludenberg",
+    "talento": {
+      "pt": "Apostadora Suprema",
+      "en": "Ultimate Gambler"
+    },
+    "descricao": {
+      "pt": "The queen of gothic lies, weaving a web of illusions. She rejected her own name for the sake of an invented aristocratic ideal. Her poker face is flawless, and other people's lives are to her merely chips on the roulette baize.",
+      "en": "The queen of gothic lies, weaving a web of illusions. She rejected her own name for the sake of an invented aristocratic ideal. Her poker face is flawless, and other people's lives are to her merely chips on the roulette baize."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 190,
+    "mochila": 14,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/celestia-ludenberg.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "junko-enoshima-ultimate-fashionista",
+    "nome": "Junko Enoshima",
+    "talento": {
+      "pt": "Fashionista Suprema",
+      "en": "Ultimate Fashionista"
+    },
+    "descricao": {
+      "pt": "A perfect soldier hiding her crosshair behind a camera lens. Beneath the mask of a capricious fashion model hide the flawless reflexes of a mercenary who knows neither mercy nor the fear of death.",
+      "en": "A perfect soldier hiding her crosshair behind a camera lens. Beneath the mask of a capricious fashion model hide the flawless reflexes of a mercenary who knows neither mercy nor the fear of death."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 210,
+    "mochila": 20,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 30% less often",
+        "en": "Sleep 30% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/junko-enoshima-ultimate-fashionista.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "toko-fukawa",
+    "nome": "Toko Fukawa",
+    "talento": {
+      "pt": "Escritora Suprema",
+      "en": "Ultimate Writing Prodigy"
+    },
+    "descricao": {
+      "pt": "A tormented muse whose words are sharper than scissors. An outcast locked in a cage of paranoia and complexes. Her brilliant novels are born of pain, and in the depths of her broken mind sleeps something far darker and more uncontrollable.",
+      "en": "A tormented muse whose words are sharper than scissors. An outcast locked in a cage of paranoia and complexes. Her brilliant novels are born of pain, and in the depths of her broken mind sleeps something far darker and more uncontrollable."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 195,
+    "mochila": 14,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/toko-fukawa.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "aoi-asahina",
+    "nome": "Aoi Asahina",
+    "talento": {
+      "pt": "Nadador Supremo",
+      "en": "Ultimate Swimming Pro"
+    },
+    "descricao": {
+      "pt": "A bubbling stream of sincere emotion. A dazzlingly cheerful swimmer whose energy overflows. She cannot hide her feelings and is ready to throw herself into the storm to protect those she calls friends.",
+      "en": "A bubbling stream of sincere emotion. A dazzlingly cheerful swimmer whose energy overflows. She cannot hide her feelings and is ready to throw herself into the storm to protect those she calls friends."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 220,
+    "mochila": 17,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 15% less often",
+        "en": "Sleep 15% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 30% faster",
+        "en": "Hunger 30% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/aoi-asahina.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "sakura-ogami",
+    "nome": "Sakura Ogami",
+    "talento": {
+      "pt": "Artista Marcial Suprema",
+      "en": "Ultimate Martial Artist"
+    },
+    "descricao": {
+      "pt": "An indestructible rock with the soul of a noble samurai. The strongest person on the planet, whose terrifying might serves only as a shield for the innocent. A warrior who has devoted her life to training and attaining true serenity.",
+      "en": "An indestructible rock with the soul of a noble samurai. The strongest person on the planet, whose terrifying might serves only as a shield for the innocent. A warrior who has devoted her life to training and attaining true serenity."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 215,
+    "mochila": 40,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Stamina consumption 75% lower",
+        "en": "Stamina consumption 75% lower",
+        "bom": true
+      },
+      {
+        "pt": "Sleep 30% less often",
+        "en": "Sleep 30% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 40% faster",
+        "en": "Hunger 40% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/sakura-ogami.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "hifumi-yamada",
+    "nome": "Hifumi Yamada",
+    "talento": {
+      "pt": "Ficwriter Suprema",
+      "en": "Ultimate Fanfic Creator"
+    },
+    "descricao": {
+      "pt": "A creator of 2D illusions, lost in reality. He rejected the cruel world of people for the comfort of manga and anime, becoming the absolute master of fictional worlds and plots.",
+      "en": "A creator of 2D illusions, lost in reality. He rejected the cruel world of people for the comfort of manga and anime, becoming the absolute master of fictional worlds and plots."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 180,
+    "mochila": 20,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% faster",
+        "en": "Sleep 10% faster",
+        "bom": false
+      },
+      {
+        "pt": "Hunger 20% faster",
+        "en": "Hunger 20% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/hifumi-yamada.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "leon-kuwata",
+    "nome": "Leon Kuwata",
+    "talento": {
+      "pt": "Astro do Beisebol Supremo",
+      "en": "Ultimate Baseball Star"
+    },
+    "descricao": {
+      "pt": "A rebellious soul torn between a baseball bat and an electric guitar. A hot-tempered and impulsive rebel who is used to achieving success effortlessly, without thinking about the consequences of his actions.",
+      "en": "A rebellious soul torn between a baseball bat and an electric guitar. A hot-tempered and impulsive rebel who is used to achieving success effortlessly, without thinking about the consequences of his actions."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 215,
+    "mochila": 16,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 5% less often",
+        "en": "Sleep 5% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 5% faster",
+        "en": "Hunger 5% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/leon-kuwata.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "yasuhiro-hagakure",
+    "nome": "Yasuhiro Hagakure",
+    "talento": {
+      "pt": "Vidente Suprema",
+      "en": "Ultimate Clairvoyant"
+    },
+    "descricao": {
+      "pt": "A carefree wanderer along the lines of probability. Cowardly, lazy and absurdly naive. His predictions come true only a third of the time, but his ability to drift along the current of absurdity makes him surprisingly resilient.",
+      "en": "A carefree wanderer along the lines of probability. Cowardly, lazy and absurdly naive. His predictions come true only a third of the time, but his ability to drift along the current of absurdity makes him surprisingly resilient."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 195,
+    "mochila": 15,
+    "percepcao": 2,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/yasuhiro-hagakure.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "mukuro-ikusaba",
+    "nome": "Mukuro Ikusaba",
+    "talento": {
+      "pt": "Soldado Supremo",
+      "en": "Ultimate Soldier"
+    },
+    "descricao": {
+      "pt": "A nameless blade that does not know its own desires. An elite mercenary of 'Fenrir' whose life is devoted to carrying out orders. A living weapon devoid of empathy, yet blindly devoted to the one person dear to her.",
+      "en": "A nameless blade that does not know its own desires. An elite mercenary of 'Fenrir' whose life is devoted to carrying out orders. A living weapon devoid of empathy, yet blindly devoted to the one person dear to her."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 210,
+    "mochila": 20,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 30% less often",
+        "en": "Sleep 30% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/mukuro-ikusaba.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "junko-enoshima-ultimate-analyst",
+    "nome": "Junko Enoshima",
+    "talento": {
+      "pt": "Analista Suprema",
+      "en": "Ultimate Analyst"
+    },
+    "descricao": {
+      "pt": "The deadly conductor of the orchestra of Ultimate Despair. A genius for whom the predictability of the world has become an unbearable torment. She craves to destroy everything in order to savor the genuine, unfeigned pain of humanity.",
+      "en": "The deadly conductor of the orchestra of Ultimate Despair. A genius for whom the predictability of the world has become an unbearable torment. She craves to destroy everything in order to savor the genuine, unfeigned pain of humanity."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 195,
+    "mochila": 15,
+    "percepcao": 10,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/junko-enoshima-ultimate-analyst.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "chihiro-fujisaki",
+    "nome": "Chihiro Fujisaki",
+    "talento": {
+      "pt": "Programação Suprema",
+      "en": "Ultimate Programmer"
+    },
+    "descricao": {
+      "pt": "A brilliant programmer who created advanced AI. A fragile and shy youth who desperately longs to become stronger in order to overcome his inner fears.",
+      "en": "A brilliant programmer who created advanced AI. A fragile and shy youth who desperately longs to become stronger in order to overcome his inner fears."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 180,
+    "mochila": 13,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 20% less often",
+        "en": "Hunger 20% less often",
+        "bom": true
+      },
+      {
+        "pt": "Sleep 10% more often",
+        "en": "Sleep 10% more often",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/chihiro-fujisaki.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "mondo-owada",
+    "nome": "Mondo Owada",
+    "talento": {
+      "pt": "Líder de Gangue Supremo",
+      "en": "Ultimate Biker Gang Leader"
+    },
+    "descricao": {
+      "pt": "The second leader of Japan's largest biker gang, the 'Crazy Diamonds'. Mondo hides his vulnerability behind a mask of brute force and a short temper. Years of street fights have made him incredibly enduring and able to carry heavy loads, but his diet and lifestyle are far from ideal.",
+      "en": "The second leader of Japan's largest biker gang, the 'Crazy Diamonds'. Mondo hides his vulnerability behind a mask of brute force and a short temper. Years of street fights have made him incredibly enduring and able to carry heavy loads, but his diet and lifestyle are far from ideal."
+    },
+    "jogo": "Danganronpa: Trigger Happy Havoc",
+    "velocidade": 205,
+    "mochila": 22,
+    "percepcao": 3,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 15% faster",
+        "en": "Hunger 15% faster",
+        "bom": false
+      },
+      {
+        "pt": "Easier lock-picking with lockpicks",
+        "en": "Easier lock-picking with lockpicks",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/mondo-owada.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "hajime-hinata",
+    "nome": "Hajime Hinata",
+    "talento": {
+      "pt": "Aluno do Curso Reserva",
+      "en": "Reserve Course Student"
+    },
+    "descricao": {
+      "pt": "A blank canvas among bright colors. A man whose ordinariness became his curse and his main weapon. Rejected by the talent system, he stubbornly seeks the truth, refusing to bend under the weight of others' genius.",
+      "en": "A blank canvas among bright colors. A man whose ordinariness became his curse and his main weapon. Rejected by the talent system, he stubbornly seeks the truth, refusing to bend under the weight of others' genius."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 200,
+    "mochila": 15,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Standard metabolism",
+        "en": "Standard metabolism",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/hajime-hinata.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "nagito-komaeda",
+    "nome": "Nagito Komaeda",
+    "talento": {
+      "pt": "Sortudo Supremo",
+      "en": "Ultimate Lucky Student"
+    },
+    "descricao": {
+      "pt": "A fanatic of the idea of Ultimate Hope. He balances on the thin line between genius and madness. Because of a cycle of incredible luck and cruel tragedies, his mind is broken, and his self-sacrifice knows no bounds.",
+      "en": "A fanatic of the idea of Ultimate Hope. He balances on the thin line between genius and madness. Because of a cycle of incredible luck and cruel tragedies, his mind is broken, and his self-sacrifice knows no bounds."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 190,
+    "mochila": 15,
+    "percepcao": 10,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% more often",
+        "en": "Sleep 20% more often",
+        "bom": false
+      },
+      {
+        "pt": "Hunger 20% less often",
+        "en": "Hunger 20% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/nagito-komaeda.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "gundham-tanaka",
+    "nome": "Gundham Tanaka",
+    "talento": {
+      "pt": "Criadora Suprema",
+      "en": "Ultimate Breeder"
+    },
+    "descricao": {
+      "pt": "A lonely lord of illusions. Behind a veil of theatrical mysticism and tales of demons hides a sensitive soul, able to find common ground with any beast, yet endlessly far from understanding people.",
+      "en": "A lonely lord of illusions. Behind a veil of theatrical mysticism and tales of demons hides a sensitive soul, able to find common ground with any beast, yet endlessly far from understanding people."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 200,
+    "mochila": 18,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep and hunger 10% less often",
+        "en": "Sleep and hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/gundham-tanaka.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "fuyuhiko-kuzuryu",
+    "nome": "Fuyuhiko Kuzuryu",
+    "talento": {
+      "pt": "Yakuza Supremo",
+      "en": "Ultimate Yakuza"
+    },
+    "descricao": {
+      "pt": "Heir to a criminal throne, locked in a teenager's body. Behind his ferocious gaze and rudeness lies a desperate desire to prove his strength without relying on the status and influence of his deadly family.",
+      "en": "Heir to a criminal throne, locked in a teenager's body. Behind his ferocious gaze and rudeness lies a desperate desire to prove his strength without relying on the status and influence of his deadly family."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 195,
+    "mochila": 15,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/fuyuhiko-kuzuryu.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "ibuki-mioda",
+    "nome": "Ibuki Mioda",
+    "talento": {
+      "pt": "Músico Supremo",
+      "en": "Ultimate Musician"
+    },
+    "descricao": {
+      "pt": "A chord shattering the silence. A girl living at maximum volume. She turns every second into a bright performance, charging those around her with her primal, uncontrollable rock energy.",
+      "en": "A chord shattering the silence. A girl living at maximum volume. She turns every second into a bright performance, charging those around her with her primal, uncontrollable rock energy."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 210,
+    "mochila": 15,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% faster",
+        "en": "Hunger 10% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/ibuki-mioda.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "sonia-nevermind",
+    "nome": "Sonia Nevermind",
+    "talento": {
+      "pt": "Princesa Suprema",
+      "en": "Ultimate Princess"
+    },
+    "descricao": {
+      "pt": "Royal grace. A flawless princess who studied the art of war and leadership. Behind her radiant smile hides a frightening but sincere interest in serial killers and Japanese occultism.",
+      "en": "Royal grace. A flawless princess who studied the art of war and leadership. Behind her radiant smile hides a frightening but sincere interest in serial killers and Japanese occultism."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 190,
+    "mochila": 15,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 5% less often",
+        "en": "Sleep 5% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/sonia-nevermind.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "chiaki-nanami",
+    "nome": "Chiaki Nanami",
+    "talento": {
+      "pt": "Gamer Supremo",
+      "en": "Ultimate Gamer"
+    },
+    "descricao": {
+      "pt": "A sleeping strategist of digital worlds. The Ultimate Gamer, able to calculate any algorithm and find a way out of a dead end. In reality she is slow and drowsy, but her logic never falters once the game begins in earnest.",
+      "en": "A sleeping strategist of digital worlds. The Ultimate Gamer, able to calculate any algorithm and find a way out of a dead end. In reality she is slow and drowsy, but her logic never falters once the game begins in earnest."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 185,
+    "mochila": 15,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 50% more often",
+        "en": "Sleep 50% more often",
+        "bom": false
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/chiaki-nanami.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "mikan-tsumiki",
+    "nome": "Mikan Tsumiki",
+    "talento": {
+      "pt": "Enfermeira Suprema",
+      "en": "Ultimate Nurse"
+    },
+    "descricao": {
+      "pt": "A broken angel of mercy. A girl whose body and soul are covered in scars from others' cruelty. She begs for attention, humbling herself before everyone, but in the operating room her talent as a surgeon borders on divine intervention.",
+      "en": "A broken angel of mercy. A girl whose body and soul are covered in scars from others' cruelty. She begs for attention, humbling herself before everyone, but in the operating room her talent as a surgeon borders on divine intervention."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 190,
+    "mochila": 15,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% more often",
+        "en": "Sleep 10% more often",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/mikan-tsumiki.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "peko-pekoyama",
+    "nome": "Peko Pekoyama",
+    "talento": {
+      "pt": "Espadachim Suprema",
+      "en": "Ultimate Swordswoman"
+    },
+    "descricao": {
+      "pt": "A living blade of the Kuzuryu clan. A girl who voluntarily destroyed the person within herself to become a flawless weapon for her master. Her loyalty is absolute, and her strikes are lightning-fast.",
+      "en": "A living blade of the Kuzuryu clan. A girl who voluntarily destroyed the person within herself to become a flawless weapon for her master. Her loyalty is absolute, and her strikes are lightning-fast."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 215,
+    "mochila": 16,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/peko-pekoyama.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "mahiru-koizumi",
+    "nome": "Mahiru Koizumi",
+    "talento": {
+      "pt": "Fotógrafo Supremo",
+      "en": "Ultimate Photographer"
+    },
+    "descricao": {
+      "pt": "An uncompromising lens of justice. A photographer whose shots are meant to preserve smiles. She has a sharp character and does not tolerate irresponsibility, always placing the group's well-being above her own ambitions.",
+      "en": "An uncompromising lens of justice. A photographer whose shots are meant to preserve smiles. She has a sharp character and does not tolerate irresponsibility, always placing the group's well-being above her own ambitions."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 190,
+    "mochila": 14,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/mahiru-koizumi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "akane-owari",
+    "nome": "Akane Owari",
+    "talento": {
+      "pt": "Ginasta Suprema",
+      "en": "Ultimate Gymnast"
+    },
+    "descricao": {
+      "pt": "An untamable animal instinct locked in a human body. A child of the slums, used to surviving by fists and speed. She does not dwell on the complicated, preferring to solve problems in a fight or at the dinner table.",
+      "en": "An untamable animal instinct locked in a human body. A child of the slums, used to surviving by fists and speed. She does not dwell on the complicated, preferring to solve problems in a fight or at the dinner table."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 225,
+    "mochila": 18,
+    "percepcao": 3,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 80% faster",
+        "en": "Hunger 80% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/akane-owari.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "hiyoko-saionji",
+    "nome": "Hiyoko Saionji",
+    "talento": {
+      "pt": "Dançarina Tradicional Suprema",
+      "en": "Ultimate Traditional Dancer"
+    },
+    "descricao": {
+      "pt": "A poisonous flower of traditional dance. Behind the appearance of an innocent angel hides a cruel mocker who loves to humiliate those weaker than her. Her venom is merely a shield behind which a frightened, fragile child hides.",
+      "en": "A poisonous flower of traditional dance. Behind the appearance of an innocent angel hides a cruel mocker who loves to humiliate those weaker than her. Her venom is merely a shield behind which a frightened, fragile child hides."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 185,
+    "mochila": 12,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger barely depletes",
+        "en": "Hunger barely depletes",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/hiyoko-saionji.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "byakuya-togami-ultimate-imposter",
+    "nome": "Byakuya Togami",
+    "talento": {
+      "pt": "Impostor Supremo",
+      "en": "Ultimate Imposter"
+    },
+    "descricao": {
+      "pt": "A shadow without a face or name. A perfect chameleon, able to wear someone else's life better than the original. Despite the deception, he possesses true nobility, ready to protect those who trusted his false identity.",
+      "en": "A shadow without a face or name. A perfect chameleon, able to wear someone else's life better than the original. Despite the deception, he possesses true nobility, ready to protect those who trusted his false identity."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 195,
+    "mochila": 22,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 50% faster",
+        "en": "Hunger 50% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/byakuya-togami-ultimate-imposter.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "nekomaru-nidai",
+    "nome": "Nekomaru Nidai",
+    "talento": {
+      "pt": "Gerente de Equipe Suprema",
+      "en": "Ultimate Team Manager"
+    },
+    "descricao": {
+      "pt": "A roaring flame of team spirit. A coach whose boiling energy and frightening physical might can revive even the dead. He is ready to sacrifice himself just so his charges reach the summit.",
+      "en": "A roaring flame of team spirit. A coach whose boiling energy and frightening physical might can revive even the dead. He is ready to sacrifice himself just so his charges reach the summit."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 210,
+    "mochila": 45,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Stamina consumption 75% lower",
+        "en": "Stamina consumption 75% lower",
+        "bom": true
+      },
+      {
+        "pt": "Sleep 25% less often",
+        "en": "Sleep 25% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 30% faster",
+        "en": "Hunger 30% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/nekomaru-nidai.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "teruteru-hanamura",
+    "nome": "Teruteru Hanamura",
+    "talento": {
+      "pt": "Cozinheiro Supremo",
+      "en": "Ultimate Cook"
+    },
+    "descricao": {
+      "pt": "A virtuoso of flavor with sinful thoughts. A chef hiding his provincial origins behind the facade of a metropolitan gourmet. Incredibly lecherous, yet devoted with all his soul to his mother and the culinary art.",
+      "en": "A virtuoso of flavor with sinful thoughts. A chef hiding his provincial origins behind the facade of a metropolitan gourmet. Incredibly lecherous, yet devoted with all his soul to his mother and the culinary art."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 180,
+    "mochila": 16,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/teruteru-hanamura.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kazuichi-soda",
+    "nome": "Kazuichi Soda",
+    "talento": {
+      "pt": "Mecânica Suprema",
+      "en": "Ultimate Mechanic"
+    },
+    "descricao": {
+      "pt": "A creator of mechanisms with forever trembling hands. A brilliant mechanic able to assemble an escape shuttle from a heap of scrap metal. A paranoid coward whose fears constantly get the better of his logic.",
+      "en": "A creator of mechanisms with forever trembling hands. A brilliant mechanic able to assemble an escape shuttle from a heap of scrap metal. A paranoid coward whose fears constantly get the better of his logic."
+    },
+    "jogo": "Danganronpa 2: Goodbye Despair",
+    "velocidade": 205,
+    "mochila": 18,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/kazuichi-soda.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "ryoko-otonashi",
+    "nome": "Ryoko Otonashi",
+    "talento": {
+      "pt": "Analista Suprema",
+      "en": "Ultimate Analyst"
+    },
+    "descricao": {
+      "pt": "Lost in the labyrinths of her own mind. A girl whose memories slip through her fingers, leaving only emptiness. Her personality lives on the pages of a notebook, but behind the veil of amnesia hides a frighteningly sharp analytical mind.",
+      "en": "Lost in the labyrinths of her own mind. A girl whose memories slip through her fingers, leaving only emptiness. Her personality lives on the pages of a notebook, but behind the veil of amnesia hides a frighteningly sharp analytical mind."
+    },
+    "jogo": "Danganronpa Zero",
+    "velocidade": 190,
+    "mochila": 15,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/ryoko-otonashi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "shuichi-saihara",
+    "nome": "Shuichi Saihara",
+    "talento": {
+      "pt": "Detetive Supremo",
+      "en": "Ultimate Detective"
+    },
+    "descricao": {
+      "pt": "A detective hiding his gaze from the harsh truth under the brim of his cap. He possesses brilliant deduction but is desperately afraid of the suffering his revelations bring to people. He is forced to overcome his fear in order to survive.",
+      "en": "A detective hiding his gaze from the harsh truth under the brim of his cap. He possesses brilliant deduction but is desperately afraid of the suffering his revelations bring to people. He is forced to overcome his fear in order to survive."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 195,
+    "mochila": 15,
+    "percepcao": 10,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "All needs 10% less often",
+        "en": "All needs 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/shuichi-saihara.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kokichi-oma",
+    "nome": "Kokichi Oma",
+    "talento": {
+      "pt": "Líder Supremo",
+      "en": "Ultimate Supreme Leader"
+    },
+    "descricao": {
+      "pt": "A liar dancing on bones. A maestro of chaos whose true motives are hidden behind a thousand crying and laughing masks. He turns any tragedy into a farce, always staying several steps ahead of his victims.",
+      "en": "A liar dancing on bones. A maestro of chaos whose true motives are hidden behind a thousand crying and laughing masks. He turns any tragedy into a farce, always staying several steps ahead of his victims."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 205,
+    "mochila": 14,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 15% less often",
+        "en": "Hunger 15% less often",
+        "bom": true
+      },
+      {
+        "pt": "Easier lock-picking with lockpicks",
+        "en": "Easier lock-picking with lockpicks",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kokichi-oma.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "k1-b0",
+    "nome": "K1-B0",
+    "talento": {
+      "pt": "Robô Supremo",
+      "en": "Ultimate Robot"
+    },
+    "descricao": {
+      "pt": "A steel body with a human heart. A robot possessing a complex AI that strives to understand the warmth of the human soul. He reacts painfully to prejudice and desperately tries to prove that he is more than just a machine.",
+      "en": "A steel body with a human heart. A robot possessing a complex AI that strives to understand the warmth of the human soul. He reacts painfully to prejudice and desperately tries to prove that he is more than just a machine."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 200,
+    "mochila": 15,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "No food required",
+        "en": "No food required",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/k1-b0.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kaito-momota",
+    "nome": "Kaito Momota",
+    "talento": {
+      "pt": "Astronauta Supremo",
+      "en": "Ultimate Astronaut"
+    },
+    "descricao": {
+      "pt": "A blazing meteor piercing the darkness of logic. An astronaut for whom emotions and faith in friends matter more than any proof. A foolish but incredibly charismatic leader, able to ignite hope in the most despairing hearts.",
+      "en": "A blazing meteor piercing the darkness of logic. An astronaut for whom emotions and faith in friends matter more than any proof. A foolish but incredibly charismatic leader, able to ignite hope in the most despairing hearts."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 200,
+    "mochila": 17,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% faster",
+        "en": "Sleep 10% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/kaito-momota.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "rantaro-amami",
+    "nome": "Rantaro Amami",
+    "talento": {
+      "pt": "Aventureiro Supremo",
+      "en": "Ultimate Adventurer"
+    },
+    "descricao": {
+      "pt": "A calm harbor in the eye of the storm. A youth who forgot his talent but did not lose his composure. An experienced survivor who smiles in the face of danger and secretly plays his own game against the system.",
+      "en": "A calm harbor in the eye of the storm. A youth who forgot his talent but did not lose his composure. An experienced survivor who smiles in the face of danger and secretly plays his own game against the system."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 200,
+    "mochila": 18,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "All needs 15% less often",
+        "en": "All needs 15% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/rantaro-amami.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "korekiyo-shinguji",
+    "nome": "Korekiyo Shinguji",
+    "talento": {
+      "pt": "Antropóloga Suprema",
+      "en": "Ultimate Anthropologist"
+    },
+    "descricao": {
+      "pt": "A refined connoisseur of human tragedy. An anthropologist whose knowledge of the world's cultures borders on a sickly obsession. Behind his bandages hides a perverse mind, fascinated by the beauty of death and suffering.",
+      "en": "A refined connoisseur of human tragedy. An anthropologist whose knowledge of the world's cultures borders on a sickly obsession. Behind his bandages hides a perverse mind, fascinated by the beauty of death and suffering."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 195,
+    "mochila": 15,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep and hunger 10% less often",
+        "en": "Sleep and hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/korekiyo-shinguji.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "gonta-gokuhara",
+    "nome": "Gonta Gokuhara",
+    "talento": {
+      "pt": "Entomologista Supremo",
+      "en": "Ultimate Entomologist"
+    },
+    "descricao": {
+      "pt": "The innocent soul of a forest giant. A huge and frighteningly strong youth raised in the wild. He dreams of becoming a true gentleman, is always ready to help, but is utterly helpless against cunning and lies.",
+      "en": "The innocent soul of a forest giant. A huge and frighteningly strong youth raised in the wild. He dreams of becoming a true gentleman, is always ready to help, but is utterly helpless against cunning and lies."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 215,
+    "mochila": 45,
+    "percepcao": 3,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 20% less often",
+        "en": "Sleep 20% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 20% faster",
+        "en": "Hunger 20% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/gonta-gokuhara.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kaede-akamatsu",
+    "nome": "Kaede Akamatsu",
+    "talento": {
+      "pt": "Pianista Suprema",
+      "en": "Ultimate Pianist"
+    },
+    "descricao": {
+      "pt": "A melody of unity, sounding in spite of fear. A kind and resolute pianist able to unite a scattered crowd into a single orchestra. She is ready to sacrifice everything so her friends can hear the final chord of freedom.",
+      "en": "A melody of unity, sounding in spite of fear. A kind and resolute pianist able to unite a scattered crowd into a single orchestra. She is ready to sacrifice everything so her friends can hear the final chord of freedom."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 190,
+    "mochila": 14,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kaede-akamatsu.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "maki-harukawa",
+    "nome": "Maki Harukawa",
+    "talento": {
+      "pt": "Assassina Suprema",
+      "en": "Ultimate Assassin"
+    },
+    "descricao": {
+      "pt": "A scarlet flower grown on a battlefield. A flawless assassin hiding her bloody trade behind the mask of an unsociable caregiver. She has built a wall of ice around herself, panic-stricken at the thought of growing attached to anyone.",
+      "en": "A scarlet flower grown on a battlefield. A flawless assassin hiding her bloody trade behind the mask of an unsociable caregiver. She has built a wall of ice around herself, panic-stricken at the thought of growing attached to anyone."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 230,
+    "mochila": 15,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 30% less often",
+        "en": "Sleep 30% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/maki-harukawa.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "tenko-chabashira",
+    "nome": "Tenko Chabashira",
+    "talento": {
+      "pt": "Mestre de Aikido Suprema",
+      "en": "Ultimate Aikido Master"
+    },
+    "descricao": {
+      "pt": "An unstoppable whirlwind of Neo-Aikido. An emotional, loud and endlessly naive girl. She directs all her energy toward protecting other girls and fiercely fighting the threat of 'degenerate males' she has invented.",
+      "en": "An unstoppable whirlwind of Neo-Aikido. An emotional, loud and endlessly naive girl. She directs all her energy toward protecting other girls and fiercely fighting the threat of 'degenerate males' she has invented."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 220,
+    "mochila": 17,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 15% less often",
+        "en": "Sleep 15% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% faster",
+        "en": "Hunger 10% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/tenko-chabashira.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "miu-iruma",
+    "nome": "Miu Iruma",
+    "talento": {
+      "pt": "Inventor Supremo",
+      "en": "Ultimate Inventor"
+    },
+    "descricao": {
+      "pt": "A golden mind shackled by her own complexes. A brilliant inventor whose arrogance and vulgarity are merely a loud defense. At the slightest pressure she shrinks, baring a timid and insecure nature.",
+      "en": "A golden mind shackled by her own complexes. A brilliant inventor whose arrogance and vulgarity are merely a loud defense. At the slightest pressure she shrinks, baring a timid and insecure nature."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 190,
+    "mochila": 16,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/miu-iruma.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "himiko-yumeno",
+    "nome": "Himiko Yumeno",
+    "talento": {
+      "pt": "Mágica Suprema",
+      "en": "Ultimate Magician"
+    },
+    "descricao": {
+      "pt": "A weary mage hiding her tears behind tricks. An illusionist who stubbornly passes off her tricks as real magic. Chronically lazy and apathetic, she hides from cruel reality in a shell of eternal drowsiness.",
+      "en": "A weary mage hiding her tears behind tricks. An illusionist who stubbornly passes off her tricks as real magic. Chronically lazy and apathetic, she hides from cruel reality in a shell of eternal drowsiness."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 180,
+    "mochila": 14,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 15% less often",
+        "en": "Hunger 15% less often",
+        "bom": true
+      },
+      {
+        "pt": "Sleep 40% faster",
+        "en": "Sleep 40% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/himiko-yumeno.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kirumi-tojo",
+    "nome": "Kirumi Tojo",
+    "talento": {
+      "pt": "Empregada Suprema",
+      "en": "Ultimate Maid"
+    },
+    "descricao": {
+      "pt": "A perfect mechanism of self-sacrifice in a maid's lace. Her devotion to duty is absolute, and her skills are boundless. She regards her own life merely as a tool for serving society and her master.",
+      "en": "A perfect mechanism of self-sacrifice in a maid's lace. Her devotion to duty is absolute, and her skills are boundless. She regards her own life merely as a tool for serving society and her master."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 205,
+    "mochila": 16,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 25% less often",
+        "en": "Sleep 25% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kirumi-tojo.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "tsumugi-shirogane",
+    "nome": "Tsumugi Shirogane",
+    "talento": {
+      "pt": "Cosplayer Suprema",
+      "en": "Ultimate Cosplayer"
+    },
+    "descricao": {
+      "pt": "A faceless spectator trying on others' fates. A cosplayer who calls herself 'completely ordinary'. She dissolves into the crowd, preferring to watch the unfolding drama with a fanatical gleam in her eyes.",
+      "en": "A faceless spectator trying on others' fates. A cosplayer who calls herself 'completely ordinary'. She dissolves into the crowd, preferring to watch the unfolding drama with a fanatical gleam in her eyes."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 190,
+    "mochila": 16,
+    "percepcao": 8,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/tsumugi-shirogane.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "angie-yonaga",
+    "nome": "Angie Yonaga",
+    "talento": {
+      "pt": "Artista Supremo",
+      "en": "Ultimate Artist"
+    },
+    "descricao": {
+      "pt": "A serene conduit of another's will, brush in hand. An exotic priestess of the god Atua. Behind her sweet voice and naive smile hides a frightening ability to subjugate people, turning them into a fanatical flock.",
+      "en": "A serene conduit of another's will, brush in hand. An exotic priestess of the god Atua. Behind her sweet voice and naive smile hides a frightening ability to subjugate people, turning them into a fanatical flock."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 200,
+    "mochila": 15,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "All needs 10% less often",
+        "en": "All needs 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/angie-yonaga.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "ryoma-hoshi",
+    "nome": "Ryoma Hoshi",
+    "talento": {
+      "pt": "Tenista Supremo",
+      "en": "Ultimate Tennis Pro"
+    },
+    "descricao": {
+      "pt": "A faded star wandering in the gloom of his own past. A former tennis player whose hands are bloodied up to the elbow with the mafia. He voluntarily gave up his future, considering his life a waste of oxygen.",
+      "en": "A faded star wandering in the gloom of his own past. A former tennis player whose hands are bloodied up to the elbow with the mafia. He voluntarily gave up his future, considering his life a waste of oxygen."
+    },
+    "jogo": "Danganronpa V3: Killing Harmony",
+    "velocidade": 220,
+    "mochila": 14,
+    "percepcao": 7,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 15%, hunger 20% less often",
+        "en": "Sleep 15%, hunger 20% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/ryoma-hoshi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "komaru-naegi",
+    "nome": "Komaru Naegi",
+    "talento": {
+      "pt": "Estudante Comum",
+      "en": "Ordinary Schoolgirl"
+    },
+    "descricao": {
+      "pt": "A girl who stepped beyond her own ordinariness. Finding herself at the epicenter of madness without any outstanding talents, she is forced to clench her fists to overcome her fear and find rays of hope.",
+      "en": "A girl who stepped beyond her own ordinariness. Finding herself at the epicenter of madness without any outstanding talents, she is forced to clench her fists to overcome her fear and find rays of hope."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 200,
+    "mochila": 15,
+    "percepcao": 6,
+    "vida": 100,
+    "etiquetas": [],
+    "sprite": "/sprites/komaru-naegi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "jataro-kemuri",
+    "nome": "Jataro Kemuri",
+    "talento": {
+      "pt": "Pequena Suprema das Artes",
+      "en": "Lil' Ultimate Art"
+    },
+    "descricao": {
+      "pt": "A terrified creator of ugly beauty. A child in a mask who sincerely believes in his own repulsiveness. He finds his perverse comfort in creating frightening dioramas and meekly accepting others' hatred.",
+      "en": "A terrified creator of ugly beauty. A child in a mask who sincerely believes in his own repulsiveness. He finds his perverse comfort in creating frightening dioramas and meekly accepting others' hatred."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 180,
+    "mochila": 14,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 15% less often",
+        "en": "Hunger 15% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/jataro-kemuri.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "masaru-daimon",
+    "nome": "Masaru Daimon",
+    "talento": {
+      "pt": "Pequeno Supremo da Educação Física",
+      "en": "Lil' Ultimate P.E."
+    },
+    "descricao": {
+      "pt": "A broken champion shouting about his superiority. A boy whose showy bravery and hyperactivity hide deep scars from adult cruelty. The leader of the Warriors of Hope, desperately seeking recognition.",
+      "en": "A broken champion shouting about his superiority. A boy whose showy bravery and hyperactivity hide deep scars from adult cruelty. The leader of the Warriors of Hope, desperately seeking recognition."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 200,
+    "mochila": 14,
+    "percepcao": 4,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% faster",
+        "en": "Hunger 10% faster",
+        "bom": false
+      }
+    ],
+    "sprite": "/sprites/masaru-daimon.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "nagisa-shingetsu",
+    "nome": "Nagisa Shingetsu",
+    "talento": {
+      "pt": "Pequeno Supremo dos Estudos Sociais",
+      "en": "Lil' Ultimate Social Studies"
+    },
+    "descricao": {
+      "pt": "A glass genius crushed under the weight of others' ambitions. A child with a scientist's intellect whose psyche was destroyed by parental experiments. He longs to create a paradise for children, sacrificing his own childhood to logic.",
+      "en": "A glass genius crushed under the weight of others' ambitions. A child with a scientist's intellect whose psyche was destroyed by parental experiments. He longs to create a paradise for children, sacrificing his own childhood to logic."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 180,
+    "mochila": 12,
+    "percepcao": 9,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Sleep 10% less often",
+        "en": "Sleep 10% less often",
+        "bom": true
+      },
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/nagisa-shingetsu.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "kotoko-utsugi",
+    "nome": "Kotoko Utsugi",
+    "talento": {
+      "pt": "Pequena Suprema do Teatro",
+      "en": "Lil' Ultimate Drama"
+    },
+    "descricao": {
+      "pt": "A porcelain doll baring her fangs. Behind an obsession with all things 'cute' and ringing laughter hides a tormented actress who turned her pain into sadistic cruelty toward all adults.",
+      "en": "A porcelain doll baring her fangs. Behind an obsession with all things 'cute' and ringing laughter hides a tormented actress who turned her pain into sadistic cruelty toward all adults."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 185,
+    "mochila": 12,
+    "percepcao": 5,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 10% less often",
+        "en": "Hunger 10% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/kotoko-utsugi.webp",
+    "traducaoRevisada": false
+  },
+  {
+    "id": "monaca-towa",
+    "nome": "Monaca Towa",
+    "talento": {
+      "pt": "Pequena Suprema da Sala de Aula",
+      "en": "Lil' Ultimate Homeroom"
+    },
+    "descricao": {
+      "pt": "A laughing puppeteer in a wheelchair. A brilliant sociopath with an angelic face, skillfully pulling the strings of others' traumas. She revels in power, striving to become the true successor of Ultimate Despair.",
+      "en": "A laughing puppeteer in a wheelchair. A brilliant sociopath with an angelic face, skillfully pulling the strings of others' traumas. She revels in power, striving to become the true successor of Ultimate Despair."
+    },
+    "jogo": "Ultra Despair Girls",
+    "velocidade": 180,
+    "mochila": 12,
+    "percepcao": 10,
+    "vida": 100,
+    "etiquetas": [
+      {
+        "pt": "Hunger 15% less often",
+        "en": "Hunger 15% less often",
+        "bom": true
+      }
+    ],
+    "sprite": "/sprites/monaca-towa.webp",
+    "traducaoRevisada": false
+  }
+]
