@@ -15,27 +15,32 @@ const AGENTE = 'ShuichiPull/1.0 (site comunitario BR/PT; contato via repositorio
 const PAUSA_MS = 250;
 const espera = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-async function api(params: Record<string, string>): Promise<any> {
+type RespostaBusca = { query?: { search?: { title: string }[] } };
+type RespostaArquivo = {
+  query?: { pages?: Record<string, { imageinfo?: { url: string }[] }> };
+};
+
+async function api<T>(params: Record<string, string>): Promise<T> {
   const url = `${API}?${new URLSearchParams({ ...params, format: 'json' })}`;
   const r = await fetch(url, { headers: { 'User-Agent': AGENTE } });
   if (!r.ok) throw new Error(`${r.status} em ${url}`);
-  return r.json();
+  return r.json() as Promise<T>;
 }
 
 async function procurar(termo: string): Promise<string[]> {
-  const r = await api({
+  const r = await api<RespostaBusca>({
     action: 'query', list: 'search', srsearch: termo,
     srnamespace: '6', srlimit: '50',
   });
-  return (r.query?.search ?? []).map((s: { title: string }) => s.title);
+  return (r.query?.search ?? []).map((s) => s.title);
 }
 
 async function urlDoArquivo(titulo: string): Promise<string | null> {
-  const r = await api({
+  const r = await api<RespostaArquivo>({
     action: 'query', titles: `File:${titulo}`, prop: 'imageinfo', iiprop: 'url',
   });
   const paginas = r.query?.pages ?? {};
-  for (const p of Object.values(paginas) as any[]) {
+  for (const p of Object.values(paginas)) {
     const u = p.imageinfo?.[0]?.url;
     if (u) return u.split('/revision/')[0];
   }
