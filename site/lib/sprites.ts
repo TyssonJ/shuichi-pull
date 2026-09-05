@@ -1,19 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 /**
- * Só três personagens têm sprite extraído hoje. O resto usa a silhueta, para
- * que nenhuma ficha mostre imagem quebrada. Quando entrar arte nova, basta
- * acrescentar a pasta e o arquivo aqui.
+ * Cada personagem tem um sprite proprio em public/sprites/elenco/<id>.webp,
+ * baixado da Danganronpa Fandom wiki por scripts/baixar-sprites.ts. Quem
+ * ainda nao tiver arquivo cai na silhueta, para nunca aparecer imagem quebrada.
  */
 export const SILHUETA = '/sprites/silhueta.svg';
 
-const ARTE: Record<string, string> = {
-  'chihiro-fujisaki': '/sprites/chihiro/Chihiro_Fujisaki_Halfbody_Sprite_(1).webp',
-  'shuichi-saihara': '/sprites/shuichi/DRS_-_Shuichi_Saihara_Sprite_(Uniform)_(01).webp',
-  // A Junko de verdade é a Analista Suprema; a "Junko" Fashionista é a Mukuro
-  // disfarçada e não pode herdar a arte dela.
-  'junko-enoshima-ultimate-analyst':
-    '/sprites/junko/Danganronpa_1_Junko_Enoshima_Halfbody_Sprite_(Mobile)_(1).webp',
-};
+const PASTA = path.join(process.cwd(), 'public', 'sprites', 'elenco');
+
+let existentes: Set<string> | null = null;
+
+function spritesDisponiveis(): Set<string> {
+  if (existentes) return existentes;
+  existentes = fs.existsSync(PASTA)
+    ? new Set(fs.readdirSync(PASTA).filter((a) => a.endsWith('.webp')))
+    : new Set<string>();
+  return existentes;
+}
 
 export function spriteDoPersonagem(id: string): string {
-  return ARTE[id] ?? SILHUETA;
+  return spritesDisponiveis().has(`${id}.webp`)
+    ? `/sprites/elenco/${id}.webp`
+    : SILHUETA;
 }
