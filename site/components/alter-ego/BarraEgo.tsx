@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { JanelaEgo } from './JanelaEgo';
 import { usePersistencia } from './usePersistencia';
@@ -16,14 +16,13 @@ const SECOES = [
 
 export function BarraEgo() {
   const [termo, setTermo] = useState('');
-  const [resultados, setResultados] = useState<Resultado[]>([]);
   const [barraVisivel, setBarraVisivel] = useState(true);
   const [flutuanteAberta, setFlutuanteAberta] = usePersistencia('ego-flutuante-aberta', false);
   const alvo = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setResultados(buscar(termo));
-  }, [termo]);
+  // A busca é derivada do termo: calcular no render evita um segundo render
+  // a cada tecla.
+  const resultados: Resultado[] = useMemo(() => buscar(termo), [termo]);
 
   // A barra "sai de cena" quando o topo da página some.
   useEffect(() => {

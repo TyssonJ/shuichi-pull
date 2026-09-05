@@ -16,6 +16,8 @@ export function Boot() {
 
   useEffect(() => {
     if (localStorage.getItem('ego-ja-visitou') === 'true') return;
+    // Quem já visitou não vê o boot, e isso só dá para saber no cliente.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisivel(true);
 
     const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
