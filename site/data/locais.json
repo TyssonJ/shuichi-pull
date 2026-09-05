@@ -13,8 +13,8 @@
       {
         "fonteId": "src_087",
         "nome": {
-          "pt": "Стеллаж с ресурсами (тип А)",
-          "en": "Стеллаж с ресурсами (тип А)"
+          "pt": "Estante de recursos (tipo A)",
+          "en": "Rack with resources (type A)"
         },
         "itens": [
           {
@@ -72,8 +72,8 @@
       {
         "fonteId": "src_088",
         "nome": {
-          "pt": "Стеллаж с продуктами (6 шт.)",
-          "en": "Стеллаж с продуктами (6 шт.)"
+          "pt": "Estante de comida (×6)",
+          "en": "Rack with food (×6)"
         },
         "itens": [
           {
@@ -121,8 +121,8 @@
       {
         "fonteId": "src_089",
         "nome": {
-          "pt": "Стеллаж с ресурсами (тип B, 13 шт.)",
-          "en": "Стеллаж с ресурсами (тип B, 13 шт.)"
+          "pt": "Estante de recursos (tipo B, ×13)",
+          "en": "Rack with resources (type B, ×13)"
         },
         "itens": [
           {
@@ -170,8 +170,8 @@
       {
         "fonteId": "src_090",
         "nome": {
-          "pt": "Стеллаж с ресурсами (тип С, 13 шт.)",
-          "en": "Стеллаж с ресурсами (тип С, 13 шт.)"
+          "pt": "Estante de recursos (tipo C, ×13)",
+          "en": "Rack with resources (type C, ×13)"
         },
         "itens": [
           {
@@ -239,8 +239,8 @@
       {
         "fonteId": "src_091",
         "nome": {
-          "pt": "Стеллаж с ресурсами (тип D, 2 шт.)",
-          "en": "Стеллаж с ресурсами (тип D, 2 шт.)"
+          "pt": "Estante de recursos (tipo D, ×2)",
+          "en": "Rack with resources (type D, ×2)"
         },
         "itens": [
           {
@@ -298,8 +298,8 @@
       {
         "fonteId": "src_092",
         "nome": {
-          "pt": "Стеллаж с ресурсами (тип E)",
-          "en": "Стеллаж с ресурсами (тип E)"
+          "pt": "Estante de recursos (tipo E)",
+          "en": "Rack with resources (type E)"
         },
         "itens": [
           {
@@ -372,8 +372,8 @@
       {
         "fonteId": "src_093",
         "nome": {
-          "pt": "Стеллаж в морозильной камере (10 шт.)",
-          "en": "Стеллаж в морозильной камере (10 шт.)"
+          "pt": "Estante da câmara fria (×10)",
+          "en": "Rack in the freezer chamber (×10)"
         },
         "itens": [
           {
@@ -446,8 +446,8 @@
       {
         "fonteId": "src_111",
         "nome": {
-          "pt": "Стол с ящиками в спальной комнате",
-          "en": "Стол с ящиками в спальной комнате"
+          "pt": "Mesa com gavetas do quarto",
+          "en": "Table with drawers in the bedroom"
         },
         "itens": [
           {
@@ -515,8 +515,8 @@
       {
         "fonteId": "src_112",
         "nome": {
-          "pt": "Урна в туалете (2 шт.)",
-          "en": "Урна в туалете (2 шт.)"
+          "pt": "Lixeira do banheiro (×2)",
+          "en": "Bin in the restroom (×2)"
         },
         "itens": [
           {
@@ -654,8 +654,8 @@
       {
         "fonteId": "src_113",
         "nome": {
-          "pt": "Урна у скамеек",
-          "en": "Урна у скамеек"
+          "pt": "Lixeira ao lado dos bancos",
+          "en": "Bin by the benches"
         },
         "itens": [
           {
@@ -808,8 +808,8 @@
       {
         "fonteId": "src_114",
         "nome": {
-          "pt": "Шкафчики (6 шт.)",
-          "en": "Шкафчики (6 шт.)"
+          "pt": "Armários de vestiário (×6)",
+          "en": "Lockers (×6)"
         },
         "itens": [
           {
@@ -947,8 +947,8 @@
       {
         "fonteId": "src_115",
         "nome": {
-          "pt": "Синие шкафы (4 шт.)",
-          "en": "Синие шкафы (4 шт.)"
+          "pt": "Armários azuis (×4)",
+          "en": "Blue cabinets (×4)"
         },
         "itens": [
           {
@@ -1046,8 +1046,8 @@
       {
         "fonteId": "src_116",
         "nome": {
-          "pt": "Тумба (2 шт.)",
-          "en": "Тумба (2 шт.)"
+          "pt": "Armário (×2)",
+          "en": "Cabinet (×2)"
         },
         "itens": [
           {
@@ -1130,8 +1130,8 @@
       {
         "fonteId": "src_117",
         "nome": {
-          "pt": "Металлический шкафчик (6 шт.)",
-          "en": "Металлический шкафчик (6 шт.)"
+          "pt": "Armário de metal (×6)",
+          "en": "Metal locker (×6)"
         },
         "itens": [
           {
@@ -1314,8 +1314,8 @@
       {
         "fonteId": "src_147",
         "nome": {
-          "pt": "Ведро со шваброй (2 шт.)",
-          "en": "Ведро со шваброй (2 шт.)"
+          "pt": "Balde com esfregão (×2)",
+          "en": "Bucket with a mop (×2)"
         },
         "itens": [
           {
@@ -1411,8 +1411,8 @@
       {
         "fonteId": "src_097",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -1545,8 +1545,8 @@
       {
         "fonteId": "src_075",
         "nome": {
-          "pt": "Металлический контейнер",
-          "en": "Металлический контейнер"
+          "pt": "Contêiner de metal",
+          "en": "Metal container"
         },
         "itens": [
           {
@@ -1630,8 +1630,8 @@
       {
         "fonteId": "src_074",
         "nome": {
-          "pt": "Ведро со шваброй (2 шт.)",
-          "en": "Ведро со шваброй (2 шт.)"
+          "pt": "Balde com esfregão (×2)",
+          "en": "Bucket with a mop (×2)"
         },
         "itens": [
           {
@@ -1694,8 +1694,8 @@
       {
         "fonteId": "src_016",
         "nome": {
-          "pt": "Ведро со шваброй (2 шт.)",
-          "en": "Ведро со шваброй (2 шт.)"
+          "pt": "Balde com esfregão (×2)",
+          "en": "Bucket with a mop (×2)"
         },
         "itens": [
           {
@@ -1758,8 +1758,8 @@
       {
         "fonteId": "src_085",
         "nome": {
-          "pt": "Комод у ресепшена",
-          "en": "Комод у ресепшена"
+          "pt": "Cômoda da recepção",
+          "en": "Dresser by the reception"
         },
         "itens": [
           {
@@ -1797,8 +1797,8 @@
       {
         "fonteId": "src_086",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -1931,8 +1931,8 @@
       {
         "fonteId": "src_061",
         "nome": {
-          "pt": "Книжные шкафы (2 шт.) у стола",
-          "en": "Книжные шкафы (2 шт.) у стола"
+          "pt": "Estantes (×2) ao lado da mesa",
+          "en": "Bookcases (×2) by the table"
         },
         "itens": [
           {
@@ -2010,8 +2010,8 @@
       {
         "fonteId": "src_062",
         "nome": {
-          "pt": "Книжный стеллаж (тип A, 4 шт.)",
-          "en": "Книжный стеллаж (тип A, 4 шт.)"
+          "pt": "Estante de livros (tipo A, ×4)",
+          "en": "Bookshelf (type A, ×4)"
         },
         "itens": [
           {
@@ -2089,8 +2089,8 @@
       {
         "fonteId": "src_063",
         "nome": {
-          "pt": "Книжный стеллаж (тип B, 2 шт.)",
-          "en": "Книжный стеллаж (тип B, 2 шт.)"
+          "pt": "Estante de livros (tipo B, ×2)",
+          "en": "Bookshelf (type B, ×2)"
         },
         "itens": [
           {
@@ -2208,8 +2208,8 @@
       {
         "fonteId": "src_064",
         "nome": {
-          "pt": "Книжный стеллаж (тип C, 1 шт.)",
-          "en": "Книжный стеллаж (тип C, 1 шт.)"
+          "pt": "Estante de livros (tipo C, ×1)",
+          "en": "Bookshelf (type C, ×1)"
         },
         "itens": [
           {
@@ -2327,8 +2327,8 @@
       {
         "fonteId": "src_065",
         "nome": {
-          "pt": "Книжный стеллаж (тип D, 6 шт.)",
-          "en": "Книжный стеллаж (тип D, 6 шт.)"
+          "pt": "Estante de livros (tipo D, ×6)",
+          "en": "Bookshelf (type D, ×6)"
         },
         "itens": [
           {
@@ -2406,8 +2406,8 @@
       {
         "fonteId": "src_066",
         "nome": {
-          "pt": "Книжный стеллаж (тип E, 1 шт.)",
-          "en": "Книжный стеллаж (тип E, 1 шт.)"
+          "pt": "Estante de livros (tipo E, ×1)",
+          "en": "Bookshelf (type E, ×1)"
         },
         "itens": [
           {
@@ -2485,8 +2485,8 @@
       {
         "fonteId": "src_067",
         "nome": {
-          "pt": "Книжный стеллаж (тип F, 1 шт.)",
-          "en": "Книжный стеллаж (тип F, 1 шт.)"
+          "pt": "Estante de livros (tipo F, ×1)",
+          "en": "Bookshelf (type F, ×1)"
         },
         "itens": [
           {
@@ -2564,8 +2564,8 @@
       {
         "fonteId": "src_068",
         "nome": {
-          "pt": "Синие шкафчики (2 шт.) у суперкомпьютера",
-          "en": "Синие шкафчики (2 шт.) у суперкомпьютера"
+          "pt": "Armários azuis (×2) ao lado do supercomputador",
+          "en": "Blue lockers (×2) by the supercomputer"
         },
         "itens": [
           {
@@ -2643,8 +2643,8 @@
       {
         "fonteId": "src_069",
         "nome": {
-          "pt": "Красный шкафчик у суперкомпьютера",
-          "en": "Красный шкафчик у суперкомпьютера"
+          "pt": "Armário vermelho ao lado do supercomputador",
+          "en": "Red locker by the supercomputer"
         },
         "itens": [
           {
@@ -2702,8 +2702,8 @@
       {
         "fonteId": "src_070",
         "nome": {
-          "pt": "Стол",
-          "en": "Стол"
+          "pt": "Mesa",
+          "en": "Table"
         },
         "itens": [
           {
@@ -2807,8 +2807,8 @@
       {
         "fonteId": "src_055",
         "nome": {
-          "pt": "Книжные стеллажи (2 шт.) слева от входа",
-          "en": "Книжные стеллажи (2 шт.) слева от входа"
+          "pt": "Estantes (×2) à esquerda da entrada",
+          "en": "Bookshelves (×2) to the left of the entrance"
         },
         "itens": [
           {
@@ -2886,8 +2886,8 @@
       {
         "fonteId": "src_056",
         "nome": {
-          "pt": "Книжный стеллаж у стремянки",
-          "en": "Книжный стеллаж у стремянки"
+          "pt": "Estante ao lado da escada",
+          "en": "Bookshelf by the stepladder"
         },
         "itens": [
           {
@@ -2975,8 +2975,8 @@
       {
         "fonteId": "src_057",
         "nome": {
-          "pt": "Книжный стеллаж слева от тележки",
-          "en": "Книжный стеллаж слева от тележки"
+          "pt": "Estante à esquerda do carrinho",
+          "en": "Bookshelf to the left of the cart"
         },
         "itens": [
           {
@@ -3034,8 +3034,8 @@
       {
         "fonteId": "src_058",
         "nome": {
-          "pt": "Книжные стеллажи (2 шт.) справа от тележки",
-          "en": "Книжные стеллажи (2 шт.) справа от тележки"
+          "pt": "Estantes (×2) à direita do carrinho",
+          "en": "Bookshelves (×2) to the right of the cart"
         },
         "itens": [
           {
@@ -3133,8 +3133,8 @@
       {
         "fonteId": "src_059",
         "nome": {
-          "pt": "Металлический стеллаж",
-          "en": "Металлический стеллаж"
+          "pt": "Estante de metal",
+          "en": "Metal rack"
         },
         "itens": [
           {
@@ -3172,8 +3172,8 @@
       {
         "fonteId": "src_060",
         "nome": {
-          "pt": "Тележка с коробками",
-          "en": "Тележка с коробками"
+          "pt": "Carrinho com caixas",
+          "en": "Cart with boxes"
         },
         "itens": [
           {
@@ -3256,8 +3256,8 @@
       {
         "fonteId": "src_013",
         "nome": {
-          "pt": "Насосная установка",
-          "en": "Насосная установка"
+          "pt": "Conjunto de bombeamento",
+          "en": "Pump unit"
         },
         "itens": [
           {
@@ -3345,8 +3345,8 @@
       {
         "fonteId": "src_014",
         "nome": {
-          "pt": "Синий ящик",
-          "en": "Синий ящик"
+          "pt": "Engradado azul",
+          "en": "Blue crate"
         },
         "itens": [
           {
@@ -3364,8 +3364,8 @@
       {
         "fonteId": "src_015",
         "nome": {
-          "pt": "Синий шкафчик",
-          "en": "Синий шкафчик"
+          "pt": "Armário azul de vestiário",
+          "en": "Blue locker"
         },
         "itens": [
           {
@@ -3449,8 +3449,8 @@
       {
         "fonteId": "src_052",
         "nome": {
-          "pt": "Урна у торгового автомата",
-          "en": "Урна у торгового автомата"
+          "pt": "Lixeira ao lado da máquina de venda",
+          "en": "Bin by the vending machine"
         },
         "itens": [
           {
@@ -3598,8 +3598,8 @@
       {
         "fonteId": "src_053",
         "nome": {
-          "pt": "Кофейная стойка у торгового автомата",
-          "en": "Кофейная стойка у торгового автомата"
+          "pt": "Balcão de café ao lado da máquina de venda",
+          "en": "Coffee counter by the vending machine"
         },
         "itens": [
           {
@@ -3642,8 +3642,8 @@
       {
         "fonteId": "src_076",
         "nome": {
-          "pt": "Подставка для ножей",
-          "en": "Подставка для ножей"
+          "pt": "Suporte de facas",
+          "en": "Knife stand"
         },
         "itens": [
           {
@@ -3671,8 +3671,8 @@
       {
         "fonteId": "src_077",
         "nome": {
-          "pt": "Металлический мусорный бак (2 шт.)",
-          "en": "Металлический мусорный бак (2 шт.)"
+          "pt": "Lixeira de metal (×2)",
+          "en": "Metal trash bin (×2)"
         },
         "itens": [
           {
@@ -3790,8 +3790,8 @@
       {
         "fonteId": "src_078",
         "nome": {
-          "pt": "Белый мусорный бак «TRASH»",
-          "en": "Белый мусорный бак «TRASH»"
+          "pt": "Lixeira branca «TRASH»",
+          "en": "White trash bin «TRASH»"
         },
         "itens": [
           {
@@ -3899,8 +3899,8 @@
       {
         "fonteId": "src_079",
         "nome": {
-          "pt": "Кофейная стойка",
-          "en": "Кофейная стойка"
+          "pt": "Balcão de café",
+          "en": "Coffee counter"
         },
         "itens": [
           {
@@ -3928,8 +3928,8 @@
       {
         "fonteId": "src_080",
         "nome": {
-          "pt": "Упаковка хлеба",
-          "en": "Упаковка хлеба"
+          "pt": "Pacote de pão",
+          "en": "Pack of bread"
         },
         "itens": [
           {
@@ -3947,8 +3947,8 @@
       {
         "fonteId": "src_081",
         "nome": {
-          "pt": "Ящик «Fresh Fruits» (2 шт.)",
-          "en": "Ящик «Fresh Fruits» (2 шт.)"
+          "pt": "Engradado «Fresh Fruits» (×2)",
+          "en": "Crate «Fresh Fruits» (×2)"
         },
         "itens": [
           {
@@ -3966,8 +3966,8 @@
       {
         "fonteId": "src_082",
         "nome": {
-          "pt": "Холодильник (8 шт.)",
-          "en": "Холодильник (8 шт.)"
+          "pt": "Geladeira (×8)",
+          "en": "Refrigerator (×8)"
         },
         "itens": [
           {
@@ -4020,8 +4020,8 @@
       {
         "fonteId": "src_166",
         "nome": {
-          "pt": "Катана",
-          "en": "Катана"
+          "pt": "Katana",
+          "en": "Katana"
         },
         "itens": [
           {
@@ -4076,8 +4076,8 @@
       {
         "fonteId": "src_017",
         "nome": {
-          "pt": "Тумба с выдвижными ящиками",
-          "en": "Тумба с выдвижными ящиками"
+          "pt": "Armário de gavetas deslizantes",
+          "en": "Cabinet with pull-out drawers"
         },
         "itens": [
           {
@@ -4145,8 +4145,8 @@
       {
         "fonteId": "src_018",
         "nome": {
-          "pt": "Системный блок",
-          "en": "Системный блок"
+          "pt": "Gabinete de computador",
+          "en": "Computer tower"
         },
         "itens": [
           {
@@ -4224,8 +4224,8 @@
       {
         "fonteId": "src_019",
         "nome": {
-          "pt": "Мусорное ведро",
-          "en": "Мусорное ведро"
+          "pt": "Balde de lixo",
+          "en": "Trash bucket"
         },
         "itens": [
           {
@@ -4333,8 +4333,8 @@
       {
         "fonteId": "src_020",
         "nome": {
-          "pt": "Компьютер",
-          "en": "Компьютер"
+          "pt": "Computador",
+          "en": "Computer"
         },
         "itens": [
           {
@@ -4392,8 +4392,8 @@
       {
         "fonteId": "src_021",
         "nome": {
-          "pt": "Телевизор (2 шт.)",
-          "en": "Телевизор (2 шт.)"
+          "pt": "Televisão (×2)",
+          "en": "Television (×2)"
         },
         "itens": [
           {
@@ -4451,8 +4451,8 @@
       {
         "fonteId": "src_022",
         "nome": {
-          "pt": "Металлический картотечный шкаф",
-          "en": "Металлический картотечный шкаф"
+          "pt": "Arquivo de metal",
+          "en": "Metal filing cabinet"
         },
         "itens": [
           {
@@ -4520,8 +4520,8 @@
       {
         "fonteId": "src_023",
         "nome": {
-          "pt": "Белый шкаф с дверцами",
-          "en": "Белый шкаф с дверцами"
+          "pt": "Armário branco com portas",
+          "en": "White cabinet with doors"
         },
         "itens": [
           {
@@ -4599,8 +4599,8 @@
       {
         "fonteId": "src_024",
         "nome": {
-          "pt": "Металлический картотечный шкаф (у принтера)",
-          "en": "Металлический картотечный шкаф (у принтера)"
+          "pt": "Arquivo de metal (ao lado da impressora)",
+          "en": "Metal filing cabinet (by the printer)"
         },
         "itens": [
           {
@@ -4668,8 +4668,8 @@
       {
         "fonteId": "src_025",
         "nome": {
-          "pt": "Медицинский компьютерный терминал (3 шт.)",
-          "en": "Медицинский компьютерный терминал (3 шт.)"
+          "pt": "Terminal médico (×3)",
+          "en": "Medical computer terminal (×3)"
         },
         "itens": [
           {
@@ -4747,8 +4747,8 @@
       {
         "fonteId": "src_026",
         "nome": {
-          "pt": "Медицинский шкаф",
-          "en": "Медицинский шкаф"
+          "pt": "Armário médico",
+          "en": "Medical cabinet"
         },
         "itens": [
           {
@@ -4826,8 +4826,8 @@
       {
         "fonteId": "src_027",
         "nome": {
-          "pt": "Архивный шкаф",
-          "en": "Архивный шкаф"
+          "pt": "Arquivo",
+          "en": "Archive cabinet"
         },
         "itens": [
           {
@@ -4855,8 +4855,8 @@
       {
         "fonteId": "src_028",
         "nome": {
-          "pt": "Металлический картотечный шкаф (у доски)",
-          "en": "Металлический картотечный шкаф (у доски)"
+          "pt": "Arquivo de metal (ao lado do quadro)",
+          "en": "Metal filing cabinet (by the board)"
         },
         "itens": [
           {
@@ -4934,8 +4934,8 @@
       {
         "fonteId": "src_029",
         "nome": {
-          "pt": "Картонная коробка «Mal co. Shipping»",
-          "en": "Картонная коробка «Mal co. Shipping»"
+          "pt": "Caixa de papelão «Mal co. Shipping»",
+          "en": "Cardboard box «Mal co. Shipping»"
         },
         "itens": [
           {
@@ -5033,8 +5033,8 @@
       {
         "fonteId": "src_030",
         "nome": {
-          "pt": "Белый шкаф с дверцами (2 шт., у коробки)",
-          "en": "Белый шкаф с дверцами (2 шт., у коробки)"
+          "pt": "Armário branco com portas (2 un., ao lado da caixa)",
+          "en": "White cabinet with doors (2 pcs., by the box)"
         },
         "itens": [
           {
@@ -5122,8 +5122,8 @@
       {
         "fonteId": "src_031",
         "nome": {
-          "pt": "Синяя тумба с ящиками",
-          "en": "Синяя тумба с ящиками"
+          "pt": "Cômoda azul",
+          "en": "Blue chest of drawers"
         },
         "itens": [
           {
@@ -5261,8 +5261,8 @@
       {
         "fonteId": "src_032",
         "nome": {
-          "pt": "Архивный шкаф (у медверстака)",
-          "en": "Архивный шкаф (у медверстака)"
+          "pt": "Arquivo (ao lado da bancada médica)",
+          "en": "Archive cabinet (by the medical workbench)"
         },
         "itens": [
           {
@@ -5290,8 +5290,8 @@
       {
         "fonteId": "src_033",
         "nome": {
-          "pt": "Настенные аптечные шкафчики (2 шт.)",
-          "en": "Настенные аптечные шкафчики (2 шт.)"
+          "pt": "Armários de remédio de parede (×2)",
+          "en": "Wall-mounted medicine cabinets (×2)"
         },
         "itens": [
           {
@@ -5359,8 +5359,8 @@
       {
         "fonteId": "src_034",
         "nome": {
-          "pt": "Медицинский компьютерный терминал (2 шт.) у медверстака",
-          "en": "Медицинский компьютерный терминал (2 шт.) у медверстака"
+          "pt": "Terminal médico (×2) ao lado da bancada médica",
+          "en": "Medical computer terminal (×2) by the medical workbench"
         },
         "itens": [
           {
@@ -5438,8 +5438,8 @@
       {
         "fonteId": "src_035",
         "nome": {
-          "pt": "Синий шкафчик у медверстака",
-          "en": "Синий шкафчик у медверстака"
+          "pt": "Armário azul ao lado da bancada médica",
+          "en": "Blue locker by the medical workbench"
         },
         "itens": [
           {
@@ -5522,8 +5522,8 @@
       {
         "fonteId": "src_000",
         "nome": {
-          "pt": "Шкафчики (3 шт.) у верстака",
-          "en": "Шкафчики (3 шт.) у верстака"
+          "pt": "Armários de vestiário (×3) ao lado da bancada",
+          "en": "Lockers (×3) by the workbench"
         },
         "itens": [
           {
@@ -5641,8 +5641,8 @@
       {
         "fonteId": "src_001",
         "nome": {
-          "pt": "Металлический контейнер напротив шкафчиков у верстака",
-          "en": "Металлический контейнер напротив шкафчиков у верстака"
+          "pt": "Contêiner de metal em frente aos armários da bancada",
+          "en": "Metal container across from the lockers by the workbench"
         },
         "itens": [
           {
@@ -5680,8 +5680,8 @@
       {
         "fonteId": "src_002",
         "nome": {
-          "pt": "Зеленый контейнер напротив верстака",
-          "en": "Зеленый контейнер напротив верстака"
+          "pt": "Contêiner verde em frente à bancada",
+          "en": "Green container across from the workbench"
         },
         "itens": [
           {
@@ -5709,8 +5709,8 @@
       {
         "fonteId": "src_003",
         "nome": {
-          "pt": "Маленький компрессор воздуха у электрощитка",
-          "en": "Маленький компрессор воздуха у электрощитка"
+          "pt": "Compressor de ar pequeno ao lado do quadro elétrico",
+          "en": "Small air compressor by the electrical panel"
         },
         "itens": [
           {
@@ -5778,8 +5778,8 @@
       {
         "fonteId": "src_004",
         "nome": {
-          "pt": "Большой компрессор воздуха у электрощитка",
-          "en": "Большой компрессор воздуха у электрощитка"
+          "pt": "Compressor de ar grande ao lado do quadro elétrico",
+          "en": "Large air compressor by the electrical panel"
         },
         "itens": [
           {
@@ -5857,8 +5857,8 @@
       {
         "fonteId": "src_005",
         "nome": {
-          "pt": "Шкафчики (2 шт.) у электрощитка",
-          "en": "Шкафчики (2 шт.) у электрощитка"
+          "pt": "Armários de vestiário (×2) ao lado do quadro elétrico",
+          "en": "Lockers (×2) by the electrical panel"
         },
         "itens": [
           {
@@ -5946,8 +5946,8 @@
       {
         "fonteId": "src_006",
         "nome": {
-          "pt": "Ящик с инструментами слева от электрощитка",
-          "en": "Ящик с инструментами слева от электрощитка"
+          "pt": "Caixa de ferramentas à esquerda do quadro elétrico",
+          "en": "Toolbox to the left of the electrical panel"
         },
         "itens": [
           {
@@ -6055,8 +6055,8 @@
       {
         "fonteId": "src_007",
         "nome": {
-          "pt": "Красный контейнер справа от электрощитка",
-          "en": "Красный контейнер справа от электрощитка"
+          "pt": "Contêiner vermelho à direita do quadro elétrico",
+          "en": "Red container to the right of the electrical panel"
         },
         "itens": [
           {
@@ -6114,8 +6114,8 @@
       {
         "fonteId": "src_008",
         "nome": {
-          "pt": "Маленький компрессор воздуха за сценой",
-          "en": "Маленький компрессор воздуха за сценой"
+          "pt": "Compressor de ar pequeno atrás do palco",
+          "en": "Small air compressor behind the stage"
         },
         "itens": [
           {
@@ -6183,8 +6183,8 @@
       {
         "fonteId": "src_009",
         "nome": {
-          "pt": "Контейнер для инструментов за сценой",
-          "en": "Контейнер для инструментов за сценой"
+          "pt": "Contêiner de ferramentas atrás do palco",
+          "en": "Tool container behind the stage"
         },
         "itens": [
           {
@@ -6272,8 +6272,8 @@
       {
         "fonteId": "src_010",
         "nome": {
-          "pt": "Мусорки (4 шт.)",
-          "en": "Мусорки (4 шт.)"
+          "pt": "Latas de lixo (×4)",
+          "en": "Trash cans (×4)"
         },
         "itens": [
           {
@@ -6391,8 +6391,8 @@
       {
         "fonteId": "src_011",
         "nome": {
-          "pt": "Портфель на мосту",
-          "en": "Портфель на мосту"
+          "pt": "Maleta na passarela",
+          "en": "Briefcase on the bridge"
         },
         "itens": [
           {
@@ -6480,8 +6480,8 @@
       {
         "fonteId": "src_012",
         "nome": {
-          "pt": "Ящик с инструментами на мосту",
-          "en": "Ящик с инструментами на мосту"
+          "pt": "Caixa de ferramentas na passarela",
+          "en": "Toolbox on the bridge"
         },
         "itens": [
           {
@@ -6681,8 +6681,8 @@
       {
         "fonteId": "src_098",
         "nome": {
-          "pt": "Пожарный топор",
-          "en": "Пожарный топор"
+          "pt": "Machado de incêndio",
+          "en": "Fire axe"
         },
         "itens": [
           {
@@ -6700,8 +6700,8 @@
       {
         "fonteId": "src_099",
         "nome": {
-          "pt": "Стол у мусоросжигателя",
-          "en": "Стол у мусоросжигателя"
+          "pt": "Mesa ao lado do incinerador",
+          "en": "Table by the incinerator"
         },
         "itens": [
           {
@@ -6759,8 +6759,8 @@
       {
         "fonteId": "src_100",
         "nome": {
-          "pt": "Красный шкафчик",
-          "en": "Красный шкафчик"
+          "pt": "Armário vermelho",
+          "en": "Red locker"
         },
         "itens": [
           {
@@ -6848,8 +6848,8 @@
       {
         "fonteId": "src_101",
         "nome": {
-          "pt": "Стол около машины",
-          "en": "Стол около машины"
+          "pt": "Mesa perto da máquina",
+          "en": "Table near the machine"
         },
         "itens": [
           {
@@ -6907,8 +6907,8 @@
       {
         "fonteId": "src_102",
         "nome": {
-          "pt": "Бочки с топливом",
-          "en": "Бочки с топливом"
+          "pt": "Tambores de combustível",
+          "en": "Fuel barrels"
         },
         "itens": [
           {
@@ -6926,8 +6926,8 @@
       {
         "fonteId": "src_103",
         "nome": {
-          "pt": "Ведро со шваброй",
-          "en": "Ведро со шваброй"
+          "pt": "Balde com esfregão",
+          "en": "Bucket with a mop"
         },
         "itens": [
           {
@@ -6975,8 +6975,8 @@
       {
         "fonteId": "src_104",
         "nome": {
-          "pt": "Стеллаж с чистящими средствами",
-          "en": "Стеллаж с чистящими средствами"
+          "pt": "Estante de material de limpeza",
+          "en": "Rack with cleaning supplies"
         },
         "itens": [
           {
@@ -7040,8 +7040,8 @@
       {
         "fonteId": "src_169",
         "nome": {
-          "pt": "Красный ящик в курятнике",
-          "en": "Красный ящик в курятнике"
+          "pt": "Engradado vermelho do galinheiro",
+          "en": "Red crate in the chicken coop"
         },
         "itens": [
           {
@@ -7149,8 +7149,8 @@
       {
         "fonteId": "src_170",
         "nome": {
-          "pt": "Клумба (5 шт.)",
-          "en": "Клумба (5 шт.)"
+          "pt": "Canteiro (×5)",
+          "en": "Flowerbed (×5)"
         },
         "itens": [
           {
@@ -7213,8 +7213,8 @@
       {
         "fonteId": "src_083",
         "nome": {
-          "pt": "Клумба (8 шт.)",
-          "en": "Клумба (8 шт.)"
+          "pt": "Canteiro (×8)",
+          "en": "Flowerbed (×8)"
         },
         "itens": [
           {
@@ -7242,8 +7242,8 @@
       {
         "fonteId": "src_084",
         "nome": {
-          "pt": "Лопата",
-          "en": "Лопата"
+          "pt": "Pá",
+          "en": "Shovel"
         },
         "itens": [
           {
@@ -7276,8 +7276,8 @@
       {
         "fonteId": "src_094",
         "nome": {
-          "pt": "Кусты (9 шт.)",
-          "en": "Кусты (9 шт.)"
+          "pt": "Arbustos (×9)",
+          "en": "Bushes (×9)"
         },
         "itens": [
           {
@@ -7305,8 +7305,8 @@
       {
         "fonteId": "src_095",
         "nome": {
-          "pt": "Урна (3 шт.)",
-          "en": "Урна (3 шт.)"
+          "pt": "Lixeira (×3)",
+          "en": "Bin (×3)"
         },
         "itens": [
           {
@@ -7454,8 +7454,8 @@
       {
         "fonteId": "src_096",
         "nome": {
-          "pt": "Урна напротив сада",
-          "en": "Урна напротив сада"
+          "pt": "Lixeira em frente ao jardim",
+          "en": "Bin across from the garden"
         },
         "itens": [
           {
@@ -7609,8 +7609,8 @@
       {
         "fonteId": "src_167",
         "nome": {
-          "pt": "Шкаф (тип А, 3 шт.)",
-          "en": "Шкаф (тип А, 3 шт.)"
+          "pt": "Armário (tipo A, ×3)",
+          "en": "Cabinet (type A, ×3)"
         },
         "itens": [
           {
@@ -7688,8 +7688,8 @@
       {
         "fonteId": "src_168",
         "nome": {
-          "pt": "Шкаф (тип B, 2 шт.)",
-          "en": "Шкаф (тип B, 2 шт.)"
+          "pt": "Armário (tipo B, ×2)",
+          "en": "Cabinet (type B, ×2)"
         },
         "itens": [
           {
@@ -7772,8 +7772,8 @@
       {
         "fonteId": "src_139",
         "nome": {
-          "pt": "Красный ящик с инструментами",
-          "en": "Красный ящик с инструментами"
+          "pt": "Caixa de ferramentas vermelha",
+          "en": "Red toolbox"
         },
         "itens": [
           {
@@ -7861,8 +7861,8 @@
       {
         "fonteId": "src_140",
         "nome": {
-          "pt": "Красный шкафчик у воздухоочистителя",
-          "en": "Красный шкафчик у воздухоочистителя"
+          "pt": "Armário vermelho ao lado do purificador de ar",
+          "en": "Red locker by the air purifier"
         },
         "itens": [
           {
@@ -7935,8 +7935,8 @@
       {
         "fonteId": "src_129",
         "nome": {
-          "pt": "Стеллаж в подсобке (2 шт.)",
-          "en": "Стеллаж в подсобке (2 шт.)"
+          "pt": "Estante da sala dos fundos (×2)",
+          "en": "Rack in the back room (×2)"
         },
         "itens": [
           {
@@ -7994,8 +7994,8 @@
       {
         "fonteId": "src_130",
         "nome": {
-          "pt": "Настенный шкаф (справа)",
-          "en": "Настенный шкаф (справа)"
+          "pt": "Armário de parede (direito)",
+          "en": "Wall cabinet (right)"
         },
         "itens": [
           {
@@ -8063,8 +8063,8 @@
       {
         "fonteId": "src_131",
         "nome": {
-          "pt": "Угловой шкаф (3 шт.)",
-          "en": "Угловой шкаф (3 шт.)"
+          "pt": "Armário de canto (×3)",
+          "en": "Corner cabinet (×3)"
         },
         "itens": [
           {
@@ -8132,8 +8132,8 @@
       {
         "fonteId": "src_132",
         "nome": {
-          "pt": "Урна",
-          "en": "Урна"
+          "pt": "Lixeira",
+          "en": "Bin"
         },
         "itens": [
           {
@@ -8241,8 +8241,8 @@
       {
         "fonteId": "src_133",
         "nome": {
-          "pt": "Верхний отсек белого шкафа",
-          "en": "Верхний отсек белого шкафа"
+          "pt": "Compartimento superior do armário branco",
+          "en": "Upper compartment of the white cabinet"
         },
         "itens": [
           {
@@ -8290,8 +8290,8 @@
       {
         "fonteId": "src_134",
         "nome": {
-          "pt": "Нижний отсек белого шкафа",
-          "en": "Нижний отсек белого шкафа"
+          "pt": "Compartimento inferior do armário branco",
+          "en": "Lower compartment of the white cabinet"
         },
         "itens": [
           {
@@ -8339,8 +8339,8 @@
       {
         "fonteId": "src_135",
         "nome": {
-          "pt": "Верхний отсек синего шкафчика (слева)",
-          "en": "Верхний отсек синего шкафчика (слева)"
+          "pt": "Compartimento superior do armário azul (esquerdo)",
+          "en": "Upper compartment of the blue locker (left)"
         },
         "itens": [
           {
@@ -8378,8 +8378,8 @@
       {
         "fonteId": "src_136",
         "nome": {
-          "pt": "Синий шкафчик (слева)",
-          "en": "Синий шкафчик (слева)"
+          "pt": "Armário azul de vestiário (esquerdo)",
+          "en": "Blue locker (left)"
         },
         "itens": [
           {
@@ -8427,8 +8427,8 @@
       {
         "fonteId": "src_137",
         "nome": {
-          "pt": "Синий шкафчик (2 шт.) (справа)",
-          "en": "Синий шкафчик (2 шт.) (справа)"
+          "pt": "Armário azul de vestiário (×2) (direito)",
+          "en": "Blue locker (×2) (right)"
         },
         "itens": [
           {
@@ -8486,8 +8486,8 @@
       {
         "fonteId": "src_138",
         "nome": {
-          "pt": "Коробки",
-          "en": "Коробки"
+          "pt": "Caixas",
+          "en": "Boxes"
         },
         "itens": [
           {
@@ -8540,8 +8540,8 @@
       {
         "fonteId": "src_149",
         "nome": {
-          "pt": "Лабораторный шкаф (нижний, 3 шт.) A2-B2-C2",
-          "en": "Лабораторный шкаф (нижний, 3 шт.) A2-B2-C2"
+          "pt": "Armário de laboratório (inferior, ×3) A2-B2-C2",
+          "en": "Laboratory cabinet (lower, ×3) A2-B2-C2"
         },
         "itens": [
           {
@@ -8609,8 +8609,8 @@
       {
         "fonteId": "src_150",
         "nome": {
-          "pt": "Лабораторный шкаф (верхний слева и справа, 2 шт.) A2-C2",
-          "en": "Лабораторный шкаф (верхний слева и справа, 2 шт.) A2-C2"
+          "pt": "Armário de laboratório (superior esquerdo e direito, ×2) A2-C2",
+          "en": "Laboratory cabinet (upper left and right, ×2) A2-C2"
         },
         "itens": [
           {
@@ -8678,8 +8678,8 @@
       {
         "fonteId": "src_151",
         "nome": {
-          "pt": "Лабораторный шкаф (верхний посередине) B2",
-          "en": "Лабораторный шкаф (верхний посередине) B2"
+          "pt": "Armário de laboratório (superior central) B2",
+          "en": "Laboratory cabinet (upper middle) B2"
         },
         "itens": [
           {
@@ -8737,8 +8737,8 @@
       {
         "fonteId": "src_152",
         "nome": {
-          "pt": "Лабораторный шкаф (верхний слева) A1",
-          "en": "Лабораторный шкаф (верхний слева) A1"
+          "pt": "Armário de laboratório (superior esquerdo) A1",
+          "en": "Laboratory cabinet (upper left) A1"
         },
         "itens": [
           {
@@ -8806,8 +8806,8 @@
       {
         "fonteId": "src_153",
         "nome": {
-          "pt": "Лабораторный шкаф (верхний посередине) B1",
-          "en": "Лабораторный шкаф (верхний посередине) B1"
+          "pt": "Armário de laboratório (superior central) B1",
+          "en": "Laboratory cabinet (upper middle) B1"
         },
         "itens": [
           {
@@ -8875,8 +8875,8 @@
       {
         "fonteId": "src_154",
         "nome": {
-          "pt": "Лабораторный шкаф (верхний справа) C1",
-          "en": "Лабораторный шкаф (верхний справа) C1"
+          "pt": "Armário de laboratório (superior direito) C1",
+          "en": "Laboratory cabinet (upper right) C1"
         },
         "itens": [
           {
@@ -8944,8 +8944,8 @@
       {
         "fonteId": "src_155",
         "nome": {
-          "pt": "Лабораторный шкаф (нижний, 3 шт.) A1-B1-C1",
-          "en": "Лабораторный шкаф (нижний, 3 шт.) A1-B1-C1"
+          "pt": "Armário de laboratório (inferior, ×3) A1-B1-C1",
+          "en": "Laboratory cabinet (lower, ×3) A1-B1-C1"
         },
         "itens": [
           {
@@ -9013,8 +9013,8 @@
       {
         "fonteId": "src_156",
         "nome": {
-          "pt": "Лабораторный шкаф (D1-D2, 4 шт.)",
-          "en": "Лабораторный шкаф (D1-D2, 4 шт.)"
+          "pt": "Armário de laboratório (D1-D2, ×4)",
+          "en": "Laboratory cabinet (D1-D2, ×4)"
         },
         "itens": [
           {
@@ -9072,8 +9072,8 @@
       {
         "fonteId": "src_157",
         "nome": {
-          "pt": "Компьютер (тип А)",
-          "en": "Компьютер (тип А)"
+          "pt": "Computador (tipo A)",
+          "en": "Computer (type A)"
         },
         "itens": [
           {
@@ -9151,8 +9151,8 @@
       {
         "fonteId": "src_158",
         "nome": {
-          "pt": "Компьютер (тип B)",
-          "en": "Компьютер (тип B)"
+          "pt": "Computador (tipo B)",
+          "en": "Computer (type B)"
         },
         "itens": [
           {
@@ -9230,8 +9230,8 @@
       {
         "fonteId": "src_159",
         "nome": {
-          "pt": "Настенный шкаф",
-          "en": "Настенный шкаф"
+          "pt": "Armário de parede",
+          "en": "Wall cabinet"
         },
         "itens": [
           {
@@ -9315,8 +9315,8 @@
       {
         "fonteId": "src_105",
         "nome": {
-          "pt": "Стеллаж с моющими средствами (2 шт.)",
-          "en": "Стеллаж с моющими средствами (2 шт.)"
+          "pt": "Estante de detergentes (×2)",
+          "en": "Rack with detergents (×2)"
         },
         "itens": [
           {
@@ -9354,8 +9354,8 @@
       {
         "fonteId": "src_106",
         "nome": {
-          "pt": "Коробки с моющими средствами и вторая полка стеллажа (2 шт.)",
-          "en": "Коробки с моющими средствами и вторая полка стеллажа (2 шт.)"
+          "pt": "Caixas de detergente e a segunda prateleira da estante (×2)",
+          "en": "Boxes with detergents and the second shelf of the rack (×2)"
         },
         "itens": [
           {
@@ -9393,8 +9393,8 @@
       {
         "fonteId": "src_107",
         "nome": {
-          "pt": "Полка с тканью",
-          "en": "Полка с тканью"
+          "pt": "Prateleira de tecidos",
+          "en": "Shelf with cloth"
         },
         "itens": [
           {
@@ -9412,8 +9412,8 @@
       {
         "fonteId": "src_108",
         "nome": {
-          "pt": "Стиральная машина у раковин (2 шт.)",
-          "en": "Стиральная машина у раковин (2 шт.)"
+          "pt": "Máquina de lavar ao lado das pias (×2)",
+          "en": "Washing machine by the sinks (×2)"
         },
         "itens": [
           {
@@ -9461,8 +9461,8 @@
       {
         "fonteId": "src_109",
         "nome": {
-          "pt": "Стиральная машина (тип А, 2 шт.)",
-          "en": "Стиральная машина (тип А, 2 шт.)"
+          "pt": "Máquina de lavar (tipo A, ×2)",
+          "en": "Washing machine (type A, ×2)"
         },
         "itens": [
           {
@@ -9490,8 +9490,8 @@
       {
         "fonteId": "src_110",
         "nome": {
-          "pt": "Стиральная машина (тип B, 4 шт.)",
-          "en": "Стиральная машина (тип B, 4 шт.)"
+          "pt": "Máquina de lavar (tipo B, ×4)",
+          "en": "Washing machine (type B, ×4)"
         },
         "itens": [
           {
@@ -9524,8 +9524,8 @@
       {
         "fonteId": "src_041",
         "nome": {
-          "pt": "Магнитола (2 шт.)",
-          "en": "Магнитола (2 шт.)"
+          "pt": "Rádio portátil (×2)",
+          "en": "Boombox (×2)"
         },
         "itens": [
           {
@@ -9583,8 +9583,8 @@
       {
         "fonteId": "src_042",
         "nome": {
-          "pt": "Телевизор за стойкой",
-          "en": "Телевизор за стойкой"
+          "pt": "Televisão atrás do balcão",
+          "en": "Television behind the counter"
         },
         "itens": [
           {
@@ -9642,8 +9642,8 @@
       {
         "fonteId": "src_043",
         "nome": {
-          "pt": "Промышленный генератор",
-          "en": "Промышленный генератор"
+          "pt": "Gerador industrial",
+          "en": "Industrial generator"
         },
         "itens": [
           {
@@ -9731,8 +9731,8 @@
       {
         "fonteId": "src_044",
         "nome": {
-          "pt": "Стеллаж с инструментами",
-          "en": "Стеллаж с инструментами"
+          "pt": "Estante de ferramentas",
+          "en": "Rack with tools"
         },
         "itens": [
           {
@@ -9790,8 +9790,8 @@
       {
         "fonteId": "src_045",
         "nome": {
-          "pt": "Деревянный ящик (правый)",
-          "en": "Деревянный ящик (правый)"
+          "pt": "Engradado de madeira (direito)",
+          "en": "Wooden crate (right)"
         },
         "itens": [
           {
@@ -9839,8 +9839,8 @@
       {
         "fonteId": "src_046",
         "nome": {
-          "pt": "Деревянный ящик (посередине)",
-          "en": "Деревянный ящик (посередине)"
+          "pt": "Engradado de madeira (do meio)",
+          "en": "Wooden crate (middle)"
         },
         "itens": [
           {
@@ -9888,8 +9888,8 @@
       {
         "fonteId": "src_047",
         "nome": {
-          "pt": "Деревянный ящик (левый)",
-          "en": "Деревянный ящик (левый)"
+          "pt": "Engradado de madeira (esquerdo)",
+          "en": "Wooden crate (left)"
         },
         "itens": [
           {
@@ -9937,8 +9937,8 @@
       {
         "fonteId": "src_048",
         "nome": {
-          "pt": "Телевизор (на полке)",
-          "en": "Телевизор (на полке)"
+          "pt": "Televisão (na prateleira)",
+          "en": "Television (on the shelf)"
         },
         "itens": [
           {
@@ -10006,8 +10006,8 @@
       {
         "fonteId": "src_049",
         "nome": {
-          "pt": "Ящик для инструментов",
-          "en": "Ящик для инструментов"
+          "pt": "Engradado de ferramentas",
+          "en": "Tool crate"
         },
         "itens": [
           {
@@ -10092,8 +10092,8 @@
       {
         "fonteId": "src_072",
         "nome": {
-          "pt": "Стеллажи (2 шт.)",
-          "en": "Стеллажи (2 шт.)"
+          "pt": "Estantes (×2)",
+          "en": "Racks (×2)"
         },
         "itens": [
           {
@@ -10141,8 +10141,8 @@
       {
         "fonteId": "src_073",
         "nome": {
-          "pt": "Ведро со шваброй",
-          "en": "Ведро со шваброй"
+          "pt": "Balde com esfregão",
+          "en": "Bucket with a mop"
         },
         "itens": [
           {
@@ -10205,8 +10205,8 @@
       {
         "fonteId": "src_071",
         "nome": {
-          "pt": "Шкафчики (4 шт.)",
-          "en": "Шкафчики (4 шт.)"
+          "pt": "Armários de vestiário (×4)",
+          "en": "Lockers (×4)"
         },
         "itens": [
           {
@@ -10329,8 +10329,8 @@
       {
         "fonteId": "src_177",
         "nome": {
-          "pt": "Тумба",
-          "en": "Тумба"
+          "pt": "Armário",
+          "en": "Cabinet"
         },
         "itens": [
           {
@@ -10363,8 +10363,8 @@
       {
         "fonteId": "src_036",
         "nome": {
-          "pt": "Шкафчики (3 шт.)",
-          "en": "Шкафчики (3 шт.)"
+          "pt": "Armários de vestiário (×3)",
+          "en": "Lockers (×3)"
         },
         "itens": [
           {
@@ -10467,8 +10467,8 @@
       {
         "fonteId": "src_121",
         "nome": {
-          "pt": "Урна",
-          "en": "Урна"
+          "pt": "Lixeira",
+          "en": "Bin"
         },
         "itens": [
           {
@@ -10616,8 +10616,8 @@
       {
         "fonteId": "src_122",
         "nome": {
-          "pt": "Красный шкафчик",
-          "en": "Красный шкафчик"
+          "pt": "Armário vermelho",
+          "en": "Red locker"
         },
         "itens": [
           {
@@ -10691,8 +10691,8 @@
       {
         "fonteId": "src_123",
         "nome": {
-          "pt": "Тумба (4 шт.)",
-          "en": "Тумба (4 шт.)"
+          "pt": "Armário (×4)",
+          "en": "Cabinet (×4)"
         },
         "itens": [
           {
@@ -10740,8 +10740,8 @@
       {
         "fonteId": "src_124",
         "nome": {
-          "pt": "Синий шкаф (2 шт.)",
-          "en": "Синий шкаф (2 шт.)"
+          "pt": "Armário azul (×2)",
+          "en": "Blue cabinet (×2)"
         },
         "itens": [
           {
@@ -10829,8 +10829,8 @@
       {
         "fonteId": "src_125",
         "nome": {
-          "pt": "Красный шкафчик (2 шт.)",
-          "en": "Красный шкафчик (2 шт.)"
+          "pt": "Armário vermelho (×2)",
+          "en": "Red locker (×2)"
         },
         "itens": [
           {
@@ -10878,8 +10878,8 @@
       {
         "fonteId": "src_126",
         "nome": {
-          "pt": "Верхний отсек красного шкафчика",
-          "en": "Верхний отсек красного шкафчика"
+          "pt": "Compartimento superior do armário vermelho",
+          "en": "Upper compartment of the red locker"
         },
         "itens": [
           {
@@ -10937,8 +10937,8 @@
       {
         "fonteId": "src_127",
         "nome": {
-          "pt": "Стеллаж с коробками (4 шт.)",
-          "en": "Стеллаж с коробками (4 шт.)"
+          "pt": "Estante com caixas (×4)",
+          "en": "Rack with boxes (×4)"
         },
         "itens": [
           {
@@ -11006,8 +11006,8 @@
       {
         "fonteId": "src_128",
         "nome": {
-          "pt": "Красный набор инструментов",
-          "en": "Красный набор инструментов"
+          "pt": "Jogo de ferramentas vermelho",
+          "en": "Red tool set"
         },
         "itens": [
           {
@@ -11040,8 +11040,8 @@
       {
         "fonteId": "src_050",
         "nome": {
-          "pt": "Тумба с ящиками у стола (2 шт.)",
-          "en": "Тумба с ящиками у стола (2 шт.)"
+          "pt": "Gaveteiro ao lado da mesa (×2)",
+          "en": "Cabinet with drawers by the table (×2)"
         },
         "itens": [
           {
@@ -11164,8 +11164,8 @@
       {
         "fonteId": "src_051",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -11309,8 +11309,8 @@
       {
         "fonteId": "src_054",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -11473,8 +11473,8 @@
       {
         "fonteId": "src_120",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -11648,8 +11648,8 @@
       {
         "fonteId": "src_148",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -11822,8 +11822,8 @@
       {
         "fonteId": "src_164",
         "nome": {
-          "pt": "Урна (2 шт.)",
-          "en": "Урна (2 шт.)"
+          "pt": "Lixeira (×2)",
+          "en": "Bin (×2)"
         },
         "itens": [
           {
@@ -11996,8 +11996,8 @@
       {
         "fonteId": "src_165",
         "nome": {
-          "pt": "Коробка с кровавыми следами",
-          "en": "Коробка с кровавыми следами"
+          "pt": "Caixa com vestígios de sangue",
+          "en": "Box with bloody traces"
         },
         "itens": [
           {
@@ -12051,8 +12051,8 @@
       {
         "fonteId": "src_118",
         "nome": {
-          "pt": "Музыкальный автомат «Stereo»",
-          "en": "Музыкальный автомат «Stereo»"
+          "pt": "Jukebox «Stereo»",
+          "en": "Jukebox «Stereo»"
         },
         "itens": [
           {
@@ -12100,8 +12100,8 @@
       {
         "fonteId": "src_119",
         "nome": {
-          "pt": "Игровой автомат",
-          "en": "Игровой автомат"
+          "pt": "Fliperama",
+          "en": "Arcade machine"
         },
         "itens": [
           {
@@ -12175,8 +12175,8 @@
       {
         "fonteId": "src_141",
         "nome": {
-          "pt": "Синий шкаф (3 шт.)",
-          "en": "Синий шкаф (3 шт.)"
+          "pt": "Armário azul (×3)",
+          "en": "Blue cabinet (×3)"
         },
         "itens": [
           {
@@ -12264,8 +12264,8 @@
       {
         "fonteId": "src_142",
         "nome": {
-          "pt": "Картонные коробки (3 шт.)",
-          "en": "Картонные коробки (3 шт.)"
+          "pt": "Caixas de papelão (×3)",
+          "en": "Cardboard boxes (×3)"
         },
         "itens": [
           {
@@ -12348,8 +12348,8 @@
       {
         "fonteId": "src_171",
         "nome": {
-          "pt": "Коробки (3 шт.) — левая верхняя, верхняя и нижняя посередине",
-          "en": "Коробки (3 шт.) — левая верхняя, верхняя и нижняя посередине"
+          "pt": "Caixas (×3) — superior esquerda, meio superior e meio inferior",
+          "en": "Boxes (×3) — upper-left, upper and lower-middle"
         },
         "itens": [
           {
@@ -12427,8 +12427,8 @@
       {
         "fonteId": "src_172",
         "nome": {
-          "pt": "Синий паллетный ящик",
-          "en": "Синий паллетный ящик"
+          "pt": "Engradado azul de pallet",
+          "en": "Blue pallet crate"
         },
         "itens": [
           {
@@ -12446,8 +12446,8 @@
       {
         "fonteId": "src_173",
         "nome": {
-          "pt": "Коробки (3 шт.) — левая нижняя, правая нижняя, правая верхняя",
-          "en": "Коробки (3 шт.) — левая нижняя, правая нижняя, правая верхняя"
+          "pt": "Caixas (×3) — inferior esquerda, inferior direita, superior direita",
+          "en": "Boxes (×3) — lower-left, lower-right, upper-right"
         },
         "itens": [
           {
@@ -12535,8 +12535,8 @@
       {
         "fonteId": "src_174",
         "nome": {
-          "pt": "Синий шкафчик (слева и справа, 2 шт.)",
-          "en": "Синий шкафчик (слева и справа, 2 шт.)"
+          "pt": "Armário azul de vestiário (esquerdo e direito, ×2)",
+          "en": "Blue locker (left and right, ×2)"
         },
         "itens": [
           {
@@ -12644,8 +12644,8 @@
       {
         "fonteId": "src_175",
         "nome": {
-          "pt": "Синий шкафчик (посередине)",
-          "en": "Синий шкафчик (посередине)"
+          "pt": "Armário azul de vestiário (do meio)",
+          "en": "Blue locker (middle)"
         },
         "itens": [
           {
@@ -12753,8 +12753,8 @@
       {
         "fonteId": "src_176",
         "nome": {
-          "pt": "Промышленный насос",
-          "en": "Промышленный насос"
+          "pt": "Bomba industrial",
+          "en": "Industrial pump"
         },
         "itens": [
           {
@@ -12837,8 +12837,8 @@
       {
         "fonteId": "src_143",
         "nome": {
-          "pt": "Стеллаж с коробками (16 шт.)",
-          "en": "Стеллаж с коробками (16 шт.)"
+          "pt": "Estante com caixas (×16)",
+          "en": "Rack with boxes (×16)"
         },
         "itens": [
           {
@@ -12906,8 +12906,8 @@
       {
         "fonteId": "src_144",
         "nome": {
-          "pt": "Синий паллетный ящик",
-          "en": "Синий паллетный ящик"
+          "pt": "Engradado azul de pallet",
+          "en": "Blue pallet crate"
         },
         "itens": [
           {
@@ -13025,8 +13025,8 @@
       {
         "fonteId": "src_145",
         "nome": {
-          "pt": "Шкафчики (4 шт.)",
-          "en": "Шкафчики (4 шт.)"
+          "pt": "Armários de vestiário (×4)",
+          "en": "Lockers (×4)"
         },
         "itens": [
           {
@@ -13154,8 +13154,8 @@
       {
         "fonteId": "src_146",
         "nome": {
-          "pt": "Шкафчики (2 шт.)",
-          "en": "Шкафчики (2 шт.)"
+          "pt": "Armários de vestiário (×2)",
+          "en": "Lockers (×2)"
         },
         "itens": [
           {
@@ -13229,8 +13229,8 @@
       {
         "fonteId": "src_163",
         "nome": {
-          "pt": "Стол",
-          "en": "Стол"
+          "pt": "Mesa",
+          "en": "Table"
         },
         "itens": [
           {
@@ -13324,8 +13324,8 @@
       {
         "fonteId": "src_037",
         "nome": {
-          "pt": "Металлический картотечный шкаф (6 шт.)",
-          "en": "Металлический картотечный шкаф (6 шт.)"
+          "pt": "Arquivo de metal (×6)",
+          "en": "Metal filing cabinet (×6)"
         },
         "itens": [
           {
@@ -13423,8 +13423,8 @@
       {
         "fonteId": "src_038",
         "nome": {
-          "pt": "Зелёные сетчатые шкафчики (6 шт.)",
-          "en": "Зелёные сетчатые шкафчики (6 шт.)"
+          "pt": "Armários verdes vazados (×6)",
+          "en": "Green mesh lockers (×6)"
         },
         "itens": [
           {
@@ -13542,8 +13542,8 @@
       {
         "fonteId": "src_039",
         "nome": {
-          "pt": "Системный блок (6 шт.)",
-          "en": "Системный блок (6 шт.)"
+          "pt": "Gabinete de computador (×6)",
+          "en": "Computer tower (×6)"
         },
         "itens": [
           {
@@ -13621,8 +13621,8 @@
       {
         "fonteId": "src_040",
         "nome": {
-          "pt": "Шкафчики (у скамейки)",
-          "en": "Шкафчики (у скамейки)"
+          "pt": "Armários de vestiário (ao lado do banco)",
+          "en": "Lockers (by the bench)"
         },
         "itens": [
           {
@@ -13700,8 +13700,8 @@
       {
         "fonteId": "src_160",
         "nome": {
-          "pt": "Стол (тип А, 9 шт.)",
-          "en": "Стол (тип А, 9 шт.)"
+          "pt": "Mesa (tipo A, ×9)",
+          "en": "Table (type A, ×9)"
         },
         "itens": [
           {
@@ -13799,8 +13799,8 @@
       {
         "fonteId": "src_161",
         "nome": {
-          "pt": "Стол (тип B, 2 шт.)",
-          "en": "Стол (тип B, 2 шт.)"
+          "pt": "Mesa (tipo B, ×2)",
+          "en": "Table (type B, ×2)"
         },
         "itens": [
           {
@@ -13828,8 +13828,8 @@
       {
         "fonteId": "src_162",
         "nome": {
-          "pt": "Компьютер",
-          "en": "Компьютер"
+          "pt": "Computador",
+          "en": "Computer"
         },
         "itens": [
           {
@@ -13917,8 +13917,8 @@
       {
         "fonteId": "src_178",
         "nome": {
-          "pt": "Диспенсер воды (2 шт.)",
-          "en": "Диспенсер воды (2 шт.)"
+          "pt": "Bebedouro (×2)",
+          "en": "Water dispenser (×2)"
         },
         "itens": [
           {

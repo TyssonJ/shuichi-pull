@@ -3,6 +3,7 @@ import path from 'node:path';
 import { traduzirRuEn } from '../lib/glossario';
 import { traduzirPt } from '../lib/traducoes';
 import { traduzirVocabulario, nivelDaRaridade } from '../lib/vocabulario';
+import { carregarFontesEn } from './fontes-en';
 import {
   validarItens, validarLocais,
   type Item, type Local, type Spawn, type Conteiner,
@@ -48,6 +49,11 @@ function texto(ru: string, categoria: 'items' | 'locations'): Texto {
   return { en, pt: traduzirPt(en) ?? en };
 }
 
+/** Texto que ja vem em ingles do guidebook: so falta o portugues. */
+function doIngles(en: string): Texto {
+  return { en, pt: traduzirPt(en) ?? en };
+}
+
 function vocabulario(ru: string): Texto {
   const t = traduzirVocabulario(ru);
   return t ? { pt: t.pt, en: t.en } : { pt: ru, en: ru };
@@ -73,6 +79,8 @@ export function ingerir(): { itens: Item[]; locais: Local[] } {
     items: ItemBruto[]; locations: string[];
   };
   const fontes = JSON.parse(fs.readFileSync(DROPS, 'utf-8')) as FonteBruta[];
+  // Nome de conteiner nao esta no glossario; o guidebook em markdown tem.
+  const fontesEn = carregarFontesEn();
 
   // Um id por item: o dado bruto já traz um, e os dois que faltam saem do nome.
   const idPorNomeRu = new Map<string, string>();
@@ -85,10 +93,13 @@ export function ingerir(): { itens: Item[]; locais: Local[] } {
   const andarPorLocal = new Map<string, Texto>();
 
   for (const f of fontes) {
-    const local = texto(f.location, 'locations');
+    const en = fontesEn.get(f.sourceId);
+    const local = en ? doIngles(en.local) : texto(f.location, 'locations');
     const localId = gerarId(local.en);
-    const andar = f.floor ? texto(f.floor, 'locations') : null;
-    const conteiner = texto(f.containerName, 'locations');
+    const andar = en?.andar
+      ? doIngles(en.andar)
+      : f.floor ? texto(f.floor, 'locations') : null;
+    const conteiner = en ? doIngles(en.conteiner) : texto(f.containerName, 'locations');
     if (andar) andarPorLocal.set(localId, andar);
 
     const itensDaFonte: Conteiner['itens'] = [];

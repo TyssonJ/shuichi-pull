@@ -85,3 +85,34 @@ describe('acesso aos locais', () => {
     expect(russo.map((l) => l.id)).toEqual([]);
   });
 });
+
+describe('nada sobra em russo', () => {
+  const russo = /[\u0400-\u04FF]/;
+
+  it('nenhum contêiner de spawn ficou em russo', () => {
+    const sujos = listarItens()
+      .flatMap((i) => i.spawns)
+      .filter((s) => russo.test(s.conteiner.pt) || russo.test(s.conteiner.en));
+    expect(sujos.map((s) => s.conteiner.en)).toEqual([]);
+  });
+
+  it('nenhum contêiner de local ficou em russo', () => {
+    const sujos = listarLocais()
+      .flatMap((l) => l.conteineres)
+      .filter((c) => russo.test(c.nome.pt) || russo.test(c.nome.en));
+    expect(sujos.map((c) => c.nome.en)).toEqual([]);
+  });
+
+  it('nenhum nome de item ficou em russo', () => {
+    const sujos = listarItens().filter((i) => russo.test(i.nome.pt) || russo.test(i.nome.en));
+    expect(sujos.map((i) => i.id)).toEqual([]);
+  });
+
+  it('todo spawn aponta para um local que existe no mapa', () => {
+    const ids = new Set(listarLocais().map((l) => l.id));
+    const orfaos = listarItens()
+      .flatMap((i) => i.spawns)
+      .filter((s) => !ids.has(s.localId));
+    expect(orfaos.map((s) => s.localId)).toEqual([]);
+  });
+});
