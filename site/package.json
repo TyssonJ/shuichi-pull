@@ -12,7 +12,8 @@
     "dados": "tsx scripts/ingerir-elenco.ts",
     "sprites": "tsx scripts/otimizar-sprites.ts",
     "sprites:baixar": "tsx scripts/baixar-sprites.ts",
-    "dados:itens": "tsx scripts/ingerir-itens.ts"
+    "dados:itens": "tsx scripts/ingerir-itens.ts",
+    "dados:faq": "tsx scripts/ingerir-faq.ts"
   },
   "dependencies": {
     "next": "16.3.4",

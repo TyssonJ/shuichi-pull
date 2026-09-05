@@ -1,0 +1,218 @@
+{
+  "$comment": "Traducao PT-BR do FAQ. A chave e a pergunta em ingles do guidebook, que e a juncao com scripts/faq-en.ts. Editavel por ADM sem mexer em codigo.",
+  "secoes": {
+    "Getting started": "Primeiros passos",
+    "Modes & finding a game": "Modos e como achar partida",
+    "Terms & slang": "Termos e gírias",
+    "Game mechanics": "Mecânicas do jogo",
+    "Community & project": "Comunidade e projeto",
+    "Disputed situations": "Situações polêmicas",
+    "Rules & site": "Regras e site"
+  },
+  "perguntas": {
+    "How do I start playing?": {
+      "pergunta": "Como eu começo a jogar?",
+      "resposta": "- Compre e instale o Garry's Mod na Steam.\n- Abra o jogo → Multiplayer.\n- Procure pelo modo Shinri Trial | Danganronpa.\n- Escolha um lobby público vazio na lista de servidores.\n- Os add-ons vão baixar — na primeira vez isso demora bastante.\n- Entre com o Discord: crie uma conta ou use a que você já tem.\n- Conheça as mecânicas aqui no site ou pelo vídeo: youtu.be/fdiaVeEvqJk\n- Procure uma partida e boa sorte!"
+    },
+    "What age can you play from?": {
+      "pergunta": "A partir de que idade dá para jogar?",
+      "resposta": "Não há restrição de idade, mas a recomendação é 14 anos ou mais — o jogo trata de violência e assassinato. Além disso, participar das partidas exige Discord, cuja idade mínima é 13."
+    },
+    "What would you advise newcomers?": {
+      "pergunta": "Que conselho vocês dão para quem está começando?",
+      "resposta": "Ligue o monopad logo de cara e fique de olho no horário do jogo. Lembre por onde você passou e o que fez: no julgamento, qualquer detalhe pode pesar.\n\nNo começo da partida, estoque comida.\n\nEscreva toda fala fora de personagem pelo /looc. E o mais importante: converse, explore e se divirta. As primeiras partidas são sempre caóticas, e isso é normal."
+    },
+    "What is Garry's Mod?": {
+      "pergunta": "O que é Garry's Mod?",
+      "resposta": "Garry's Mod é um sandbox da Steam (~US$ 10) onde as pessoas constroem os próprios jogos dentro dele. Shinri Trial é um desses modos feitos por fãs.\n\nPara jogar: compre o GMod na Steam → abra → Find Multiplayer Game → escolha o modo Shinri Trial | Danganronpa → entre num lobby. Os add-ons baixam sozinhos na primeira vez (demora), e você precisa de uma conta no Discord para entrar. É isso!"
+    },
+    "Can I play right now if I don't know Russian?": {
+      "pergunta": "Dá para jogar mesmo sem saber russo?",
+      "resposta": "Dá! Há muitos jogadores que falam inglês e moderadores bilíngues no Discord Shinri Trial Global, e eles ajudam quem está chegando. O guia em vídeo e este site ajudam a se virar na interface em russo até o patch em inglês sair."
+    },
+    "Do you need to be good at RP, fast typing or voices?": {
+      "pergunta": "Preciso ser bom de RP, digitar rápido ou fazer vozes?",
+      "resposta": "Não. RP pesado não é exigido nas partidas automáticas (partidas rápidas) — essa é a posição oficial do projeto. Quanto a digitar rápido e fazer vozes: basta ter bom senso. Ninguém espera que você tenha a voz da Megumi Ogata nem que digite como a Chihiro Fujisaki.\n\nNa ficção, você está interpretando um estudante que também não conhece os outros, então ficar um pouco sem jeito literalmente combina com o personagem. E as primeiras partidas são caóticas para todo mundo — isso é normal."
+    },
+    "Does the game or the guide contain spoilers for the main series?": {
+      "pergunta": "O jogo ou o guia têm spoiler da série principal?",
+      "resposta": "O guia foca nas mecânicas, mas o jogo em si usa personagens e cenários de toda a série. Se você ainda não terminou os jogos originais, ver a ficha de certos personagens ou alguns locais pode ser um spoiler leve."
+    },
+    "What is quick play / auto-game?": {
+      "pergunta": "O que é partida rápida / partida automática?",
+      "resposta": "Partida rápida é um modo automatizado, sem host, totalmente gratuito e disponível a qualquer hora. Segue o esquema clássico: crime → investigação → julgamento. Participam exatamente 16 jogadores e dura de 1 a 2 horas em média.\n\nPara entrar, escolha \"Partida rápida\" no menu principal — você entra na fila. Quando juntam 16 pessoas, todo mundo recebe um pedido de confirmação. Se todos confirmarem, o servidor sobe sozinho e conecta os jogadores. Se alguém não confirmar, a fila é remontada.\n\nDepois de conectar, cada um escolhe o personagem e a partida começa — todos nascem nos próprios quartos.\n\nTudo é conduzido pelo sistema: não há host, as decisões são só dos jogadores e o ritmo é mais rápido que nas partidas oficiais e privadas. Ideal para conhecer o projeto."
+    },
+    "How do I get into an official game?": {
+      "pergunta": "Como entro numa partida oficial?",
+      "resposta": "O anúncio sai no canal oficial do Discord do Shinri Trial, domingo às 15h30 no horário de Moscou. As inscrições abrem às 16h de Moscou — as vagas somem muito rápido, então acompanhe os anúncios com antecedência."
+    },
+    "Where can I find a teammate / a newcomer teammate?": {
+      "pergunta": "Onde acho alguém para jogar junto?",
+      "resposta": "O jeito mais fácil é achar companhia dentro do próprio jogo — no lobby, ou escrevendo nos canais de partidas rápidas do Discord oficial."
+    },
+    "How can I chat with the cast after the game ends without being whisked straight to the lobby?": {
+      "pergunta": "Como converso com o elenco depois da partida sem ser jogado direto para o lobby?",
+      "resposta": "Quando a partida acaba, você tem 5 minutos no servidor, mas não consegue mais andar como seu personagem. Abra o console (tecla ~) e digite `+voicerecord` — isso ativa sua voz e deixa os outros te ouvirem. Se aparecer o aviso para ir ao lobby, clique em \"Não\" para continuar no servidor.\n\nLembre que a maioria provavelmente já saiu do servidor. Então o melhor é combinar antes, no chat fora de personagem: \"Pessoal, vamos nos encontrar no lobby [número] depois da partida\" — senão cada um volta para o lobby de onde procurou partida e o elenco se espalha."
+    },
+    "How do I apply to create a private game?": {
+      "pergunta": "Como faço para criar uma partida privada?",
+      "resposta": "No bot do Discord do Shinri Trial: \"Menu\" → \"Começar a jogar\" → \"Organizar partida personalizada\". Depois de enviar, abre um chat onde você manda o formulário preenchido.\n\nFormulário e instruções: blog.shinri-trial.ru/docs/gameplay/community-games"
+    },
+    "What do I do if I got into an episode/private game but can't make it?": {
+      "pergunta": "Entrei num episódio ou partida privada e não vou conseguir ir. E agora?",
+      "resposta": "Se as inscrições ainda estiverem abertas: \"Menu da partida\" → \"Sair da partida\" — o passe volta automaticamente.\n\nSe já fecharam e o motivo for justo: \"Menu\" → \"Suporte\" → \"Reembolso\" — um administrador analisa o pedido e devolve o passe."
+    },
+    "What's the main difference between episodes, private games and quick games?": {
+      "pergunta": "Qual a diferença entre episódios, partidas privadas e partidas rápidas?",
+      "resposta": "**Partida rápida (automática)** — gratuita, sem host, totalmente automática. 16 pessoas, formato clássico, 1 a 2 horas. Ideal para conhecer o projeto.\n\n**Episódio (partida oficial)** — partida com roteiro e hosts ao vivo (mestres). Cenário único, vagas limitadas. Há duas formas de entrar: sorteio (grátis, vaga não garantida) ou passe dourado — 800 monomoedas (≈400 ₽, vaga garantida).\n\n**Partida privada (personalizada)** — organizada pelos próprios jogadores, com história e regras próprias. Para participar é preciso um passe prateado — 600 monomoedas (≈300 ₽)."
+    },
+    "Are there English-speaking servers, and where do I find them?": {
+      "pergunta": "Existem servidores em inglês? Onde encontro?",
+      "resposta": "Sim — o Discord Shinri Trial GLOBAL: discord.gg/KYkzy9n3HW"
+    },
+    "How are quick games (auto-games) run on Shinri Trial Global?": {
+      "pergunta": "Como funcionam as partidas rápidas no Shinri Trial Global?",
+      "resposta": "As inscrições acontecem no canal `future-games` — poste lá o seu UID e o personagem que você prefere. No momento só são permitidas partidas automáticas combinadas com antecedência."
+    },
+    "Are there non-RP servers where you can play without roleplaying?": {
+      "pergunta": "Existe servidor sem RP, só para jogar?",
+      "resposta": "O Shinri Trial é um projeto de RP, então jogar completamente fora de personagem não é possível. Uma separação entre servidores RP e não-RP está nos planos, mas não há prazo anunciado."
+    },
+    "What is perception?": {
+      "pergunta": "O que é percepção?",
+      "resposta": "É o atributo que define o raio em que o personagem detecta evidências. O valor máximo é 10. Por exemplo, a Kyoko com percepção 10 enxerga uma evidência de mais longe que o Mondo com percepção 3."
+    },
+    "What is a case?": {
+      "pergunta": "O que é um \"case\"?",
+      "resposta": "Gíria para assassinato. \"Fazer um case\" = cometer um assassinato."
+    },
+    "What is a cast?": {
+      "pergunta": "O que é o \"cast\"?",
+      "resposta": "O cast é o elenco de jogadores da sua partida. Um \"cast bom\" quer dizer que caiu gente interessante, ativa ou agradável. Um \"cast ruim\" é o contrário. Toda partida é única justamente porque o cast nunca é o mesmo."
+    },
+    "How do I use the monopad?": {
+      "pergunta": "Como uso o monopad?",
+      "resposta": "Abra o inventário (I), ache o monopad e aperte o botão direito → \"Ligar\". Depois disso, apertando C você olha o relógio e descobre a hora dentro do jogo."
+    },
+    "How many murders can one player commit?": {
+      "pergunta": "Quantos assassinatos um jogador pode cometer?",
+      "resposta": "No máximo dois por capítulo — mesmo com cúmplice."
+    },
+    "Can I use attrition (lack of sleep or hunger) as a method of murder, if the rules forbid holding a player for more than 5 minutes?": {
+      "pergunta": "Dá para matar por desgaste (fome ou falta de sono), já que as regras proíbem prender alguém por mais de 5 minutos?",
+      "resposta": "Tecnicamente o desgaste existe como mecânica, mas na prática não dá para executar — a regra 4.11 proíbe prender um jogador por mais de 5 minutos, e não há exceção para desgaste. Ou seja: esse método de assassinato fica indisponível."
+    },
+    "How long until a killer can become a witness?": {
+      "pergunta": "Depois de quanto tempo o assassino pode virar testemunha?",
+      "resposta": "O assassino não pode ser a primeira testemunha em hipótese alguma. Só dá para virar testemunha depois que o instinto de assassino passa — 20 segundos reais (24 minutos no tempo do jogo). Assim que pelo menos um jogador achar a vítima, o assassino pode ser a segunda ou a terceira testemunha, inclusive numa descoberta simultânea."
+    },
+    "Where do I find my UID?": {
+      "pergunta": "Onde acho o meu UID?",
+      "resposta": "Dentro do jogo, no canto inferior esquerdo da tela."
+    },
+    "How do I check the time in game?": {
+      "pergunta": "Como vejo a hora dentro do jogo?",
+      "resposta": "De duas formas: segure C → \"Ver a hora\", ou abra o inventário (I) → botão direito no monopad → \"Ver a hora\"."
+    },
+    "My emote and animation slots are empty — how do I equip them?": {
+      "pergunta": "Meus slots de emote e animação estão vazios. Como equipo?",
+      "resposta": "Esc → \"Editor de animações\" → escolha os emotes, gestos, poses, danças ou modos de andar → clique duas vezes com o botão esquerdo → escolha um slot na roda de emotes para equipar.\n\nTem um passo a passo em GIF na seção de Controles → \"Mecânicas\" → \"Voz, animações e emotes\" → \"Menu de animação\"."
+    },
+    "How do I put handcuffs, zip ties, duct tape or a bag on a player?": {
+      "pergunta": "Como coloco algema, abraçadeira, fita ou saco num jogador?",
+      "resposta": "Chegue bem perto, segure E → escolha \"Contenção\" na roda de interação → depois o item que você quer (ele precisa estar no seu inventário).\n\nA única coisa que dá para tirar de si mesmo é o saco. Abraçadeira se corta com faca, machado ou katana; algema só sai com chave de fenda (ou sem ela, se você mesmo se algemou); a fita é removida por qualquer outro jogador do mesmo jeito.\n\nSe o jogador começar a se mover, a ação é cancelada — então tente fazer sem ser notado."
+    },
+    "How do I get into Danganronpa?": {
+      "pergunta": "Como entro em Danganronpa?",
+      "resposta": "Há dois caminhos.\n\n**O caminho canônico** (na ordem de lançamento):\n\n- Danganronpa: Trigger Happy Havoc\n- Danganronpa 2: Goodbye Despair\n- Danganronpa Another Episode: Ultra Despair Girls\n- Anime: arcos Future e Despair, depois Hope\n- Danganronpa V3: Killing Harmony\n\nDanganronpa 2x2 também está a caminho.\n\n**O caminho rápido:**\n\n- A primeira temporada do anime\n- De preferência, jogar o segundo jogo (Danganronpa 2: Goodbye Despair)\n- Anime: arcos Future e Despair, depois Hope\n\nVocê não precisa jogar tudo — dá para ver gameplay no YouTube — mas jogar continua sendo a recomendação."
+    },
+    "How do I become a media partner of the project?": {
+      "pergunta": "Como viro parceiro de mídia do projeto?",
+      "resposta": "Preencha o formulário em: forms.gle/xNjfWisvxTLuupDA6\n\nO que vão pedir: nick e Discord, seu formato principal de conteúdo, sua plataforma principal com link (pelo menos 500 inscritos), atividade média mensal, plataformas extras (opcional), uma nota curta sobre o conteúdo de Shinri Trial que você pretende fazer, e o código promocional desejado.\n\nAtenção: o recrutamento nem sempre está aberto, e os requisitos e o formulário podem mudar — confira a situação atual no Discord oficial."
+    },
+    "How do I join the administration? Is recruitment always open?": {
+      "pergunta": "Como entro para a administração? O recrutamento está sempre aberto?",
+      "resposta": "O recrutamento da administração abre de tempos em tempos e é anunciado num post separado no Discord oficial."
+    },
+    "Are there a lot of players? Is the community active?": {
+      "pergunta": "Tem muita gente jogando? A comunidade é ativa?",
+      "resposta": "Atualizado em 28/07/2026. A comunidade é ativa: por volta de 2 mil pessoas online nos servidores russos e mais de 30 a 50 mil contas registradas. Fora o Discord Shinri Trial Global, em inglês, com mais de 2 mil membros."
+    },
+    "Is a microphone required to play?": {
+      "pergunta": "Preciso de microfone para jogar?",
+      "resposta": "Microfone não é obrigatório, mas é recomendado — fica mais fácil acompanhar o ritmo de um julgamento.\n\nDito isso, os comandos de chat em texto são parte importante do roleplay. Não se preocupe se você joga só no texto: tem gente que joga sem microfone e vai muito bem."
+    },
+    "Can Spanish-speaking players play?": {
+      "pergunta": "Quem fala espanhol consegue jogar?",
+      "resposta": "O mod e o Discord oficial ainda não têm tradução para espanhol — a equipe está focada na adaptação para o inglês, então uma localização em espanhol não é realista no curto prazo. Este guia, porém, já existe em espanhol. Nada disso impede de jogar: legendas e a tradução automática do YouTube cobrem boa parte, e quem fala espanhol é sempre bem-vindo no Discord Shinri Trial GLOBAL.\n\nOs jogadores hispanofalantes já se organizaram: na seção de perguntas existe uma thread chamada \"Lista de jugadores hispanos para hacer random pings\", onde montam lobbies completos de 16 pessoas e mantêm uma agenda de partidas em espanhol."
+    },
+    "What actually forms the motive to kill? Are there mechanically enforced motives?": {
+      "pergunta": "O que forma o motivo para matar? Existe motivo imposto pela mecânica?",
+      "resposta": "Nas partidas rápidas (automáticas) não há motivo imposto pela mecânica — diferente dos jogos originais, o Monokuma aqui não distribui vídeos de motivação nem dá ultimatos do tipo \"se ninguém morrer, acontece X\". Nada no jogo obriga alguém a matar. Nas partidas privadas e oficiais é diferente: ali costuma haver motivo dado pelo mestre.\n\nOs motivos vêm dos jogadores: nascem do roleplay e da dinâmica social da partida — uma rivalidade que cresce, uma traição, alguém virando ameaça, autopreservação, ou simplesmente a decisão de jogar como o culpado e ir atrás da vitória.\n\nO que o Monokuma dá é oportunidade, não motivo: eventos como blecaute (cobertura), baile de máscaras (esconde identidades) e teleporte (isola as pessoas e confunde todo mundo sobre onde os outros estão) facilitam a execução. A razão vem dos jogadores."
+    },
+    "Is it true there's a taboo that kind characters (like Makoto) shouldn't kill?": {
+      "pergunta": "É verdade que existe um tabu de personagem bonzinho (tipo o Makoto) não matar?",
+      "resposta": "É etiqueta da comunidade, não regra oficial — ninguém pune nem fiscaliza. As pessoas quebram isso com frequência, e é por isso que não dá para deduzir o suspeito pela escolha de personagem: absolutamente qualquer um pode ser o assassino.\n\nO que pega mal não é escolher um personagem \"bonzinho\", e sim matar sem motivo e sem construção. Se o motivo realmente se desenvolveu ao longo da partida (traição, pressão, medo, legítima defesa e por aí vai), até um personagem classicamente \"bom\" matando alguém soa coerente.\n\nExiste uma leve inclinação real na direção dos personagens canonicamente suspeitos (Nagito, Kokichi, Junko e afins) — acreditam um pouco menos na palavra deles, o que não é a mesma coisa que suspeitar de assassinato na hora."
+    },
+    "Will other maps (like DR2's Jabberwock Island) be added?": {
+      "pergunta": "Vão adicionar outros mapas (tipo a Ilha Jabberwock de DR2)?",
+      "resposta": "Hoje o mapa principal é a Academia Pico da Esperança, do primeiro jogo. Os desenvolvedores estudam adicionar mapas dos outros jogos da série conforme o projeto cresce."
+    },
+    "If you stun a player and they die of hunger while unconscious — does that count as murder?": {
+      "pergunta": "Se eu nocautear alguém e a pessoa morrer de fome desacordada, conta como assassinato?",
+      "resposta": "Conta. Como a morte veio das suas ações (você nocauteou → a vítima não conseguiu comer → morreu de fome), o jogo considera um case e você vira o culpado."
+    },
+    "How long can you keep a player in restraints (handcuffs, zip ties and so on)?": {
+      "pergunta": "Por quanto tempo posso manter alguém contido (algema, abraçadeira etc.)?",
+      "resposta": "Segurar alguém por mais de 5 minutos é quebra de regra."
+    },
+    "If one player put zip ties on the victim and a different player shut them in the freezer — who is the killer?": {
+      "pergunta": "Se um jogador amarrou a vítima e outro trancou ela na câmara fria, quem é o assassino?",
+      "resposta": "O assassino é quem colocou as abraçadeiras: essa foi a primeira ação que conteve a vítima."
+    },
+    "Force-feeding food or a drink laced with poison — who's at fault?": {
+      "pergunta": "Forçar alguém a comer ou beber algo envenenado: de quem é a culpa?",
+      "resposta": "Se a alimentação for forçada, a culpa é de quem forçou, não de quem envenenou.\n\nSe for voluntária (sem abraçadeira, sem algema, sem estar dormindo), a culpa é de quem envenenou, não de quem entregou."
+    },
+    "Can you hide evidence as a prop?": {
+      "pergunta": "Dá para esconder evidência como prop?",
+      "resposta": "Dá, mas você tem que esconder de um jeito que o item ainda possa ser pego. Se um jogador fisicamente não conseguir alcançar a evidência escondida, isso é quebra de regra. Esconder dentro de texturas também não pode."
+    },
+    "Where can I read the project's rules?": {
+      "pergunta": "Onde leio as regras do projeto?",
+      "resposta": "O link das regras oficiais do Shinri Trial: blog.shinri-trial.ru/docs/rules"
+    },
+    "Animations and interactive elements on the site (UV Flashlight, sprite scrolling) don't work — how do I fix it?": {
+      "pergunta": "As animações e elementos interativos do site não funcionam. Como resolvo?",
+      "resposta": "Provavelmente as animações do seu Windows estão desligadas. Ative:\n\n**Configurações → Acessibilidade → Efeitos visuais → ligue \"Efeitos de animação\".**\n\nDepois recarregue a página."
+    },
+    "If you go as Shuichi/Kyoko and break doors open with a crowbar — is that a violation? And what about lockpicks?": {
+      "pergunta": "Jogando de Shuichi ou Kyoko e arrombando portas com pé de cabra: pode? E com gazua?",
+      "resposta": "Gazua pode ser usada para entrar num quarto do dormitório — não precisa pedir permissão, nem logo no começo da partida. Já arrombar uma porta com pé de cabra (não com gazua) logo no início, sem motivo de RP, é considerado quebra da regra 4.3."
+    },
+    "Is hitting someone during the investigation a violation?": {
+      "pergunta": "Bater em alguém durante a investigação é quebra de regra?",
+      "resposta": "Sim, é quebra da regra 4.2."
+    },
+    "What do I do if the shop, party and gacha won't load?": {
+      "pergunta": "A loja, a party e a gacha não carregam. O que faço?",
+      "resposta": "Ligue ou desligue a VPN. Se não resolver, ou se você não tiver uma VPN funcionando, peça ajuda ao Suporte no Discord oficial."
+    },
+    "\"Insecure connection to the site\" when linking Discord — what do I do?": {
+      "pergunta": "Aparece \"conexão insegura com o site\" ao vincular o Discord. O que faço?",
+      "resposta": "Abra o link em outro navegador — por exemplo, se você usa Opera, tente outro. Ou ligue uma VPN."
+    },
+    "What do I do if some content or characters won't load?": {
+      "pergunta": "Alguns conteúdos ou personagens não carregam. E agora?",
+      "resposta": "Reinstale o conteúdo por este link: shinri.red/content"
+    },
+    "Why do I get the message \"you can't join a story game\"?": {
+      "pergunta": "Por que aparece \"você não pode entrar numa partida com história\"?",
+      "resposta": "A causa provável: você clicou na sessão já iniciada de outra pessoa em vez de um lobby público."
+    },
+    "Is there a template for the detective's notebook?": {
+      "pergunta": "Existe um modelo do caderno do detetive?",
+      "resposta": "Sim — o guidebook do Kirigiri Press disponibiliza um modelo pronto para imprimir ou copiar."
+    }
+  }
+}
