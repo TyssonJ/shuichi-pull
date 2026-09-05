@@ -1,0 +1,475 @@
+{
+  "tabelas": [
+    {
+      "grupo": "Movement basics",
+      "teclas": [
+        {
+          "teclas": "WASD",
+          "descricao": "Move your character",
+          "nota": null
+        },
+        {
+          "teclas": "Shift + W / WA / WD",
+          "descricao": "Run",
+          "nota": null
+        },
+        {
+          "teclas": "Space",
+          "descricao": "Jump",
+          "nota": null
+        },
+        {
+          "teclas": "Space + Ctrl",
+          "descricao": "High jump",
+          "nota": "Clear obstacles that a normal jump can’t."
+        },
+        {
+          "teclas": "Ctrl",
+          "descricao": "Crouch",
+          "nota": null
+        },
+        {
+          "teclas": "Z",
+          "descricao": "Lie on the floor",
+          "nota": null
+        },
+        {
+          "teclas": "Alt + E",
+          "descricao": "Sit on a flat surface",
+          "nota": null
+        },
+        {
+          "teclas": "Space",
+          "descricao": "Stand up",
+          "nota": null
+        },
+        {
+          "teclas": "Alt + Mouse wheel",
+          "descricao": "Change sitting pose",
+          "nota": null
+        },
+        {
+          "teclas": "LMB",
+          "descricao": "Drag an item (hold on the item)",
+          "nota": null
+        },
+        {
+          "teclas": "H",
+          "descricao": "Action wheel: emotions, animations, dice, character description",
+          "nota": null
+        },
+        {
+          "teclas": "LMB",
+          "descricao": "Confirm choice",
+          "nota": null
+        },
+        {
+          "teclas": "RMB",
+          "descricao": "Close the open menu",
+          "nota": null
+        },
+        {
+          "teclas": "E",
+          "descricao": "Pick up an item",
+          "nota": null
+        },
+        {
+          "teclas": "G",
+          "descricao": "Take a closer look at the surroundings or an item",
+          "nota": null
+        },
+        {
+          "teclas": "F",
+          "descricao": "Save evidence (a body or a trap/grenade trace)",
+          "nota": null
+        }
+      ]
+    },
+    {
+      "grupo": "Voice chat",
+      "teclas": [
+        {
+          "teclas": "X",
+          "descricao": "Voice chat",
+          "nota": null
+        },
+        {
+          "teclas": "X + Shift",
+          "descricao": "Heard at a larger radius",
+          "nota": null
+        },
+        {
+          "teclas": "X + Alt",
+          "descricao": "Heard at a smaller radius",
+          "nota": null
+        }
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "grupo": "Movement and camera",
+      "id": "wasd_walk_shift",
+      "titulo": "Movement",
+      "texto": "W, A, S, D — move in the matching directions. Hold SHIFT to run.",
+      "gif": "/guidebook/assets/mechanics/wasd_walk_shift.gif"
+    },
+    {
+      "grupo": "Movement and camera",
+      "id": "ctrl",
+      "titulo": "Crouching",
+      "texto": "Hold CTRL to crouch.",
+      "gif": "/guidebook/assets/mechanics/CTRL.gif"
+    },
+    {
+      "grupo": "Movement and camera",
+      "id": "z",
+      "titulo": "Lie down",
+      "texto": "Press Z to lie down.",
+      "gif": "/guidebook/assets/mechanics/Z.gif"
+    },
+    {
+      "grupo": "Movement and camera",
+      "id": "space",
+      "titulo": "Jump",
+      "texto": "SPACE — a normal jump. CTRL + SPACE — a high jump that lets you clear taller obstacles.",
+      "gif": "/guidebook/assets/mechanics/space.gif"
+    },
+    {
+      "grupo": "Movement and camera",
+      "id": "r",
+      "titulo": "Crosshair",
+      "texto": "Press R to turn the crosshair on or off.",
+      "gif": "/guidebook/assets/mechanics/R.gif"
+    },
+    {
+      "grupo": "Movement and camera",
+      "id": "f1",
+      "titulo": "Switch view",
+      "texto": "Press F1 to switch between first- and third-person view.",
+      "gif": "/guidebook/assets/mechanics/F1.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "mic_radius",
+      "titulo": "Microphone and voice radius",
+      "texto": "X — medium audible radius. ALT + X — small radius. SHIFT + X — maximum radius.\n\n  - ALT + X — 200 units\n  - X — 300 units\n  - SHIFT + X — 760 units",
+      "gif": "/guidebook/assets/mechanics/mic_radius.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "animation",
+      "titulo": "Animation menu",
+      "texto": "Hold H to open the animation menu and pick one. ESC — close the menu.",
+      "gif": "/guidebook/assets/mechanics/animation.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "animation_cam",
+      "titulo": "Camera control during an animation",
+      "texto": "F1 — switch view. In third person: move the mouse to rotate the camera, the mouse wheel to zoom in/out.",
+      "gif": "/guidebook/assets/mechanics/animation_cam.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "emotes",
+      "titulo": "Emotions",
+      "texto": "Hold H to open the emotion wheel and pick the emotion you want with the cursor.",
+      "gif": "/guidebook/assets/mechanics/emotes.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "emote_wheel",
+      "titulo": "Emotion and animation wheel",
+      "texto": "Hold H to open the wheel, hover the section you want and select with LMB. The wheel has four sections:\n\n  - Animations — your character’s dances, poses and gestures\n  - Emotions — your character’s facial expressions\n  - Roll dice — a dice roll\n  - Character description — the text under your name, which you can change as you like",
+      "gif": "/guidebook/assets/mechanics/emote_wheel.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "roll",
+      "titulo": "Dice roll",
+      "texto": "Hold H, choose “Roll dice” and press LMB. The roll result is shown in chat and visible to all players.\n\nIn RP, a dice roll is used to decide the outcome of actions — at the request of the GM (game master) or by agreement between players. For example, an attempt to convince another character of something, or the outcome of any other action that chance should decide. The higher the number rolled, the better the outcome.",
+      "gif": "/guidebook/assets/mechanics/roll.gif"
+    },
+    {
+      "grupo": "Voice, animations and emotions",
+      "id": "description",
+      "titulo": "Character description",
+      "texto": "Hold H, choose “Character description” and press LMB. Click LMB in the text field and enter a description — up to 110 characters. Press OK to save or Reset status to clear it.\n\nWhen you hover over a character, the description is shown between the character’s first and last name and the player’s nickname.",
+      "gif": "/guidebook/assets/mechanics/description.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "wheel_of_interaction",
+      "titulo": "Interaction wheel",
+      "texto": "Hold E on a character or item to open the interaction wheel and choose an available action.",
+      "gif": "/guidebook/assets/mechanics/wheel_of_interaction.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "hug",
+      "titulo": "Hug",
+      "texto": "Hold E on another player and choose “Hug” in the interaction wheel.",
+      "gif": "/guidebook/assets/mechanics/hug.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "carry",
+      "titulo": "Carry in arms / on shoulders",
+      "texto": "Hold E on a player, then in the interaction wheel choose “Carry in arms” or “Carry on shoulders”. SPACE — release the player.",
+      "gif": "/guidebook/assets/mechanics/carry.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "push",
+      "titulo": "Push",
+      "texto": "Hover over a player and hold E to bring up the interaction wheel, then press LMB on “Push”.",
+      "gif": "/guidebook/assets/mechanics/push.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "lmb_hold",
+      "titulo": "Drag an item",
+      "texto": "Hold LMB on an item and move the mouse to change its position.",
+      "gif": "/guidebook/assets/mechanics/lmb_hold.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "alt_e",
+      "titulo": "Sitting preview",
+      "texto": "Hold ALT and move the mouse (LMB/RMB) to adjust your character’s orientation before sitting. Mouse wheel — change sitting pose. E — confirm. CTRL — toggle the camera view.",
+      "gif": "/guidebook/assets/mechanics/alt_e.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "inspect",
+      "titulo": "Inspect a character",
+      "texto": "Hover over a character and press T — an inspection window opens showing their gear: headwear, clothing, gloves and footwear. Close the window — LMB.\n\nThis can be useful in an investigation: for example, you can find out who has night-vision gear or gloves.",
+      "gif": "/guidebook/assets/mechanics/inspect.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "pickup",
+      "titulo": "Picking up an item",
+      "texto": "Hover over an item — a small card/window appears with its name, quantity, rarity, category, description and weight. Press E to pick it up. The item goes straight into your inventory — confirmed by a notification in the top-right corner of the screen.",
+      "gif": "/guidebook/assets/mechanics/pickup.gif"
+    },
+    {
+      "grupo": "Interaction",
+      "id": "feeding",
+      "titulo": "Feeding",
+      "texto": "RMB on food in your inventory → “Add to feeding menu”. After that, a “Feed” button with the list of chosen food appears in the quick-action wheel (E). The selected player gets a notification and can accept or refuse — if they accept, the eating process begins.",
+      "gif": "/guidebook/assets/mechanics/feeding.gif"
+    },
+    {
+      "grupo": "Doors, safes and containers",
+      "id": "door_interact",
+      "titulo": "Interacting with a door",
+      "texto": "LMB on a door — knock. If there is a bell, press E to ring it. Hold E — the interaction wheel opens: open the door normally or quietly. Press E on an open, unlocked door — it opens with no menu. F — unlock or lock the door with a key.",
+      "gif": "/guidebook/assets/mechanics/door_interact.gif"
+    },
+    {
+      "grupo": "Doors, safes and containers",
+      "id": "lockpick",
+      "titulo": "Lockpicking",
+      "texto": "At the door, hold E and choose “Pick the lock” in the interaction wheel. A mini-game appears: move the mouse up to raise the pins. Once all the pins are held in place, press LMB to turn the cylinder. Lockpicks break if you slip with the mouse or press LMB too early. RMB — cancel the lockpick.",
+      "gif": "/guidebook/assets/mechanics/lockpick.gif"
+    },
+    {
+      "grupo": "Doors, safes and containers",
+      "id": "crowbar_door",
+      "titulo": "Prying a door with a crowbar",
+      "texto": "Holding a crowbar, press RMB on a door to force it open.",
+      "gif": "/guidebook/assets/mechanics/crowbar_door.gif"
+    },
+    {
+      "grupo": "Doors, safes and containers",
+      "id": "unlock_safe",
+      "titulo": "Safe",
+      "texto": "Hover over a safe and hold E — the interaction wheel appears with “Open” and “Unlock/Lock” options. By default the safe is locked. Press LMB on the action you want — a confirmation appears in the bottom-left corner: “The container is now unlocked” or “The container is now locked”.\n\nA safe holds up to 15 kg. If the safe is locked and you don’t have the room key, you’ll have to pick it open with lockpicks — the same lockpicking mini-game as a locked door.",
+      "gif": "/guidebook/assets/mechanics/unlock_safe.gif"
+    },
+    {
+      "grupo": "Inventory and items",
+      "id": "equipment",
+      "titulo": "Equip gear",
+      "texto": "Open the inventory with I. Hover over an item and press RMB to bring up the context menu — choose “Equip”. Or drag the item into the right slot, or double-press LMB. F — turn the flashlight on/off.",
+      "gif": "/guidebook/assets/mechanics/equipment.gif"
+    },
+    {
+      "grupo": "Inventory and items",
+      "id": "split_items",
+      "titulo": "Moving and splitting items",
+      "texto": "Hold SHIFT + LMB on a stack of items to split it. Release LMB — a quantity slider appears. LMB — confirm.",
+      "gif": "/guidebook/assets/mechanics/split_items.gif"
+    },
+    {
+      "grupo": "Inventory and items",
+      "id": "inventory_scroll",
+      "titulo": "Item selection and scroll setup",
+      "texto": "Key 1 — fists. Keys 2, 3 — items from the matching slots. Hold RMB — raise your fists, LMB — punch. To enable the item-selection menu: open the ESC menu → Garry's Mod → uncheck “Fast weapon switch”. After that, selecting a slot brings up the item-selection menu — pick the one you want with the mouse wheel and confirm with LMB. RMB — cancel the selection.",
+      "gif": "/guidebook/assets/mechanics/inventory_scroll.gif"
+    },
+    {
+      "grupo": "Inventory and items",
+      "id": "inventory",
+      "titulo": "Inventory",
+      "texto": "Press I to open the inventory. It is split into three parts.\n\nOn the left — three tabs: “Status” (health, stamina, satiety, vigor, temperature and effects), “Identity” (rank and gender are set by the chosen character; fingerprint and shoe print are unique to each game) and “Appearance” (visual clothing and accessory settings — looks only, no gameplay effect). Sliders are dragged by holding LMB to the right or by clicking LMB near the edge of the bar (0 — cancel, 1 — apply). The character’s name is shown at the top.\n\nIn the center — equipment slots: headwear (NoctiScope v0.1, sack), clothing (Warm Jacket “Plush Gloom”), gloves (gloves, disposable gloves), footwear (empty for now), plus a cloak slot — only a disguise goes there. Here you can also view and rotate the character model.\n\nOn the right — the inventory. Hover over an item — its info appears. RMB on an item — a context menu of actions. Hold LMB and drag an item into an equipment slot, into a container, or outside the window (to drop it). A double LMB quickly moves an item between the inventory and an open container.\n\nSorting: the ↑↓ button — alphabetical (A→Z / Z→A), by weight (light/heavy first) or by recency (new/old first). The second button — filter by category: All items, Food, Medicine, Engineering, Universal, Gear, Other.\n\nAt the bottom — the capacity bar: white zone — normal, yellow — overloaded, red — heavily overloaded (slows movement and combat). When completely full you cannot move. Capacity depends on the character: for example, Nekomaru, Gonta, Sakura and K1-B0 have more, while Chihiro, Nagisa, Kotoko and Monaca have less.\n\nAbove the inventory are three buttons: Inventory, Quests and Recipes. In the recipes section you can pin an item with the pin — then the list of missing ingredients is shown on the right side of the screen. Recipes you have enough resources for are shown first.",
+      "gif": "/guidebook/assets/mechanics/inventory.gif"
+    },
+    {
+      "grupo": "Inventory and items",
+      "id": "inventory_actions",
+      "titulo": "Item actions in the inventory and a container",
+      "texto": "When you open a container (E), your inventory is shown on the left and the container’s contents on the right. Each window has sorting buttons at the top. At the bottom — the container’s capacity bar and a “Take all” button.\n\n  - Double LMB — quickly move an item between the inventory and the container\n  - Hold LMB and drag — move it where you want manually\n  - CTRL + hold LMB — select several items, release LMB (without releasing CTRL), then hold LMB again on any of the selected ones and drag them all at once\n  - Drag an item outside the windows — drop it on the floor\n\n  - Drink / Eat / Use — apply the item\n  - Poison — add poison or sleeping pills to the item (available if you have the matching item in your inventory)\n  - Drop — place the item on the floor\n  - Place — preview placing the item in the world. Red — can’t place, yellow — can\n  - Inspect — text description, item type. With a UV Flashlight you can analyze the item (bloodied, wiped, fingerprint, etc.) and lift fingerprints\n  - Equip — put on the item or slot a weapon. You can also hold LMB and drag the weapon straight into the slot\n\nHovering over an item shows its name, rarity, weight, effects and description.",
+      "gif": "/guidebook/assets/mechanics/inventory_actions.gif"
+    },
+    {
+      "grupo": "Combat",
+      "id": "attack",
+      "titulo": "Attack",
+      "texto": "Keys 2 or 3 (depending on the equipment slot) — draw a weapon. LMB — a normal strike. RMB — an alternate strike. Hold LMB and release — a heavy swinging strike. Hold RMB — raise your fists, LMB — a punch.\n\nFists deal 8–12 damage per hit (the same for every character), but deal no damage at 20% HP and below — you can’t kill with fists.",
+      "gif": "/guidebook/assets/mechanics/attack.gif"
+    },
+    {
+      "grupo": "Combat",
+      "id": "stealth_kill",
+      "titulo": "Stealth kill",
+      "texto": "A stealth kill requires a weapon. Sneak up behind a character and hold F — the stealth-kill animation begins.\n\nImportant: the direction you are looking determines which body part is struck. That injury location is shown in the victim’s Monokuma File.",
+      "gif": "/guidebook/assets/mechanics/stealth_kill.gif"
+    },
+    {
+      "grupo": "Combat",
+      "id": "stun",
+      "titulo": "Stun",
+      "texto": "Hover over a player and hold E to bring up the interaction wheel, then choose “Stun” with LMB. The stun animation begins.\n\nAfter the character has fallen, walk up to the body and hold E — a wheel opens with options: carry in arms, search, kill. Press ESC to close the wheel with no action. Press F to lift the body into your arms. If you do nothing, the character comes to on their own after a while.",
+      "gif": "/guidebook/assets/mechanics/stun.gif"
+    },
+    {
+      "grupo": "Combat",
+      "id": "fight_back",
+      "titulo": "Fend off an attack",
+      "texto": "When you are attacked, the prompt “Fend off the attack” appears with an F button on a timer — you have only 1 second. If you don’t make it, you are stunned or killed.\n\nOn a successful block the attacker falls. You can interact with the downed player: press E — search or kill, hold F — lift the attacker. If you do nothing, the downed player can get back up by holding Space.",
+      "gif": "/guidebook/assets/mechanics/fight_back.gif"
+    },
+    {
+      "grupo": "Combat",
+      "id": "failed_attack",
+      "titulo": "Failed attack",
+      "texto": "If your opponent managed to fend off the attack, you fall to the floor. Hold SPACE to get up on your own, or wait for your opponent to take pity and help you up. While you are down you are defenseless: you can be searched or, worse, killed. So be more careful from now on and act for sure — attack from behind or at least from the side!",
+      "gif": "/guidebook/assets/mechanics/failed_attack.gif"
+    },
+    {
+      "grupo": "Trading and searching",
+      "id": "trade_offer",
+      "titulo": "Trade offer",
+      "texto": "Hover over a player and hold E to bring up the interaction wheel, then press LMB on “Trade”. In the window that opens, hold LMB and drag the item you want from your inventory into the trade area, or double-press LMB. Once you’ve chosen everything you need, press “Offer”.\n\nItems received in the trade are shown in the top-right corner of the screen.",
+      "gif": "/guidebook/assets/mechanics/trade_offer.gif"
+    },
+    {
+      "grupo": "Trading and searching",
+      "id": "trade_accept",
+      "titulo": "Accepting a trade",
+      "texto": "When another player offers you a trade, a notification appears in the top-right corner — press Y to accept or N to decline.\n\nThe trade window shows: at the top — what the other player is offering you, at the bottom — what you are giving. To add an item, hold LMB and drag it from your inventory into the lower area, or double-press LMB. When both players have chosen their items, press “Offer” to complete the trade.",
+      "gif": "/guidebook/assets/mechanics/trade_accept.gif"
+    },
+    {
+      "grupo": "Trading and searching",
+      "id": "search_offer",
+      "titulo": "Search offer",
+      "texto": "Hover over a player and hold E to bring up the interaction wheel, then press LMB on “Search”. The search begins — when the bar fills, a window opens with your inventory and the player’s pockets.\n\nYou can take items, leave your own, or just look through the contents. A search is most often done during an investigation — to make sure a player has nothing suspicious or bloodied.",
+      "gif": "/guidebook/assets/mechanics/search_offer.gif"
+    },
+    {
+      "grupo": "Trading and searching",
+      "id": "search_accept",
+      "titulo": "Consenting to a search",
+      "texto": "When another player wants to search you, a notification appears in the top-right corner — press Y to allow or N to decline. The searching player sees the label “Searching the body”.\n\nIf you search from behind or the side, no permission is needed — but the victim hears a distinctive sound.\n\nDuring a search the other player can hand you items or quietly take something from your pockets. Only let people you trust search you.",
+      "gif": "/guidebook/assets/mechanics/search_accept.gif"
+    },
+    {
+      "grupo": "Chores and crafting",
+      "id": "washing",
+      "titulo": "Washing hands, weapons, the sink, and cleaning up blood",
+      "texto": "Walk up to a sink and hold E to wash your hands. Hold a weapon or a mop and hold F at the sink to wash them. Holding F at the sink also cleans blood off it. Take a mop (2 or 3 depending on the equipment slot) and hold LMB to wipe blood off the floor.",
+      "gif": "/guidebook/assets/mechanics/washing.gif"
+    },
+    {
+      "grupo": "Chores and crafting",
+      "id": "workbench",
+      "titulo": "Workbench / Medical workbench / Kitchen stove",
+      "texto": "Press E on a workbench, medical workbench or kitchen stove to open the item-crafting window.",
+      "gif": "/guidebook/assets/mechanics/workbench.gif"
+    },
+    {
+      "grupo": "Chores and crafting",
+      "id": "cooking",
+      "titulo": "Cooking food",
+      "texto": "Walk up to the kitchen stove and press E. In the menu that opens, select a recipe with LMB, then press LMB — “Create item” — and confirm once more with LMB. If you have several sets of ingredients for one dish, a slider appears — hold LMB and drag right to choose how many portions to make.\n\nCooking runs automatically. While it does, you can open the inventory, loot containers and jump — but not run, or cooking is canceled and you have to start over. You also can’t leave the stove’s range. If you interrupt the process midway you get nothing — start from scratch. The finished item (food) goes automatically into your inventory.\n\nTo pin a recipe and track the ingredients you need (shown on the right side of the screen), hover over the recipe and press LMB on the pin icon.",
+      "gif": "/guidebook/assets/mechanics/cooking.gif"
+    },
+    {
+      "grupo": "Monopad",
+      "id": "monopad_overview",
+      "titulo": "What it is",
+      "texto": "The monopad is an Academy student’s personal device. It carries the messenger, your notes, and any data you have downloaded.",
+      "gif": null
+    },
+    {
+      "grupo": "Monopad",
+      "id": "monopad_appearance",
+      "titulo": "Interface and appearance",
+      "texto": "The default look is available alongside the \"Cyberpunk\" and \"Dynasty\" colour schemes.\n\n  - The look is chosen in the hub and persists between sessions.\n  - Other players see the look you picked — both in your character’s hands and from a distance.\n  - The look cannot be changed during an active game.",
+      "gif": null
+    },
+    {
+      "grupo": "Monopad",
+      "id": "monopad_messenger",
+      "titulo": "Messenger",
+      "texto": "Supports private conversations, group chats with avatars, and system messages. A group chat holds up to 6 players.\n\n  - You can invite new members to an existing group chat and bring back previously removed ones, up to the limit.\n  - A system notice appears in the group when a member leaves or is removed.\n  - The \"Killing Game\" system chat appears at the start of the game.\n  - Long conversations get a scroll slider.\n  - The context menu opens with RMB on a chat, or via the \"…\" button.",
+      "gif": null
+    },
+    {
+      "grupo": "Monopad",
+      "id": "monopad_notes",
+      "titulo": "Notes",
+      "texto": "Notes are written during the investigation — a convenient place to record anything you will want at the trial.\n\nA note can be attached to a piece of evidence.",
+      "gif": null
+    },
+    {
+      "grupo": "Monopad",
+      "id": "monopad_downloads",
+      "titulo": "Downloading data",
+      "texto": "Flash drives and data drives let you download the contents of another player’s monopad.\n\nOnce downloaded, the chats and notes you obtained can be read.",
+      "gif": null
+    },
+    {
+      "grupo": "Class Trial",
+      "id": "trial_energy",
+      "titulo": "Energy and actions",
+      "texto": "The trial lasts 15 real-time minutes. Each player has an Energy reserve — zero to start — that fills up over time, from winning debates, and from other players agreeing with you. Energy is spent on four actions.\n\n  - Initiate a vote — 100 energy\n  - Call a debate — 100 energy (fully restored if you win)\n  - Interrupt — 50 energy (a short animation of your character plays on everyone’s screen)\n  - Show agreement — 15 energy (a note appears beneath the player the camera is focused on; agreeing also raises your energy — it’s the usual way to save up for a vote)\n\n100 energy is restored over 195 real-time seconds — roughly +1 energy every 2 seconds.\n\n  - Cycle the options — mouse wheel, WASD, or the up/down arrows\n  - Activate the selected one — E, G, or Enter",
+      "gif": null
+    },
+    {
+      "grupo": "Class Trial",
+      "id": "trial_camera",
+      "titulo": "Camera and sprites",
+      "texto": "The trial camera follows whoever is holding the voice-chat button; everyone else waits in line.\n\nOn the right side of the screen you can pick the sprite shown at the trial: switch it with LMB at any time, add one to favorites with RMB.",
+      "gif": null
+    },
+    {
+      "grupo": "Class Trial",
+      "id": "trial_evidence",
+      "titulo": "Presenting evidence",
+      "texto": "Evidence and inventory items are presented from the inventory: RMB on an item → “Present as evidence”. Evidence like the Monokuma File, a blood puddle, or trap traces is presented via the red “Evidence” button on the left: pick the evidence → “Present evidence”. In both cases an animation plays for every player, and the evidence lands in a shared list everyone can inspect in more detail.\n\nIf you examine an item with the UV flashlight and get a property (for example, “bloody fingerprint Y”), then when you present that item every player at the trial will see that property.\n\nA notebook with fingerprints can be presented too — it is saved into past case materials; other players open it with C → “Open old case materials”.",
+      "gif": null
+    },
+    {
+      "grupo": "Class Trial",
+      "id": "trial_debates",
+      "titulo": "Debates",
+      "texto": "There are two kinds of debate at the trial.\n\nCross-debates — a one-on-one duel. Everyone else stays silent but can type in chat (messages show up in pink — “Noise”) and vote for the winner. The winner restores 100 energy. Any player with 100 energy can start one, then pick their opponent. Duration is 2 minutes; the initiator can end the debate at any moment.\n\nScrum debates — triggered on a tie vote: each player in turn gets 20 seconds to state their version. If a tie happens three times in a row, the Blackened wins automatically.",
+      "gif": null
+    }
+  ]
+}

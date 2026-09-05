@@ -1,0 +1,242 @@
+{
+  "$comment": "Traducao PT-BR dos controles e mecanicas. Teclas sao casadas pela descricao em ingles; cards pelo id do guidebook. Editavel por ADM sem mexer em codigo.",
+  "grupos": {
+    "Movement basics": "Movimentação básica",
+    "Voice chat": "Chat de voz",
+    "Movement and camera": "Movimento e câmera",
+    "Voice, animations and emotions": "Voz, animações e emoções",
+    "Interaction": "Interação",
+    "Doors, safes and containers": "Portas, cofres e contêineres",
+    "Inventory and items": "Inventário e itens",
+    "Combat": "Combate",
+    "Trading and searching": "Troca e revista",
+    "Chores and crafting": "Tarefas e craft",
+    "Monopad": "Monopad",
+    "Class Trial": "Julgamento"
+  },
+  "teclas": {
+    "Move your character": "Move o personagem",
+    "Run": "Corre",
+    "Jump": "Pula",
+    "High jump": "Pulo alto",
+    "Crouch": "Agacha",
+    "Lie on the floor": "Deita no chão",
+    "Sit on a flat surface": "Senta numa superfície plana",
+    "Stand up": "Levanta",
+    "Change sitting pose": "Troca a pose sentada",
+    "Drag an item (hold on the item)": "Arrasta um item (segure sobre ele)",
+    "Action wheel: emotions, animations, dice, character description": "Roda de ações: emoções, animações, dado e descrição do personagem",
+    "Confirm choice": "Confirma a escolha",
+    "Close the open menu": "Fecha o menu aberto",
+    "Pick up an item": "Pega um item",
+    "Take a closer look at the surroundings or an item": "Observa de perto o ambiente ou um item",
+    "Save evidence (a body or a trap/grenade trace)": "Registra evidência (um corpo ou rastro de armadilha/granada)",
+    "Voice chat": "Chat de voz",
+    "Heard at a larger radius": "Ouvido num raio maior",
+    "Heard at a smaller radius": "Ouvido num raio menor"
+  },
+  "notas": {
+    "Clear obstacles that a normal jump can’t.": "Passa obstáculos que o pulo normal não vence."
+  },
+  "cards": {
+    "wasd_walk_shift": {
+      "titulo": "Movimento",
+      "texto": "W, A, S, D — anda nas direções correspondentes. Segure SHIFT para correr."
+    },
+    "ctrl": { "titulo": "Agachar", "texto": "Segure CTRL para agachar." },
+    "z": { "titulo": "Deitar", "texto": "Aperte Z para deitar." },
+    "space": {
+      "titulo": "Pular",
+      "texto": "ESPAÇO — pulo normal. CTRL + ESPAÇO — pulo alto, que passa obstáculos mais altos."
+    },
+    "r": { "titulo": "Mira", "texto": "Aperte R para ligar ou desligar a mira." },
+    "f1": {
+      "titulo": "Trocar a visão",
+      "texto": "Aperte F1 para alternar entre primeira e terceira pessoa."
+    },
+    "mic_radius": {
+      "titulo": "Microfone e raio de voz",
+      "texto": "X — raio de audição médio. ALT + X — raio pequeno. SHIFT + X — raio máximo.\n\n- ALT + X — 200 unidades\n- X — 300 unidades\n- SHIFT + X — 760 unidades"
+    },
+    "animation": {
+      "titulo": "Menu de animação",
+      "texto": "Segure H para abrir o menu de animação e escolher uma. ESC — fecha o menu."
+    },
+    "animation_cam": {
+      "titulo": "Câmera durante uma animação",
+      "texto": "F1 — troca a visão. Em terceira pessoa: mova o mouse para girar a câmera e use a rodinha para aproximar ou afastar."
+    },
+    "emotes": {
+      "titulo": "Emoções",
+      "texto": "Segure H para abrir a roda de emoções e escolha a que quiser com o cursor."
+    },
+    "emote_wheel": {
+      "titulo": "Roda de emoções e animações",
+      "texto": "Segure H para abrir a roda, passe o cursor na seção desejada e selecione com o botão esquerdo. A roda tem quatro seções:\n\n- Animações — danças, poses e gestos do seu personagem\n- Emoções — expressões faciais do seu personagem\n- Rolar dado — uma rolagem de dado\n- Descrição do personagem — o texto embaixo do seu nome, que você muda como quiser"
+    },
+    "roll": {
+      "titulo": "Rolagem de dado",
+      "texto": "Segure H, escolha \"Rolar dado\" e aperte o botão esquerdo. O resultado aparece no chat e todos os jogadores veem.\n\nNo RP, a rolagem decide o resultado de uma ação — a pedido do mestre ou por acordo entre jogadores. Por exemplo, uma tentativa de convencer outro personagem de algo, ou o desfecho de qualquer ação que o acaso deva resolver. Quanto maior o número, melhor o resultado."
+    },
+    "description": {
+      "titulo": "Descrição do personagem",
+      "texto": "Segure H, escolha \"Descrição do personagem\" e aperte o botão esquerdo. Clique no campo de texto e escreva a descrição — até 110 caracteres. Aperte OK para salvar ou Resetar status para limpar.\n\nQuando alguém passa o cursor sobre o seu personagem, a descrição aparece entre o nome e o sobrenome e o nick do jogador."
+    },
+    "wheel_of_interaction": {
+      "titulo": "Roda de interação",
+      "texto": "Segure E sobre um personagem ou item para abrir a roda de interação e escolher uma ação disponível."
+    },
+    "hug": {
+      "titulo": "Abraçar",
+      "texto": "Segure E sobre outro jogador e escolha \"Abraçar\" na roda de interação."
+    },
+    "carry": {
+      "titulo": "Carregar no colo ou no ombro",
+      "texto": "Segure E sobre um jogador e escolha \"Carregar no colo\" ou \"Carregar no ombro\" na roda de interação. ESPAÇO — solta o jogador."
+    },
+    "push": {
+      "titulo": "Empurrar",
+      "texto": "Passe o cursor sobre um jogador e segure E para abrir a roda de interação, depois clique com o botão esquerdo em \"Empurrar\"."
+    },
+    "lmb_hold": {
+      "titulo": "Arrastar um item",
+      "texto": "Segure o botão esquerdo sobre um item e mova o mouse para mudar a posição dele."
+    },
+    "alt_e": {
+      "titulo": "Prévia de sentar",
+      "texto": "Segure ALT e mova o mouse (botão esquerdo/direito) para ajustar a orientação do personagem antes de sentar. Rodinha do mouse — troca a pose. E — confirma. CTRL — alterna a câmera."
+    },
+    "inspect": {
+      "titulo": "Inspecionar um personagem",
+      "texto": "Passe o cursor sobre um personagem e aperte T — abre uma janela mostrando o equipamento: chapéu, roupa, luvas e calçado. Fechar a janela — botão esquerdo.\n\nIsso ajuda numa investigação: dá para descobrir quem está com equipamento de visão noturna ou luvas."
+    },
+    "pickup": {
+      "titulo": "Pegar um item",
+      "texto": "Passe o cursor sobre um item — aparece um cartão com nome, quantidade, raridade, categoria, descrição e peso. Aperte E para pegar. O item vai direto para o inventário, com aviso no canto superior direito da tela."
+    },
+    "feeding": {
+      "titulo": "Alimentar",
+      "texto": "Botão direito sobre a comida no inventário → \"Adicionar ao menu de alimentação\". Depois disso aparece um botão \"Alimentar\" com a lista escolhida na roda de ação rápida (E). O jogador selecionado recebe um aviso e pode aceitar ou recusar — se aceitar, começa a comer."
+    },
+    "door_interact": {
+      "titulo": "Interagir com uma porta",
+      "texto": "Botão esquerdo na porta — bate. Se tiver campainha, aperte E para tocar. Segure E — abre a roda de interação: abrir normalmente ou em silêncio. Aperte E numa porta aberta e destrancada — ela abre sem menu. F — tranca ou destranca a porta com a chave."
+    },
+    "lockpick": {
+      "titulo": "Arrombar com gazua",
+      "texto": "Na porta, segure E e escolha \"Arrombar a fechadura\" na roda de interação. Aparece um minigame: mova o mouse para cima para levantar os pinos. Com todos os pinos no lugar, aperte o botão esquerdo para girar o cilindro. A gazua quebra se você escorregar com o mouse ou apertar cedo demais. Botão direito — cancela."
+    },
+    "crowbar_door": {
+      "titulo": "Arrombar porta com pé de cabra",
+      "texto": "Com o pé de cabra na mão, aperte o botão direito na porta para forçá-la."
+    },
+    "unlock_safe": {
+      "titulo": "Cofre",
+      "texto": "Passe o cursor sobre o cofre e segure E — aparece a roda de interação com \"Abrir\" e \"Trancar/Destrancar\". Por padrão o cofre está trancado. Clique na ação desejada — aparece a confirmação no canto inferior esquerdo.\n\nUm cofre guarda até 15 kg. Se estiver trancado e você não tiver a chave do quarto, vai precisar arrombar com gazua — o mesmo minigame da porta trancada."
+    },
+    "equipment": {
+      "titulo": "Equipar",
+      "texto": "Abra o inventário com I. Passe o cursor sobre um item e aperte o botão direito para abrir o menu de contexto — escolha \"Equipar\". Ou arraste o item para o slot certo, ou dê dois cliques. F — liga e desliga a lanterna."
+    },
+    "split_items": {
+      "titulo": "Mover e dividir itens",
+      "texto": "Segure SHIFT + botão esquerdo numa pilha de itens para dividi-la. Solte o botão — aparece um controle de quantidade. Botão esquerdo — confirma."
+    },
+    "inventory_scroll": {
+      "titulo": "Seleção de item e configuração da rodinha",
+      "texto": "Tecla 1 — punhos. Teclas 2 e 3 — itens dos slots correspondentes. Segure o botão direito — levanta os punhos; botão esquerdo — soco. Para ativar o menu de seleção de item: menu ESC → Garry's Mod → desmarque \"Fast weapon switch\". Depois disso, escolher um slot abre o menu de seleção — escolha com a rodinha e confirme com o botão esquerdo. Botão direito — cancela."
+    },
+    "inventory": {
+      "titulo": "Inventário",
+      "texto": "Aperte I para abrir o inventário. Ele é dividido em três partes.\n\nÀ esquerda — três abas: \"Status\" (vida, estamina, saciedade, vigor, temperatura e efeitos), \"Identidade\" (patente e gênero vêm do personagem escolhido; impressão digital e pegada são únicas por partida) e \"Aparência\" (roupa e acessórios só no visual, sem efeito de jogo).\n\nNo centro — os slots de equipamento: chapéu (NoctiScope v0.1, saco), roupa (Casaco Quente «Plush Gloom»), luvas, calçado, mais um slot de capa — só disfarce entra ali. Aqui também dá para ver e girar o modelo do personagem.\n\nÀ direita — o inventário. Passe o cursor sobre um item para ver a informação. Botão direito num item — menu de ações. Segure o botão esquerdo e arraste para um slot, para um contêiner ou para fora da janela (para largar). Dois cliques movem o item rapidamente entre inventário e contêiner aberto.\n\nOrdenação: o botão ↑↓ — alfabética, por peso ou por recência. O segundo botão — filtro por categoria: todos, comida, remédio, engenharia, universais, equipamento e outros.\n\nEmbaixo — a barra de capacidade: faixa branca é normal, amarela é sobrecarga e vermelha é sobrecarga pesada (deixa o movimento e o combate lentos). Completamente cheio, você não anda. A capacidade depende do personagem: Nekomaru, Gonta, Sakura e K1-B0 carregam mais; Chihiro, Nagisa, Kotoko e Monaca carregam menos.\n\nAcima do inventário há três botões: Inventário, Missões e Receitas. Na seção de receitas dá para fixar um item com o alfinete — aí a lista de ingredientes que faltam aparece na lateral direita da tela. As receitas para as quais você já tem recurso vêm primeiro."
+    },
+    "inventory_actions": {
+      "titulo": "Ações de item no inventário e no contêiner",
+      "texto": "Ao abrir um contêiner (E), seu inventário aparece à esquerda e o conteúdo do contêiner à direita. Cada janela tem botões de ordenação no topo. Embaixo — a barra de capacidade do contêiner e o botão \"Pegar tudo\".\n\n- Dois cliques — move o item rapidamente entre inventário e contêiner\n- Segurar e arrastar — move manualmente para onde quiser\n- CTRL + segurar — seleciona vários itens; solte o botão (sem soltar CTRL), segure de novo sobre qualquer um dos selecionados e arraste todos de uma vez\n- Arrastar para fora das janelas — larga no chão\n\n- Beber / Comer / Usar — aplica o item\n- Envenenar — adiciona veneno ou sonífero ao item (disponível se você tiver o item correspondente)\n- Largar — coloca o item no chão\n- Posicionar — prévia de colocar o item no mundo. Vermelho não dá, amarelo dá\n- Inspecionar — descrição em texto e tipo do item. Com a Lanterna UV dá para analisar o item (ensanguentado, limpo, com digital etc.) e coletar impressões\n- Equipar — veste o item ou encaixa a arma no slot"
+    },
+    "attack": {
+      "titulo": "Atacar",
+      "texto": "Teclas 2 ou 3 (conforme o slot) — saca a arma. Botão esquerdo — golpe normal. Botão direito — golpe alternativo. Segure e solte o botão esquerdo — golpe pesado. Segure o botão direito — levanta os punhos; botão esquerdo — soco.\n\nOs punhos causam de 8 a 12 de dano por golpe (igual para todo personagem), mas não causam dano com 20% de vida ou menos — não dá para matar no soco."
+    },
+    "stealth_kill": {
+      "titulo": "Golpe furtivo",
+      "texto": "O golpe furtivo exige uma arma. Chegue por trás do personagem e segure F — começa a animação.\n\nImportante: a direção para onde você olha define qual parte do corpo é atingida. Essa localização aparece no Arquivo Monokuma da vítima."
+    },
+    "stun": {
+      "titulo": "Nocautear",
+      "texto": "Passe o cursor sobre um jogador e segure E para abrir a roda de interação, depois escolha \"Nocautear\". Começa a animação.\n\nCom o personagem caído, chegue perto do corpo e segure E — abre uma roda com as opções: carregar no colo, revistar, matar. Aperte ESC para fechar sem fazer nada. Aperte F para levantar o corpo no colo. Se você não fizer nada, o personagem acorda sozinho depois de um tempo."
+    },
+    "fight_back": {
+      "titulo": "Defender-se de um ataque",
+      "texto": "Quando você é atacado, aparece o aviso \"Defenda-se\" com um botão F e um cronômetro — você tem só 1 segundo. Se não conseguir, é nocauteado ou morto.\n\nNa defesa bem-sucedida, o atacante cai. Dá para interagir com ele: aperte E para revistar ou matar, segure F para levantá-lo. Se você não fizer nada, o caído consegue se levantar segurando ESPAÇO."
+    },
+    "failed_attack": {
+      "titulo": "Ataque fracassado",
+      "texto": "Se o oponente conseguiu se defender, você cai no chão. Segure ESPAÇO para levantar sozinho ou espere o oponente ter pena e te ajudar. Caído, você está indefeso: pode ser revistado ou, pior, morto. Então tome mais cuidado e ataque no certo — por trás, ou pelo menos pelo lado!"
+    },
+    "trade_offer": {
+      "titulo": "Oferecer troca",
+      "texto": "Passe o cursor sobre um jogador e segure E para abrir a roda de interação, depois clique em \"Trocar\". Na janela que abre, arraste o item do seu inventário para a área de troca, ou dê dois cliques. Com tudo escolhido, aperte \"Oferecer\".\n\nOs itens recebidos na troca aparecem no canto superior direito da tela."
+    },
+    "trade_accept": {
+      "titulo": "Aceitar uma troca",
+      "texto": "Quando alguém te oferece uma troca, aparece um aviso no canto superior direito — aperte Y para aceitar ou N para recusar.\n\nA janela de troca mostra em cima o que a outra pessoa está oferecendo e embaixo o que você está dando. Para adicionar um item, arraste do inventário para a área de baixo ou dê dois cliques. Quando os dois escolherem, aperte \"Oferecer\" para concluir."
+    },
+    "search_offer": {
+      "titulo": "Pedir para revistar",
+      "texto": "Passe o cursor sobre um jogador e segure E para abrir a roda de interação, depois clique em \"Revistar\". A revista começa — quando a barra enche, abre uma janela com o seu inventário e os bolsos do jogador.\n\nDá para pegar itens, deixar os seus, ou só olhar o conteúdo. A revista costuma acontecer durante a investigação — para conferir se alguém está com algo suspeito ou ensanguentado."
+    },
+    "search_accept": {
+      "titulo": "Consentir com a revista",
+      "texto": "Quando alguém quer te revistar, aparece um aviso no canto superior direito — aperte Y para permitir ou N para recusar. Quem revista vê a legenda \"Revistando o corpo\".\n\nSe a revista for por trás ou pelo lado, não precisa de permissão — mas a vítima ouve um som característico.\n\nDurante a revista a outra pessoa pode te passar itens ou tirar algo dos seus bolsos sem você ver. Só deixe gente de confiança te revistar."
+    },
+    "washing": {
+      "titulo": "Lavar as mãos, armas, a pia e limpar sangue",
+      "texto": "Chegue numa pia e segure E para lavar as mãos. Com uma arma ou esfregão na mão, segure F na pia para lavá-los. Segurar F na pia também limpa o sangue dela. Pegue um esfregão (2 ou 3, conforme o slot) e segure o botão esquerdo para limpar o sangue do chão."
+    },
+    "workbench": {
+      "titulo": "Bancada, bancada médica e fogão",
+      "texto": "Aperte E numa bancada, bancada médica ou fogão para abrir a janela de fabricação de itens."
+    },
+    "cooking": {
+      "titulo": "Cozinhar",
+      "texto": "Chegue no fogão e aperte E. No menu que abre, selecione uma receita e depois clique em \"Criar item\", confirmando mais uma vez. Se você tiver ingredientes para várias porções, aparece um controle deslizante para escolher quantas fazer.\n\nO cozimento roda sozinho. Durante ele você pode abrir o inventário, saquear contêineres e pular — mas não correr, senão o cozimento é cancelado e você recomeça. Também não dá para sair do alcance do fogão. Se interromper no meio, você não recebe nada. O item pronto vai automaticamente para o inventário.\n\nPara fixar uma receita e acompanhar os ingredientes que faltam (na lateral direita da tela), passe o cursor sobre ela e clique no ícone de alfinete."
+    },
+    "monopad_overview": {
+      "titulo": "O que é",
+      "texto": "O monopad é o aparelho pessoal do estudante da Academia. Ele carrega o mensageiro, suas anotações e todos os dados que você baixou."
+    },
+    "monopad_appearance": {
+      "titulo": "Interface e aparência",
+      "texto": "O visual padrão vem junto com os esquemas de cor \"Cyberpunk\" e \"Dynasty\".\n\n- O visual é escolhido no hub e continua entre sessões.\n- Os outros jogadores veem o visual que você escolheu — tanto na mão do personagem quanto de longe.\n- O visual não pode ser trocado durante uma partida em andamento."
+    },
+    "monopad_messenger": {
+      "titulo": "Mensageiro",
+      "texto": "Aceita conversas privadas, grupos com avatar e mensagens do sistema. Um grupo comporta até 6 jogadores.\n\n- Dá para convidar novos membros para um grupo existente e trazer de volta quem saiu, até o limite.\n- Um aviso do sistema aparece no grupo quando alguém sai ou é removido.\n- O chat de sistema \"Killing Game\" aparece no começo da partida.\n- Conversas longas ganham barra de rolagem.\n- O menu de contexto abre com o botão direito no chat, ou pelo botão \"…\"."
+    },
+    "monopad_notes": {
+      "titulo": "Anotações",
+      "texto": "As anotações são escritas durante a investigação — um lugar prático para registrar tudo que você vai querer no julgamento.\n\nUma anotação pode ser anexada a uma evidência."
+    },
+    "monopad_downloads": {
+      "titulo": "Baixar dados",
+      "texto": "Pen drives e discos de dados permitem baixar o conteúdo do monopad de outro jogador.\n\nDepois de baixados, os chats e as anotações obtidas podem ser lidos."
+    },
+    "trial_camera": {
+      "titulo": "Câmera e sprites",
+      "texto": "A câmera do julgamento segue quem estiver segurando o botão do chat de voz; os outros esperam na fila.\n\nNa lateral direita da tela você escolhe o sprite que aparece no julgamento: troque com o botão esquerdo a qualquer momento e favorite com o botão direito."
+    },
+    "trial_evidence": {
+      "titulo": "Apresentar evidência",
+      "texto": "Evidências e itens do inventário são apresentados pelo inventário: botão direito no item → \"Apresentar como evidência\". Evidências como o Arquivo Monokuma, uma poça de sangue ou rastro de armadilha são apresentadas pelo botão vermelho \"Evidência\", à esquerda: escolha a evidência → \"Apresentar evidência\". Nos dois casos toca uma animação para todos os jogadores, e a evidência vai para uma lista compartilhada que todo mundo pode examinar em detalhe.\n\nSe você analisar um item com a lanterna UV e obtiver uma propriedade (por exemplo, \"impressão digital ensanguentada Y\"), ao apresentar esse item todos no julgamento verão essa propriedade.\n\nUm caderno com impressões digitais também pode ser apresentado — ele é salvo nos materiais de casos anteriores; os outros jogadores abrem com C → \"Abrir materiais de casos antigos\"."
+    },
+    "trial_debates": {
+      "titulo": "Debates",
+      "texto": "Existem dois tipos de debate no julgamento.\n\nDebate cruzado — um duelo de um contra um. Todos os outros ficam em silêncio, mas podem escrever no chat (as mensagens aparecem em rosa, como \"Ruído\") e votar no vencedor. Quem vence recupera 100 de energia. Qualquer jogador com 100 de energia pode iniciar um e depois escolher o oponente. Dura 2 minutos, e quem iniciou pode encerrar a qualquer momento.\n\nScrum debate — disparado quando a votação empata: cada jogador tem 20 segundos, na vez dele, para expor a própria versão. Se o empate acontecer três vezes seguidas, o culpado vence automaticamente."
+    },
+    "trial_energy": {
+      "titulo": "Energia e ações",
+      "texto": "O julgamento dura 15 minutos reais. Cada jogador tem uma reserva de Energia — começa em zero — que enche com o tempo, ao vencer debates e quando outros concordam com você. A energia é gasta em quatro ações.\n\n- Iniciar uma votação — 100 de energia\n- Convocar um debate — 100 de energia (devolvida por inteiro se você vencer)\n- Interromper — 50 de energia (uma animação curta do seu personagem toca na tela de todo mundo)\n- Demonstrar concordância — 15 de energia (aparece uma nota embaixo do jogador em foco; concordar também aumenta sua energia — é o jeito normal de juntar para uma votação)\n\n100 de energia se recuperam em 195 segundos reais — mais ou menos +1 a cada 2 segundos.\n\n- Passar pelas opções — rodinha do mouse, WASD ou as setas\n- Ativar a opção selecionada — E, G ou Enter"
+    }
+  }
+}
