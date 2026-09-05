@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0E0E11;
+  --color-sur: #17171D;
+  --color-line: #2A2A33;
+  --color-papel: #E8E2D2;
+  --color-tinta: #14141A;
+  --color-teal: #63C4BC;
+  --color-teal-escuro: #1E6E73;
+  --color-red: #D9534A;
+  --color-dim: #7A7A88;
+  --color-ego-claro: #4FA030;
+  --color-ego-escuro: #256512;
+}
+
+html, body {
+  background: var(--color-bg);
+  color: #D6D6E0;
+}
+
+/* A página nunca rola na horizontal. */
+body { overflow-x: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
