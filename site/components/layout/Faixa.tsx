@@ -29,7 +29,9 @@ export function Faixa({ numero, titulo, descricao, url, sprite, variante }: Prop
         <img
           data-testid="sprite-faixa" aria-hidden alt=""
           src={sprite}
-          className="absolute -bottom-3 right-0 h-[150%] object-contain"
+          // Ancorado pelo topo: o rosto fica sempre visivel e o corpo sangra na
+          // borda de baixo. Ancorar pelo pe cortava a cabeca dos meio-corpo.
+          className="pointer-events-none absolute -top-2 right-2 h-[190%] w-auto max-w-[40%] object-contain object-top sm:right-6"
         />
       )}
     </Link>

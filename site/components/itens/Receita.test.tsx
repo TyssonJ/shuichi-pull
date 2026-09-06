@@ -5,8 +5,8 @@ import type { Craft } from '@/lib/schema-itens';
 
 const craft: Craft = {
   ingredientes: [
-    { id: 'rusty-scrap-metal', nome: { pt: 'Sucata Enferrujada', en: 'Rusty Scrap Metal' }, qtd: 3 },
-    { id: null, nome: { pt: 'Pano', en: 'Rag' }, qtd: 1 },
+    { id: 'rusty-scrap-metal', nome: { pt: 'Sucata Enferrujada', en: 'Rusty Scrap Metal' }, qtd: 3, icone: '/icones/scrap-rust.webp' },
+    { id: null, nome: { pt: 'Pano', en: 'Rag' }, qtd: 1, icone: null },
   ],
   bancadas: [{ pt: 'Bancada', en: 'Workbench' }],
   chance: '100%',

@@ -5,6 +5,7 @@ export const IngredienteSchema = z.object({
   id: z.string().nullable(),
   nome: TextoSchema,
   qtd: z.number().int().positive(),
+  icone: z.string().nullable(),
 });
 
 export const CraftSchema = z.object({
@@ -33,6 +34,8 @@ export const ItemSchema = z.object({
   raridade: TextoSchema,
   nivelRaridade: z.number().int().min(0).max(5),
   peso: z.number().min(0).nullable(),
+  // Entradas internas do jogo nao tem arte no guidebook.
+  icone: z.string().nullable(),
   descricao: TextoSchema.nullable(),
   efeito: TextoSchema.nullable(),
   // cures/applies vem como lista no dado bruto e hp/hunger como texto solto;

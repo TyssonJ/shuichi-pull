@@ -19,6 +19,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/small-parts.webp",
     "descricao": {
       "pt": "Small parts for making various kinds of mechanisms.",
       "en": "Small parts for making various kinds of mechanisms."
@@ -34,7 +35,8 @@
             "pt": "Sucata Enferrujada",
             "en": "Rusty Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/rusty-scrap-metal.webp"
         }
       ],
       "bancadas": [
@@ -1038,6 +1040,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/processed-scrap.webp",
     "descricao": {
       "pt": "A piece of scrap metal. Used to make all sorts of things.",
       "en": "A piece of scrap metal. Used to make all sorts of things."
@@ -1053,7 +1056,8 @@
             "pt": "Sucata Enferrujada",
             "en": "Rusty Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/rusty-scrap-metal.webp"
         }
       ],
       "bancadas": [
@@ -1772,6 +1776,7 @@
     },
     "nivelRaridade": 1,
     "peso": 1.5,
+    "icone": "/icones/rusty-scrap-metal.webp",
     "descricao": {
       "pt": "A piece of rusty scrap metal. Used to make all sorts of things.",
       "en": "A piece of rusty scrap metal. Used to make all sorts of things."
@@ -2716,6 +2721,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.6,
+    "icone": "/icones/fabric.webp",
     "descricao": {
       "pt": "Pleasant-to-the-touch cloth.",
       "en": "Pleasant-to-the-touch cloth."
@@ -3299,6 +3305,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/rag.webp",
     "descricao": {
       "pt": "A gray rag. In skilled hands it can wipe away any trace, as if it had never been there.",
       "en": "A gray rag. In skilled hands it can wipe away any trace, as if it had never been there."
@@ -3317,7 +3324,8 @@
             "pt": "Tecido",
             "en": "Cloth"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/fabric.webp"
         }
       ],
       "bancadas": [
@@ -3793,6 +3801,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/reinforced-scrap.webp",
     "descricao": {
       "pt": "A piece of reinforced scrap metal. Used to make all sorts of things.",
       "en": "A piece of reinforced scrap metal. Used to make all sorts of things."
@@ -3808,7 +3817,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/processed-scrap.webp"
         }
       ],
       "bancadas": [
@@ -4413,6 +4423,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/universal-parts.webp",
     "descricao": {
       "pt": "Universal parts for making mechanisms.",
       "en": "Universal parts for making mechanisms."
@@ -4428,7 +4439,8 @@
             "pt": "Peças Miúdas",
             "en": "Small Parts"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/small-parts.webp"
         }
       ],
       "bancadas": [
@@ -5432,6 +5444,7 @@
     },
     "nivelRaridade": 3,
     "peso": 2,
+    "icone": "/icones/air-flt.webp",
     "descricao": {
       "pt": "A protective module with a dense grille and built-in flow guides.",
       "en": "A protective module with a dense grille and built-in flow guides."
@@ -5654,6 +5667,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/sensitive-mecha.webp",
     "descricao": {
       "pt": "Used in making complex devices.",
       "en": "Used in making complex devices."
@@ -5669,7 +5683,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/processed-scrap.webp"
         },
         {
           "id": "small-parts",
@@ -5677,7 +5692,8 @@
             "pt": "Peças Miúdas",
             "en": "Small Parts"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/small-parts.webp"
         }
       ],
       "bancadas": [
@@ -5807,6 +5823,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.05,
+    "icone": "/icones/batteries.webp",
     "descricao": {
       "pt": "A set of batteries used to power and recharge electrical devices.",
       "en": "A set of batteries used to power and recharge electrical devices."
@@ -6488,6 +6505,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.75,
+    "icone": "/icones/cab-cu.webp",
     "descricao": {
       "pt": "Copper wire coiled into a tight ring with dark insulation. An inconspicuous part of any electrical system.",
       "en": "Copper wire coiled into a tight ring with dark insulation. An inconspicuous part of any electrical system."
@@ -6957,6 +6975,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/ram-mod.webp",
     "descricao": {
       "pt": "An old cassette with a worn casing and a hand-signed label.",
       "en": "An old cassette with a worn casing and a hand-signed label."
@@ -7160,6 +7179,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/fuse-tech.webp",
     "descricao": {
       "pt": "A compact cylindrical module with metal contacts and a bright signal insert. The casing is covered with markings and traces of installation.",
       "en": "A compact cylindrical module with metal contacts and a bright signal insert. The casing is covered with markings and traces of installation."
@@ -7591,6 +7611,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/plate.webp",
     "descricao": {
       "pt": "A basic component of electrical devices.",
       "en": "A basic component of electrical devices."
@@ -8022,6 +8043,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/complex-mechan.webp",
     "descricao": {
       "pt": "Used in making very complex devices.",
       "en": "Used in making very complex devices."
@@ -8037,7 +8059,8 @@
             "pt": "Peças Miúdas",
             "en": "Small Parts"
           },
-          "qtd": 4
+          "qtd": 4,
+          "icone": "/icones/small-parts.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -8045,7 +8068,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         }
       ],
       "bancadas": [
@@ -8118,6 +8142,7 @@
     },
     "nivelRaridade": 4,
     "peso": 2,
+    "icone": "/icones/fuel-can.webp",
     "descricao": {
       "pt": "A heavy metal canister with scratched scarlet coating and a tightly screwed cap. It gives off a faint smell of fuel that cannot be mistaken for anything else.",
       "en": "A heavy metal canister with scratched scarlet coating and a tightly screwed cap. It gives off a faint smell of fuel that cannot be mistaken for anything else."
@@ -8169,6 +8194,7 @@
     },
     "nivelRaridade": 3,
     "peso": 3.5,
+    "icone": "/icones/wheel-car.webp",
     "descricao": {
       "pt": "A massive wheel with a metal rim and deep tread.",
       "en": "A massive wheel with a metal rim and deep tread."
@@ -8220,6 +8246,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/gunpowder.webp",
     "descricao": {
       "pt": "Used in making explosive substances.",
       "en": "Used in making explosive substances."
@@ -8347,6 +8374,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/cpu-core.webp",
     "descricao": {
       "pt": "A square computing module with a metal cover and a contact panel that glints with a cold shine.",
       "en": "A square computing module with a metal cover and a contact panel that glints with a cold shine."
@@ -8550,6 +8578,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.3,
+    "icone": "/icones/splint.webp",
     "descricao": {
       "pt": "A simple medical construction of wood and cloth. Rigid, uncomfortable, but able to restore the ability to move.",
       "en": "A simple medical construction of wood and cloth. Rigid, uncomfortable, but able to restore the ability to move."
@@ -8568,7 +8597,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/processed-scrap.webp"
         }
       ],
       "bancadas": [
@@ -8736,6 +8766,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.3,
+    "icone": "/icones/poison-sleeping.webp",
     "descricao": {
       "pt": "A small vial of tasteless pills. Within the academy's clock, sleep turns not into rest but into a convenient weapon against the victim.",
       "en": "A small vial of tasteless pills. Within the academy's clock, sleep turns not into rest but into a convenient weapon against the victim."
@@ -8754,7 +8785,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "conium",
@@ -8762,7 +8794,8 @@
             "pt": "Cicuta",
             "en": "Hemlock"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/conium.webp"
         },
         {
           "id": "alcohol",
@@ -8770,7 +8803,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -8862,6 +8896,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.3,
+    "icone": "/icones/alcohol.webp",
     "descricao": {
       "pt": "Pure alcohol.",
       "en": "Pure alcohol."
@@ -8877,7 +8912,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "raw-solution",
@@ -8885,7 +8921,8 @@
             "pt": "Solução Bruta",
             "en": "Raw Solution"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/raw-solution.webp"
         },
         {
           "id": "water",
@@ -8893,7 +8930,8 @@
             "pt": "Água",
             "en": "Water"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/water.webp"
         }
       ],
       "bancadas": [
@@ -9289,6 +9327,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/conium.webp",
     "descricao": {
       "pt": "A poisonous plant.",
       "en": "A poisonous plant."
@@ -9397,6 +9436,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/oleander.webp",
     "descricao": {
       "pt": "A poisonous flower containing a strong toxin.",
       "en": "A poisonous flower containing a strong toxin."
@@ -9505,6 +9545,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/special-extract.webp",
     "descricao": {
       "pt": "A chemical. Used in making various chemical substances.",
       "en": "A chemical. Used in making various chemical substances."
@@ -9520,7 +9561,8 @@
             "pt": "Solução Bruta",
             "en": "Raw Solution"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/raw-solution.webp"
         }
       ],
       "bancadas": [
@@ -10087,6 +10129,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.2,
+    "icone": "/icones/antitoxin.webp",
     "descricao": {
       "pt": "Anti-Toxin flushes all poisons from the body and also saturates it with all the necessary nutrients.",
       "en": "Anti-Toxin flushes all poisons from the body and also saturates it with all the necessary nutrients."
@@ -10116,7 +10159,8 @@
             "pt": "Reagente Secreto",
             "en": "Secret Reagent"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/secret-reagent.webp"
         },
         {
           "id": "complex-mixture",
@@ -10124,7 +10168,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "oleander",
@@ -10132,7 +10177,8 @@
             "pt": "Espirradeira",
             "en": "Oleander"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/oleander.webp"
         },
         {
           "id": "alcohol",
@@ -10140,7 +10186,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -10174,6 +10221,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/medics-first-aid-kit.webp",
     "descricao": {
       "pt": "A complete set of all the medications needed for recovery. Significantly restores health.",
       "en": "A complete set of all the medications needed for recovery. Significantly restores health."
@@ -10209,7 +10257,8 @@
             "pt": "Reagente Secreto",
             "en": "Secret Reagent"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/secret-reagent.webp"
         },
         {
           "id": "complex-mixture",
@@ -10217,7 +10266,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "special-extract",
@@ -10225,7 +10275,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "oleander",
@@ -10233,7 +10284,8 @@
             "pt": "Espirradeira",
             "en": "Oleander"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/oleander.webp"
         },
         {
           "id": "bandage",
@@ -10241,7 +10293,8 @@
             "pt": "Bandagem",
             "en": "Bandage"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/bandage.webp"
         }
       ],
       "bancadas": [
@@ -10371,6 +10424,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.25,
+    "icone": "/icones/basic-first-aid-kit.webp",
     "descricao": {
       "pt": "A small set of useful pills that restores your health.",
       "en": "A small set of useful pills that restores your health."
@@ -10402,7 +10456,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "special-extract",
@@ -10410,7 +10465,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "conium",
@@ -10418,7 +10474,8 @@
             "pt": "Cicuta",
             "en": "Hemlock"
           },
-          "qtd": 6
+          "qtd": 6,
+          "icone": "/icones/conium.webp"
         },
         {
           "id": "alcohol",
@@ -10426,7 +10483,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -10594,6 +10652,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/bandage.webp",
     "descricao": {
       "pt": "A sterile roll of cloth. At a critical moment it can buy a little time for someone bleeding out.",
       "en": "A sterile roll of cloth. At a critical moment it can buy a little time for someone bleeding out."
@@ -10612,7 +10671,8 @@
             "pt": "Tecido",
             "en": "Cloth"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/fabric.webp"
         }
       ],
       "bancadas": [
@@ -10837,6 +10897,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/chemical-heating.webp",
     "descricao": {
       "pt": "You don't know what's inside. And it's better not to ask. The main thing is — it keeps you warm.",
       "en": "You don't know what's inside. And it's better not to ask. The main thing is — it keeps you warm."
@@ -10891,6 +10952,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.2,
+    "icone": "/icones/secret-reagent.webp",
     "descricao": {
       "pt": "A special reagent for making complex serums and poisons.",
       "en": "A special reagent for making complex serums and poisons."
@@ -10906,7 +10968,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "alcohol",
@@ -10914,7 +10977,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -11158,6 +11222,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/complex-mixture.webp",
     "descricao": {
       "pt": "A chemical. Used in making various chemical substances.",
       "en": "A chemical. Used in making various chemical substances."
@@ -11173,7 +11238,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/special-extract.webp"
         }
       ],
       "bancadas": [
@@ -11455,6 +11521,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/ice-capsule.webp",
     "descricao": {
       "pt": "Looks like a piece of candy that will ruin your day.",
       "en": "Looks like a piece of candy that will ruin your day."
@@ -11528,6 +11595,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.5,
+    "icone": "/icones/syringe.webp",
     "descricao": {
       "pt": "A medical instrument for injections. In skilled hands it can deliver both salvation and an unpleasant surprise.",
       "en": "A medical instrument for injections. In skilled hands it can deliver both salvation and an unpleasant surprise."
@@ -11655,6 +11723,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/poison-acid.webp",
     "descricao": {
       "pt": "A weak but still effective poison that wears your victim down. Can be mixed into food or a drink.",
       "en": "A weak but still effective poison that wears your victim down. Can be mixed into food or a drink."
@@ -11673,7 +11742,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 5
+          "qtd": 5,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "raw-solution",
@@ -11681,7 +11751,8 @@
             "pt": "Solução Bruta",
             "en": "Raw Solution"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/raw-solution.webp"
         },
         {
           "id": "conium",
@@ -11689,7 +11760,8 @@
             "pt": "Cicuta",
             "en": "Hemlock"
           },
-          "qtd": 6
+          "qtd": 6,
+          "icone": "/icones/conium.webp"
         },
         {
           "id": "alcohol",
@@ -11697,7 +11769,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -11770,6 +11843,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0.5,
+    "icone": "/icones/poison-despair.webp",
     "descricao": {
       "pt": "A poison that plunges your enemy into absolute despair. Mix it into food and watch hope fade.",
       "en": "A poison that plunges your enemy into absolute despair. Mix it into food and watch hope fade."
@@ -11788,7 +11862,8 @@
             "pt": "Reagente Secreto",
             "en": "Secret Reagent"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/secret-reagent.webp"
         },
         {
           "id": "complex-mixture",
@@ -11796,7 +11871,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 4
+          "qtd": 4,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "oleander",
@@ -11804,7 +11880,8 @@
             "pt": "Espirradeira",
             "en": "Oleander"
           },
-          "qtd": 6
+          "qtd": 6,
+          "icone": "/icones/oleander.webp"
         },
         {
           "id": "alcohol",
@@ -11812,7 +11889,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -11885,6 +11963,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/poison-widows-kiss.webp",
     "descricao": {
       "pt": "A powerful poison that drains all life force from the victim. Can be mixed into food or a drink.",
       "en": "A powerful poison that drains all life force from the victim. Can be mixed into food or a drink."
@@ -11903,7 +11982,8 @@
             "pt": "Reagente Secreto",
             "en": "Secret Reagent"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/secret-reagent.webp"
         },
         {
           "id": "complex-mixture",
@@ -11911,7 +11991,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "special-extract",
@@ -11919,7 +12000,8 @@
             "pt": "Extrato Especial",
             "en": "Special Extract"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/special-extract.webp"
         },
         {
           "id": "oleander",
@@ -11927,7 +12009,8 @@
             "pt": "Espirradeira",
             "en": "Oleander"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/oleander.webp"
         },
         {
           "id": "alcohol",
@@ -11935,7 +12018,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -12008,6 +12092,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.25,
+    "icone": "/icones/bacon.webp",
     "descricao": {
       "pt": "It sizzles in anticipation of frying. Not recommended to eat without heat treatment.",
       "en": "It sizzles in anticipation of frying. Not recommended to eat without heat treatment."
@@ -12075,6 +12160,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.5,
+    "icone": "/icones/water.webp",
     "descricao": {
       "pt": "A clear liquid, with no taste, color or surprises. Sometimes that's a good thing.",
       "en": "A clear liquid, with no taste, color or surprises. Sometimes that's a good thing."
@@ -12247,6 +12333,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/mk-mre.webp",
     "descricao": {
       "pt": "A dense sealed pack with military markings and the familiar grinning bear cub. Inside is a set of calorie-rich, long-storage food meant to keep up strength in extreme conditions.",
       "en": "A dense sealed pack with military markings and the familiar grinning bear cub. Inside is a set of calorie-rich, long-storage food meant to keep up strength in extreme conditions."
@@ -12365,6 +12452,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/beef-tenderloin.webp",
     "descricao": {
       "pt": "The best meat you can find. Tender, expensive, strangely suspicious.",
       "en": "The best meat you can find. Tender, expensive, strangely suspicious."
@@ -12432,6 +12520,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.25,
+    "icone": "/icones/sausage.webp",
     "descricao": {
       "pt": "A pressed and heavily seasoned meat roll. Suspiciously tasty.",
       "en": "A pressed and heavily seasoned meat roll. Suspiciously tasty."
@@ -12509,6 +12598,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/coffee-beans.webp",
     "descricao": {
       "pt": "Coarse, bitter and vital for coffee connoisseurs.",
       "en": "Coarse, bitter and vital for coffee connoisseurs."
@@ -12583,6 +12673,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/meat-soup.webp",
     "descricao": {
       "pt": "A hot, thick defense against weakness. Slow to cook, quick to eat.",
       "en": "A hot, thick defense against weakness. Slow to cook, quick to eat."
@@ -12614,7 +12705,8 @@
             "pt": "Água",
             "en": "Water"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/water.webp"
         },
         {
           "id": "vegetable",
@@ -12622,7 +12714,8 @@
             "pt": "Legumes",
             "en": "Vegetables"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/vegetable.webp"
         },
         {
           "id": "fried-meat",
@@ -12630,7 +12723,8 @@
             "pt": "Carne Frita",
             "en": "Fried Meat"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/fried-meat.webp"
         }
       ],
       "bancadas": [
@@ -12664,6 +12758,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/bubbletea.webp",
     "descricao": {
       "pt": "A plastic cup with a domed lid and a thick straw, dark tapioca pearls settled at the bottom. The drink looks fresh and appetizing, but its sweet aroma stands out a little too much.",
       "en": "A plastic cup with a domed lid and a thick straw, dark tapioca pearls settled at the bottom. The drink looks fresh and appetizing, but its sweet aroma stands out a little too much."
@@ -12744,6 +12839,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.35,
+    "icone": "/icones/vegetable.webp",
     "descricao": {
       "pt": "Fresh or almost fresh. The base for any decent dish or salad.",
       "en": "Fresh or almost fresh. The base for any decent dish or salad."
@@ -12821,6 +12917,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/salad.webp",
     "descricao": {
       "pt": "A simple dish of fresh vegetables. The taste recalls a normal life beyond the academy.",
       "en": "A simple dish of fresh vegetables. The taste recalls a normal life beyond the academy."
@@ -12843,7 +12940,8 @@
             "pt": "Legumes",
             "en": "Vegetables"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/vegetable.webp"
         }
       ],
       "bancadas": [
@@ -12877,6 +12975,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.75,
+    "icone": "/icones/stew.webp",
     "descricao": {
       "pt": "Meat, vegetables and the magic of slow simmering. Turns sadness into well-fed tiredness.",
       "en": "Meat, vegetables and the magic of slow simmering. Turns sadness into well-fed tiredness."
@@ -12908,7 +13007,8 @@
             "pt": "Queijo",
             "en": "Cheese"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/cheese.webp"
         },
         {
           "id": "vegetable",
@@ -12916,7 +13016,8 @@
             "pt": "Legumes",
             "en": "Vegetables"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/vegetable.webp"
         },
         {
           "id": "water",
@@ -12924,7 +13025,8 @@
             "pt": "Água",
             "en": "Water"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/water.webp"
         },
         {
           "id": "beef-tenderloin",
@@ -12932,7 +13034,8 @@
             "pt": "Filé Mignon",
             "en": "Beef Tenderloin"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/beef-tenderloin.webp"
         }
       ],
       "bancadas": [
@@ -12966,6 +13069,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/soda.webp",
     "descricao": {
       "pt": "A light, invigorating liquid with more sugar than sense.",
       "en": "A light, invigorating liquid with more sugar than sense."
@@ -13030,6 +13134,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.1,
+    "icone": "/icones/sugar.webp",
     "descricao": {
       "pt": "Pure sweetness. Boosts energy, causes addiction. Especially in Monokuma.",
       "en": "Pure sweetness. Boosts energy, causes addiction. Especially in Monokuma."
@@ -13123,6 +13228,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.25,
+    "icone": "/icones/cheese.webp",
     "descricao": {
       "pt": "Strong-smelling, but melts in your mouth. Perfect for sandwiches and strange experiments.",
       "en": "Strong-smelling, but melts in your mouth. Perfect for sandwiches and strange experiments."
@@ -13181,6 +13287,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.5,
+    "icone": "/icones/raw-meat.webp",
     "descricao": {
       "pt": "Meat without heat treatment. Can be dangerous to eat, but filling when cooked properly.",
       "en": "Meat without heat treatment. Can be dangerous to eat, but filling when cooked properly."
@@ -13248,6 +13355,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/sandwich.webp",
     "descricao": {
       "pt": "Everything you need, squeezed between bread. If only life were so convenient.",
       "en": "Everything you need, squeezed between bread. If only life were so convenient."
@@ -13270,7 +13378,8 @@
             "pt": "Bacon Cru",
             "en": "Raw Bacon"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/bacon.webp"
         },
         {
           "id": "bread",
@@ -13278,7 +13387,8 @@
             "pt": "Pão",
             "en": "Bread"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/bread.webp"
         },
         {
           "id": "vegetable",
@@ -13286,7 +13396,8 @@
             "pt": "Legumes",
             "en": "Vegetables"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/vegetable.webp"
         },
         {
           "id": "cheese",
@@ -13294,7 +13405,8 @@
             "pt": "Queijo",
             "en": "Cheese"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/cheese.webp"
         }
       ],
       "bancadas": [
@@ -13328,6 +13440,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.25,
+    "icone": "/icones/bread.webp",
     "descricao": {
       "pt": "A dense chunk of carbs. Goes well with meat, cheese and paranoia.",
       "en": "A dense chunk of carbs. Goes well with meat, cheese and paranoia."
@@ -13747,6 +13860,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/coffee.webp",
     "descricao": {
       "pt": "Pure bitterness, bracing to the point of paranoia. Sharpens focus, kills sleep.",
       "en": "Pure bitterness, bracing to the point of paranoia. Sharpens focus, kills sleep."
@@ -13772,7 +13886,8 @@
             "pt": "Água",
             "en": "Water"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/water.webp"
         },
         {
           "id": "coffee-beans",
@@ -13780,7 +13895,8 @@
             "pt": "Grãos de Café",
             "en": "Coffee Beans"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/coffee-beans.webp"
         },
         {
           "id": "sugar",
@@ -13788,7 +13904,8 @@
             "pt": "Açúcar",
             "en": "Sugar"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sugar.webp"
         }
       ],
       "bancadas": [
@@ -13822,6 +13939,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.5,
+    "icone": "/icones/chips.webp",
     "descricao": {
       "pt": "A crunchy noise in the silence. Not nutritious, but oh so pleasant.",
       "en": "A crunchy noise in the silence. Not nutritious, but oh so pleasant."
@@ -14016,6 +14134,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.25,
+    "icone": "/icones/cookies.webp",
     "descricao": {
       "pt": "A round cookie with dark chocolate chips, baked in a hurry. The surface is slightly cracked, and the aroma still feels warm and homey — too cozy for the Academy's walls.",
       "en": "A round cookie with dark chocolate chips, baked in a hurry. The surface is slightly cracked, and the aroma still feels warm and homey — too cozy for the Academy's walls."
@@ -14188,6 +14307,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/energy-drink.webp",
     "descricao": {
       "pt": "A bright can with a smiling Monomi and an overly cheerful design. Inside is a sweet, cloying carbonated drink with an unusual aroma.",
       "en": "A bright can with a smiling Monomi and an overly cheerful design. Inside is a sweet, cloying carbonated drink with an unusual aroma."
@@ -14391,6 +14511,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/screwdriver.webp",
     "descricao": {
       "pt": "An old Phillips screwdriver. Capable of unscrewing not only a screw, but someone else's plans.",
       "en": "An old Phillips screwdriver. Capable of unscrewing not only a screw, but someone else's plans."
@@ -15186,6 +15307,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.3,
+    "icone": "/icones/lockpick.webp",
     "descricao": {
       "pt": "A thin metal plate. A cheap but effective way to open someone else's doors, if you have enough patience and dexterity.",
       "en": "A thin metal plate. A cheap but effective way to open someone else's doors, if you have enough patience and dexterity."
@@ -15204,7 +15326,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/processed-scrap.webp"
         },
         {
           "id": "small-parts",
@@ -15212,7 +15335,8 @@
             "pt": "Peças Miúdas",
             "en": "Small Parts"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/small-parts.webp"
         }
       ],
       "bancadas": [
@@ -15342,6 +15466,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/flashlight.webp",
     "descricao": {
       "pt": "An ordinary handheld flashlight emitting a bright cone of light.",
       "en": "An ordinary handheld flashlight emitting a bright cone of light."
@@ -15605,6 +15730,7 @@
     },
     "nivelRaridade": 2,
     "peso": 3,
+    "icone": "/icones/broom.webp",
     "descricao": {
       "pt": "An ordinary cleaning mop. In the academy it is valued no less than a weapon — for it can wipe away the traces of a crime.",
       "en": "An ordinary cleaning mop. In the academy it is valued no less than a weapon — for it can wipe away the traces of a crime."
@@ -15735,6 +15861,7 @@
     },
     "nivelRaridade": 3,
     "peso": 2.5,
+    "icone": "/icones/tool-box.webp",
     "descricao": {
       "pt": "A metal box with worn red coating, filled to the brim with tools. Scratches and oil marks are visible on the inside of the lid.",
       "en": "A metal box with worn red coating, filled to the brim with tools. Scratches and oil marks are visible on the inside of the lid."
@@ -15750,7 +15877,8 @@
             "pt": "Martelo",
             "en": "Hammer"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/hammer.webp"
         },
         {
           "id": "adjustable-wrench",
@@ -15758,7 +15886,8 @@
             "pt": "Chave Inglesa",
             "en": "Adjustable Wrench"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/adjustable-wrench.webp"
         },
         {
           "id": "screwdriver",
@@ -15766,7 +15895,8 @@
             "pt": "Chave de Fenda",
             "en": "Screwdriver"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/screwdriver.webp"
         }
       ],
       "bancadas": [
@@ -15877,6 +16007,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.1,
+    "icone": "/icones/tape.webp",
     "descricao": {
       "pt": "A roll of adhesive tape. A universal tool: to repair, to bind... or to make someone go quiet.",
       "en": "A roll of adhesive tape. A universal tool: to repair, to bind... or to make someone go quiet."
@@ -16691,6 +16822,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.1,
+    "icone": "/icones/ties.webp",
     "descricao": {
       "pt": "Sturdy plastic clamps. Light and inconspicuous, but when tightened they turn into shackles.",
       "en": "Sturdy plastic clamps. Light and inconspicuous, but when tightened they turn into shackles."
@@ -17296,6 +17428,7 @@
     },
     "nivelRaridade": 1,
     "peso": 1,
+    "icone": "/icones/adjustable-wrench.webp",
     "descricao": {
       "pt": "A universal tool for work. Heavy and sturdy. Used in making items.",
       "en": "A universal tool for work. Heavy and sturdy. Used in making items."
@@ -17464,6 +17597,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/uv-flashlight.webp",
     "descricao": {
       "pt": "A flashlight with a violet beam. Under its light, traces someone wanted to hide come to view.",
       "en": "A flashlight with a violet beam. Under its light, traces someone wanted to hide come to view."
@@ -17559,6 +17693,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/notepad.webp",
     "descricao": {
       "pt": "Meant for keeping notes.",
       "en": "Meant for keeping notes."
@@ -17952,6 +18087,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/handcuffs.webp",
     "descricao": {
       "pt": "Metal bracelets with a lock. Under normal conditions — a guard's tool. Here — a means of subjugation and control.",
       "en": "Metal bracelets with a lock. Under normal conditions — a guard's tool. Here — a means of subjugation and control."
@@ -18082,6 +18218,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.25,
+    "icone": "/icones/therm-el.webp",
     "descricao": {
       "pt": "A compact medical device with a digital display and a thin sensor.",
       "en": "A compact medical device with a digital display and a thin sensor."
@@ -18152,6 +18289,7 @@
     },
     "nivelRaridade": 5,
     "peso": 2,
+    "icone": "/icones/photocamera.webp",
     "descricao": {
       "pt": "Lets you take pictures of evidence, traces, notes and suspicious objects.",
       "en": "Lets you take pictures of evidence, traces, notes and suspicious objects."
@@ -18186,6 +18324,7 @@
     },
     "nivelRaridade": 1,
     "peso": 1,
+    "icone": "/icones/hammer.webp",
     "descricao": {
       "pt": "A compact tool for driving nails. If needed, it can become a powerful argument in close combat.",
       "en": "A compact tool for driving nails. If needed, it can become a powerful argument in close combat."
@@ -18297,6 +18436,7 @@
     },
     "nivelRaridade": 2,
     "peso": 4,
+    "icone": "/icones/shovel.webp",
     "descricao": {
       "pt": "A simple garden shovel. Good for digging holes.",
       "en": "A simple garden shovel. Good for digging holes."
@@ -18348,6 +18488,7 @@
     },
     "nivelRaridade": 3,
     "peso": 5,
+    "icone": "/icones/crowbar.webp",
     "descricao": {
       "pt": "A sturdy metal tool for breaking in. Handy for opening doors and skulls.",
       "en": "A sturdy metal tool for breaking in. Handy for opening doors and skulls."
@@ -18418,6 +18559,7 @@
     },
     "nivelRaridade": 1,
     "peso": 1,
+    "icone": "/icones/kitchen-knife.webp",
     "descricao": {
       "pt": "The most ordinary kitchen knife. Good for cutting vegetables and meat. Lets you cut zip ties.",
       "en": "The most ordinary kitchen knife. Good for cutting vegetables and meat. Lets you cut zip ties."
@@ -18472,6 +18614,7 @@
     },
     "nivelRaridade": 2,
     "peso": 3,
+    "icone": "/icones/kitchen-axe.webp",
     "descricao": {
       "pt": "Sharp and handy for chopping meat. With such a helper you can butcher any carcass. Lets you cut zip ties.",
       "en": "Sharp and handy for chopping meat. With such a helper you can butcher any carcass. Lets you cut zip ties."
@@ -18523,6 +18666,7 @@
     },
     "nivelRaridade": 5,
     "peso": 5,
+    "icone": "/icones/katana.webp",
     "descricao": {
       "pt": "An elegant Japanese weapon. The sharp blade combines the beauty of art with deadly efficiency. Lets you cut zip ties.",
       "en": "An elegant Japanese weapon. The sharp blade combines the beauty of art with deadly efficiency. Lets you cut zip ties."
@@ -18596,6 +18740,7 @@
     },
     "nivelRaridade": 3,
     "peso": 5,
+    "icone": "/icones/baseball-bat.webp",
     "descricao": {
       "pt": "Perfect for play on the field. And in a tense situation — a means to fend off any blow, including an enemy's.",
       "en": "Perfect for play on the field. And in a tense situation — a means to fend off any blow, including an enemy's."
@@ -18666,6 +18811,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1.5,
+    "icone": "/icones/trap-explosive.webp",
     "descricao": {
       "pt": "A trap disguised as an ordinary object or floor plate, triggering on approach.",
       "en": "A trap disguised as an ordinary object or floor plate, triggering on approach."
@@ -18684,7 +18830,8 @@
             "pt": "Explosivos",
             "en": "Explosives"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/explosive.webp"
         },
         {
           "id": "reinforced-scrap",
@@ -18692,7 +18839,8 @@
             "pt": "Sucata Reforçada",
             "en": "Reinforced Scrap Metal"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/reinforced-scrap.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -18700,7 +18848,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         },
         {
           "id": "plate",
@@ -18708,7 +18857,8 @@
             "pt": "Placa de Circuito",
             "en": "Circuit Board"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/plate.webp"
         },
         {
           "id": "tape",
@@ -18716,7 +18866,8 @@
             "pt": "Fita Silver Tape",
             "en": "Duct Tape"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/tape.webp"
         },
         {
           "id": "universal-parts",
@@ -18724,7 +18875,8 @@
             "pt": "Peças Universais",
             "en": "Universal Parts"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/universal-parts.webp"
         }
       ],
       "bancadas": [
@@ -18758,6 +18910,7 @@
     },
     "nivelRaridade": 4,
     "peso": 3,
+    "icone": "/icones/explosive.webp",
     "descricao": {
       "pt": "A bomb dealing colossal damage to everyone within the blast radius.",
       "en": "A bomb dealing colossal damage to everyone within the blast radius."
@@ -18776,7 +18929,8 @@
             "pt": "Mecanismo Complexo",
             "en": "Complex Mechanism"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/complex-mechan.webp"
         },
         {
           "id": "gunpowder",
@@ -18784,7 +18938,8 @@
             "pt": "Pólvora",
             "en": "Gunpowder"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/gunpowder.webp"
         },
         {
           "id": "reinforced-scrap",
@@ -18792,7 +18947,8 @@
             "pt": "Sucata Reforçada",
             "en": "Reinforced Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/reinforced-scrap.webp"
         },
         {
           "id": "tape",
@@ -18800,7 +18956,8 @@
             "pt": "Fita Silver Tape",
             "en": "Duct Tape"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/tape.webp"
         }
       ],
       "bancadas": [
@@ -18854,6 +19011,7 @@
     },
     "nivelRaridade": 3,
     "peso": 1,
+    "icone": "/icones/trap-trap.webp",
     "descricao": {
       "pt": "A classic hunting trap for immobilizing large game. Can be hidden under leaves or other objects.",
       "en": "A classic hunting trap for immobilizing large game. Can be hidden under leaves or other objects."
@@ -18872,7 +19030,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/processed-scrap.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -18880,7 +19039,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         },
         {
           "id": "universal-parts",
@@ -18888,7 +19048,8 @@
             "pt": "Peças Universais",
             "en": "Universal Parts"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/universal-parts.webp"
         }
       ],
       "bancadas": [
@@ -18922,6 +19083,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1.5,
+    "icone": "/icones/molotov.webp",
     "descricao": {
       "pt": "A classic cocktail that lights a fire in the hearts and bodies of your friends.",
       "en": "A classic cocktail that lights a fire in the hearts and bodies of your friends."
@@ -18940,7 +19102,8 @@
             "pt": "Pano",
             "en": "Rag"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/rag.webp"
         },
         {
           "id": "alcohol",
@@ -18948,7 +19111,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 4
+          "qtd": 4,
+          "icone": "/icones/alcohol.webp"
         },
         {
           "id": "complex-mixture",
@@ -18956,7 +19120,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 4
+          "qtd": 4,
+          "icone": "/icones/complex-mixture.webp"
         }
       ],
       "bancadas": [
@@ -19010,6 +19175,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1.5,
+    "icone": "/icones/trap-gas.webp",
     "descricao": {
       "pt": "This trap releases a toxic gas that slowly fills the room when triggered.",
       "en": "This trap releases a toxic gas that slowly fills the room when triggered."
@@ -19028,7 +19194,8 @@
             "pt": "Sucata Reforçada",
             "en": "Reinforced Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/reinforced-scrap.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -19036,7 +19203,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         },
         {
           "id": "poison-acid",
@@ -19044,7 +19212,8 @@
             "pt": "Veneno «Ácido»",
             "en": "\"Acid\" Poison"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/poison-acid.webp"
         },
         {
           "id": "tape",
@@ -19052,7 +19221,8 @@
             "pt": "Fita Silver Tape",
             "en": "Duct Tape"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/tape.webp"
         }
       ],
       "bancadas": [
@@ -19086,6 +19256,7 @@
     },
     "nivelRaridade": 5,
     "peso": 1,
+    "icone": "/icones/toko-scissors.webp",
     "descricao": {
       "pt": "At first glance — an ordinary tool, but left beside a victim they become a sinister signature, the mark of a mad killer.",
       "en": "At first glance — an ordinary tool, but left beside a victim they become a sinister signature, the mark of a mad killer."
@@ -19120,6 +19291,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.2,
+    "icone": "/icones/headbag.webp",
     "descricao": {
       "pt": "Coarse cloth with a smell of damp. In an instant it turns the surrounding world into pitch darkness.",
       "en": "Coarse cloth with a smell of damp. In an instant it turns the surrounding world into pitch darkness."
@@ -19573,6 +19745,7 @@
     },
     "nivelRaridade": 3,
     "peso": 6,
+    "icone": "/icones/fire-axe.webp",
     "descricao": {
       "pt": "A rescuer's tool, able to cut through doors and partitions. The blade commands respect, and the poll — fear.",
       "en": "A rescuer's tool, able to cut through doors and partitions. The blade commands respect, and the poll — fear."
@@ -19624,6 +19797,7 @@
     },
     "nivelRaridade": 1,
     "peso": 3,
+    "icone": "/icones/lead-pipe.webp",
     "descricao": {
       "pt": "A heavy and sturdy pipe. Perfectly suited for repairing plumbing or for applying force to a foe.",
       "en": "A heavy and sturdy pipe. Perfectly suited for repairing plumbing or for applying force to a foe."
@@ -19694,6 +19868,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.3,
+    "icone": "/icones/smokenade.webp",
     "descricao": {
       "pt": "A compact jar with thick violet vapor inside. Break it open and the world around dims: heaviness in the legs, thoughts melting away. Only the careful use it as a tool; the rest risk turning the game into a farce.",
       "en": "A compact jar with thick violet vapor inside. Break it open and the world around dims: heaviness in the legs, thoughts melting away. Only the careful use it as a tool; the rest risk turning the game into a farce."
@@ -19712,7 +19887,8 @@
             "pt": "Sucata Reforçada",
             "en": "Reinforced Scrap Metal"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/reinforced-scrap.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -19720,7 +19896,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         },
         {
           "id": "poison-sleeping",
@@ -19728,7 +19905,8 @@
             "pt": "Sonífero",
             "en": "Sleeping Pills"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/poison-sleeping.webp"
         },
         {
           "id": "tape",
@@ -19736,7 +19914,8 @@
             "pt": "Fita Silver Tape",
             "en": "Duct Tape"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/tape.webp"
         }
       ],
       "bancadas": [
@@ -19828,6 +20007,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/trap-electro.webp",
     "descricao": {
       "pt": "From scrap metal, tape and electronics, a skilled hand assembled a trap ready to deliver a crushing electric discharge. It disguises itself as wiring, but step on it and a paralyzing current pierces the victim.",
       "en": "From scrap metal, tape and electronics, a skilled hand assembled a trap ready to deliver a crushing electric discharge. It disguises itself as wiring, but step on it and a paralyzing current pierces the victim."
@@ -19846,7 +20026,8 @@
             "pt": "Sucata Beneficiada",
             "en": "Processed Scrap Metal"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/processed-scrap.webp"
         },
         {
           "id": "plate",
@@ -19854,7 +20035,8 @@
             "pt": "Placa de Circuito",
             "en": "Circuit Board"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/plate.webp"
         },
         {
           "id": "sensitive-mecha",
@@ -19862,7 +20044,8 @@
             "pt": "Mecanismo Sensível",
             "en": "Sensitive Mechanism"
           },
-          "qtd": 2
+          "qtd": 2,
+          "icone": "/icones/sensitive-mecha.webp"
         },
         {
           "id": "tape",
@@ -19870,7 +20053,8 @@
             "pt": "Fita Silver Tape",
             "en": "Duct Tape"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/tape.webp"
         }
       ],
       "bancadas": [
@@ -19904,6 +20088,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1,
+    "icone": "/icones/disguise.webp",
     "descricao": {
       "pt": "A white suit. A clean mask. No name, no emotions. Just you — and someone else's shadow you decided to try on.",
       "en": "A white suit. A clean mask. No name, no emotions. Just you — and someone else's shadow you decided to try on."
@@ -19999,6 +20184,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.1,
+    "icone": "/icones/disposable-gloves.webp",
     "descricao": {
       "pt": "Thin, cheap, unreliable. They give only a temporary illusion of safety — just enough time to make a mistake. When the gloves tear, the truth is back on your hands.",
       "en": "Thin, cheap, unreliable. They give only a temporary illusion of safety — just enough time to make a mistake. When the gloves tear, the truth is back on your hands."
@@ -20509,6 +20695,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0.5,
+    "icone": "/icones/phone.webp",
     "descricao": {
       "pt": "A personal device issued to every student of the academy.",
       "en": "A personal device issued to every student of the academy."
@@ -20540,6 +20727,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.1,
+    "icone": "/icones/gloves.webp",
     "descricao": {
       "pt": "A thin layer of cloth between you and the world. Gloves hide who you are, but not what you did. Sometimes they alone decide whether a crime stays a secret or becomes evidence.",
       "en": "A thin layer of cloth between you and the world. Gloves hide who you are, but not what you did. Sometimes they alone decide whether a crime stays a secret or becomes evidence."
@@ -20689,6 +20877,7 @@
     },
     "nivelRaridade": 1,
     "peso": 2,
+    "icone": "/icones/warm-jacket.webp",
     "descricao": {
       "pt": "Old, worn and clearly someone else's. Warm inside.",
       "en": "Old, worn and clearly someone else's. Warm inside."
@@ -20781,6 +20970,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0,
+    "icone": "/icones/money.webp",
     "descricao": {
       "pt": "Metal tokens engraved with Monokuma's profile. Used as a universal currency.",
       "en": "Metal tokens engraved with Monokuma's profile. Used as a universal currency."
@@ -21592,6 +21782,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.1,
+    "icone": "/icones/keycard-dorms.webp",
     "descricao": {
       "pt": "A card granting access to a floor officially taken out of service. Layers of dust and sealed doors hint: more is hidden here than mere ruin.",
       "en": "A card granting access to a floor officially taken out of service. Layers of dust and sealed doors hint: more is hidden here than mere ruin."
@@ -21782,6 +21973,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.1,
+    "icone": "/icones/keycard-lobby-r.webp",
     "descricao": {
       "pt": "An unremarkable plastic pass. It opens a door to where students are not supposed to look — the staff room, where at times more secrets are decided than in classes.",
       "en": "An unremarkable plastic pass. It opens a door to where students are not supposed to look — the staff room, where at times more secrets are decided than in classes."
@@ -22143,6 +22335,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.1,
+    "icone": "/icones/keycard-maintain.webp",
     "descricao": {
       "pt": "A plastic card with greasy fingerprints and the smell of machine oil. Its owner gains access to the very heart of the building — where the mechanisms that sustain life… or take it away are hidden.",
       "en": "A plastic card with greasy fingerprints and the smell of machine oil. Its owner gains access to the very heart of the building — where the mechanisms that sustain life… or take it away are hidden."
@@ -22390,6 +22583,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/bdg-srv.webp",
     "descricao": {
       "pt": "A service badge of an Academy staff member.",
       "en": "A service badge of an Academy staff member."
@@ -22821,6 +23015,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.3,
+    "icone": "/icones/usb-drv.webp",
     "descricao": {
       "pt": "A compact USB drive in a plain casing with an activity indicator.",
       "en": "A compact USB drive in a plain casing with an activity indicator."
@@ -22935,6 +23130,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.2,
+    "icone": "/icones/raw-solution.webp",
     "descricao": {
       "pt": "A chemical. Used in making various chemical substances.",
       "en": "A chemical. Used in making various chemical substances."
@@ -23499,6 +23695,7 @@
     },
     "nivelRaridade": 4,
     "peso": 2.5,
+    "icone": "/icones/case-srv.webp",
     "descricao": {
       "pt": "A sturdy light-colored plastic case with reinforced corners and a reliable handle.",
       "en": "A sturdy light-colored plastic case with reinforced corners and a reliable handle."
@@ -23626,6 +23823,7 @@
     },
     "nivelRaridade": 4,
     "peso": 2.5,
+    "icone": "/icones/case-tech.webp",
     "descricao": {
       "pt": "A black shock-resistant case with reinforced ribs and a reliable handle. The locks are tightly shut, as if they hadn't been opened since packing.",
       "en": "A black shock-resistant case with reinforced ribs and a reliable handle. The locks are tightly shut, as if they hadn't been opened since packing."
@@ -23753,6 +23951,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1,
+    "icone": "/icones/drv-sec.webp",
     "descricao": {
       "pt": "A heavy external drive in a shock-resistant casing with reinforced corners. Such a medium is used to store information whose loss is unacceptable.",
       "en": "A heavy external drive in a shock-resistant casing with reinforced corners. Such a medium is used to store information whose loss is unacceptable."
@@ -23867,6 +24066,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.01,
+    "icone": "/icones/room-key.webp",
     "descricao": {
       "pt": "A metal key with an engraved number. A symbol of private territory — but even the walls of a personal room don't always guarantee safety.",
       "en": "A metal key with an engraved number. A symbol of private territory — but even the walls of a personal room don't always guarantee safety."
@@ -23901,6 +24101,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0.1,
+    "icone": "/icones/keycard-head.webp",
     "descricao": {
       "pt": "A black keycard with golden engraving and the Academy's crest. The built-in access indicator faintly flickers, confirming an active clearance level.",
       "en": "A black keycard with golden engraving and the Academy's crest. The built-in access indicator faintly flickers, confirming an active clearance level."
@@ -24009,6 +24210,7 @@
     },
     "nivelRaridade": 3,
     "peso": 2,
+    "icone": "/icones/lap-acd.webp",
     "descricao": {
       "pt": "A portable computer in a strict casing with a worn keyboard and a dim screen. When turned on it boots slowly, as if reluctant to share what it holds. Some keys are noticeably worn — they were pressed more often than the rest.",
       "en": "A portable computer in a strict casing with a worn keyboard and a dim screen. When turned on it boots slowly, as if reluctant to share what it holds. Some keys are noticeably worn — they were pressed more often than the rest."
@@ -24060,6 +24262,7 @@
     },
     "nivelRaridade": 3,
     "peso": 2,
+    "icone": "/icones/orb-frs.webp",
     "descricao": {
       "pt": "A smooth glass sphere of a cold hue, set on a stable base. In its depths a distorted reflection of the surrounding world seems to lurk: blurry, troubling, giving no clear answer.",
       "en": "A smooth glass sphere of a cold hue, set on a stable base. In its depths a distorted reflection of the surrounding world seems to lurk: blurry, troubling, giving no clear answer."
@@ -24130,6 +24333,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1,
+    "icone": "/icones/arch-doc.webp",
     "descricao": {
       "pt": "This file lay in the archive long enough to stop being checked, but not long enough to lose relevance. A thick stack of yellowed documents, tied with cord and marked with a stamp.",
       "en": "This file lay in the archive long enough to stop being checked, but not long enough to lose relevance. A thick stack of yellowed documents, tied with cord and marked with a stamp."
@@ -24276,6 +24480,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/tape-rec.webp",
     "descricao": {
       "pt": "An old cassette with a worn casing and a hand-signed label.",
       "en": "An old cassette with a worn casing and a hand-signed label."
@@ -24460,6 +24665,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.15,
+    "icone": "/icones/note-num-34.webp",
     "descricao": {
       "pt": "A small scrap of paper with the number 7351 neatly written out and circled.",
       "en": "A small scrap of paper with the number 7351 neatly written out and circled."
@@ -24701,6 +24907,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/log-cls.webp",
     "descricao": {
       "pt": "A set of technical schematics and blueprints, laid out in disarray and marked with a stamp.",
       "en": "A set of technical schematics and blueprints, laid out in disarray and marked with a stamp."
@@ -24923,6 +25130,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.5,
+    "icone": "/icones/cloth-drt.webp",
     "descricao": {
       "pt": "Crumpled clothing with noticeable dirt stains and signs of careless handling. The fabric has darkened in places.",
       "en": "Crumpled clothing with noticeable dirt stains and signs of careless handling. The fabric has darkened in places."
@@ -25088,6 +25296,7 @@
     },
     "nivelRaridade": 3,
     "peso": 1,
+    "icone": "/icones/schl-book.webp",
     "descricao": {
       "pt": "A thick register filled with neat tables and notes. Inside are student rosters, attendance marks and records of movements between classes.",
       "en": "A thick register filled with neat tables and notes. Inside are student rosters, attendance marks and records of movements between classes."
@@ -25310,6 +25519,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.25,
+    "icone": "/icones/doc-conf.webp",
     "descricao": {
       "pt": "A folder of official documents bound with a metal clip. The sheets inside are filled with service notes, codes and a stamp. Some pages look frequently leafed through.",
       "en": "A folder of official documents bound with a metal clip. The sheets inside are filled with service notes, codes and a stamp. Some pages look frequently leafed through."
@@ -25437,6 +25647,7 @@
     },
     "nivelRaridade": 3,
     "peso": 1,
+    "icone": "/icones/book-cook.webp",
     "descricao": {
       "pt": "A battered hardcover book stained with marks of oil and time.",
       "en": "A battered hardcover book stained with marks of oil and time."
@@ -25602,6 +25813,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/hp-mon.webp",
     "descricao": {
       "pt": "Full-size headphones with soft earpads and a reinforced cable.",
       "en": "Full-size headphones with soft earpads and a reinforced cable."
@@ -25653,6 +25865,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.2,
+    "icone": "/icones/prf-fake.webp",
     "descricao": {
       "pt": "A small glass bottle with a warm amber tint and a simple sprayer. The scent is sharp, obtrusively sweet, noticeable even after brief use. Such a smell is hard to mistake or fully conceal.",
       "en": "A small glass bottle with a warm amber tint and a simple sprayer. The scent is sharp, obtrusively sweet, noticeable even after brief use. Such a smell is hard to mistake or fully conceal."
@@ -25799,6 +26012,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/man-adv.webp",
     "descricao": {
       "pt": "A thick hardcover book with technical schematics on the title page.",
       "en": "A thick hardcover book with technical schematics on the title page."
@@ -26078,6 +26292,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/doc-sec.webp",
     "descricao": {
       "pt": "A stack of service documents marked with a security label. The paper has yellowed with time, and the lines in places look deliberately blurred or struck out. It seems part of the information was hidden after printing.",
       "en": "A stack of service documents marked with a security label. The paper has yellowed with time, and the lines in places look deliberately blurred or struck out. It seems part of the information was hidden after printing."
@@ -26243,6 +26458,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/uni-sprt.webp",
     "descricao": {
       "pt": "A neatly folded set of sportswear in the Academy's red-and-black colors.",
       "en": "A neatly folded set of sportswear in the Academy's red-and-black colors."
@@ -26370,6 +26586,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/wash-cs.webp",
     "descricao": {
       "pt": "A cardboard box of fine powder giving off a sharp chemical smell, meant for removing tough stains from fabric.",
       "en": "A cardboard box of fine powder giving off a sharp chemical smell, meant for removing tough stains from fabric."
@@ -26478,6 +26695,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.7,
+    "icone": "/icones/cln-nf.webp",
     "descricao": {
       "pt": "A thick plastic bottle with a bright label and a sharp chemical smell. Judging by the liquid level, the bottle has already been used more than once.",
       "en": "A thick plastic bottle with a bright label and a sharp chemical smell. Judging by the liquid level, the bottle has already been used more than once."
@@ -26605,6 +26823,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.5,
+    "icone": "/icones/fried-meat.webp",
     "descricao": {
       "pt": "Filling, with a hint of smoke and fat. A great way to restore strength or stir up envy.",
       "en": "Filling, with a hint of smoke and fat. A great way to restore strength or stir up envy."
@@ -26627,7 +26846,8 @@
             "pt": "Carne Crua",
             "en": "Raw Meat"
           },
-          "qtd": 1
+          "qtd": 1,
+          "icone": "/icones/raw-meat.webp"
         }
       ],
       "bancadas": [
@@ -26661,6 +26881,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0.5,
+    "icone": "/icones/serum-hope.webp",
     "descricao": {
       "pt": "A serum created from a concentrate of absolute hope.",
       "en": "A serum created from a concentrate of absolute hope."
@@ -26692,7 +26913,8 @@
             "pt": "Reagente Secreto",
             "en": "Secret Reagent"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/secret-reagent.webp"
         },
         {
           "id": "complex-mixture",
@@ -26700,7 +26922,8 @@
             "pt": "Mistura Complexa",
             "en": "Complex Mixture"
           },
-          "qtd": 5
+          "qtd": 5,
+          "icone": "/icones/complex-mixture.webp"
         },
         {
           "id": "oleander",
@@ -26708,7 +26931,8 @@
             "pt": "Espirradeira",
             "en": "Oleander"
           },
-          "qtd": 7
+          "qtd": 7,
+          "icone": "/icones/oleander.webp"
         },
         {
           "id": "alcohol",
@@ -26716,7 +26940,8 @@
             "pt": "Álcool",
             "en": "Alcohol"
           },
-          "qtd": 3
+          "qtd": 3,
+          "icone": "/icones/alcohol.webp"
         }
       ],
       "bancadas": [
@@ -26770,6 +26995,7 @@
     },
     "nivelRaridade": 5,
     "peso": 0.1,
+    "icone": "/icones/ki-bo-s-eyes.webp",
     "descricao": {
       "pt": "Lets you see in complete darkness. Increased viewing range.",
       "en": "Lets you see in complete darkness. Increased viewing range."
@@ -26804,6 +27030,7 @@
     },
     "nivelRaridade": 3,
     "peso": 1,
+    "icone": "/icones/nightvision.webp",
     "descricao": {
       "pt": "Goggles with a dim green glow. Makes the night transparent, but gives the wearer away with a lens reflection.",
       "en": "Goggles with a dim green glow. Makes the night transparent, but gives the wearer away with a lens reflection."
@@ -26918,6 +27145,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.5,
+    "icone": "/icones/pizza.webp",
     "descricao": {
       "pt": "A small part of former greatness.",
       "en": "A small part of former greatness."
@@ -26976,6 +27204,7 @@
     },
     "nivelRaridade": 4,
     "peso": 0.5,
+    "icone": "/icones/rep-sec.webp",
     "descricao": {
       "pt": "A bundle of documents stapled together in haste. Inside are duty logs, surveillance-camera layouts and time-stamped shots.",
       "en": "A bundle of documents stapled together in haste. Inside are duty logs, surveillance-camera layouts and time-stamped shots."
@@ -27217,6 +27446,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27245,6 +27475,7 @@
     },
     "nivelRaridade": 2,
     "peso": 0.35,
+    "icone": "/icones/antidote.webp",
     "descricao": {
       "pt": "An effective antidote against weak poisons.",
       "en": "An effective antidote against weak poisons."
@@ -27303,6 +27534,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27331,6 +27563,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27359,6 +27592,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27387,6 +27621,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27415,6 +27650,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.01,
+    "icone": null,
     "descricao": {
       "pt": "A unique pattern left on the surface. Physical evidence pointing to involvement.",
       "en": "A unique pattern left on the surface. Physical evidence pointing to involvement."
@@ -27446,6 +27682,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.01,
+    "icone": null,
     "descricao": {
       "pt": "A unique pattern left on the surface. Physical evidence pointing to involvement.",
       "en": "A unique pattern left on the surface. Physical evidence pointing to involvement."
@@ -27477,6 +27714,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.01,
+    "icone": null,
     "descricao": {
       "pt": "A reference sample confirming that fingerprints of type #X belong to *character_name*",
       "en": "A reference sample confirming that fingerprints of type #X belong to *character_name*"
@@ -27508,6 +27746,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.01,
+    "icone": null,
     "descricao": {
       "pt": "A reference sample confirming that shoe prints of type #X belong to *character_name*",
       "en": "A reference sample confirming that shoe prints of type #X belong to *character_name*"
@@ -27539,6 +27778,7 @@
     },
     "nivelRaridade": 1,
     "peso": 0.01,
+    "icone": null,
     "descricao": {
       "pt": "A unique pattern left on the surface. Physical evidence pointing to involvement.",
       "en": "A unique pattern left on the surface. Physical evidence pointing to involvement."
@@ -27570,6 +27810,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27598,6 +27839,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27626,6 +27868,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27654,6 +27897,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27682,6 +27926,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27710,6 +27955,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27738,6 +27984,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27766,6 +28013,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27794,6 +28042,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27822,6 +28071,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27850,6 +28100,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27878,6 +28129,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27906,6 +28158,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27934,6 +28187,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27962,6 +28216,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -27990,6 +28245,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -28018,6 +28274,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": "/icones/torn-disposable.webp",
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -28046,6 +28303,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -28074,6 +28332,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -28102,6 +28361,7 @@
     },
     "nivelRaridade": 0,
     "peso": null,
+    "icone": null,
     "descricao": null,
     "efeito": null,
     "mecanicas": {},
@@ -28130,6 +28390,7 @@
     },
     "nivelRaridade": 3,
     "peso": 0.3,
+    "icone": "/icones/usb-drv-full.webp",
     "descricao": {
       "pt": "A flash drive holding the activity log from someone else's monopad. The data can be wiped and the drive reused.",
       "en": "A flash drive holding the activity log from someone else's monopad. The data can be wiped and the drive reused."
@@ -28161,6 +28422,7 @@
     },
     "nivelRaridade": 4,
     "peso": 1,
+    "icone": "/icones/drv-sec-full.webp",
     "descricao": {
       "pt": "A secure drive holding the data from someone else's monopad. It cannot be wiped or reused.",
       "en": "A secure drive holding the data from someone else's monopad. It cannot be wiped or reused."

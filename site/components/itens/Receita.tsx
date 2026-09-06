@@ -1,11 +1,15 @@
 import Link from 'next/link';
+import { Icone } from './Icone';
 import type { Craft } from '@/lib/schema-itens';
 
 /**
  * A receita é lida como fórmula: ingredientes com a quantidade em bolinha,
  * seta, resultado destacado. Bancada e chance ficam no cabeçalho.
  */
-export function Receita({ craft, resultado }: { craft: Craft; resultado: string }) {
+export function Receita(
+  { craft, resultado, iconeResultado = null }:
+  { craft: Craft; resultado: string; iconeResultado?: string | null }
+) {
   const descricao =
     craft.ingredientes.map((i) => `${i.qtd} ${i.nome.pt}`).join(' mais ') +
     ` resulta em ${resultado}` +
@@ -26,6 +30,7 @@ export function Receita({ craft, resultado }: { craft: Craft; resultado: string 
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-escuro font-mono text-[8px] font-bold text-papel">
                 {ing.qtd}
               </span>
+              <Icone src={ing.icone} nome={ing.nome.pt} className="h-6 w-6" />
               {ing.id ? (
                 <Link href={`/itens/${ing.id}/`} className="text-[11px] text-[#D6D6E0] hover:text-teal">
                   {ing.nome.pt}
@@ -41,8 +46,9 @@ export function Receita({ craft, resultado }: { craft: Craft; resultado: string 
 
         <span
           data-testid="resultado"
-          className="rounded-[3px] border border-teal bg-teal-escuro px-2 py-1 text-[11px] font-bold text-papel"
+          className="flex items-center gap-1.5 rounded-[3px] border border-teal bg-teal-escuro px-2 py-1 text-[11px] font-bold text-papel"
         >
+          <Icone src={iconeResultado} nome={resultado} className="h-6 w-6" />
           {resultado}
         </span>
       </div>

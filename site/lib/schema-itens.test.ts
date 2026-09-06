@@ -9,12 +9,13 @@ const item = {
   raridade: { pt: 'Incomum', en: 'Uncommon' },
   nivelRaridade: 2,
   peso: 0.2,
+  icone: '/icones/small-parts.webp',
   descricao: { pt: 'Peças pequenas.', en: 'Small parts.' },
   efeito: null,
   mecanicas: {},
   loja: null,
   craft: {
-    ingredientes: [{ id: 'rusty-scrap-metal', nome: { pt: 'Sucata', en: 'Scrap' }, qtd: 3 }],
+    ingredientes: [{ id: 'rusty-scrap-metal', nome: { pt: 'Sucata', en: 'Scrap' }, qtd: 3, icone: null }],
     bancadas: [{ pt: 'Bancada', en: 'Workbench' }],
     chance: '100%',
   },
@@ -33,8 +34,8 @@ describe('validarItens', () => {
     expect(r[0].spawns[0].chance).toBe(50);
   });
 
-  it('aceita item sem craft, sem loja e sem peso', () => {
-    const r = validarItens([{ ...item, craft: null, loja: null, peso: null, descricao: null }]);
+  it('aceita item sem craft, sem loja, sem peso e sem ícone', () => {
+    const r = validarItens([{ ...item, craft: null, loja: null, peso: null, descricao: null, icone: null }]);
     expect(r[0].craft).toBeNull();
   });
 

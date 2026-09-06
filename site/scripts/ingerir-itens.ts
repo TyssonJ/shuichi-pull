@@ -4,6 +4,7 @@ import { traduzirRuEn } from '../lib/glossario';
 import { traduzirPt } from '../lib/traducoes';
 import { traduzirVocabulario, nivelDaRaridade } from '../lib/vocabulario';
 import { carregarFontesEn } from './fontes-en';
+import { iconeDoItem } from '../lib/icones';
 import {
   validarItens, validarLocais,
   type Item, type Local, type Spawn, type Conteiner,
@@ -142,17 +143,22 @@ export function ingerir(): { itens: Item[]; locais: Local[] } {
       raridade: i.rarity ? vocabulario(i.rarity) : { pt: 'Não informada', en: 'Unknown' },
       nivelRaridade: i.rarity ? nivelDaRaridade(i.rarity) : 0,
       peso: numeroOuNulo(i.weight),
+      icone: iconeDoItem(id),
       descricao: descricaoEn ? { en: descricaoEn, pt: traduzirPt(descricaoEn) ?? descricaoEn } : null,
       efeito: efeitoEn ? { en: efeitoEn, pt: traduzirPt(efeitoEn) ?? efeitoEn } : null,
       mecanicas: mecanicas(i.mechanics),
       loja: i.shop ? { vendedor: i.shop.vendor, preco: i.shop.price } : null,
       craft: i.craft
         ? {
-            ingredientes: i.craft.ingredients.map((ing) => ({
-              id: idPorNomeRu.get(ing.name) ?? null,
-              nome: texto(ing.name, 'items'),
-              qtd: ing.qty,
-            })),
+            ingredientes: i.craft.ingredients.map((ing) => {
+              const idIng = idPorNomeRu.get(ing.name) ?? null;
+              return {
+                id: idIng,
+                nome: texto(ing.name, 'items'),
+                qtd: ing.qty,
+                icone: idIng ? iconeDoItem(idIng) : null,
+              };
+            }),
             // As bancadas estao no glossario de itens, nao no de locais.
             bancadas: i.craft.stations.map((b) => texto(b, 'items')),
             chance: i.craft.successChance,

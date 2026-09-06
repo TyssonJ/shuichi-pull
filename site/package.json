@@ -14,7 +14,9 @@
     "sprites:baixar": "tsx scripts/baixar-sprites.ts",
     "dados:itens": "tsx scripts/ingerir-itens.ts",
     "dados:faq": "tsx scripts/ingerir-faq.ts",
-    "dados:controles": "tsx scripts/ingerir-controles.ts"
+    "dados:controles": "tsx scripts/ingerir-controles.ts",
+    "icones:baixar": "tsx scripts/baixar-icones.ts",
+    "icones": "tsx scripts/otimizar-icones.ts"
   },
   "dependencies": {
     "next": "16.3.4",

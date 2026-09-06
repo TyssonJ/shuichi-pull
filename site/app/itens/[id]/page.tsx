@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { buscarItem, listarItens, receitasQueUsam } from '@/lib/itens';
 import { Selo } from '@/components/itens/Selo';
+import { Icone } from '@/components/itens/Icone';
 import { Receita } from '@/components/itens/Receita';
 import { BarraSpawn } from '@/components/itens/BarraSpawn';
 import { Papel } from '@/components/ficha/Papel';
@@ -32,14 +33,19 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
         >
           {item.categoria.pt.toUpperCase()}
         </span>
-        <p className="relative font-mono text-[8px] tracking-[.2em] text-dim">
-          {item.categoria.pt} · {item.ramo.pt}
-        </p>
-        <h1 className="relative text-4xl font-black tracking-tight text-[#F2F2F5]">
-          {item.nome.pt}
-        </h1>
-        <p className="relative mb-3 font-mono text-[9px] text-dim">{item.nome.en}</p>
-        <div className="relative flex flex-wrap items-center gap-2">
+        <div className="relative flex items-start gap-4">
+          <Icone src={item.icone} nome={item.nome.pt} className="h-16 w-16 sm:h-20 sm:w-20" />
+          <div className="min-w-0">
+            <p className="font-mono text-[8px] tracking-[.2em] text-dim">
+              {item.categoria.pt} · {item.ramo.pt}
+            </p>
+            <h1 className="text-4xl font-black tracking-tight text-[#F2F2F5]">
+              {item.nome.pt}
+            </h1>
+            <p className="mb-3 font-mono text-[9px] text-dim">{item.nome.en}</p>
+          </div>
+        </div>
+        <div className="relative mt-3 flex flex-wrap items-center gap-2">
           <Selo raridade={item.raridade} nivel={item.nivelRaridade} comIngles />
           {item.peso !== null && (
             <span className="font-mono text-[9px] text-dim">Peso {item.peso} kg</span>
@@ -80,7 +86,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
           {item.craft && (
             <section className="mb-6">
               <h2 className="mb-2 font-mono text-[8px] tracking-[.14em] text-dim">COMO FABRICAR</h2>
-              <Receita craft={item.craft} resultado={item.nome.pt} />
+              <Receita craft={item.craft} resultado={item.nome.pt} iconeResultado={item.icone} />
             </section>
           )}
 
