@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { traduzirRuEn } from '../lib/glossario';
 import { extrairValor } from '../lib/atributos';
-import { traduzirPt } from '../lib/traducoes';
+import { traduzirPt, talentoDoPersonagem, descricaoDoPersonagem } from '../lib/traducoes';
 import { validarPersonagens, type Personagem, type Etiqueta } from '../lib/schema';
 import { spriteDoPersonagem } from '../lib/sprites';
 
@@ -72,8 +72,14 @@ export function ingerirElenco(): Personagem[] {
       saida.push({
         id,
         nome,
-        talento: { en: talentoEn, pt: traduzirPt(talentoEn) ?? talentoEn },
-        descricao: { en: p.description, pt: traduzirPt(p.description) ?? p.description },
+        talento: {
+          en: talentoEn,
+          pt: talentoDoPersonagem(id) ?? traduzirPt(talentoEn) ?? talentoEn,
+        },
+        descricao: {
+          en: p.description,
+          pt: descricaoDoPersonagem(id) ?? p.description,
+        },
         jogo: jogo.game,
         velocidade, mochila, percepcao, vida,
         etiquetas,

@@ -4,7 +4,7 @@
  * versao PSP, sem ahoge); nada disso serve de retrato padrao.
  */
 
-const DESCARTA = /(deceased|corpse|despair|psp|no ahoge|report card|symbol|icon|beta|concept|manga|anime|thumb)/i;
+const DESCARTA = /(deceased|corpse|despair|no ahoge|report card|symbol|icon|beta|concept|manga|anime|thumb|bonus mode|scrum|cut-?in)/i;
 
 const PREFIXO_POR_JOGO: Record<string, RegExp> = {
   'Danganronpa: Trigger Happy Havoc': /^(?!danganronpa (2|v3|another))/i,
@@ -24,13 +24,38 @@ export function numeroDaPose(titulo: string): number {
   return n ? Number(n) : 999;
 }
 
+/**
+ * Parenteses que sao so plataforma ou numero da pose nao mudam o visual; ja
+ * "(High School Uniform)" ou "(Hospital Gown)" trocam a roupa do personagem e
+ * nao servem de retrato padrao.
+ */
+const VARIANTE_NEUTRA = /^\((?:\d+|mobile|psp|vita)\)$/i;
+
+function tierDeVariante(titulo: string): number {
+  const parenteses = titulo.match(/\([^)]*\)/g) ?? [];
+  return parenteses.every((p) => VARIANTE_NEUTRA.test(p)) ? 0 : 1;
+}
+
+/**
+ * Meio-corpo e o enquadramento padrao da ficha. Corpo inteiro vem muito mais
+ * alto que o resto e quebra a grade da listagem, entao so entra se nao houver
+ * nada melhor.
+ */
+function tierDeEnquadramento(titulo: string): number {
+  if (/halfbody|bustup/i.test(titulo)) return 0;
+  if (/fullbody/i.test(titulo)) return 2;
+  return 1;
+}
+
 export function escolherSprite(
   titulos: string[], nome: string, jogo?: string
 ): string | null {
-  const sobrenome = nome.split(' ').slice(-1)[0].toLowerCase();
+  // O nome inteiro, nao so o sobrenome: "Tsumugi Shirogane Halfbody Sprite
+  // (Nekomaru Nidai)" e a Tsumugi cosplayada, nao o Nekomaru.
+  const alvo = nome.toLowerCase();
   const candidatos = titulos
     .map(normalizarTitulo)
-    .filter((t) => t.toLowerCase().includes(sobrenome))
+    .filter((t) => t.toLowerCase().includes(alvo))
     .filter((t) => !DESCARTA.test(t))
     .filter((t) => /\.(png|jpg|jpeg|webp)$/i.test(t));
 
@@ -41,5 +66,11 @@ export function escolherSprite(
     : [];
   const fila = doJogo.length > 0 ? doJogo : candidatos;
 
-  return [...fila].sort((a, b) => numeroDaPose(a) - numeroDaPose(b) || a.localeCompare(b))[0];
+  return [...fila].sort(
+    (a, b) =>
+      tierDeEnquadramento(a) - tierDeEnquadramento(b) ||
+      tierDeVariante(a) - tierDeVariante(b) ||
+      numeroDaPose(a) - numeroDaPose(b) ||
+      a.localeCompare(b)
+  )[0];
 }

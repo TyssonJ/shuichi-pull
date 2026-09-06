@@ -52,7 +52,7 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
                   className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded-[2px] px-1.5 py-px font-mono text-[7.5px] font-bold"
                   style={{ background: cor, color: '#0A0A0D' }}
                 >
-                  {c.valor} ← ela
+                  {c.valor} ← aqui
                 </span>
               )}
             </div>

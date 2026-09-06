@@ -1,10 +1,18 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { Regua } from '@/components/dados/Regua';
-import { Papel } from '@/components/ficha/Papel';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const p = buscarPersonagem(id);
+  return p
+    ? { title: `${p.nome} — Shuichi Pull`, description: p.descricao.pt }
+    : { title: 'Personagem não encontrado — Shuichi Pull' };
 }
 
 export default async function FichaPersonagem({
@@ -14,37 +22,92 @@ export default async function FichaPersonagem({
   const p = buscarPersonagem(id);
   if (!p) notFound();
 
-  const sobrenome = p.nome.split(' ').slice(-1)[0].toUpperCase();
+  const total = listarPersonagens().length;
 
   return (
-    <article className="px-4 py-8">
-      <header className="relative overflow-hidden">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -right-3 -top-2 select-none text-6xl font-black leading-none tracking-tighter text-white/5 sm:text-8xl"
-        >
-          {sobrenome}
-        </span>
-        <p className="relative font-mono text-[8px] tracking-[.2em] text-dim">
-          {p.jogo}
-        </p>
-        <h1 className="relative text-4xl font-black tracking-tight text-[#F2F2F5]">
-          {p.nome}
-        </h1>
-        <p className="relative font-serif text-lg italic text-teal">{p.talento.pt}</p>
-        <p className="relative font-mono text-[9px] text-dim">{p.talento.en}</p>
-      </header>
+    <article className="mx-auto max-w-5xl px-4 py-8">
+      <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-teal">
+        ← todo o elenco
+      </Link>
 
-      <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-        <div className="mx-auto w-40 shrink-0 sm:mx-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.sprite} alt={`Sprite de ${p.nome}`} className="w-full" />
+      {/* Retrato e identificação, lado a lado: a descrição é a primeira coisa
+          que se lê, e os atributos ficam para depois. */}
+      <div className="mt-4 grid gap-6 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-8">
+        <div className="mx-auto w-40 sm:mx-0 sm:w-full">
+          <div className="overflow-hidden rounded-[4px] border border-line bg-gradient-to-b from-[#1B1B22] to-[#101014]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={p.sprite}
+              alt={`Sprite de ${p.nome}`}
+              className="mx-auto block max-h-[260px] w-auto object-contain"
+            />
+          </div>
         </div>
 
-        <div className="min-w-0 flex-1">
-          <p className="mb-4 font-mono text-[8px] tracking-[.14em] text-dim">
-            ATRIBUTOS · comparado às {listarPersonagens().length} fichas do jogo
+        <header className="min-w-0">
+          <p className="font-mono text-[8px] tracking-[.2em] text-dim">{p.jogo}</p>
+          <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
+            {p.nome}
+          </h1>
+          <p className="mt-1 font-serif text-[17px] italic leading-tight text-teal">
+            {p.talento.pt}
           </p>
+          <p className="font-mono text-[9px] text-dim">{p.talento.en}</p>
+
+          <p className="mt-4 max-w-prose text-[13px] leading-relaxed text-[#C8C8D4]">
+            {p.descricao.pt}
+          </p>
+
+          {p.etiquetas.length > 0 && (
+            <ul className="mt-4 flex flex-wrap gap-1.5">
+              {p.etiquetas.map((e) => (
+                <li
+                  key={e.en}
+                  title={e.en}
+                  className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px]"
+                  style={{
+                    color: e.bom ? 'var(--color-teal)' : 'var(--color-red)',
+                    borderColor: 'currentColor',
+                  }}
+                >
+                  {e.pt}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3">
+            <div className="flex items-baseline gap-1.5">
+              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">VIDA</dt>
+              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.vida}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">VELOCIDADE</dt>
+              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.velocidade}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">MOCHILA</dt>
+              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.mochila}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">PERCEPÇÃO</dt>
+              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.percepcao}</dd>
+            </div>
+          </dl>
+        </header>
+      </div>
+
+      <section className="mt-12">
+        <h2 className="mb-1 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#B9B9C6]">
+          <span className="h-px flex-1 bg-line" />
+          Como se compara
+          <span className="h-px flex-1 bg-line" />
+        </h2>
+        <p className="mb-6 text-center font-mono text-[8px] tracking-[.14em] text-dim">
+          CADA COLUNA É QUANTOS DOS {total} ALUNOS TÊM AQUELE VALOR
+        </p>
+
+        <div className="mx-auto max-w-3xl">
           <Regua
             nome="VELOCIDADE" valor={p.velocidade} unidade="u/s"
             valores={valoresDoElenco('velocidade')} passo={5}
@@ -60,32 +123,14 @@ export default async function FichaPersonagem({
             valores={valoresDoElenco('percepcao')} passo={1}
             maiorEhMelhor sentido="enxerga mais"
           />
-
-          {p.etiquetas.length > 0 && (
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {p.etiquetas.map((e) => (
-                <li key={e.en}
-                  className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px]"
-                  style={{ color: e.bom ? 'var(--color-teal)' : 'var(--color-red)',
-                           borderColor: 'currentColor' }}>
-                  {e.pt}
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
-      </div>
+      </section>
 
-      <div className="mt-8 max-w-2xl">
-        <Papel titulo="SOBRE">
-          <p className="text-[12px] leading-relaxed">{p.descricao.pt}</p>
-          {!p.traducaoRevisada && (
-            <p className="mt-3 font-mono text-[8px] text-tinta/50">
-              Tradução ainda não revisada por um ADM.
-            </p>
-          )}
-        </Papel>
-      </div>
+      {!p.traducaoRevisada && (
+        <p className="mt-10 text-center font-mono text-[8px] text-dim">
+          Tradução ainda não revisada por um ADM.
+        </p>
+      )}
     </article>
   );
 }

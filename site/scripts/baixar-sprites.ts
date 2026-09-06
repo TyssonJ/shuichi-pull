@@ -49,10 +49,14 @@ async function urlDoArquivo(titulo: string): Promise<string | null> {
 
 /** Tenta varias formulacoes ate achar um sprite utilizavel. */
 async function acharSprite(nome: string, jogo: string): Promise<string | null> {
+  // O nome entre aspas evita que a busca traga qualquer arquivo que so tenha
+  // uma das palavras — foi assim que sprites de corpo inteiro venceram os de
+  // meio-corpo na primeira leva.
   for (const termo of [
+    `"${nome}" Halfbody Sprite`,
+    `"${nome}" Bustup Sprite`,
+    `"${nome}" Sprite`,
     `${nome} Halfbody Sprite`,
-    `${nome} Bustup Sprite`,
-    `${nome} Sprite`,
   ]) {
     const escolhido = escolherSprite(await procurar(termo), nome, jogo);
     await espera(PAUSA_MS);
@@ -67,6 +71,11 @@ async function main() {
   ) as { id: string; nome: string; jogo: string }[];
 
   fs.mkdirSync(DESTINO, { recursive: true });
+
+  const CAMINHO_FONTES = path.join(DESTINO, '_fontes.json');
+  const fontes: Record<string, string> = fs.existsSync(CAMINHO_FONTES)
+    ? JSON.parse(fs.readFileSync(CAMINHO_FONTES, 'utf-8'))
+    : {};
 
   let baixados = 0;
   const semSprite: string[] = [];
@@ -86,6 +95,10 @@ async function main() {
       if (!resposta.ok) { semSprite.push(p.id); continue; }
 
       fs.writeFileSync(destino, Buffer.from(await resposta.arrayBuffer()));
+      // Guarda de onde veio, para dar para conferir depois se o sprite e mesmo
+      // do personagem certo.
+      fontes[p.id] = titulo;
+      fs.writeFileSync(CAMINHO_FONTES, JSON.stringify(fontes, null, 2), 'utf-8');
       baixados++;
       console.log(`  ok ${p.id} <- ${titulo}`);
       await espera(PAUSA_MS);

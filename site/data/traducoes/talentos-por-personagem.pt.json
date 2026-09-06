@@ -1,0 +1,18 @@
+{
+  "$comment": "Talento em PT quando o genero do personagem nao bate com a traducao generica do talento. Kyoko e Shuichi sao os dois 'Ultimate Detective', entao o genero tem que vir do personagem, nao do talento. So entra aqui quem precisa de correcao; o resto usa itens.pt.json/elenco.pt.json.",
+  "kyoko-kirigiri": "Detetive Suprema",
+  "aoi-asahina": "Nadadora Suprema",
+  "hifumi-yamada": "Ficwriter Supremo",
+  "yasuhiro-hagakure": "Vidente Supremo",
+  "mukuro-ikusaba": "Soldado Suprema",
+  "gundham-tanaka": "Criador Supremo",
+  "ibuki-mioda": "Musicista Suprema",
+  "chiaki-nanami": "Gamer Suprema",
+  "mahiru-koizumi": "Fotógrafa Suprema",
+  "nekomaru-nidai": "Gerente de Equipe Supremo",
+  "kazuichi-soda": "Mecânico Supremo",
+  "korekiyo-shinguji": "Antropólogo Supremo",
+  "miu-iruma": "Inventora Suprema",
+  "angie-yonaga": "Artista Suprema",
+  "jataro-kemuri": "Pequeno Supremo das Artes"
+}

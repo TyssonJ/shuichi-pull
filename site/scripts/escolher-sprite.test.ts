@@ -56,11 +56,71 @@ describe('escolherSprite', () => {
       .toBe('Kyouko Kyoko Kirigiri Halfbody Sprite (3).png');
   });
 
+  it('prefere meio-corpo a corpo inteiro, mesmo com número maior', () => {
+    const r = escolherSprite(
+      [
+        'File:Korekiyo Shinguji Fullbody Sprite (1).png',
+        'File:Korekiyo Shinguji Halfbody Sprite (7).png',
+      ],
+      'Korekiyo Shinguji'
+    );
+    expect(r).toBe('Korekiyo Shinguji Halfbody Sprite (7).png');
+  });
+
+  it('aceita corpo inteiro quando não há meio-corpo', () => {
+    const r = escolherSprite(['File:Mondo Owada Fullbody Sprite (2).png'], 'Mondo Owada');
+    expect(r).toBe('Mondo Owada Fullbody Sprite (2).png');
+  });
+
   it('ignora quem não é o personagem procurado', () => {
     const r = escolherSprite(
       ['File:Byakuya Togami Halfbody Sprite (1).png'], 'Makoto Naegi'
     );
     expect(r).toBeNull();
+  });
+
+  it('descarta o recorte de scrum debate, que é alto e estreito', () => {
+    const r = escolherSprite(
+      [
+        'File:Danganronpa V3 Shuichi Saihara Halfbody Sprite (Debate Scrum) (1).png',
+        'File:Danganronpa V3 Shuichi Saihara Halfbody Sprite (Hat) (3).png',
+      ],
+      'Shuichi Saihara'
+    );
+    expect(r).toBe('Danganronpa V3 Shuichi Saihara Halfbody Sprite (Hat) (3).png');
+  });
+
+  it('não cai no cosplay de outro personagem', () => {
+    const r = escolherSprite(
+      [
+        'File:Danganronpa V3 Tsumugi Shirogane Halfbody Sprite (Nekomaru Nidai) (1).png',
+        'File:Nekomaru Nidai Halfbody Sprite (4).png',
+      ],
+      'Nekomaru Nidai'
+    );
+    expect(r).toBe('Nekomaru Nidai Halfbody Sprite (4).png');
+  });
+
+  it('prefere a roupa padrão a uma variante de figurino', () => {
+    const r = escolherSprite(
+      [
+        'File:Korekiyo Shinguji Halfbody Sprite (High School Uniform) (1).png',
+        'File:Korekiyo Shinguji Halfbody Sprite (5).png',
+      ],
+      'Korekiyo Shinguji'
+    );
+    expect(r).toBe('Korekiyo Shinguji Halfbody Sprite (5).png');
+  });
+
+  it('trata plataforma no nome como variante neutra', () => {
+    const r = escolherSprite(
+      [
+        'File:Danganronpa 1 Mondo Owada Halfbody Sprite (Mobile) (1).png',
+        'File:Danganronpa 1 Mondo Owada Halfbody Sprite (Alt) (1).png',
+      ],
+      'Mondo Owada'
+    );
+    expect(r).toBe('Danganronpa 1 Mondo Owada Halfbody Sprite (Mobile) (1).png');
   });
 
   it('devolve null quando não sobra candidato', () => {
