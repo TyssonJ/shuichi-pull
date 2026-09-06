@@ -1,0 +1,13 @@
+[
+  {
+    "id": "shuichi-pull-no-ar",
+    "tipo": "atualizacao",
+    "titulo": "Shuichi Pull no ar",
+    "data": "2026-09-06",
+    "ate": null,
+    "destaque": true,
+    "autor": "Equipe do Shuichi Pull",
+    "resumo": "O arquivo da comunidade BR/PT abriu com elenco, itens, mapa, mecânicas e FAQ em português.",
+    "corpo": "O site entrou no ar com as cinco seções de conteúdo prontas e traduzidas:\n\n- **Elenco** — os 56 alunos, com atributos comparados ao resto da turma\n- **Itens** — 162 itens com receita de craft, peso, raridade e onde cada um spawna\n- **Mapa** — 78 locais da academia e o que cai em cada contêiner\n- **Mecânicas** — todas as teclas e 52 mecânicas explicadas\n- **FAQ** — 51 perguntas respondidas\n\nOs dados de jogo vêm da extração do Kirigiri Press e passam por um glossário russo→inglês e por arquivos de tradução em português que a administração edita sem mexer no código.\n\nEste é um site comunitário: não é fonte oficial de notícias nem de anúncios sobre o Shinri Trial."
+  }
+]

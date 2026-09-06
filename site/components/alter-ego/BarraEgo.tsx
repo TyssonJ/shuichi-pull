@@ -13,6 +13,8 @@ const SECOES = [
   { nome: 'Itens', url: '/itens/' },
   { nome: 'Mapa', url: '/mapa/' },
   { nome: 'Mecânicas', url: '/mecanicas/' },
+  { nome: 'Eventos', url: '/eventos/' },
+  { nome: 'Códigos', url: '/codigos/' },
   { nome: 'FAQ', url: '/faq/' },
 ];
 
