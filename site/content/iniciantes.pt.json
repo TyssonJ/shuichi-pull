@@ -1,0 +1,106 @@
+{
+  "$comment": "Conteudo da Area de Iniciantes. Editavel por ADM sem mexer em codigo. Adaptado do guidebook do Kirigiri Press (introducao, game loop e FAQ).",
+  "chamada": "Nunca jogou? Comece por aqui.",
+  "resumo": "Dezesseis estudantes talentosos, um prédio sem saída fácil e nenhum roteiro pronto. Esta página explica o que é Danganronpa, o que é o Shinri Trial e o que você precisa fazer para entrar na sua primeira partida.",
+  "blocos": [
+    {
+      "id": "o-que-e-danganronpa",
+      "titulo": "O que é Danganronpa",
+      "texto": "Danganronpa é uma série japonesa de jogos de mistério e julgamento. A premissa se repete: um grupo de estudantes talentosos fica preso num lugar do qual só se sai cometendo um assassinato — e escapando sem ser descoberto no julgamento que vem depois.\n\nVocê **não precisa** ter jogado nada da série para jogar Shinri Trial. Mas se quiser conhecer, tem dois caminhos:\n\n- **O caminho completo, na ordem de lançamento:** Trigger Happy Havoc → Goodbye Despair → Ultra Despair Girls → anime (arcos Future e Despair, depois Hope) → V3: Killing Harmony\n- **O caminho rápido:** primeira temporada do anime → de preferência o segundo jogo → anime (Future e Despair, depois Hope)"
+    },
+    {
+      "id": "o-que-e-shinri-trial",
+      "titulo": "O que é Shinri Trial",
+      "texto": "Shinri Trial é um modo de jogo feito por fãs dentro do **Garry's Mod** — um sandbox da Steam onde as pessoas constroem os próprios jogos. É um jogo de dedução social com craft, saque e roleplay, **sem enredo pré-escrito**.\n\nCada passo, cada palavra e cada traição saem de decisões de jogadores de verdade. Você não é plateia: seu personagem pode ser a peça-chave de uma investigação ou o assassino frio que todo mundo vai tentar desmascarar.\n\nUma coisa importante que a própria equipe do Kirigiri Press faz questão de dizer: isto aqui é **antes de tudo um jogo de interpretação** — sobre personagens, relações e cenas — e só depois sobre craft e estoque de recursos."
+    },
+    {
+      "id": "precisa-ser-bom",
+      "titulo": "Preciso ser bom de RP?",
+      "texto": "Não. RP pesado não é exigido nas partidas rápidas, e essa é a posição oficial do projeto. Digitar rápido e fazer vozes também não: basta bom senso.\n\nNa ficção você está interpretando um estudante que também não conhece os outros — ou seja, ficar meio sem jeito literalmente combina com o papel. As primeiras partidas são caóticas para todo mundo, e isso é normal.\n\nMicrofone não é obrigatório, mas ajuda a acompanhar o ritmo do julgamento. Tem gente que joga só no texto e vai muito bem."
+    }
+  ],
+  "fases": [
+    {
+      "n": "01",
+      "nome": "Cotidiano",
+      "texto": "A fase principal. Os estudantes exploram a Academia, criam relações e cuidam da sobrevivência: saciedade se recupera comendo, energia dormindo ou com café e energético. Recursos ficam espalhados em contêineres e são processados na bancada, na bancada médica e no fogão."
+    },
+    {
+      "n": "02",
+      "nome": "Crime",
+      "texto": "A qualquer momento alguém pode decidir virar o culpado e matar outro personagem. Vale arma branca, armadilha, veneno, sonífero e o próprio ambiente — empurrar de uma altura, trancar na câmara fria ou na sauna."
+    },
+    {
+      "n": "03",
+      "nome": "Investigação",
+      "texto": "Evidências, impressões digitais, álibis — e, do lado do culpado, esconder rastro. É aqui que a percepção do seu personagem pesa: ela define de quão longe você enxerga uma evidência."
+    },
+    {
+      "n": "04",
+      "nome": "Julgamento",
+      "texto": "Quinze minutos reais de debate. Cada jogador tem energia, que enche com o tempo e ao vencer debates, e gasta para convocar debate, interromper, concordar ou iniciar a votação. No fim, todo mundo vota em quem acha que é o culpado."
+    }
+  ],
+  "passos": [
+    {
+      "n": 1,
+      "titulo": "Compre e instale o Garry's Mod",
+      "texto": "Custa cerca de US$ 10 na Steam. É o jogo base — o Shinri Trial roda dentro dele."
+    },
+    {
+      "n": 2,
+      "titulo": "Abra o jogo e vá em Multiplayer",
+      "texto": "No menu principal, escolha Find Multiplayer Game."
+    },
+    {
+      "n": 3,
+      "titulo": "Procure o modo Shinri Trial | Danganronpa",
+      "texto": "Na lista de servidores, escolha um lobby público que esteja vazio."
+    },
+    {
+      "n": 4,
+      "titulo": "Espere os add-ons baixarem",
+      "texto": "Na primeira vez isso demora bastante. É normal — deixe rodando."
+    },
+    {
+      "n": 5,
+      "titulo": "Entre com o Discord",
+      "texto": "Crie uma conta ou use a que você já tem. O login pelo Discord é obrigatório."
+    },
+    {
+      "n": 6,
+      "titulo": "Dê uma olhada nas mecânicas",
+      "texto": "As teclas e as 52 mecânicas do jogo estão explicadas em português na seção Mecânicas deste site."
+    },
+    {
+      "n": 7,
+      "titulo": "Procure uma partida e boa sorte",
+      "texto": "A partida rápida é gratuita, não tem host, junta 16 pessoas e dura de 1 a 2 horas. É o melhor jeito de conhecer o projeto."
+    }
+  ],
+  "dicas": [
+    "Ligue o monopad logo de cara e fique de olho no horário do jogo.",
+    "Lembre por onde você passou e o que fez: no julgamento, qualquer detalhe pode pesar.",
+    "No começo da partida, estoque comida — morrer de fome é um jeito bobo de sair.",
+    "Escreva toda fala fora de personagem pelo /looc.",
+    "Seu UID aparece no canto inferior esquerdo da tela, dentro do jogo. É ele que você usa para se inscrever em partidas.",
+    "Converse, explore e se divirta. As primeiras partidas são caóticas para todo mundo."
+  ],
+  "links": [
+    {
+      "rotulo": "Discord Shinri Trial Global",
+      "url": "https://discord.gg/KYkzy9n3HW",
+      "descricao": "Servidor em inglês, com moderadores bilíngues e gente acostumada a receber quem está chegando."
+    },
+    {
+      "rotulo": "Regras oficiais do projeto",
+      "url": "https://blog.shinri-trial.ru/docs/rules/",
+      "descricao": "Leia antes de jogar. Várias dúvidas do FAQ são, na verdade, regra."
+    },
+    {
+      "rotulo": "Guia em vídeo",
+      "url": "https://youtu.be/fdiaVeEvqJk",
+      "descricao": "Passo a passo em vídeo, útil para se virar na interface em russo."
+    }
+  ]
+}

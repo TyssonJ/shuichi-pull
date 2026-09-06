@@ -8,6 +8,7 @@ import { buscar, type Resultado } from '@/lib/busca';
 import type { EstadoEgo } from '@/lib/alter-ego';
 
 const SECOES = [
+  { nome: 'Começar', url: '/comecar/' },
   { nome: 'Elenco', url: '/elenco/' },
   { nome: 'Itens', url: '/itens/' },
   { nome: 'Mapa', url: '/mapa/' },

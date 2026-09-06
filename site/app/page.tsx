@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Faixa } from '@/components/layout/Faixa';
 import { Boot } from '@/components/alter-ego/Boot';
 import { listarPersonagens } from '@/lib/dados';
@@ -26,6 +27,12 @@ export default function Inicio() {
         <p className="relative mt-3 max-w-md text-[12px] leading-relaxed text-dim">
           Tudo sobre o Shinri Trial, o Danganronpa Online do Garry&apos;s Mod, em português.
         </p>
+        <Link
+          href="/comecar/"
+          className="relative mt-5 inline-block rounded-[3px] border border-teal bg-teal-escuro px-3 py-1.5 font-mono text-[10px] tracking-[.14em] text-papel hover:bg-teal hover:text-tinta"
+        >
+          NUNCA JOGUEI — COMEÇAR AQUI
+        </Link>
       </section>
 
       <Faixa numero="01" titulo="ELENCO" variante="teal" url="/elenco/"
