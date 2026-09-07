@@ -1,13 +1,6 @@
 import NextAuth from 'next-auth';
 import Discord from 'next-auth/providers/discord';
-import { db } from './db/client';
-import { criarRepositorioAdms } from './db/repositorios/administradores';
-
-// A instância de produção do repositório é montada aqui, e não dentro do
-// próprio módulo do repositório — assim `db/repositorios/administradores.ts`
-// não importa `db/client.ts` (que exige `DATABASE_URL` só de ser importado),
-// e o repositório continua testável isoladamente sem um banco configurado.
-const repositorioAdms = criarRepositorioAdms(db);
+import { repositorioAdms } from './db/repositorios/administradores';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Discord],

@@ -30,3 +30,7 @@ export function criarRepositorioAdms(db: Banco) {
     },
   };
 }
+
+// Instância padrão para uso em produção — importa o client real.
+import { db } from '../client';
+export const repositorioAdms = criarRepositorioAdms(db);
