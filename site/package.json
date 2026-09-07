@@ -12,14 +12,22 @@
     "dados": "tsx scripts/ingerir-elenco.ts",
     "sprites": "tsx scripts/otimizar-sprites.ts",
     "sprites:baixar": "tsx scripts/baixar-sprites.ts",
+    "fundo": "tsx scripts/remover-fundo.ts",
     "dados:itens": "tsx scripts/ingerir-itens.ts",
     "dados:faq": "tsx scripts/ingerir-faq.ts",
     "dados:controles": "tsx scripts/ingerir-controles.ts",
     "icones:baixar": "tsx scripts/baixar-icones.ts",
-    "icones": "tsx scripts/otimizar-icones.ts"
+    "icones": "tsx scripts/otimizar-icones.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
+    "dados:migrar-editorial": "tsx scripts/migrar-eventos-codigos.ts"
   },
   "dependencies": {
+    "drizzle-orm": "^0.28.2",
     "next": "16.3.4",
+    "next-auth": "^5.0.0-beta.20",
+    "postgres": "^3.4.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "zod": "^4.5.4"
@@ -32,6 +40,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.1.1",
+    "dotenv-cli": "^8.0.0",
+    "drizzle-kit": "^0.25.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "jsdom": "^30.0.1",
