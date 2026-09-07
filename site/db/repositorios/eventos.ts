@@ -4,13 +4,14 @@ import { eventos } from '../schema';
 
 type Banco = typeof DbClient;
 export type NovoEvento = typeof eventos.$inferInsert;
+type EventoSelecionado = typeof eventos.$inferSelect;
 
 export function criarRepositorioEventos(db: Banco) {
   return {
     async listar() {
       return db.select().from(eventos);
     },
-    async buscar(id: string) {
+    async buscar(id: string): Promise<EventoSelecionado | null> {
       const linhas = await db.select().from(eventos).where(eq(eventos.id, id));
       return linhas[0] ?? null;
     },

@@ -9,7 +9,9 @@ export async function salvarEvento(dados: Evento) {
   await exigirAdm();
   const validado = EventoSchema.parse(dados);
 
-  await repositorioEventos.criar(validado);
+  const existente = await repositorioEventos.buscar(validado.id);
+  if (existente) await repositorioEventos.atualizar(validado.id, validado);
+  else await repositorioEventos.criar(validado);
 
   revalidatePath('/eventos');
   revalidatePath(`/eventos/${validado.id}`);

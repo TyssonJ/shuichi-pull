@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('@/lib/adm/sessao', () => ({ exigirAdm: vi.fn() }));
 vi.mock('@/db/repositorios/eventos', () => ({
-  repositorioEventos: { criar: vi.fn(), atualizar: vi.fn(), excluir: vi.fn() },
+  repositorioEventos: { criar: vi.fn(), atualizar: vi.fn(), excluir: vi.fn(), buscar: vi.fn() },
 }));
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }));
 
@@ -32,10 +32,24 @@ describe('salvarEvento', () => {
 
   it('cria o evento e revalida as páginas afetadas', async () => {
     vi.mocked(exigirAdm).mockResolvedValue({ discordId: '1', papel: 'adm' });
+    vi.mocked(repositorioEventos.buscar).mockResolvedValue(null);
 
     await salvarEvento(eventoValido);
 
     expect(repositorioEventos.criar).toHaveBeenCalledWith(eventoValido);
+    expect(repositorioEventos.atualizar).not.toHaveBeenCalled();
+    expect(revalidatePath).toHaveBeenCalledWith('/eventos');
+    expect(revalidatePath).toHaveBeenCalledWith('/eventos/evento-teste');
+  });
+
+  it('atualiza em vez de criar quando o evento já existe', async () => {
+    vi.mocked(exigirAdm).mockResolvedValue({ discordId: '1', papel: 'adm' });
+    vi.mocked(repositorioEventos.buscar).mockResolvedValue(eventoValido);
+
+    await salvarEvento(eventoValido);
+
+    expect(repositorioEventos.atualizar).toHaveBeenCalledWith('evento-teste', eventoValido);
+    expect(repositorioEventos.criar).not.toHaveBeenCalled();
     expect(revalidatePath).toHaveBeenCalledWith('/eventos');
     expect(revalidatePath).toHaveBeenCalledWith('/eventos/evento-teste');
   });
