@@ -3,9 +3,9 @@ import { StatusCodigo } from '@/components/conteudo/StatusCodigo';
 
 export const metadata = { title: 'Códigos — Shuichi Pull' };
 
-export default function PaginaCodigos() {
-  const todos = listarCodigos();
-  const { ativos } = separarCodigos();
+export default async function PaginaCodigos() {
+  const todos = await listarCodigos();
+  const { ativos } = await separarCodigos();
 
   return (
     <div className="px-4 py-8">
@@ -23,9 +23,7 @@ export default function PaginaCodigos() {
             Nenhum código cadastrado ainda.
           </p>
           <p className="text-[11px] leading-relaxed text-dim">
-            A administração adiciona códigos em <code className="rounded-[2px] bg-[#22222C] px-1 font-mono text-teal">content/codigos.json</code>,
-            com código, recompensa, descrição, data de expiração e a fonte onde ele
-            foi anunciado.
+            A administração ainda não cadastrou nenhum código.
           </p>
         </div>
       ) : (
