@@ -1,5 +1,7 @@
 import conteudo from '@/content/faq.pt.json';
 import bruto from '@/content/faq.json';
+import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { aplicarCorrecoes } from './correcoes-merge';
 
 export type Pergunta = {
   id: string;
@@ -46,4 +48,16 @@ export function faqSemTraducao(): Pergunta[] {
     .filter((p) => !traducoes[p.pergunta])
     .map((p) => perguntas.find((x) => x.pergunta === p.pergunta)!)
     .filter(Boolean);
+}
+
+export async function listarFaqComCorrecoes(): Promise<Pergunta[]> {
+  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('faq');
+  return aplicarCorrecoes(perguntas, correcoes);
+}
+
+export async function faqPorSecaoComCorrecoes(): Promise<{ secao: string; perguntas: Pergunta[] }[]> {
+  const lista = await listarFaqComCorrecoes();
+  const mapa = new Map<string, Pergunta[]>();
+  for (const p of lista) mapa.set(p.secao, [...(mapa.get(p.secao) ?? []), p]);
+  return [...mapa.entries()].map(([secao, perguntas]) => ({ secao, perguntas }));
 }
