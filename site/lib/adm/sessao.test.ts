@@ -8,7 +8,7 @@ describe('sessaoAdm', () => {
   beforeEach(() => vi.clearAllMocks());
 
   it('devolve null sem sessão', async () => {
-    vi.mocked(auth).mockResolvedValue(null);
+    vi.mocked(auth).mockResolvedValue(null as never);
     expect(await sessaoAdm()).toBeNull();
   });
 
@@ -27,7 +27,7 @@ describe('exigirAdm', () => {
   beforeEach(() => vi.clearAllMocks());
 
   it('lança erro sem sessão de adm', async () => {
-    vi.mocked(auth).mockResolvedValue(null);
+    vi.mocked(auth).mockResolvedValue(null as never);
     await expect(exigirAdm()).rejects.toThrow('Acesso negado');
   });
 
