@@ -28,6 +28,16 @@ describe('JanelaEgo', () => {
     expect(screen.queryByText('Essa página não existe...')).not.toBeInTheDocument();
   });
 
+  it('esconde o rótulo ALTER_EGO no modo compacto', () => {
+    render(<JanelaEgo estado="ocioso" compacta />);
+    expect(screen.queryByText('ALTER_EGO')).not.toBeInTheDocument();
+  });
+
+  it('mostra o rótulo ALTER_EGO fora do modo compacto', () => {
+    render(<JanelaEgo estado="ocioso" />);
+    expect(screen.getByText('ALTER_EGO')).toBeInTheDocument();
+  });
+
   it('chama onFechar ao clicar no botão de fechar', async () => {
     const aoFechar = vi.fn();
     render(<JanelaEgo estado="ocioso" onFechar={aoFechar} />);
