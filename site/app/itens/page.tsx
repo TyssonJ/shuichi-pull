@@ -1,11 +1,16 @@
-import { listarItens, categoriasComTotal } from '@/lib/itens';
+import { categoriasComTotal } from '@/lib/itens';
+import { listarItensComCorrecoes } from '@/lib/itens-corrigidos';
 import { CartaoItem } from '@/components/itens/CartaoItem';
 import { RARIDADES } from '@/lib/vocabulario';
 
 export const metadata = { title: 'Itens — Shuichi Pull' };
 
-export default function PaginaItens() {
-  const itens = listarItens();
+export default async function PaginaItens() {
+  const itens = await listarItensComCorrecoes();
+  // categoriasComTotal() segue sincrono e le a lista base de itens: labels de
+  // categoria corrigidas por um ADM so aparecem aqui no proximo deploy. Gap
+  // aceito e documentado (Task 13, Passo 5) — categoria e um campo raro de
+  // corrigir e async-ificar so isso seria desproporcional.
   const categorias = categoriasComTotal();
 
   // Agrupa por categoria; dentro dela, do mais raro para o mais comum.

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buscarItem, listarItens, receitasQueUsam } from '@/lib/itens';
+import { listarItens, receitasQueUsam } from '@/lib/itens';
+import { buscarItemComCorrecoes } from '@/lib/itens-corrigidos';
 import { Selo } from '@/components/itens/Selo';
 import { Icone } from '@/components/itens/Icone';
 import { Receita } from '@/components/itens/Receita';
@@ -18,7 +19,7 @@ const ROTULO_MECANICA: Record<string, string> = {
 
 export default async function FichaItem({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const item = buscarItem(id);
+  const item = await buscarItemComCorrecoes(id);
   if (!item) notFound();
 
   const usadoEm = receitasQueUsam(item.id);

@@ -1,12 +1,13 @@
-import { tabelasDeTeclas, mecanicasPorGrupo, cardsDeMecanica } from '@/lib/controles';
+import { tabelasDeTeclas, mecanicasPorGrupoComCorrecoes, cardsDeMecanicaComCorrecoes } from '@/lib/controles';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { Tecla } from '@/components/conteudo/Tecla';
 
 export const metadata = { title: 'Mecânicas e Controles — Shuichi Pull' };
 
-export default function PaginaMecanicas() {
+export default async function PaginaMecanicas() {
   const tabelas = tabelasDeTeclas();
-  const grupos = mecanicasPorGrupo();
+  const grupos = await mecanicasPorGrupoComCorrecoes();
+  const totalCards = (await cardsDeMecanicaComCorrecoes()).length;
 
   return (
     <div className="px-4 py-8">
@@ -15,7 +16,7 @@ export default function PaginaMecanicas() {
         MECÂNICAS
       </h1>
       <p className="mb-8 text-[11px] text-dim">
-        Todas as teclas e {cardsDeMecanica().length} mecânicas explicadas, em português.
+        Todas as teclas e {totalCards} mecânicas explicadas, em português.
       </p>
 
       <section className="mb-12">

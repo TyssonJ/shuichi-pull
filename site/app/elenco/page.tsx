@@ -1,10 +1,10 @@
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { CartaoPersonagem } from '@/components/ficha/CartaoPersonagem';
 
 export const metadata = { title: 'Elenco — Shuichi Pull' };
 
-export default function PaginaElenco() {
-  const personagens = listarPersonagens();
+export default async function PaginaElenco() {
+  const personagens = await listarPersonagensComCorrecoes();
   const porJogo = new Map<string, typeof personagens>();
   for (const p of personagens) {
     porJogo.set(p.jogo, [...(porJogo.get(p.jogo) ?? []), p]);

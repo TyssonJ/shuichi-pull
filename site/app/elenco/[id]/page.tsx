@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
+import { listarPersonagens, valoresDoElenco } from '@/lib/dados';
+import { buscarPersonagemComCorrecoes } from '@/lib/dados-corrigidos';
+import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { Regua } from '@/components/dados/Regua';
 
 export function generateStaticParams() {
@@ -9,7 +11,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = buscarPersonagem(id);
+  const p = await buscarPersonagemComCorrecoes(id);
   return p
     ? { title: `${p.nome} — Shuichi Pull`, description: p.descricao.pt }
     : { title: 'Personagem não encontrado — Shuichi Pull' };
@@ -19,10 +21,13 @@ export default async function FichaPersonagem({
   params,
 }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = buscarPersonagem(id);
+  const p = await buscarPersonagemComCorrecoes(id);
   if (!p) notFound();
 
   const total = listarPersonagens().length;
+  // Na ficha aberta cabe o corpo inteiro; quem nao tem fica com o retrato da
+  // listagem mesmo.
+  const retrato = spriteInteiroDoPersonagem(p.id) ?? p.sprite;
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-8">
@@ -33,13 +38,13 @@ export default async function FichaPersonagem({
       {/* Retrato e identificação, lado a lado: a descrição é a primeira coisa
           que se lê, e os atributos ficam para depois. */}
       <div className="mt-4 grid gap-6 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-8">
-        <div className="mx-auto w-40 sm:mx-0 sm:w-full">
-          <div className="overflow-hidden rounded-[4px] border border-line bg-gradient-to-b from-[#1B1B22] to-[#101014]">
+        <div className="mx-auto w-48 sm:mx-0 sm:w-full">
+          <div className="overflow-hidden rounded-[4px] border border-line bg-gradient-to-b from-[#1B1B22] to-[#101014] p-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={p.sprite}
+              src={retrato}
               alt={`Sprite de ${p.nome}`}
-              className="mx-auto block max-h-[260px] w-auto object-contain"
+              className="mx-auto block max-h-[420px] w-auto object-contain"
             />
           </div>
         </div>

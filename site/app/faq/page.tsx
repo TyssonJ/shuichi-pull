@@ -1,17 +1,18 @@
-import { faqPorSecao, listarFaq } from '@/lib/faq';
+import { faqPorSecaoComCorrecoes, listarFaqComCorrecoes } from '@/lib/faq';
 import { Prosa } from '@/components/conteudo/Prosa';
 
 export const metadata = { title: 'FAQ — Shuichi Pull' };
 
-export default function PaginaFaq() {
-  const secoes = faqPorSecao();
+export default async function PaginaFaq() {
+  const secoes = await faqPorSecaoComCorrecoes();
+  const totalFaq = (await listarFaqComCorrecoes()).length;
 
   return (
     <div className="px-4 py-8">
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 04</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">FAQ</h1>
       <p className="mb-6 text-[11px] text-dim">
-        {listarFaq().length} perguntas respondidas, em português.
+        {totalFaq} perguntas respondidas, em português.
       </p>
 
       <nav aria-label="Seções do FAQ" className="mb-10 flex flex-wrap gap-1.5">
