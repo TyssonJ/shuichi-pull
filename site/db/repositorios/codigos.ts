@@ -4,13 +4,14 @@ import { codigos } from '../schema';
 
 type Banco = typeof DbClient;
 export type NovoCodigo = typeof codigos.$inferInsert;
+type CodigoSelecionado = typeof codigos.$inferSelect;
 
 export function criarRepositorioCodigos(db: Banco) {
   return {
     async listar() {
       return db.select().from(codigos);
     },
-    async buscar(codigo: string) {
+    async buscar(codigo: string): Promise<CodigoSelecionado | null> {
       const linhas = await db.select().from(codigos).where(eq(codigos.codigo, codigo));
       return linhas[0] ?? null;
     },
