@@ -29,3 +29,61 @@ body { overflow-x: hidden; }
     transition-duration: 0.01ms !important;
   }
 }
+
+@theme {
+  --color-execution-pink: #FF007F;
+  --color-cyber-cyan: #00F0FF;
+  --color-alter-green: #00FF66;
+  --color-amber: #F59E0B;
+  --color-alerta: #FF3B3B;
+}
+
+@layer utilities {
+  .clip-tab-slanted {
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .clip-hero-diagonal {
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
+  }
+  .crt-lines {
+    background: repeating-linear-gradient(
+      to bottom, transparent 0px, transparent 2px,
+      rgba(0, 0, 0, 0.45) 2px, rgba(0, 0, 0, 0.45) 4px
+    );
+  }
+  .bg-halftone-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+  }
+}
+
+@theme {
+  --animate-ambient-glow: ambient-glow 10s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 12s linear infinite;
+  --animate-marquee-slow: marquee-slow 35s linear infinite;
+  --animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
+
+  @keyframes ambient-glow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.28; transform: scale(1.03); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes marquee-slow {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes crt-flicker {
+    0%, 92%, 100% { opacity: 1; }
+    94% { opacity: 0.85; }
+    96% { opacity: 1; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-glow, .animate-spin-slow, .animate-marquee-slow, .animate-crt-flicker {
+    animation: none !important;
+  }
+}
