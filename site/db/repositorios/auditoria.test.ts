@@ -39,6 +39,20 @@ rodar('repositório de auditoria (integração)', () => {
     expect(linhas[0].autor).toBe('1');
   });
 
+  it('lista as entradas em ordem cronológica reversa (mais recente primeiro)', async () => {
+    await repo.registrar({ autor: '1', acao: 'primeira', alvo: 'x', valorAntigo: null, valorNovo: null });
+    // Espera um pouco para garantir criadoEm distinto entre as duas linhas
+    // (a coluna usa defaultNow(), sem forma de fixar o timestamp via registrar()).
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    await repo.registrar({ autor: '1', acao: 'segunda', alvo: 'x', valorAntigo: null, valorNovo: null });
+
+    const linhas = await repo.listarAuditoria();
+
+    expect(linhas).toHaveLength(2);
+    expect(linhas[0].acao).toBe('segunda');
+    expect(linhas[1].acao).toBe('primeira');
+  });
+
   it('filtra por coleção, buscando no início do alvo', async () => {
     await repo.registrar({ autor: '1', acao: 'a', alvo: 'itens/x/nome', valorAntigo: null, valorNovo: null });
     await repo.registrar({ autor: '1', acao: 'a', alvo: 'personagens/y/nome', valorAntigo: null, valorNovo: null });

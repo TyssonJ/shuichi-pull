@@ -1,4 +1,4 @@
-import { eq, like, and } from 'drizzle-orm';
+import { eq, like, and, desc } from 'drizzle-orm';
 import type { db as DbClient } from '../client';
 import { auditoria } from '../schema';
 
@@ -20,7 +20,7 @@ export function criarRepositorioAuditoria(db: Banco) {
       if (filtros.autor) condicoes.push(eq(auditoria.autor, filtros.autor));
       if (filtros.colecao) condicoes.push(like(auditoria.alvo, `${filtros.colecao}/%`));
 
-      const consulta = db.select().from(auditoria);
+      const consulta = db.select().from(auditoria).orderBy(desc(auditoria.criadoEm));
       return condicoes.length > 0 ? consulta.where(and(...condicoes)) : consulta;
     },
   };
