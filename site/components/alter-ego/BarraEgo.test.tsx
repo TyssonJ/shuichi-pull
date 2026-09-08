@@ -62,7 +62,7 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     expect(document.getElementById('busca-header')).toHaveFocus();
   });
 
-  it('Ctrl+K abre a janela flutuante e foca a busca dela quando o cabeçalho está escondido', () => {
+  it('Ctrl+K abre a janela flutuante e foca a busca dela quando o cabeçalho está escondido', async () => {
     // Simula "já rolou a página": a barra visível some quando o
     // IntersectionObserver do topo reporta isIntersecting: false. Os
     // testes existentes de scroll já mockam isso — replicando o mesmo
@@ -77,14 +77,16 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     vi.stubGlobal('IntersectionObserver', ObservadorFalso);
 
     render(<BarraEgo />);
-    return new Promise<void>((resolve) => {
-      setTimeout(async () => {
-        fireEvent.keyDown(window, { key: 'k', metaKey: true });
-        await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
-        vi.unstubAllGlobals();
-        resolve();
-      }, 10);
-    });
+    // Espera o efeito real do IntersectionObserver (barraVisivel === false)
+    // aparecer no DOM — o botão flutuante só existe quando a barra some —
+    // em vez de um delay fixo, que corre contra o timer mockado acima e é
+    // sensível à carga da máquina.
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: /abrir a janela do alter ego/i })).toBeInTheDocument(),
+    );
+    fireEvent.keyDown(window, { key: 'k', metaKey: true });
+    await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
+    vi.unstubAllGlobals();
   });
 
   it('previne o comportamento padrão do navegador para Ctrl+K', () => {
