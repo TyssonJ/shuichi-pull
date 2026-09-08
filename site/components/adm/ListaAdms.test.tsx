@@ -47,4 +47,13 @@ describe('ListaAdms', () => {
 
     expect(aoRebaixar).toHaveBeenCalledWith('1');
   });
+
+  it('mostra uma mensagem quando rebaixar falha', async () => {
+    const aoRebaixar = vi.fn().mockRejectedValue(new Error('Banco fora do ar'));
+    render(<ListaAdms adms={adms} aoPromover={vi.fn()} aoRebaixar={aoRebaixar} />);
+
+    fireEvent.click(screen.getAllByRole('button', { name: 'Rebaixar' })[0]);
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('Banco fora do ar');
+  });
 });

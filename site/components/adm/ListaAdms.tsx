@@ -9,7 +9,7 @@ export function ListaAdms({
 }: {
   adms: Adm[];
   aoPromover: (args: { discordId: string; nome: string; papel: 'adm' | 'chefe' }) => Promise<void>;
-  aoRebaixar: (discordId: string) => void;
+  aoRebaixar: (discordId: string) => Promise<void>;
 }) {
   const [discordId, setDiscordId] = useState('');
   const [nome, setNome] = useState('');
@@ -26,13 +26,22 @@ export function ListaAdms({
     }
   }
 
+  async function rebaixar(discordId: string) {
+    setErro(null);
+    try {
+      await aoRebaixar(discordId);
+    } catch (e) {
+      setErro(e instanceof Error ? e.message : 'Não deu para rebaixar. Tenta de novo?');
+    }
+  }
+
   return (
     <div>
       <ul className="mb-4 flex flex-col gap-2">
         {adms.map((a) => (
           <li key={a.discordId} className="flex items-center justify-between">
             <span><span>{a.nome}</span> — {a.papel}</span>
-            <button type="button" onClick={() => aoRebaixar(a.discordId)}>Rebaixar</button>
+            <button type="button" onClick={() => rebaixar(a.discordId)}>Rebaixar</button>
           </li>
         ))}
       </ul>
