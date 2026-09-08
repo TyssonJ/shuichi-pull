@@ -13,8 +13,8 @@ export default async function AdmPersonagens() {
         registros={registrosBase('personagens')}
         campos={CAMPOS_POR_COLECAO.personagens}
         correcoes={correcoes}
-        aoSalvar={(args) => salvarCorrecaoAction({ colecao: 'personagens', ...args })}
-        aoReverter={(args) => reverterCorrecaoAction({ colecao: 'personagens', ...args })}
+        aoSalvar={salvarCorrecaoAction.bind(null, 'personagens')}
+        aoReverter={reverterCorrecaoAction.bind(null, 'personagens')}
       />
     </div>
   );

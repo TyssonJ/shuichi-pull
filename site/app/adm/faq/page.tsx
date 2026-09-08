@@ -13,8 +13,8 @@ export default async function AdmFaq() {
         registros={registrosBase('faq')}
         campos={CAMPOS_POR_COLECAO.faq}
         correcoes={correcoes}
-        aoSalvar={(args) => salvarCorrecaoAction({ colecao: 'faq', ...args })}
-        aoReverter={(args) => reverterCorrecaoAction({ colecao: 'faq', ...args })}
+        aoSalvar={salvarCorrecaoAction.bind(null, 'faq')}
+        aoReverter={reverterCorrecaoAction.bind(null, 'faq')}
       />
     </div>
   );

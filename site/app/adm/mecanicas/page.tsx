@@ -13,8 +13,8 @@ export default async function AdmMecanicas() {
         registros={registrosBase('controles')}
         campos={CAMPOS_POR_COLECAO.controles}
         correcoes={correcoes}
-        aoSalvar={(args) => salvarCorrecaoAction({ colecao: 'controles', ...args })}
-        aoReverter={(args) => reverterCorrecaoAction({ colecao: 'controles', ...args })}
+        aoSalvar={salvarCorrecaoAction.bind(null, 'controles')}
+        aoReverter={reverterCorrecaoAction.bind(null, 'controles')}
       />
     </div>
   );

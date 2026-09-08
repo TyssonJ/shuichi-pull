@@ -24,18 +24,18 @@ function revalidarColecao(colecao: Colecao, registroId: string) {
   if (TEM_PAGINA_DE_DETALHE[colecao]) revalidatePath(`${base}/${registroId}`);
 }
 
-export async function salvarCorrecaoAction(args: {
-  colecao: Colecao; registroId: string; campo: string; valor: string; valorBase: string;
+export async function salvarCorrecaoAction(colecao: Colecao, args: {
+  registroId: string; campo: string; valor: string; valorBase: string;
 }) {
   const sessao = await exigirAdm();
-  await repositorioCorrecoes.salvarCorrecao({ ...args, autor: sessao.discordId });
-  revalidarColecao(args.colecao, args.registroId);
+  await repositorioCorrecoes.salvarCorrecao({ ...args, colecao, autor: sessao.discordId });
+  revalidarColecao(colecao, args.registroId);
 }
 
-export async function reverterCorrecaoAction(args: {
-  colecao: Colecao; registroId: string; campo: string;
+export async function reverterCorrecaoAction(colecao: Colecao, args: {
+  registroId: string; campo: string;
 }) {
   const sessao = await exigirAdm();
-  await repositorioCorrecoes.reverterCorrecao({ ...args, autor: sessao.discordId });
-  revalidarColecao(args.colecao, args.registroId);
+  await repositorioCorrecoes.reverterCorrecao({ ...args, colecao, autor: sessao.discordId });
+  revalidarColecao(colecao, args.registroId);
 }

@@ -13,8 +13,8 @@ export default async function AdmItens() {
         registros={registrosBase('itens')}
         campos={CAMPOS_POR_COLECAO.itens}
         correcoes={correcoes}
-        aoSalvar={(args) => salvarCorrecaoAction({ colecao: 'itens', ...args })}
-        aoReverter={(args) => reverterCorrecaoAction({ colecao: 'itens', ...args })}
+        aoSalvar={salvarCorrecaoAction.bind(null, 'itens')}
+        aoReverter={reverterCorrecaoAction.bind(null, 'itens')}
       />
     </div>
   );

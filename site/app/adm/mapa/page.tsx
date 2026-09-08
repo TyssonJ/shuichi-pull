@@ -13,8 +13,8 @@ export default async function AdmMapa() {
         registros={registrosBase('locais')}
         campos={CAMPOS_POR_COLECAO.locais}
         correcoes={correcoes}
-        aoSalvar={(args) => salvarCorrecaoAction({ colecao: 'locais', ...args })}
-        aoReverter={(args) => reverterCorrecaoAction({ colecao: 'locais', ...args })}
+        aoSalvar={salvarCorrecaoAction.bind(null, 'locais')}
+        aoReverter={reverterCorrecaoAction.bind(null, 'locais')}
       />
     </div>
   );
