@@ -10,6 +10,7 @@ describe('BarraLateral', () => {
     expect(screen.getByRole('link', { name: 'Itens' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Personagens' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Mapa' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Mecânicas' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Textos' })).toBeInTheDocument();
   });
 

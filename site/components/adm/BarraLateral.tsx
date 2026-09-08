@@ -6,6 +6,7 @@ const ITENS_COMUNS = [
   { rotulo: 'Itens', url: '/adm/itens' },
   { rotulo: 'Personagens', url: '/adm/personagens' },
   { rotulo: 'Mapa', url: '/adm/mapa' },
+  { rotulo: 'Mecânicas', url: '/adm/mecanicas' },
   { rotulo: 'Textos', url: '/adm/faq' },
 ];
 
