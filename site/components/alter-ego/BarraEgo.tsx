@@ -42,35 +42,56 @@ export function BarraEgo() {
     : resultados.length > 0 ? 'busca-com-resultado'
     : 'busca-sem-resultado';
 
-  const busca = (
-    <div className="relative flex-1">
-      <input
-        type="search"
-        role="searchbox"
-        aria-label="Buscar no Shuichi Pull"
-        placeholder="buscar item, local, personagem…"
-        value={termo}
-        onChange={(e) => setTermo(e.target.value)}
-        className="w-full rounded-[3px] border border-cyber-cyan/40 bg-[#0A0A10] px-2 py-1.5 font-mono text-[10px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
-      />
-      {termo.length >= 2 && (
-        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
-          {resultados.length === 0 ? (
-            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
-          ) : (
-            resultados.map((r) => (
-              <li key={r.id}>
-                <Link href={r.url} className="block px-2 py-1.5 hover:bg-cyber-cyan/10">
-                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
-                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
-                </Link>
-              </li>
-            ))
-          )}
-        </ul>
-      )}
-    </div>
-  );
+  function Busca({ id }: { id: string }) {
+    return (
+      <div className="relative flex-1">
+        <input
+          id={id}
+          type="search"
+          role="searchbox"
+          aria-label="Buscar no Shuichi Pull"
+          placeholder="buscar item, local, personagem…"
+          value={termo}
+          onChange={(e) => setTermo(e.target.value)}
+          className="w-full rounded-[3px] border border-cyber-cyan/40 bg-[#0A0A10] px-2 py-1.5 font-mono text-[10px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
+        />
+        {termo.length >= 2 && (
+          <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
+            {resultados.length === 0 ? (
+              <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
+            ) : (
+              resultados.map((r) => (
+                <li key={r.id}>
+                  <Link href={r.url} className="block px-2 py-1.5 hover:bg-cyber-cyan/10">
+                    <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
+                    <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
+                  </Link>
+                </li>
+              ))
+            )}
+          </ul>
+        )}
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    function aoTeclar(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (barraVisivel) {
+          document.getElementById('busca-header')?.focus();
+          return;
+        }
+        if (!flutuanteAberta) setFlutuanteAberta(true);
+        // A janela flutuante só existe no DOM depois do próximo render —
+        // requestAnimationFrame garante que já montou antes de focar.
+        requestAnimationFrame(() => document.getElementById('busca-flutuante')?.focus());
+      }
+    }
+    window.addEventListener('keydown', aoTeclar);
+    return () => window.removeEventListener('keydown', aoTeclar);
+  }, [barraVisivel, flutuanteAberta, setFlutuanteAberta]);
 
   return (
     <>
@@ -80,7 +101,7 @@ export function BarraEgo() {
         <div className="w-[52px] shrink-0">
           <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
         </div>
-        {busca}
+        <Busca id="busca-header" />
         <nav className="hidden gap-3 sm:flex">
           {SECOES.map((s) => (
             <Link key={s.url} href={s.url}
@@ -117,7 +138,7 @@ export function BarraEgo() {
             variaveis={{ n: resultados.length }}
             onFechar={() => setFlutuanteAberta(false)}
           />
-          <div className="mt-1">{busca}</div>
+          <div className="mt-1"><Busca id="busca-flutuante" /></div>
         </div>
       )}
     </>

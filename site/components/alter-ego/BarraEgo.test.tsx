@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BarraEgo } from './BarraEgo';
 
 describe('BarraEgo', () => {
@@ -50,5 +50,47 @@ describe('BarraEgo — numeração e retícula', () => {
     render(<BarraEgo />);
     const link = screen.getByRole('link', { name: /01\.\s*ELENCO/i });
     expect(link.querySelector('[data-testid="reticula"]')).toHaveAttribute('aria-hidden', 'true');
+  });
+});
+
+describe('BarraEgo — atalho Ctrl+K', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('Ctrl+K foca a busca do cabeçalho quando ela está visível', () => {
+    render(<BarraEgo />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    expect(document.getElementById('busca-header')).toHaveFocus();
+  });
+
+  it('Ctrl+K abre a janela flutuante e foca a busca dela quando o cabeçalho está escondido', () => {
+    // Simula "já rolou a página": a barra visível some quando o
+    // IntersectionObserver do topo reporta isIntersecting: false. Os
+    // testes existentes de scroll já mockam isso — replicando o mesmo
+    // espião aqui.
+    class ObservadorFalso {
+      constructor(cb: (e: { isIntersecting: boolean }[]) => void) {
+        setTimeout(() => cb([{ isIntersecting: false }]), 0);
+      }
+      observe() {}
+      disconnect() {}
+    }
+    vi.stubGlobal('IntersectionObserver', ObservadorFalso);
+
+    render(<BarraEgo />);
+    return new Promise<void>((resolve) => {
+      setTimeout(async () => {
+        fireEvent.keyDown(window, { key: 'k', metaKey: true });
+        await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
+        vi.unstubAllGlobals();
+        resolve();
+      }, 10);
+    });
+  });
+
+  it('previne o comportamento padrão do navegador para Ctrl+K', () => {
+    render(<BarraEgo />);
+    const evento = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, cancelable: true });
+    window.dispatchEvent(evento);
+    expect(evento.defaultPrevented).toBe(true);
   });
 });
