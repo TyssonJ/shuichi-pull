@@ -95,6 +95,21 @@ describe('EditorColecao', () => {
     expect(screen.getByText(/o jogo mudou isto/i)).toBeInTheDocument();
   });
 
+  it('não vaza o valor digitado (sem salvar) de um registro para o próximo ao trocar de registro', () => {
+    render(<EditorColecao registros={registros} campos={campos} correcoes={new Map()}
+      aoSalvar={vi.fn()} aoReverter={vi.fn()} />);
+
+    fireEvent.click(screen.getByText('a'));
+    const inputA = screen.getByDisplayValue('Original');
+    fireEvent.change(inputA, { target: { value: 'Editado sem salvar' } });
+    // Não dispara blur — o valor digitado não foi salvo como correção.
+
+    fireEvent.click(screen.getByText('b'));
+
+    expect(screen.getByDisplayValue('Outro')).toBeInTheDocument();
+    expect(screen.queryByDisplayValue('Editado sem salvar')).not.toBeInTheDocument();
+  });
+
   it('separa correções sem registro correspondente num grupo à parte', () => {
     const correcoes = new Map([['registro-removido', new Map([['nome', { valor: 'X', valorBase: 'Y', autor: '1', criadoEm: '2026-01-01' }]])]]);
     render(<EditorColecao registros={registros} campos={campos} correcoes={correcoes}

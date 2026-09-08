@@ -64,7 +64,7 @@ export function EditorColecao({
             const conflito = correcao && correcao.valorBase !== valorBaseAtual;
 
             return (
-              <div key={campo.caminho} className="mb-4">
+              <div key={`${aberto}-${campo.caminho}`} className="mb-4">
                 <label>{campo.rotulo}
                   <input
                     defaultValue={valorMostrado}
