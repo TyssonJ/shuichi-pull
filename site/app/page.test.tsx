@@ -1,0 +1,32 @@
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+
+vi.mock('@/lib/dados', () => ({
+  listarPersonagens: vi.fn().mockReturnValue(
+    Array.from({ length: 56 }, (_, i) => ({ id: `p${i}` }))
+  ),
+}));
+vi.mock('@/lib/sprites', () => ({ spriteDoPersonagem: () => '/sprites/shuichi.webp' }));
+
+import Inicio from './page';
+
+describe('Página inicial', () => {
+  it('mostra o título com a palavra em destaque', () => {
+    render(Inicio());
+    expect(screen.getByRole('heading', { name: /o caso está\s*aberto/i })).toBeInTheDocument();
+  });
+
+  it('mostra as três faixas numeradas com os totais certos', () => {
+    render(Inicio());
+    expect(screen.getByRole('link', { name: /elenco/i })).toBeInTheDocument();
+    expect(screen.getByText(/56 alunos/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /^02 itens/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /mapa/i })).toBeInTheDocument();
+  });
+
+  it('o botão de começar tem o feedback tátil de clique', () => {
+    render(Inicio());
+    const cta = screen.getByRole('link', { name: /nunca joguei/i });
+    expect(cta.className).toMatch(/active:translate-x-1/);
+  });
+});
