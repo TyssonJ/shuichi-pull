@@ -36,3 +36,19 @@ describe('BarraEgo', () => {
     expect(localStorage.getItem('ego-flutuante-aberta')).toBe('false');
   });
 });
+
+describe('BarraEgo — numeração e retícula', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('numera os links de seção', () => {
+    render(<BarraEgo />);
+    expect(screen.getByRole('link', { name: /01\.\s*ELENCO/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /02\.\s*ITENS/i })).toBeInTheDocument();
+  });
+
+  it('cada link de seção tem uma retícula decorativa escondida do leitor de tela', () => {
+    render(<BarraEgo />);
+    const link = screen.getByRole('link', { name: /01\.\s*ELENCO/i });
+    expect(link.querySelector('[data-testid="reticula"]')).toHaveAttribute('aria-hidden', 'true');
+  });
+});
