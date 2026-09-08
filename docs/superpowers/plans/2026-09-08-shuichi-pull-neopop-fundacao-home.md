@@ -450,12 +450,20 @@ Replace the `<nav>` block:
 Run: `npx vitest run components/alter-ego/BarraEgo.test.tsx`
 Expected: PASS (7 tests — the 5 original plus the 2 new).
 
-- [ ] **Step 5: Restyle the search input and floating window frame**
+- [ ] **Step 5: Restyle the search input, header border, and floating window frame**
 
-Edit `site/components/alter-ego/BarraEgo.tsx`'s search `<input>` and results
-list — replace the `teal`-referencing classes with the new tokens (this
-component is in scope for this plan, so it migrates now rather than waiting
-for Task 6's sweep):
+Edit `site/components/alter-ego/BarraEgo.tsx` — replace every remaining
+`teal`-referencing class in this file with the new tokens (this component
+is in scope for this plan, so it migrates now rather than waiting for
+Task 6's sweep — Task 6's file list deliberately excludes `BarraEgo.tsx`
+because this step is what fully migrates it). There are three spots, not
+just the search input:
+
+1. The `<header>` element's own `border-b-2 border-teal-escuro` becomes
+   `border-b-2 border-cyber-cyan/40` — this is the header's bottom edge,
+   visible on every page, and easy to miss since neither Step 3 (nav links)
+   nor the input restyle below touches it.
+2. The search `<input>`:
 
 ```tsx
 <input
@@ -469,9 +477,13 @@ for Task 6's sweep):
 />
 ```
 
-Leave the results-list rendering logic untouched — only its container's
-border/hover classes swap `border-line`/`hover:bg-[#22222C]` for
-`border-cyber-cyan/20`/`hover:bg-cyber-cyan/10`.
+3. The results-list rendering logic stays untouched — only its container's
+   border/hover classes swap `border-line`/`hover:bg-[#22222C]` for
+   `border-cyber-cyan/20`/`hover:bg-cyber-cyan/10`.
+
+After this step, run `grep -n "teal" components/alter-ego/BarraEgo.tsx` and
+confirm it returns nothing — that's the check that all three spots were
+caught, not just the ones called out above.
 
 - [ ] **Step 6: Run the full suite, tsc, and build**
 
