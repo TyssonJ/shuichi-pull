@@ -13,7 +13,7 @@ type Particula = { forma: string; esquerda: number; atraso: number; duracao: num
 // montagens seguintes. Isso quebra qualquer teste que mocka `matchMedia` por
 // caso de teste. Lemos a preferência aqui, por instância do componente, via
 // inicializador preguiçoso de `useState` — reavaliado a cada nova montagem.
-function usarMovimentoReduzido() {
+function useMovimentoReduzido() {
   const [reduzido] = useState(
     () =>
       typeof window !== 'undefined' &&
@@ -32,7 +32,7 @@ const PARTICULAS: Particula[] = Array.from({ length: 14 }, (_, i) => ({
 }));
 
 export function CamadaAmbiente() {
-  const movimentoReduzido = usarMovimentoReduzido();
+  const movimentoReduzido = useMovimentoReduzido();
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
