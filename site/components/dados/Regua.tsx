@@ -17,7 +17,7 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
 
   // Verde quando é bom estar onde está, vermelho quando não é.
   const bom = maiorEhMelhor ? d.acima <= d.abaixo : d.abaixo <= d.acima;
-  const cor = bom ? 'var(--color-teal)' : 'var(--color-red)';
+  const cor = bom ? 'var(--color-alter-green)' : 'var(--color-alerta)';
 
   const posMedia = ((d.media - d.min) / Math.max(d.max - d.min, 1)) * 100;
   const resumo =

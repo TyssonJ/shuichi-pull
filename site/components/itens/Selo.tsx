@@ -9,9 +9,9 @@ const ESTILOS: Record<number, string> = {
   0: 'border-line text-dim',
   1: 'border-line text-dim',
   2: 'border-[#4E5E5C] text-[#B9C9C6]',
-  3: 'border-teal-escuro text-teal',
-  4: 'border-teal bg-teal-escuro text-papel',
-  5: 'border-papel bg-papel text-tinta',
+  3: 'border-ego-escuro text-alter-green',
+  4: 'border-alter-green bg-ego-escuro text-dim',
+  5: 'border-line bg-sur text-dim',
 };
 
 type Props = { raridade: Texto; nivel: number; comIngles?: boolean };

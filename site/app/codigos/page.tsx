@@ -23,7 +23,7 @@ export default function PaginaCodigos() {
             Nenhum código cadastrado ainda.
           </p>
           <p className="text-[11px] leading-relaxed text-dim">
-            A administração adiciona códigos em <code className="rounded-[2px] bg-[#22222C] px-1 font-mono text-teal">content/codigos.json</code>,
+            A administração adiciona códigos em <code className="rounded-[2px] bg-[#22222C] px-1 font-mono text-alter-green">content/codigos.json</code>,
             com código, recompensa, descrição, data de expiração e a fonte onde ele
             foi anunciado.
           </p>
@@ -34,7 +34,7 @@ export default function PaginaCodigos() {
             <li
               key={c.codigo}
               className={`rounded-[4px] border bg-sur p-3 ${
-                estaExpirado(c) ? 'border-line opacity-60' : 'border-teal-escuro'
+                estaExpirado(c) ? 'border-line opacity-60' : 'border-ego-escuro'
               }`}
             >
               <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
@@ -43,14 +43,14 @@ export default function PaginaCodigos() {
                 </code>
                 <StatusCodigo expiraEm={c.expiraEm} expiradoNoBuild={estaExpirado(c)} />
               </div>
-              <p className="text-[12px] font-bold text-teal">{c.recompensa}</p>
+              <p className="text-[12px] font-bold text-alter-green">{c.recompensa}</p>
               <p className="mt-1 text-[11px] leading-relaxed text-dim">{c.descricao}</p>
               {c.fonte && (
                 <a
                   href={c.fonte}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-2 inline-block font-mono text-[8px] text-dim underline hover:text-teal"
+                  className="mt-2 inline-block font-mono text-[8px] text-dim underline hover:text-alter-green"
                 >
                   onde foi anunciado
                 </a>

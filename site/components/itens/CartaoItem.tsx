@@ -7,7 +7,7 @@ export function CartaoItem({ item }: { item: Item }) {
   return (
     <Link
       href={`/itens/${item.id}/`}
-      className="group block rounded-[4px] border border-line bg-sur p-2.5 transition-colors hover:border-teal"
+      className="group block rounded-[4px] border border-line bg-sur p-2.5 transition-colors hover:border-alter-green"
     >
       <div className="mb-1.5 flex items-start gap-2">
         <Icone src={item.icone} nome={item.nome.pt} />
@@ -17,7 +17,7 @@ export function CartaoItem({ item }: { item: Item }) {
         {item.craft && (
           <span
             title="Dá para fabricar"
-            className="font-mono text-[9px] text-teal"
+            className="font-mono text-[9px] text-alter-green"
             aria-label="Dá para fabricar"
           >
             ⚒
