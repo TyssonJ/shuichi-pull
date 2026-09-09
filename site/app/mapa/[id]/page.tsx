@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { buscarLocal, listarLocais } from '@/lib/itens';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export function generateStaticParams() {
   return listarLocais().map((l) => ({ id: l.id }));
@@ -12,7 +13,7 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
   if (!local) notFound();
 
   return (
-    <article className="px-4 py-8">
+    <PainelComTrilhas as="article">
       <header className="relative overflow-hidden">
         <span
           aria-hidden
@@ -66,6 +67,6 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
           </section>
         ))}
       </div>
-    </article>
+    </PainelComTrilhas>
   );
 }

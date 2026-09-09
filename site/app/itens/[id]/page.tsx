@@ -6,6 +6,7 @@ import { Icone } from '@/components/itens/Icone';
 import { Receita } from '@/components/itens/Receita';
 import { BarraSpawn } from '@/components/itens/BarraSpawn';
 import { Papel } from '@/components/ficha/Papel';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export function generateStaticParams() {
   return listarItens().map((i) => ({ id: i.id }));
@@ -25,7 +26,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
   const mecanicas = Object.entries(item.mecanicas);
 
   return (
-    <article className="px-4 py-8">
+    <PainelComTrilhas as="article">
       <header className="relative overflow-hidden">
         <span
           aria-hidden
@@ -131,6 +132,6 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
           </Papel>
         </div>
       )}
-    </article>
+    </PainelComTrilhas>
   );
 }

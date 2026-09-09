@@ -1,6 +1,7 @@
 import { tabelasDeTeclas, mecanicasPorGrupo, cardsDeMecanica } from '@/lib/controles';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { Tecla } from '@/components/conteudo/Tecla';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Mecânicas e Controles — Shuichi Pull' };
 
@@ -9,7 +10,7 @@ export default function PaginaMecanicas() {
   const grupos = mecanicasPorGrupo();
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 05</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">
         MECÂNICAS
@@ -83,6 +84,6 @@ export default function PaginaMecanicas() {
           </div>
         </section>
       ))}
-    </div>
+    </PainelComTrilhas>
   );
 }

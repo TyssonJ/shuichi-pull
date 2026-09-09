@@ -1,6 +1,7 @@
 import { listarItens, categoriasComTotal } from '@/lib/itens';
 import { CartaoItem } from '@/components/itens/CartaoItem';
 import { RARIDADES } from '@/lib/vocabulario';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Itens — Shuichi Pull' };
 
@@ -18,7 +19,7 @@ export default function PaginaItens() {
   }));
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 02</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">ITENS</h1>
       <p className="mb-6 text-[11px] text-dim">
@@ -47,6 +48,6 @@ export default function PaginaItens() {
           </div>
         </section>
       ))}
-    </div>
+    </PainelComTrilhas>
   );
 }

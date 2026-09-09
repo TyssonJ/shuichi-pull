@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { listarLocais } from '@/lib/itens';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Mapa — Shuichi Pull' };
 
@@ -16,7 +17,7 @@ export default function PaginaMapa() {
   }
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 03</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">MAPA</h1>
       <p className="mb-8 text-[11px] text-dim">
@@ -73,6 +74,6 @@ export default function PaginaMapa() {
           </ul>
         </section>
       )}
-    </div>
+    </PainelComTrilhas>
   );
 }

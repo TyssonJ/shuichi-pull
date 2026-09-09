@@ -1,5 +1,6 @@
 import { listarCodigos, separarCodigos, estaExpirado } from '@/lib/eventos';
 import { StatusCodigo } from '@/components/conteudo/StatusCodigo';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Códigos — Shuichi Pull' };
 
@@ -8,7 +9,7 @@ export default function PaginaCodigos() {
   const { ativos } = separarCodigos();
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 07</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">CÓDIGOS</h1>
       <p className="mb-8 max-w-2xl text-[11px] text-dim">
@@ -65,6 +66,6 @@ export default function PaginaCodigos() {
           {ativos.length} de {todos.length} códigos funcionando agora.
         </p>
       )}
-    </div>
+    </PainelComTrilhas>
   );
 }

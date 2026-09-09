@@ -17,12 +17,6 @@ export function PainelComTrilhas({ as = 'div', children }: Props) {
 
   return (
     <Tag className="relative px-4 py-8 xl:mx-auto xl:grid xl:max-w-[1400px] xl:grid-cols-[180px_minmax(0,56rem)_220px] xl:gap-10 xl:px-8">
-      {/* Textura CRT sutil e estática — reaproveita .crt-lines do
-          sub-projeto 1, sem a animação de flicker (essa área não precisa
-          de mais uma coisa piscando). Ver spec, seção 5 e 8, sobre o
-          risco de ficar redundante contra a camada de ambiência global. */}
-      <div aria-hidden className="crt-lines pointer-events-none absolute inset-0 opacity-[0.03]" />
-
       <aside className="relative hidden xl:block">
         <nav aria-label="Seções do site" className="sticky top-20 space-y-1">
           {SECOES.map((s) => {
