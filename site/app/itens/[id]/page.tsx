@@ -124,7 +124,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
           <Papel titulo="DESCRIÇÃO">
             <p className="text-[12px] leading-relaxed">{item.descricao.pt}</p>
             {!item.traducaoRevisada && (
-              <p className="mt-3 font-mono text-[8px] text-dim/50">
+              <p className="mt-3 font-mono text-[8px] text-dim/70">
                 Tradução ainda não revisada por um ADM.
               </p>
             )}

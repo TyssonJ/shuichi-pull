@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const TEXTO_MARQUEE =
@@ -10,15 +10,21 @@ type Particula = { forma: string; esquerda: number; atraso: number; duracao: num
 
 // Não usamos o `useReducedMotion` do framer-motion: ele lê `window.matchMedia`
 // uma única vez, em um singleton de módulo (`motion-dom`), e não reavalia em
-// montagens seguintes. Isso quebra qualquer teste que mocka `matchMedia` por
-// caso de teste. Lemos a preferência aqui, por instância do componente, via
-// inicializador preguiçoso de `useState` — reavaliado a cada nova montagem.
+// montagens seguintes — isso quebra qualquer teste que mocka `matchMedia` por
+// caso de teste. Também não podemos ler a preferência direto num inicializador
+// de `useState` (como esta função fazia antes): o servidor sempre renderiza
+// como se o movimento não fosse reduzido, e se o cliente decidisse diferente
+// já no primeiro render, o React acharia um mismatch de hidratação. Por isso
+// começamos sempre em `false` (igual ao servidor) e só ajustamos para o valor
+// real dentro de um `useEffect`, depois que a hidratação já terminou.
 function useMovimentoReduzido() {
-  const [reduzido] = useState(
-    () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  );
+  const [reduzido, setReduzido] = useState(false);
+  useEffect(() => {
+    // A preferencia so pode ser lida no cliente; comeca em `false` (linha 21)
+    // para bater com o servidor e evitar mismatch de hidratacao.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setReduzido(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
   return reduzido;
 }
 
@@ -34,8 +40,14 @@ const PARTICULAS: Particula[] = Array.from({ length: 14 }, (_, i) => ({
 export function CamadaAmbiente() {
   const movimentoReduzido = useMovimentoReduzido();
 
+  // Camada de ambiencia fica no nivel mais baixo (z-0): abaixo do header
+  // (sticky, z-40), da janela/botao flutuante do Alter Ego (fixed, z-50) e
+  // do Boot (z-[100]). Documentado aqui porque a ordem entre esses tiers
+  // nao e obvia so olhando o DOM — futuros sub-projetos que adicionarem
+  // overlays/modais devem escolher um z-index acima de 0 e checar contra
+  // esta lista.
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {/* Vinheta radial — estática, sem custo de animação. */}
       <div
         className="absolute inset-0"

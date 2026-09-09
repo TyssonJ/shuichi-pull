@@ -118,7 +118,7 @@ export function BarraEgo() {
               className="group relative font-mono text-[9px] tracking-[.12em] text-dim hover:text-cyber-cyan">
               {s.numero}. {s.nome.toUpperCase()}
               <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
-                className="pointer-events-none absolute -right-3 -top-2 h-3 w-3 animate-spin-slow opacity-0 text-execution-pink group-hover:opacity-100">
+                className="pointer-events-none absolute -right-3 -top-2 h-3 w-3 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
                 <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
                 <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
                 <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />

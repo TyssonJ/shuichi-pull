@@ -38,7 +38,7 @@ export function StatusCodigo({ expiraEm, expiradoNoBuild }: Props) {
       expirado em {dia}
     </span>
   ) : (
-    <span className="rounded-[2px] border border-alter-green bg-ego-escuro px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-dim">
+    <span className="rounded-[2px] border border-alter-green bg-ego-escuro px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-[#D6D6E0]">
       funcionando até {dia}
     </span>
   );

@@ -3,7 +3,7 @@ type Props = { titulo?: string; children: React.ReactNode };
 export function Papel({ titulo, children }: Props) {
   return (
     <div
-      className="relative rounded-[2px] bg-sur p-4 text-dim shadow-[0_10px_26px_rgba(0,0,0,.7)]"
+      className="relative rounded-[2px] bg-sur p-4 text-[#D6D6E0] shadow-[0_10px_26px_rgba(0,0,0,.7)]"
       style={{ transform: 'rotate(-0.4deg)' }}
     >
       <div

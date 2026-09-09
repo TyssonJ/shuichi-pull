@@ -13,7 +13,7 @@ describe('Papel', () => {
     expect(screen.getByRole('heading', { name: 'COMO JOGAR' })).toBeInTheDocument();
   });
 
-  it('usa o creme como fundo do papel, nunca da página', () => {
+  it('usa a superfície escura como fundo do papel, nunca da página', () => {
     const { container } = render(<Papel><p>x</p></Papel>);
     expect(container.firstChild).toHaveClass('bg-sur');
   });

@@ -33,7 +33,7 @@ export function Faixa({ numero, titulo, descricao, url, sprite, variante }: Prop
         />
       )}
       <svg data-testid="reticula-faixa" aria-hidden viewBox="0 0 24 24"
-        className="pointer-events-none absolute right-3 top-3 h-4 w-4 animate-spin-slow opacity-0 group-hover:opacity-60">
+        className="pointer-events-none absolute right-3 top-3 h-4 w-4 opacity-0 transition-opacity group-hover:opacity-60 group-hover:animate-spin-slow">
         <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
         <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
         <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />

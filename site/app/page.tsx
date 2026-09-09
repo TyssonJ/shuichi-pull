@@ -12,7 +12,7 @@ export default function Inicio() {
     <>
       <Boot />
 
-      <section className="relative overflow-hidden bg-bg px-4 py-12 clip-hero-diagonal">
+      <section className="relative overflow-hidden bg-[#08090D] px-4 py-12 clip-hero-diagonal">
         <span
           aria-hidden
           className="pointer-events-none absolute -left-3 top-2 select-none text-7xl font-black leading-none tracking-tighter text-white/5 sm:text-9xl"
