@@ -18,7 +18,7 @@ export function HeroTitulo() {
           TRIAL
         </span>
       </h1>
-      <p className="relative mt-1 font-mono text-[11px] uppercase tracking-[.2em] text-cyber-cyan">
+      <p className="relative mt-8 font-mono text-[11px] uppercase tracking-[.2em] text-cyber-cyan">
         O caso está aberto.
       </p>
     </motion.div>
