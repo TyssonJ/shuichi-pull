@@ -13,7 +13,12 @@ import Inicio from './page';
 describe('Página inicial', () => {
   it('mostra o título com a palavra em destaque', () => {
     render(Inicio());
-    expect(screen.getByRole('heading', { name: /o caso está\s*aberto/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /shinri\s*trial/i })).toBeInTheDocument();
+  });
+
+  it('mostra o subtítulo abaixo do título', () => {
+    render(Inicio());
+    expect(screen.getByText('O caso está aberto.')).toBeInTheDocument();
   });
 
   it('mostra as três faixas numeradas com os totais certos', () => {
