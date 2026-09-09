@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { Regua } from '@/components/dados/Regua';
+import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
@@ -22,7 +23,9 @@ export default async function FichaPersonagem({
   const p = buscarPersonagem(id);
   if (!p) notFound();
 
-  const total = listarPersonagens().length;
+  const todos = listarPersonagens();
+  const total = todos.length;
+  const numero = todos.findIndex((x) => x.id === id) + 1;
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-8">
@@ -34,14 +37,7 @@ export default async function FichaPersonagem({
           que se lê, e os atributos ficam para depois. */}
       <div className="mt-4 grid gap-6 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-8">
         <div className="mx-auto w-40 sm:mx-0 sm:w-full">
-          <div className="overflow-hidden rounded-[4px] border border-line bg-gradient-to-b from-[#1B1B22] to-[#101014]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={p.sprite}
-              alt={`Sprite de ${p.nome}`}
-              className="mx-auto block max-h-[260px] w-auto object-contain"
-            />
-          </div>
+          <CarteirinhaEstudante personagem={p} numero={numero} />
         </div>
 
         <header className="min-w-0">
@@ -100,7 +96,7 @@ export default async function FichaPersonagem({
       <section className="mt-12">
         <h2 className="mb-1 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#B9B9C6]">
           <span className="h-px flex-1 bg-line" />
-          Como se compara
+          — // ANÁLISE DE DADOS DO ALUNO // —
           <span className="h-px flex-1 bg-line" />
         </h2>
         <p className="mb-6 text-center font-mono text-[8px] tracking-[.14em] text-dim">
