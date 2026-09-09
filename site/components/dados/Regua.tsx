@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { calcularDistribuicao, frasePosicao } from '@/lib/distribuicao';
 
 type Props = {
@@ -35,17 +38,21 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
 
       <div className="relative" role="img" aria-label={resumo}>
         <div className="flex h-[38px] items-end gap-[3px] overflow-x-auto" aria-hidden>
-          {d.colunas.map((c) => (
-            <div
+          {d.colunas.map((c, i) => (
+            <motion.div
               key={c.valor}
               data-testid="coluna"
               data-ativa={c.ehOValor}
               title={`${c.valor} ${unidade}: ${c.quantidade} aluno(s)`}
-              className="relative min-h-px flex-1 rounded-t-[1px]"
+              className="relative min-h-px flex-1 origin-bottom rounded-t-[1px]"
               style={{
                 height: `${Math.max((c.quantidade / pico) * 100, 1)}%`,
                 background: c.ehOValor ? cor : '#22222C',
+                boxShadow: c.ehOValor ? `0 0 8px ${cor}` : undefined,
               }}
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ type: 'spring', stiffness: 120, delay: i * 0.02 }}
             >
               {c.ehOValor && (
                 <span
@@ -55,7 +62,7 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
                   {c.valor} ← aqui
                 </span>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -64,7 +71,7 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
           className="pointer-events-none absolute -top-1 bottom-0 w-px bg-white/25"
           style={{ left: `${posMedia}%` }}
         >
-          <span className="absolute -top-3 left-1 whitespace-nowrap font-mono text-[7px] text-white/50">
+          <span className="absolute -top-3 left-1 whitespace-nowrap rounded-[2px] border border-line bg-[#0A0A0D] px-1 font-mono text-[7px] text-white/60">
             média {Math.round(d.media)}
           </span>
         </div>
