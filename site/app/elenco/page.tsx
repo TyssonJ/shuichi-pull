@@ -5,6 +5,13 @@ export const metadata = { title: 'Elenco — Shuichi Pull' };
 
 export default function PaginaElenco() {
   const personagens = listarPersonagens();
+
+  // O "Student ID" reflete a ordem global do elenco, não o agrupamento por
+  // jogo abaixo — a ficha individual (app/elenco/[id]/page.tsx) calcula o
+  // mesmo número a partir da mesma ordem, então os dois lugares sempre
+  // concordam (ver spec, seção 3 e 5).
+  const numeroPorId = new Map(personagens.map((p, i) => [p.id, i + 1]));
+
   const porJogo = new Map<string, typeof personagens>();
   for (const p of personagens) {
     porJogo.set(p.jogo, [...(porJogo.get(p.jogo) ?? []), p]);
@@ -26,7 +33,9 @@ export default function PaginaElenco() {
             <span className="h-px flex-1 bg-line" />
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {lista.map((p) => <CartaoPersonagem key={p.id} personagem={p} />)}
+            {lista.map((p) => (
+              <CartaoPersonagem key={p.id} personagem={p} numero={numeroPorId.get(p.id)!} />
+            ))}
           </div>
         </section>
       ))}
