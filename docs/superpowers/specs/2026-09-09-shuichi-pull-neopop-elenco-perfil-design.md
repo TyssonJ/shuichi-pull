@@ -159,9 +159,13 @@ Novo componente `site/components/ficha/CarteirinhaEstudante.tsx`, recebendo
   técnica das partículas do sub-projeto 1 — sorteado uma vez a partir de uma
   seed estável, não de `Math.random()`, para não haver divergência entre
   servidor e cliente). Puramente decorativo, não codifica dado real.
-- **Selo de talento**: mantém o estilo itálico serifado já existente
-  (`font-serif italic text-alter-green`) — já combina com "selo Ultimate" sem
-  precisar mudar.
+- **Sem duplicar texto do cabeçalho**: o cabeçalho ao lado da carteirinha
+  (seção 6) já mostra jogo, nome, talento e descrição — a carteirinha não
+  repete esse texto. O único texto próprio da carteirinha é o `[ STUDENT
+  ID: #0XX ]`; o "selo de talento" do prompt mestre já está coberto pelo
+  estilo itálico serifado que o cabeçalho já usa hoje
+  (`font-serif italic text-alter-green`), então não precisa de uma segunda
+  cópia dentro do cartão.
 - **Retrato**: o sprite atual (com fundo gradiente `from-[#1B1B22]
   to-[#101014]`) continua, sem alteração — o scanner e o holográfico já dão
   o efeito "carteirinha de segurança" sem precisar redesenhar a imagem em si.
