@@ -73,8 +73,18 @@ Duas peças novas, compartilhadas:
      (intervalo sorteado dentro dessa faixa) pra uma linha aleatória do
      pool ocioso completo — que inclui as próprias falas de seção, então
      não fica restrito à seção atual.
-  Retorna `{ tag: string; texto: string }` — usado tanto pra estilizar
-  quanto pro texto em si.
+  Retorna `{ tag: string; texto: string; forcarNovaLinha: () => void }` —
+  o terceiro item é o gatilho manual (ver "re-scan tátil" abaixo);
+  chamá-lo troca pra uma linha aleatória nova (nunca repete a atual de
+  propósito) e reinicia a contagem do intervalo ocioso, pra não trocar de
+  novo sozinho um instante depois.
+
+**Re-scan tátil**: a caixa de feed do Alter Ego na trilha direita (seção
+5) é clicável — chama `forcarNovaLinha()` em vez de esperar o rodízio.
+Puramente cosmético: um fade rápido (~150ms, `transition-opacity`) troca
+o texto visível, sem depender de nenhuma linha de código nova além do
+que o hook já expõe. O header não ganha esse clique — só a trilha, que é
+onde a ideia foi proposta.
 - **`site/components/layout/PainelComTrilhas.tsx`** (novo) — wrapper de
   layout: coluna central de largura de leitura confortável
   (`max-w-3xl`, ajustável por página via prop) + duas trilhas laterais
@@ -100,7 +110,12 @@ navegador):
   sintaxe especial; essa ideia foi avaliada e descartada em favor de só
   vestir a busca existente com moldura de terminal, decisão já tomada no
   brainstorm). Ganha um prefixo visual `>` e um cursor piscando
-  decorativo. Abaixo do campo, uma linha de log (`useLogAlterEgo`) —
+  decorativo. O `placeholder` troca conforme o foco — sem foco, o texto
+  de sempre ("buscar item, local, personagem…"); com foco, uma dica no
+  tom de comando ("digite pra consultar os registros…") — reforça a
+  ilusão de terminal sem precisar de um elemento de tooltip flutuante
+  separado (mais simples, sem posicionamento extra pra acertar).
+  Abaixo do campo, uma linha de log (`useLogAlterEgo`) —
   visível só quando o campo está vazio/sem foco de digitação ativa;
   enquanto o usuário digita, essa linha some e o comportamento de busca
   em tempo real que já existe continua idêntico.
@@ -158,10 +173,20 @@ Conteúdo das trilhas (igual em toda página, gerado pelo próprio
 - **Trilha direita**: o feed do Alter Ego — a mesma linha de
   `useLogAlterEgo()` que aparece no header, exibida aqui também
   (estado compartilhado: as duas aparições mostram a mesma fala ao mesmo
-  tempo, não sorteios independentes — ver seção 2).
+  tempo, não sorteios independentes — ver seção 2), dentro de uma caixa
+  clicável (re-scan tátil, seção 3).
 
 `/elenco/[id]/` (seção 4) **não** usa `PainelComTrilhas` — já tem sua
 própria estrutura de 3 colunas dedicada.
+
+**Textura CRT sutil**: o wrapper de `PainelComTrilhas` ganha uma camada
+decorativa (`aria-hidden`, `pointer-events-none`) reaproveitando a
+classe `.crt-lines` já existente (`app/globals.css`, criada no
+sub-projeto 1) — estática, sem a animação de flicker que a camada de
+ambiência usa (essa área já não precisa de mais uma coisa piscando).
+Opacidade bem baixa, só o suficiente pra marcar a trilha como "sua
+própria tela" dentro da página, sem prejudicar a leitura do conteúdo
+central. Ver risco de redundância visual na seção 8.
 
 ## 6. Banco de falas do Alter Ego
 
@@ -265,6 +290,7 @@ alerta = 19 entradas. Boot fica de fora do pool recorrente (seção 2).
 | 8 chips de navegação não caberem na largura do header em telas médias | Implementação decide entre fonte menor, abreviação mais curta, ou scroll horizontal — decisão de implementação, sem impacto no resto da spec (seção 10) |
 | Duas fontes de fala do Alter Ego (`EstadoEgo`/`falas.json` da janela flutuante vs. `log-alterego.json` novo) confundirem manutenção futura | Nomenclatura de arquivo/hook deliberadamente distinta (`alter-ego-log` vs `alter-ego`), e esta spec documenta explicitamente que são sistemas paralelos, não um substituindo o outro |
 | Rodízio ocioso (30-45s) em 9+ páginas rodando `setTimeout`/`setInterval` simultaneamente (header + trilha, todos client components) | Como as duas aparições compartilham o MESMO hook/estado (seção 2), há só um temporizador por página carregada, não dois — não é uma duplicação de custo |
+| A textura CRT da trilha (seção 5) pode ficar imperceptível por cima da camada de ambiência global, que já cobre a página inteira com o mesmo `.crt-lines` | Verificação visual no navegador é passo do plano — se não marcar diferença nenhuma contra o fundo, a camada decorativa é removida da trilha em vez de mantida sem efeito |
 
 ## 9. Aberto para a implementação
 
