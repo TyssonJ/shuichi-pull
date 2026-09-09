@@ -19,7 +19,6 @@ export function useLogAlterEgo() {
   useEffect(() => {
     if (!montado.current) {
       montado.current = true;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLinha(logDeBoot());
       return;
     }
