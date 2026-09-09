@@ -66,6 +66,10 @@ export function BarraEgo() {
   const [barraVisivel, setBarraVisivel] = useState(true);
   const [flutuanteAberta, setFlutuanteAberta] = usePersistencia('ego-flutuante-aberta', false);
   const alvo = useRef<HTMLDivElement>(null);
+  // Marca que o Ctrl+K pediu pra abrir a janela flutuante e focar a busca
+  // dela assim que ela existir no DOM — ver o useEffect logo abaixo do
+  // handler de teclado.
+  const focarFlutuanteRef = useRef(false);
 
   // A busca é derivada do termo: calcular no render evita um segundo render
   // a cada tecla.
@@ -93,15 +97,32 @@ export function BarraEgo() {
           document.getElementById('busca-header')?.focus();
           return;
         }
-        if (!flutuanteAberta) setFlutuanteAberta(true);
-        // A janela flutuante só existe no DOM depois do próximo render —
-        // requestAnimationFrame garante que já montou antes de focar.
-        requestAnimationFrame(() => document.getElementById('busca-flutuante')?.focus());
+        if (flutuanteAberta) {
+          document.getElementById('busca-flutuante')?.focus();
+        } else {
+          // A janela flutuante só existe no DOM depois que o React montar
+          // o próximo render — o useEffect abaixo (que roda só depois que
+          // o DOM já foi atualizado) faz o foco de verdade, sem depender
+          // de nenhum timer real.
+          focarFlutuanteRef.current = true;
+          setFlutuanteAberta(true);
+        }
       }
     }
     window.addEventListener('keydown', aoTeclar);
     return () => window.removeEventListener('keydown', aoTeclar);
   }, [barraVisivel, flutuanteAberta, setFlutuanteAberta]);
+
+  // Termina o pedido de foco do Ctrl+K assim que a janela flutuante
+  // realmente existe no DOM — useEffect só roda depois que o React já
+  // aplicou a mudança, então não há corrida como havia com
+  // requestAnimationFrame (que podia disparar antes do commit).
+  useEffect(() => {
+    if (flutuanteAberta && focarFlutuanteRef.current) {
+      focarFlutuanteRef.current = false;
+      document.getElementById('busca-flutuante')?.focus();
+    }
+  }, [flutuanteAberta]);
 
   return (
     <>

@@ -68,6 +68,7 @@ export function CarteirinhaEstudante(
           className="pointer-events-none absolute inset-0"
           style={{
             background: 'linear-gradient(115deg, transparent 40%, rgba(255,255,255,.08) 50%, transparent 60%)',
+            backgroundSize: '200% 200%',
             backgroundPositionX: brilhoX,
             backgroundPositionY: brilhoY,
           }}

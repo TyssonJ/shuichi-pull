@@ -58,4 +58,12 @@ describe('CartaoPersonagem', () => {
     render(<CartaoPersonagem personagem={chihiro} numero={1} />);
     expect(screen.getByTestId('reticula-cartao')).toHaveAttribute('aria-hidden', 'true');
   });
+
+  it('a ficha de dossiê não polui o nome acessível do link com texto decorativo', () => {
+    render(<CartaoPersonagem personagem={chihiro} numero={1} />);
+    const link = screen.getByRole('link');
+    expect(link).toHaveAccessibleName(/^Chihiro Fujisaki/);
+    expect(link).not.toHaveAccessibleName(/ULTIMATE FILE/i);
+    expect(link).not.toHaveAccessibleName(/STUDENT ID/i);
+  });
 });

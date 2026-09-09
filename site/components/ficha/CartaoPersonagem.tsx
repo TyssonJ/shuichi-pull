@@ -16,11 +16,11 @@ export function CartaoPersonagem(
       <span aria-hidden className="pointer-events-none absolute bottom-0.5 left-1 font-mono text-[9px] leading-none text-line">+</span>
       <span aria-hidden className="pointer-events-none absolute bottom-0.5 right-1 font-mono text-[9px] leading-none text-line">+</span>
 
-      <span className="absolute right-1.5 top-1.5 z-10 -rotate-6 rounded-[2px] border border-execution-pink px-1 py-px font-mono text-[6px] font-bold tracking-[.08em] text-execution-pink">
+      <span aria-hidden className="absolute right-1.5 top-1.5 z-10 -rotate-6 rounded-[2px] border border-execution-pink px-1 py-px font-mono text-[6px] font-bold tracking-[.08em] text-execution-pink">
         ULTIMATE FILE
       </span>
 
-      <p className="px-2 pt-2 font-mono text-[7px] tracking-[.1em] text-dim">
+      <p aria-hidden className="px-2 pt-2 font-mono text-[7px] tracking-[.1em] text-dim">
         [ STUDENT ID: #{studentId} ]
       </p>
 
