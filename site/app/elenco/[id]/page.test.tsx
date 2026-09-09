@@ -38,6 +38,6 @@ describe('Ficha do personagem', () => {
   it('troca o título da seção comparativa pelo texto do HUD', async () => {
     const jsx = await FichaPersonagem({ params: Promise.resolve({ id: 'bbb' }) });
     render(jsx);
-    expect(screen.getByText('— // ANÁLISE DE DADOS DO ALUNO // —')).toBeInTheDocument();
+    expect(screen.getByText('— // ANÁLISE // —')).toBeInTheDocument();
   });
 });
