@@ -57,6 +57,7 @@ body { overflow-x: hidden; }
   --animate-spin-slow: spin-slow 12s linear infinite;
   --animate-marquee-slow: marquee-slow 35s linear infinite;
   --animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
+  --animate-laser: laser-scan 3s ease-in-out infinite;
 
   @keyframes ambient-glow {
     0%, 100% { opacity: 0.15; transform: scale(1); }
@@ -74,6 +75,12 @@ body { overflow-x: hidden; }
     0%, 92%, 100% { opacity: 1; }
     94% { opacity: 0.85; }
     96% { opacity: 1; }
+  }
+  @keyframes laser-scan {
+    0% { top: 0%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
   }
 }
 
