@@ -76,6 +76,30 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     }
     vi.stubGlobal('IntersectionObserver', ObservadorFalso);
 
+    // O handler de produção foca a busca flutuante dentro de um
+    // requestAnimationFrame — de propósito, para esperar o próximo render
+    // (a janela flutuante só existe no DOM depois que `setFlutuanteAberta`
+    // for processado). Sob a suíte completa rodando em paralelo, o rAF
+    // real do jsdom pode demorar bem mais que os 16ms usuais pra disparar
+    // (contenção pesada de CPU entre os workers) — isso tornava este teste
+    // flaky mesmo com um `waitFor` de timeout generoso (confirmado
+    // empiricamente: falhou em ~1 a cada 3-5 rodadas da suíte completa).
+    //
+    // A tentativa óbvia — mockar o rAF pra chamar o callback de forma
+    // *síncrona* — na verdade QUEBRA o teste de forma determinística: o
+    // callback rodaria antes do React sequer processar a atualização de
+    // estado que monta a janela flutuante, então `busca-flutuante` ainda
+    // não existiria no DOM nesse instante. O rAF precisa continuar sendo
+    // assíncrono — só não precisa depender do timing real (possivelmente
+    // lento sob carga) do polyfill de rAF do jsdom. `setTimeout(cb, 0)`
+    // preserva o adiamento (roda depois que o React já comitou a
+    // atualização) usando um temporizador real de 0ms, sem a variação de
+    // timing do rAF real sob contenção pesada.
+    const rafOriginal = window.requestAnimationFrame;
+    window.requestAnimationFrame = ((cb: FrameRequestCallback) => {
+      return setTimeout(() => cb(performance.now()), 0) as unknown as number;
+    }) as typeof window.requestAnimationFrame;
+
     render(<BarraEgo />);
     // Espera o efeito real do IntersectionObserver (barraVisivel === false)
     // aparecer no DOM — o botão flutuante só existe quando a barra some —
@@ -86,6 +110,8 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     );
     fireEvent.keyDown(window, { key: 'k', metaKey: true });
     await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
+
+    window.requestAnimationFrame = rafOriginal;
     vi.unstubAllGlobals();
   });
 
