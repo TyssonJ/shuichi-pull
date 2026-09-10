@@ -31,6 +31,18 @@ export default async function FichaPersonagem({
 
   return (
     <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
+      {/* Moldura HUD: prende o painel inteiro num chassi de terminal —
+          cantos chanfrados + marcação de mira, mesma família visual do
+          canto "+" do card do elenco, só que na escala da janela toda. */}
+      <span aria-hidden className="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-cyber-cyan/40" />
+      <span aria-hidden className="pointer-events-none absolute -left-1 -top-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
+      <span aria-hidden className="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-cyber-cyan/40" />
+      <span aria-hidden className="pointer-events-none absolute -right-1 -top-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
+      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2 border-cyber-cyan/40" />
+      <span aria-hidden className="pointer-events-none absolute -bottom-1 -left-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
+      <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-cyber-cyan/40" />
+      <span aria-hidden className="pointer-events-none absolute -bottom-1 -right-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
+
       <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green xl:col-span-3">
         ← todo o elenco
       </Link>
