@@ -21,8 +21,8 @@ vi.mock('@/lib/dados', () => ({
 import PaginaElenco from './page';
 
 describe('Página de Elenco', () => {
-  it('numera cada personagem pela ordem global de listarPersonagens, não pelo agrupamento por jogo', () => {
-    render(<PaginaElenco />);
+  it('numera cada personagem pela ordem global de listarPersonagens, não pelo agrupamento por jogo', async () => {
+    render(await PaginaElenco());
     // "Aaa" é o primeiro no array (Jogo B) e "Bbb" é o segundo (Jogo A) —
     // se a numeração seguisse o agrupamento por jogo (que reordena "Jogo A"
     // antes de "Jogo B" na exibição), a numeração bateria errado.
