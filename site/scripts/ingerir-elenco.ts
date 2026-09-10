@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { traduzirRuEn } from '../lib/glossario';
 import { extrairValor } from '../lib/atributos';
-import { traduzirPt, talentoDoPersonagem, descricaoDoPersonagem } from '../lib/traducoes';
+import {
+  traduzirPt, talentoDoPersonagem, descricaoDoPersonagem, perfilExpandidoDoPersonagem,
+} from '../lib/traducoes';
 import { validarPersonagens, type Personagem, type Etiqueta } from '../lib/schema';
 import { spriteDoPersonagem } from '../lib/sprites';
 
@@ -85,6 +87,7 @@ export function ingerirElenco(): Personagem[] {
         etiquetas,
         sprite: spriteDoPersonagem(id),
         traducaoRevisada: false,
+        ...perfilExpandidoDoPersonagem(id),
       });
     }
   }

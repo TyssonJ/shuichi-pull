@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
+import { CofreAlterEgo } from '@/components/ficha/CofreAlterEgo';
 import { TelemetriaLateral } from '@/components/ficha/TelemetriaLateral';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 
@@ -181,6 +182,58 @@ export default async function FichaPersonagem({
           maiorEhMelhor sentido="enxerga mais"
         />
       </section>
+
+      {(p.personalidade || p.aparencia || p.historia || p.segredo) && (
+        <div className="mt-10 space-y-8 xl:col-span-3 xl:mt-16 xl:max-w-3xl">
+          {p.personalidade && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // PERSONALIDADE // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.personalidade}</p>
+            </section>
+          )}
+
+          {p.aparencia && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // APARÊNCIA // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.aparencia}</p>
+            </section>
+          )}
+
+          {p.historia && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // HISTÓRIA / PASSADO // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <CofreAlterEgo titulo="Arquivo de história">
+                <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.historia}</p>
+              </CofreAlterEgo>
+            </section>
+          )}
+
+          {p.segredo && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // SEGREDO // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <CofreAlterEgo titulo="Arquivo confidencial">
+                <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.segredo}</p>
+              </CofreAlterEgo>
+            </section>
+          )}
+        </div>
+      )}
 
       {!p.traducaoRevisada && (
         <p className="mt-10 text-center font-mono text-[8px] text-dim xl:col-span-3">

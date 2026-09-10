@@ -23,6 +23,14 @@ export const PersonagemSchema = z.object({
   etiquetas: z.array(EtiquetaSchema),
   sprite: z.string().min(1),
   traducaoRevisada: z.boolean(),
+  // Perfil expandido da ficha aberta — texto original (não é tradução da
+  // wiki), então só PT. Opcional: preenchido personagem por personagem.
+  // Personalidade e aparência ficam abertas; história e segredo, atrás do
+  // cofre do Alter Ego (contêm spoiler de enredo).
+  personalidade: z.string().min(1).optional(),
+  aparencia: z.string().min(1).optional(),
+  historia: z.string().min(1).optional(),
+  segredo: z.string().min(1).optional(),
 });
 export type Personagem = z.infer<typeof PersonagemSchema>;
 

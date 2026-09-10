@@ -960,7 +960,11 @@
       }
     ],
     "sprite": "/sprites/elenco/shuichi-saihara.webp",
-    "traducaoRevisada": false
+    "traducaoRevisada": false,
+    "personalidade": "Sério, educado e cheio de dúvida sobre si mesmo — cora e transpira frio com facilidade, e tende a achar que qualquer outra pessoa daria conta melhor do que ele. Ainda assim, quando decide agir, age: foi o primeiro a bolar um plano contra o mastermind logo no início. Depois de perder alguém que confiou cegamente nele, fica mais confiante e mais vocal, e larga o hábito de evitar os olhos dos outros.",
+    "aparencia": "Pele pálida, magro, cílios grossos e cabelo curto num verde-petróleo escuro com uma mecha rebelde. Usa um uniforme preto de risca fina, estilo clássico de colégio japonês, com o emblema do colégio antigo no bolso. Por um tempo não tira um boné preto com listras brancas e uma estrelinha prateada — não por estilo, mas pra não precisar encarar ninguém nos olhos.",
+    "historia": "Foi criado pelo tio, dono de uma agência de detetive particular, e a esposa dele, depois que os pais — um ator e uma roteirista — foram trabalhar fora do país. Ajudando o tio como assistente foi aprendendo o ofício: o primeiro caso, informal, foi encontrar o jacaré de estimação sumido de uma colega de classe. Tempos depois resolveu um assassinato mais rápido que a polícia, o que lhe rendeu fama e o título — que ele nunca sentiu merecer de verdade.",
+    "segredo": "Aquele caso de assassinato que lhe deu fama tinha um lado que ele escondeu de todo mundo: o culpado matou por vingança, pra proteger a própria família de alguém que a destruiu — e ao expor a verdade, Shuichi sentiu que tinha \"defendido\" a pessoa errada. A culpa nunca foi embora. Dali nasceu o medo de revelar verdades e o hábito de usar o boné, só pra não ter que olhar ninguém nos olhos de novo."
   },
   {
     "id": "kokichi-oma",
