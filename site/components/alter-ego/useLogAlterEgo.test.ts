@@ -6,12 +6,13 @@ vi.mock('next/navigation', () => ({
   usePathname: () => usePathnameMock(),
 }));
 
-import { useLogAlterEgo } from './useLogAlterEgo';
+import { useLogAlterEgo, __resetarLogAlterEgoParaTeste } from './useLogAlterEgo';
 
 describe('useLogAlterEgo', () => {
   beforeEach(() => {
     vi.useFakeTimers();
     usePathnameMock.mockReturnValue('/');
+    __resetarLogAlterEgoParaTeste();
   });
 
   afterEach(() => {
@@ -64,5 +65,32 @@ describe('useLogAlterEgo', () => {
     });
 
     expect(result.current.tag).not.toBe(falaInicial);
+  });
+
+  it('duas instâncias simultâneas (cabeçalho + trilha) mostram a mesma fala o tempo todo', () => {
+    const a = renderHook(() => useLogAlterEgo());
+    const b = renderHook(() => useLogAlterEgo());
+
+    expect(a.result.current.tag).toBe(b.result.current.tag);
+    expect(a.result.current.texto).toBe(b.result.current.texto);
+
+    act(() => {
+      a.result.current.forcarNovaLinha();
+    });
+
+    expect(a.result.current.tag).toBe(b.result.current.tag);
+  });
+
+  it('duas instâncias simultâneas trocam de fala juntas no rodízio ocioso (um só temporizador)', () => {
+    const a = renderHook(() => useLogAlterEgo());
+    const b = renderHook(() => useLogAlterEgo());
+    const falaInicial = a.result.current.tag;
+
+    act(() => {
+      vi.advanceTimersByTime(45_000);
+    });
+
+    expect(a.result.current.tag).not.toBe(falaInicial);
+    expect(a.result.current.tag).toBe(b.result.current.tag);
   });
 });
