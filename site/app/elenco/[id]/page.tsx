@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
+import { TelemetriaLateral } from '@/components/ficha/TelemetriaLateral';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 
 export function generateStaticParams() {
@@ -30,7 +31,11 @@ export default async function FichaPersonagem({
   const corpoInteiro = spriteInteiroDoPersonagem(id);
 
   return (
-    <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
+    <>
+      <TelemetriaLateral personagem={p} lado="esquerda" />
+      <TelemetriaLateral personagem={p} lado="direita" />
+
+      <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
       {/* Moldura HUD: uma peça só, não quatro cantos soltos — uma borda com
           chanfro nos 4 vértices (clip-path), chassi de dossiê fechado em
           vez de tiques desencontrados. As marcas de mira ficam exatamente
@@ -183,5 +188,6 @@ export default async function FichaPersonagem({
         </p>
       )}
     </article>
+    </>
   );
 }
