@@ -28,7 +28,7 @@ export default async function FichaPersonagem({
   const numero = todos.findIndex((x) => x.id === id) + 1;
 
   return (
-    <article className="mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
+    <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
       <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green xl:col-span-3">
         ← todo o elenco
       </Link>

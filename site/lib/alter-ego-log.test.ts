@@ -36,6 +36,11 @@ describe('logDeBoot', () => {
       expect(['SYS_BOOT', 'CORE_INIT', 'WELCOME', 'SEC_CHECK']).toContain(tag);
     }
   });
+
+  it('não estoura o índice quando o sorteio retorna 1 (limite superior)', () => {
+    expect(() => logDeBoot(() => 1)).not.toThrow();
+    expect(['SYS_BOOT', 'CORE_INIT', 'WELCOME', 'SEC_CHECK']).toContain(logDeBoot(() => 1).tag);
+  });
 });
 
 describe('logAleatorio', () => {
@@ -54,5 +59,9 @@ describe('logAleatorio', () => {
     // Sorteio determinístico: sempre pede o primeiro item do pool restante.
     const linha = logAleatorio('ELENCO_LOG', () => 0);
     expect(linha.tag).not.toBe('ELENCO_LOG');
+  });
+
+  it('não estoura o índice quando o sorteio retorna 1 (limite superior)', () => {
+    expect(() => logAleatorio(undefined, () => 1)).not.toThrow();
   });
 });

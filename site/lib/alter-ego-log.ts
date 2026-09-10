@@ -40,12 +40,14 @@ export function logDaSecao(caminho: string): LinhaLog | null {
 }
 
 export function logDeBoot(sorteio: () => number = Math.random): LinhaLog {
-  const tag = TAGS_BOOT[Math.floor(sorteio() * TAGS_BOOT.length)];
+  const indice = Math.min(TAGS_BOOT.length - 1, Math.floor(sorteio() * TAGS_BOOT.length));
+  const tag = TAGS_BOOT[indice];
   return { tag, texto: BANCO[tag].texto };
 }
 
 export function logAleatorio(evitarTag?: string, sorteio: () => number = Math.random): LinhaLog {
   const opcoes = evitarTag ? TAGS_OCIOSO.filter((tag) => tag !== evitarTag) : TAGS_OCIOSO;
-  const tag = opcoes[Math.floor(sorteio() * opcoes.length)];
+  const indice = Math.min(opcoes.length - 1, Math.floor(sorteio() * opcoes.length));
+  const tag = opcoes[indice];
   return { tag, texto: BANCO[tag].texto };
 }
