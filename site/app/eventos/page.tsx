@@ -12,8 +12,8 @@ function formatar(data: string): string {
   return data.split('-').reverse().join('/');
 }
 
-export default function PaginaEventos() {
-  const eventos = listarEventos();
+export default async function PaginaEventos() {
+  const eventos = await listarEventos();
 
   return (
     <PainelComTrilhas>

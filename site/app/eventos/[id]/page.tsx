@@ -4,8 +4,8 @@ import { buscarEvento, listarEventos } from '@/lib/eventos';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
-export function generateStaticParams() {
-  return listarEventos().map((e) => ({ id: e.id }));
+export async function generateStaticParams() {
+  return (await listarEventos()).map((e) => ({ id: e.id }));
 }
 
 function formatar(data: string): string {
@@ -14,7 +14,7 @@ function formatar(data: string): string {
 
 export default async function PaginaEvento({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const evento = buscarEvento(id);
+  const evento = await buscarEvento(id);
   if (!evento) notFound();
 
   return (

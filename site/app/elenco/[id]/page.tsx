@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
+import { listarPersonagens, valoresDoElenco } from '@/lib/dados';
+import { buscarPersonagemComCorrecoes } from '@/lib/dados-corrigidos';
+import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
 import { CofreAlterEgo } from '@/components/ficha/CofreAlterEgo';
 import { TelemetriaLateral } from '@/components/ficha/TelemetriaLateral';
-import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
@@ -13,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = buscarPersonagem(id);
+  const p = await buscarPersonagemComCorrecoes(id);
   return p
     ? { title: `${p.nome} — Shuichi Pull`, description: p.descricao.pt }
     : { title: 'Personagem não encontrado — Shuichi Pull' };
@@ -23,7 +24,7 @@ export default async function FichaPersonagem({
   params,
 }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = buscarPersonagem(id);
+  const p = await buscarPersonagemComCorrecoes(id);
   if (!p) notFound();
 
   const todos = listarPersonagens();

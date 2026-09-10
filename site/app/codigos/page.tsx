@@ -4,9 +4,9 @@ import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Códigos — Shuichi Pull' };
 
-export default function PaginaCodigos() {
-  const todos = listarCodigos();
-  const { ativos } = separarCodigos();
+export default async function PaginaCodigos() {
+  const todos = await listarCodigos();
+  const { ativos } = await separarCodigos();
 
   return (
     <PainelComTrilhas>

@@ -1,0 +1,92 @@
+{
+  "home": {
+    "kaomoji": "(・‿・)",
+    "falas": [
+      "Oi! Eu sou o Alter Ego. Se você se perder, é só me chamar aqui.",
+      "Tudo que eu sei sobre o Shinri Trial tá guardado aqui dentro. Pode usar!",
+      "Se é sua primeira vez, começa pelo \"Nunca joguei\" ali em cima, tá?",
+      "Eu fico aqui no cantinho enquanto você lê. Não incomodo, prometo.",
+      "Pode digitar na busca o nome de qualquer item, local ou personagem."
+    ]
+  },
+  "comecar": {
+    "kaomoji": "(๑•̀ㅂ•́)و",
+    "falas": [
+      "Todo mundo começou perdido um dia. Você tá indo bem!",
+      "Não precisa decorar tudo de uma vez. Uma partida já ensina bastante.",
+      "Se travar em algum passo, a FAQ costuma ter a resposta.",
+      "O RP assusta no começo, mas ninguém aqui espera atuação perfeita.",
+      "Baixar os add-ons demora um pouco. Aproveita e lê as mecânicas!"
+    ]
+  },
+  "elenco": {
+    "kaomoji": "(◕‿◕)",
+    "falas": [
+      "Cada um tem velocidade e mochila diferentes. Isso muda mais do que parece!",
+      "Personagem rápido carrega menos. Escolhe o que combina com seu jeito de jogar.",
+      "Percepção alta ajuda a achar pista antes dos outros.",
+      "Dica: joga primeiro com quem você já conhece da série. Fica mais fácil de atuar.",
+      "Eu gosto de todo mundo aqui. Mas não conta pro Monokuma que eu disse isso."
+    ]
+  },
+  "itens": {
+    "kaomoji": "(・o・)",
+    "falas": [
+      "Peso importa! Mochila cheia te deixa lento na hora errada.",
+      "Quase tudo aqui dá pra craftar. Vale olhar a receita antes de sair catando.",
+      "Item raro spawna em poucos lugares. Anota onde, que ajuda depois.",
+      "Se você achou algo estranho no chão, procura o nome aqui que eu explico.",
+      "Ferramenta certa economiza um tempo enorme na investigação."
+    ]
+  },
+  "mapa": {
+    "kaomoji": "(・‿・)",
+    "falas": [
+      "Saber onde cada coisa spawna é meio caminho pra vencer o julgamento.",
+      "Decorar os andares ajuda muito na hora de fugir. Ou de perseguir...",
+      "Cada local tem seus contêineres. Vale abrir todos quando dá tempo.",
+      "Se você viu alguém saindo de um lugar, lembra disso. Pode ser álibi.",
+      "Eu já mapeei a academia inteira. É o que dá pra fazer sendo um laptop."
+    ]
+  },
+  "mecanicas": {
+    "kaomoji": "(๑•̀ㅂ•́)و",
+    "falas": [
+      "Ler os controles antes da primeira partida salva muito perrengue.",
+      "Não dá pra abrir o Monopad durante o julgamento. Já anota isso!",
+      "As teclas parecem muitas, mas você usa umas cinco o tempo todo.",
+      "Se algo não funcionou, provavelmente tem uma regra explicando o porquê.",
+      "Testa os controles numa partida calma antes de valer nota."
+    ]
+  },
+  "eventos": {
+    "kaomoji": "(◕‿◕)",
+    "falas": [
+      "Os ADMs postam as novidades aqui. Vale dar uma olhada de vez em quando.",
+      "Evento com data marcada costuma encher rápido. Chega cedo!",
+      "Se tem coisa em destaque no topo, é porque é importante mesmo.",
+      "Atualização nova às vezes muda item ou mecânica. Fica de olho.",
+      "Notícia velha continua aqui, caso você queira saber o que perdeu."
+    ]
+  },
+  "codigos": {
+    "kaomoji": "(・o・)",
+    "falas": [
+      "Código expirado eu deixo na lista também, só pra você não ficar tentando.",
+      "Resgata os que estão valendo antes que vençam!",
+      "Alguns códigos só aparecem em evento. Por isso vale acompanhar as notícias.",
+      "Se um código não funcionou, confere se ele não venceu ontem.",
+      "Recompensa boa costuma durar pouco. É a vida."
+    ]
+  },
+  "faq": {
+    "kaomoji": "(・‿・)",
+    "falas": [
+      "Provavelmente alguém já teve essa mesma dúvida antes de você.",
+      "Se sua pergunta não tá aqui, pergunta no Discord que os ADMs respondem.",
+      "Muita regra confusa fica simples depois de uma explicação curtinha.",
+      "Eu organizei tudo por assunto. Usa a busca se for mais rápido.",
+      "Não existe pergunta boba. Sério mesmo."
+    ]
+  }
+}

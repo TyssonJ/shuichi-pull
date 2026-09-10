@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { conteudoIniciantes } from '@/lib/iniciantes';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { Papel } from '@/components/ficha/Papel';
-import { listarPersonagens } from '@/lib/dados';
-import { listarItens, listarLocais } from '@/lib/itens';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
+import { listarItensComCorrecoes, listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
 
 export const metadata = {
   title: 'Começar aqui — Shuichi Pull',
@@ -11,8 +11,11 @@ export const metadata = {
     'O que é Danganronpa, o que é Shinri Trial e o passo a passo para entrar na sua primeira partida, em português.',
 };
 
-export default function PaginaIniciantes() {
+export default async function PaginaIniciantes() {
   const c = conteudoIniciantes();
+  const totalPersonagens = (await listarPersonagensComCorrecoes()).length;
+  const totalItens = (await listarItensComCorrecoes()).length;
+  const totalLocais = (await listarLocaisComCorrecoes()).length;
 
   return (
     <div className="px-4 py-8">
@@ -136,17 +139,17 @@ export default function PaginaIniciantes() {
             <ul className="space-y-1.5 text-[11px]">
               <li>
                 <Link href="/elenco/" className="text-[#D6D6E0] hover:text-alter-green">
-                  Elenco — {listarPersonagens().length} alunos e seus atributos
+                  Elenco — {totalPersonagens} alunos e seus atributos
                 </Link>
               </li>
               <li>
                 <Link href="/itens/" className="text-[#D6D6E0] hover:text-alter-green">
-                  Itens — {listarItens().length} itens, receitas e onde spawnam
+                  Itens — {totalItens} itens, receitas e onde spawnam
                 </Link>
               </li>
               <li>
                 <Link href="/mapa/" className="text-[#D6D6E0] hover:text-alter-green">
-                  Mapa — {listarLocais().length} locais da academia
+                  Mapa — {totalLocais} locais da academia
                 </Link>
               </li>
               <li>

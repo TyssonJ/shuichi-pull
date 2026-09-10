@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { Faixa } from '@/components/layout/Faixa';
 import { HeroTitulo } from '@/components/layout/HeroTitulo';
 import { Boot } from '@/components/alter-ego/Boot';
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { spriteDoPersonagem } from '@/lib/sprites';
 
-export default function Inicio() {
-  const total = listarPersonagens().length;
+export default async function Inicio() {
+  const total = (await listarPersonagensComCorrecoes()).length;
 
   return (
     <>

@@ -1,11 +1,28 @@
 import Link from 'next/link';
-import { listarLocais } from '@/lib/itens';
+import { iconeDoItem } from '@/lib/itens';
+import { listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
+import { Icone } from '@/components/itens/Icone';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
+import type { Local } from '@/lib/schema-itens';
+
+/** Os itens mais provaveis do local, sem repetir quem cai em varios conteineres. */
+function amostraDeLoot(local: Local, quantos = 6) {
+  const melhores = new Map<string, { id: string; nome: string; chance: number }>();
+  for (const c of local.conteineres) {
+    for (const i of c.itens) {
+      const atual = melhores.get(i.id);
+      if (!atual || i.chance > atual.chance) {
+        melhores.set(i.id, { id: i.id, nome: i.nome.pt, chance: i.chance });
+      }
+    }
+  }
+  return [...melhores.values()].sort((a, b) => b.chance - a.chance).slice(0, quantos);
+}
 
 export const metadata = { title: 'Mapa — Shuichi Pull' };
 
-export default function PaginaMapa() {
-  const locais = listarLocais();
+export default async function PaginaMapa() {
+  const locais = await listarLocaisComCorrecoes();
   const comLoot = locais.filter((l) => l.conteineres.length > 0);
   const semLoot = locais.filter((l) => l.conteineres.length === 0);
 
@@ -40,6 +57,13 @@ export default function PaginaMapa() {
               >
                 <p className="text-[12px] font-bold leading-tight text-[#D6D6E0]">{l.nome.pt}</p>
                 <p className="font-mono text-[8px] text-dim">{l.nome.en}</p>
+                <ul className="mt-2 flex flex-wrap gap-1">
+                  {amostraDeLoot(l).map((i) => (
+                    <li key={i.id} title={`${i.nome} — ${i.chance}%`}>
+                      <Icone src={iconeDoItem(i.id)} nome={i.nome} className="h-6 w-6" />
+                    </li>
+                  ))}
+                </ul>
                 <p className="mt-2 font-mono text-[8px] text-alter-green">
                   {l.conteineres.length} contêineres · {l.totalItens} itens
                 </p>

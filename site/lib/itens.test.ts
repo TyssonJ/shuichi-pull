@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   listarItens, buscarItem, listarLocais, buscarLocal,
-  categoriasComTotal, receitasQueUsam,
+  categoriasComTotal, receitasQueUsam, iconeDoItem,
 } from './itens';
 
 describe('acesso aos itens', () => {
@@ -114,5 +114,26 @@ describe('nada sobra em russo', () => {
       .flatMap((i) => i.spawns)
       .filter((s) => !ids.has(s.localId));
     expect(orfaos.map((s) => s.localId)).toEqual([]);
+  });
+});
+
+describe('iconeDoItem', () => {
+  it('devolve o ícone pelo id', () => {
+    expect(iconeDoItem('small-parts')).toBe('/icones/small-parts.webp');
+  });
+
+  it('devolve null para item sem arte e para id desconhecido', () => {
+    const semArte = listarItens().find((i) => i.icone === null);
+    if (semArte) expect(iconeDoItem(semArte.id)).toBeNull();
+    expect(iconeDoItem('item-que-nao-existe')).toBeNull();
+  });
+
+  it('todo item do loot do mapa resolve pelo mesmo id do catálogo', () => {
+    const conhecidos = new Set(listarItens().map((i) => i.id));
+    const orfaos = listarLocais()
+      .flatMap((l) => l.conteineres)
+      .flatMap((c) => c.itens)
+      .filter((i) => !conhecidos.has(i.id));
+    expect(orfaos.map((i) => i.id)).toEqual([]);
   });
 });

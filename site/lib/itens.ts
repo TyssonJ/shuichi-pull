@@ -22,6 +22,16 @@ export function buscarLocal(id: string): Local | null {
   return locais.find((l) => l.id === id) ?? null;
 }
 
+/**
+ * O icone pelo id do item. O loot do mapa guarda so id e nome, entao a pagina
+ * do local busca a arte por aqui em vez de duplicar o caminho em locais.json.
+ */
+const iconePorId = new Map(itens.map((i) => [i.id, i.icone]));
+
+export function iconeDoItem(id: string): string | null {
+  return iconePorId.get(id) ?? null;
+}
+
 /** Categorias na ordem em que aparecem no filtro, com a contagem. */
 export function categoriasComTotal(): { pt: string; en: string; total: number }[] {
   const mapa = new Map<string, { pt: string; en: string; total: number }>();

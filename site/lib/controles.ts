@@ -1,5 +1,7 @@
 import bruto from '@/content/controles.json';
 import pt from '@/content/controles.pt.json';
+import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { aplicarCorrecoes } from './correcoes-merge';
 
 export type Tecla = { teclas: string; descricao: string; nota: string | null };
 export type TabelaTeclas = { grupo: string; teclas: Tecla[] };
@@ -48,4 +50,16 @@ export function mecanicasPorGrupo(): { grupo: string; cards: Card[] }[] {
 /** O que o ADM ainda precisa traduzir. */
 export function mecanicasSemTraducao(): string[] {
   return (bruto.cards as BrutoCard[]).filter((c) => !cardsPt[c.id]).map((c) => c.id);
+}
+
+export async function cardsDeMecanicaComCorrecoes(): Promise<Card[]> {
+  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('controles');
+  return aplicarCorrecoes(cardsDeMecanica(), correcoes);
+}
+
+export async function mecanicasPorGrupoComCorrecoes(): Promise<{ grupo: string; cards: Card[] }[]> {
+  const lista = await cardsDeMecanicaComCorrecoes();
+  const mapa = new Map<string, Card[]>();
+  for (const c of lista) mapa.set(c.grupo, [...(mapa.get(c.grupo) ?? []), c]);
+  return [...mapa.entries()].map(([grupo, cards]) => ({ grupo, cards }));
 }

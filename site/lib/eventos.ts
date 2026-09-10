@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import brutoEventos from '@/content/eventos.json';
-import brutoCodigos from '@/content/codigos.json';
+import { repositorioEventos } from '@/db/repositorios/eventos';
+import { repositorioCodigos } from '@/db/repositorios/codigos';
 
 const DATA = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -26,22 +26,22 @@ export const CodigoSchema = z.object({
 });
 export type Codigo = z.infer<typeof CodigoSchema>;
 
-const eventos: Evento[] = z.array(EventoSchema).parse(brutoEventos);
-const codigos: Codigo[] = z.array(CodigoSchema).parse(brutoCodigos);
-
 /** Do mais recente para o mais antigo; destaque sobe. */
-export function listarEventos(): Evento[] {
-  return [...eventos].sort(
+export async function listarEventos(): Promise<Evento[]> {
+  const linhas = await repositorioEventos.listar();
+  const eventos = z.array(EventoSchema).parse(linhas);
+  return eventos.sort(
     (a, b) => Number(b.destaque) - Number(a.destaque) || b.data.localeCompare(a.data)
   );
 }
 
-export function buscarEvento(id: string): Evento | null {
-  return eventos.find((e) => e.id === id) ?? null;
+export async function buscarEvento(id: string): Promise<Evento | null> {
+  const linha = await repositorioEventos.buscar(id);
+  return linha ? EventoSchema.parse(linha) : null;
 }
 
-export function listarCodigos(): Codigo[] {
-  return codigos;
+export async function listarCodigos(): Promise<Codigo[]> {
+  return repositorioCodigos.listar();
 }
 
 /**
@@ -55,9 +55,10 @@ export function estaExpirado(codigo: Codigo, agora: Date = new Date()): boolean 
   return agora.getTime() > new Date(ano, mes - 1, dia, 23, 59, 59, 999).getTime();
 }
 
-export function separarCodigos(agora: Date = new Date()): {
+export async function separarCodigos(agora: Date = new Date()): Promise<{
   ativos: Codigo[]; expirados: Codigo[];
-} {
+}> {
+  const codigos = await listarCodigos();
   return {
     ativos: codigos.filter((c) => !estaExpirado(c, agora)),
     expirados: codigos.filter((c) => estaExpirado(c, agora)),

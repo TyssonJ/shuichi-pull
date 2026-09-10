@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buscarLocal, listarLocais } from '@/lib/itens';
+import { listarLocais, iconeDoItem } from '@/lib/itens';
+import { buscarLocalComCorrecoes } from '@/lib/itens-corrigidos';
+import { Icone } from '@/components/itens/Icone';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export function generateStaticParams() {
@@ -9,7 +11,7 @@ export function generateStaticParams() {
 
 export default async function FichaLocal({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const local = buscarLocal(id);
+  const local = await buscarLocalComCorrecoes(id);
   if (!local) notFound();
 
   return (
@@ -42,24 +44,27 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
             <h2 className="mb-3 text-[12px] font-bold text-[#D6D6E0]">{c.nome.pt}</h2>
             <ul className="space-y-2">
               {[...c.itens].sort((a, b) => b.chance - a.chance).map((i, n) => (
-                <li key={`${i.id}-${n}`}>
-                  <div className="flex items-baseline gap-2 text-[11px]">
-                    <Link href={`/itens/${i.id}/`} className="text-alter-green hover:underline">
-                      {i.nome.pt}
-                    </Link>
-                    <span className="ml-auto font-mono text-[9px] text-dim">
-                      {i.qtdMin === i.qtdMax ? `${i.qtdMin} un.` : `${i.qtdMin}–${i.qtdMax} un.`}
-                    </span>
-                    <span className="w-9 text-right font-mono text-[10px] font-bold text-[#D6D6E0]">
-                      {i.chance}%
-                    </span>
-                  </div>
-                  <div
-                    className="mt-1 h-1 overflow-hidden rounded-[1px] bg-[#22222C]"
-                    role="img"
-                    aria-label={`${i.chance}% de chance de ${i.nome.pt}`}
-                  >
-                    <div className="h-full bg-alter-green" style={{ width: `${i.chance}%` }} />
+                <li key={`${i.id}-${n}`} className="flex items-center gap-2">
+                  <Icone src={iconeDoItem(i.id)} nome={i.nome.pt} className="h-7 w-7" />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline gap-2 text-[11px]">
+                      <Link href={`/itens/${i.id}/`} className="truncate text-alter-green hover:underline">
+                        {i.nome.pt}
+                      </Link>
+                      <span className="ml-auto shrink-0 font-mono text-[9px] text-dim">
+                        {i.qtdMin === i.qtdMax ? `${i.qtdMin} un.` : `${i.qtdMin}–${i.qtdMax} un.`}
+                      </span>
+                      <span className="w-9 shrink-0 text-right font-mono text-[10px] font-bold text-[#D6D6E0]">
+                        {i.chance}%
+                      </span>
+                    </div>
+                    <div
+                      className="mt-1 h-1 overflow-hidden rounded-[1px] bg-[#22222C]"
+                      role="img"
+                      aria-label={`${i.chance}% de chance de ${i.nome.pt}`}
+                    >
+                      <div className="h-full bg-alter-green" style={{ width: `${i.chance}%` }} />
+                    </div>
                   </div>
                 </li>
               ))}

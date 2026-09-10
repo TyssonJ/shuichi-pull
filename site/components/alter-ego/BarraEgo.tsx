@@ -7,7 +7,9 @@ import { JanelaEgo } from './JanelaEgo';
 import { usePersistencia } from './usePersistencia';
 import { useLogAlterEgo } from './useLogAlterEgo';
 import { buscar, type Resultado } from '@/lib/busca';
-import type { EstadoEgo } from '@/lib/alter-ego';
+import {
+  falaDaSecao, kaomojiDaSecao, secaoDoCaminho, type EstadoEgo,
+} from '@/lib/alter-ego';
 import { SECOES } from '@/lib/secoes';
 
 function Busca({
@@ -64,11 +66,16 @@ function Busca({
   );
 }
 
+/** De quanto em quanto tempo ele arrisca um novo comentário na mesma página. */
+const INTERVALO_FALA = 2 * 60 * 1000;
+
 export function BarraEgo() {
   const pathname = usePathname();
   const [termo, setTermo] = useState('');
   const [barraVisivel, setBarraVisivel] = useState(true);
   const [flutuanteAberta, setFlutuanteAberta] = usePersistencia('ego-flutuante-aberta', false);
+  const [falaPagina, setFalaPagina] = useState<string | null>(null);
+  const [temAlgoADizer, setTemAlgoADizer] = useState(false);
   const alvo = useRef<HTMLDivElement>(null);
   const [buscaEmFoco, setBuscaEmFoco] = useState(false);
   const { tag: logTag, texto: logTexto } = useLogAlterEgo();
@@ -76,6 +83,8 @@ export function BarraEgo() {
   // dela assim que ela existir no DOM — ver o useEffect logo abaixo do
   // handler de teclado.
   const focarFlutuanteRef = useRef(false);
+
+  const secao = secaoDoCaminho(usePathname() ?? '/');
 
   // A busca é derivada do termo: calcular no render evita um segundo render
   // a cada tecla.
@@ -90,10 +99,33 @@ export function BarraEgo() {
     return () => obs.disconnect();
   }, []);
 
+  // O sorteio roda só no cliente: sortear durante o render do servidor daria
+  // uma fala no HTML e outra na hidratação.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFalaPagina(falaDaSecao(secao));
+    setTemAlgoADizer(true);
+    const timer = setInterval(() => {
+      setFalaPagina(falaDaSecao(secao));
+      setTemAlgoADizer(true);
+    }, INTERVALO_FALA);
+    return () => clearInterval(timer);
+  }, [secao]);
+
+  // Quem abriu a janela já ouviu o que ele tinha para dizer.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (flutuanteAberta) setTemAlgoADizer(false);
+  }, [flutuanteAberta]);
+
   const estado: EstadoEgo =
     termo.length < 2 ? 'ocioso'
     : resultados.length > 0 ? 'busca-com-resultado'
     : 'busca-sem-resultado';
+
+  // Enquanto se busca, o que importa é o resultado — o comentário da página
+  // só aparece quando ele não tem nada mais útil a dizer.
+  const fala = estado === 'ocioso' ? falaPagina ?? undefined : undefined;
 
   useEffect(() => {
     function aoTeclar(e: KeyboardEvent) {
@@ -134,7 +166,14 @@ export function BarraEgo() {
     <>
       <div ref={alvo} aria-hidden className="h-px" />
 
-      <header className="sticky top-0 z-40 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-2 py-1.5">
+      {/* Escondido, o cabeçalho sai da rota do teclado com `inert` — senão o
+          foco continuaria entrando numa barra que ninguém enxerga. */}
+      <header
+        inert={!barraVisivel}
+        className={`sticky top-0 z-40 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-2 py-1.5 transition-all duration-200 ${
+          barraVisivel ? '' : 'pointer-events-none -translate-y-full opacity-0'
+        }`}
+      >
         <div className="flex items-center gap-3">
           <div className="flex shrink-0 flex-col items-center gap-1">
             <div className="w-[52px] overflow-hidden rounded-[4px] border border-alter-green shadow-[0_0_8px_rgba(0,255,102,0.35)]">
@@ -192,11 +231,13 @@ export function BarraEgo() {
       {!barraVisivel && !flutuanteAberta && (
         <button
           type="button"
+          data-testid="ego-bolinha"
+          data-tremendo={temAlgoADizer ? 'sim' : 'nao'}
           aria-label="Abrir a janela do Alter Ego"
           onClick={() => setFlutuanteAberta(true)}
-          className="fixed bottom-5 right-5 z-50 h-11 w-11 overflow-hidden rounded-full border-2 border-[#6f9a58] shadow-lg"
+          className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#6f9a58] bg-gradient-to-b from-ego-claro to-ego-escuro text-[11px] leading-none text-[#F2FFE8] shadow-lg [text-shadow:0_0_9px_#b6ff7e] data-[tremendo=sim]:animate-tremor"
         >
-          <JanelaEgo estado="ocioso" compacta />
+          {kaomojiDaSecao(secao)}
         </button>
       )}
 
@@ -205,6 +246,7 @@ export function BarraEgo() {
           <JanelaEgo
             estado={estado}
             variaveis={{ n: resultados.length }}
+            fala={fala}
             onFechar={() => setFlutuanteAberta(false)}
           />
           <div className="mt-1">

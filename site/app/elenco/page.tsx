@@ -1,11 +1,11 @@
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { CartaoPersonagem } from '@/components/ficha/CartaoPersonagem';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Elenco — Shuichi Pull' };
 
-export default function PaginaElenco() {
-  const personagens = listarPersonagens();
+export default async function PaginaElenco() {
+  const personagens = await listarPersonagensComCorrecoes();
 
   // O "Student ID" reflete a ordem global do elenco, não o agrupamento por
   // jogo abaixo — a ficha individual (app/elenco/[id]/page.tsx) calcula o

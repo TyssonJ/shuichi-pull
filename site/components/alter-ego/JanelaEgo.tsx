@@ -7,17 +7,31 @@ type Props = {
   variaveis?: Record<string, string | number>;
   compacta?: boolean;
   onFechar?: () => void;
+  /** Ignora o sprite e usa a carinha — para desenhos pequenos demais. */
+  soKaomoji?: boolean;
+  /** Substitui a fala do estado, para o Alter Ego comentar a pagina atual. */
+  fala?: string;
 };
 
-export function JanelaEgo({ estado, variaveis, compacta = false, onFechar }: Props) {
-  const face = faceDoEstado(estado);
-  const fala = falaDoEstado(estado, variaveis);
+export function JanelaEgo({
+  estado, variaveis, compacta = false, onFechar, soKaomoji = false, fala: falaExterna,
+}: Props) {
+  const face = faceDoEstado(estado, soKaomoji);
+  const fala = falaExterna ?? falaDoEstado(estado, variaveis);
 
   return (
     <div className="overflow-hidden rounded-[3px] border border-[#3d5732] bg-[#0d100c]">
-      <div className="flex items-center gap-1.5 bg-gradient-to-b from-[#3f5c33] to-[#294020] px-1.5 py-0.5 font-mono text-[8px] tracking-[.09em] text-[#dff5cf]">
-        <span>ALTER_EGO</span>
-        {onFechar && (
+      {/* No modo compacto a janela tem ~52px: o rotulo nao cabe e sai cortado,
+          entao a barra vira so um friso verde. */}
+      <div
+        className={
+          compacta
+            ? 'h-[3px] bg-gradient-to-b from-[#3f5c33] to-[#294020]'
+            : 'flex items-center gap-1.5 bg-gradient-to-b from-[#3f5c33] to-[#294020] px-1.5 py-0.5 font-mono text-[8px] tracking-[.09em] text-[#dff5cf]'
+        }
+      >
+        {!compacta && <span>ALTER_EGO</span>}
+        {!compacta && onFechar && (
           <button
             type="button"
             aria-label="Fechar a janela do Alter Ego"

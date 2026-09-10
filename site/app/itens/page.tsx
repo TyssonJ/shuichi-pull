@@ -1,11 +1,11 @@
-import { listarItens } from '@/lib/itens';
+import { listarItensComCorrecoes } from '@/lib/itens-corrigidos';
 import { GradeEvidencias } from '@/components/itens/GradeEvidencias';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Itens — Shuichi Pull' };
 
-export default function PaginaItens() {
-  const itens = listarItens();
+export default async function PaginaItens() {
+  const itens = await listarItensComCorrecoes();
 
   return (
     <PainelComTrilhas>
