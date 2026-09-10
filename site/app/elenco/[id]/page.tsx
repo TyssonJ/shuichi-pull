@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { buscarPersonagem, listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
+import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
@@ -26,6 +27,7 @@ export default async function FichaPersonagem({
   const todos = listarPersonagens();
   const total = todos.length;
   const numero = todos.findIndex((x) => x.id === id) + 1;
+  const corpoInteiro = spriteInteiroDoPersonagem(id);
 
   return (
     <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
@@ -37,7 +39,16 @@ export default async function FichaPersonagem({
         <CarteirinhaEstudante personagem={p} numero={numero} />
       </div>
 
-      <header className="mt-6 min-w-0 xl:mt-6">
+      <header className="relative isolate mt-6 min-w-0 overflow-hidden min-h-[320px] xl:mt-6 xl:min-h-[420px]">
+        {corpoInteiro && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            aria-hidden
+            alt=""
+            src={corpoInteiro}
+            className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[125%] w-auto max-w-none grayscale opacity-[0.13] [mask-image:linear-gradient(to_left,black_30%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_left,black_30%,transparent_85%)]"
+          />
+        )}
         <p className="font-mono text-[8px] tracking-[.2em] text-dim">{p.jogo}</p>
         <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
           {p.nome}
