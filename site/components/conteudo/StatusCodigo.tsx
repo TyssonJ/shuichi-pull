@@ -34,11 +34,11 @@ export function StatusCodigo({ expiraEm, expiradoNoBuild }: Props) {
   const dia = expiraEm.split('-').reverse().join('/');
 
   return expirado ? (
-    <span className="rounded-[2px] border border-red px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-red">
+    <span className="rounded-[2px] border border-alerta px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-alerta">
       expirado em {dia}
     </span>
   ) : (
-    <span className="rounded-[2px] border border-teal bg-teal-escuro px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-papel">
+    <span className="rounded-[2px] border border-alter-green bg-ego-escuro px-1.5 py-px font-mono text-[8px] uppercase tracking-[.1em] text-[#D6D6E0]">
       funcionando até {dia}
     </span>
   );

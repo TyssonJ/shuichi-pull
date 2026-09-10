@@ -26,7 +26,7 @@ export default async function FichaPersonagem({
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-8">
-      <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-teal">
+      <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green">
         ← todo o elenco
       </Link>
 
@@ -49,7 +49,7 @@ export default async function FichaPersonagem({
           <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
             {p.nome}
           </h1>
-          <p className="mt-1 font-serif text-[17px] italic leading-tight text-teal">
+          <p className="mt-1 font-serif text-[17px] italic leading-tight text-alter-green">
             {p.talento.pt}
           </p>
           <p className="font-mono text-[9px] text-dim">{p.talento.en}</p>
@@ -66,7 +66,7 @@ export default async function FichaPersonagem({
                   title={e.en}
                   className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px]"
                   style={{
-                    color: e.bom ? 'var(--color-teal)' : 'var(--color-red)',
+                    color: e.bom ? 'var(--color-alter-green)' : 'var(--color-alerta)',
                     borderColor: 'currentColor',
                   }}
                 >

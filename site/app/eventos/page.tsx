@@ -33,8 +33,8 @@ export default function PaginaEventos() {
             <li key={e.id}>
               <Link
                 href={`/eventos/${e.id}/`}
-                className={`block rounded-[4px] border bg-sur p-3 transition-colors hover:border-teal ${
-                  e.destaque ? 'border-teal-escuro' : 'border-line'
+                className={`block rounded-[4px] border bg-sur p-3 transition-colors hover:border-alter-green ${
+                  e.destaque ? 'border-ego-escuro' : 'border-line'
                 }`}
               >
                 <div className="mb-1.5 flex flex-wrap items-center gap-2">
@@ -46,7 +46,7 @@ export default function PaginaEventos() {
                     {e.ate && ` — ${formatar(e.ate)}`}
                   </time>
                   {e.destaque && (
-                    <span className="font-mono text-[8px] tracking-[.1em] text-teal">EM DESTAQUE</span>
+                    <span className="font-mono text-[8px] tracking-[.1em] text-alter-green">EM DESTAQUE</span>
                   )}
                 </div>
                 <p className="text-[13px] font-bold leading-tight text-[#D6D6E0]">{e.titulo}</p>

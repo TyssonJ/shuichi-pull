@@ -2,16 +2,17 @@ import type { Texto } from '@/lib/schema';
 
 /**
  * A raridade sobe de intensidade dentro da paleta do site: começa apagada e
- * termina no creme do papel, que é a coisa mais clara da tela. A palavra vem
- * sempre escrita — a cor sozinha nunca carrega a informação.
+ * termina no verde do Alter Ego em destaque total, a coisa mais clara da
+ * tela. A palavra vem sempre escrita — a cor sozinha nunca carrega a
+ * informação.
  */
 const ESTILOS: Record<number, string> = {
   0: 'border-line text-dim',
   1: 'border-line text-dim',
   2: 'border-[#4E5E5C] text-[#B9C9C6]',
-  3: 'border-teal-escuro text-teal',
-  4: 'border-teal bg-teal-escuro text-papel',
-  5: 'border-papel bg-papel text-tinta',
+  3: 'border-ego-escuro text-alter-green',
+  4: 'border-alter-green bg-ego-escuro text-[#D6D6E0]',
+  5: 'border-alter-green bg-alter-green text-[#08090D]',
 };
 
 type Props = { raridade: Texto; nivel: number; comIngles?: boolean };

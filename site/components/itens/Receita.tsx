@@ -27,12 +27,12 @@ export function Receita(
           <span key={`${ing.nome.en}-${i}`} className="flex items-center gap-2">
             {i > 0 && <span className="font-mono text-[11px] text-dim">+</span>}
             <span className="flex items-center gap-1.5 rounded-[3px] border border-line bg-sur px-2 py-1">
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-escuro font-mono text-[8px] font-bold text-papel">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-ego-escuro font-mono text-[8px] font-bold text-[#D6D6E0]">
                 {ing.qtd}
               </span>
               <Icone src={ing.icone} nome={ing.nome.pt} className="h-6 w-6" />
               {ing.id ? (
-                <Link href={`/itens/${ing.id}/`} className="text-[11px] text-[#D6D6E0] hover:text-teal">
+                <Link href={`/itens/${ing.id}/`} className="text-[11px] text-[#D6D6E0] hover:text-alter-green">
                   {ing.nome.pt}
                 </Link>
               ) : (
@@ -42,11 +42,11 @@ export function Receita(
           </span>
         ))}
 
-        <span aria-hidden className="font-mono text-[13px] text-teal">→</span>
+        <span aria-hidden className="font-mono text-[13px] text-alter-green">→</span>
 
         <span
           data-testid="resultado"
-          className="flex items-center gap-1.5 rounded-[3px] border border-teal bg-teal-escuro px-2 py-1 text-[11px] font-bold text-papel"
+          className="flex items-center gap-1.5 rounded-[3px] border border-alter-green bg-ego-escuro px-2 py-1 text-[11px] font-bold text-[#D6D6E0]"
         >
           <Icone src={iconeResultado} nome={resultado} className="h-6 w-6" />
           {resultado}

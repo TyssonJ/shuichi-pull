@@ -35,11 +35,11 @@ export default function PaginaMapa() {
               <Link
                 key={l.id}
                 href={`/mapa/${l.id}/`}
-                className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-teal"
+                className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-alter-green"
               >
                 <p className="text-[12px] font-bold leading-tight text-[#D6D6E0]">{l.nome.pt}</p>
                 <p className="font-mono text-[8px] text-dim">{l.nome.en}</p>
-                <p className="mt-2 font-mono text-[8px] text-teal">
+                <p className="mt-2 font-mono text-[8px] text-alter-green">
                   {l.conteineres.length} contêineres · {l.totalItens} itens
                 </p>
               </Link>
@@ -64,7 +64,7 @@ export default function PaginaMapa() {
               <li key={l.id}>
                 <Link
                   href={`/mapa/${l.id}/`}
-                  className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-dim hover:border-teal hover:text-teal"
+                  className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-dim hover:border-alter-green hover:text-alter-green"
                 >
                   {l.nome.pt}
                 </Link>

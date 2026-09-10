@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BarraEgo } from './BarraEgo';
 
 describe('BarraEgo', () => {
@@ -34,5 +34,65 @@ describe('BarraEgo', () => {
     render(<BarraEgo />);
     fireEvent.click(screen.getByRole('button', { name: /fechar a janela/i }));
     expect(localStorage.getItem('ego-flutuante-aberta')).toBe('false');
+  });
+});
+
+describe('BarraEgo — numeração e retícula', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('numera os links de seção', () => {
+    render(<BarraEgo />);
+    expect(screen.getByRole('link', { name: /01\.\s*ELENCO/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /02\.\s*ITENS/i })).toBeInTheDocument();
+  });
+
+  it('cada link de seção tem uma retícula decorativa escondida do leitor de tela', () => {
+    render(<BarraEgo />);
+    const link = screen.getByRole('link', { name: /01\.\s*ELENCO/i });
+    expect(link.querySelector('[data-testid="reticula"]')).toHaveAttribute('aria-hidden', 'true');
+  });
+});
+
+describe('BarraEgo — atalho Ctrl+K', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('Ctrl+K foca a busca do cabeçalho quando ela está visível', () => {
+    render(<BarraEgo />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    expect(document.getElementById('busca-header')).toHaveFocus();
+  });
+
+  it('Ctrl+K abre a janela flutuante e foca a busca dela quando o cabeçalho está escondido', async () => {
+    // Simula "já rolou a página": a barra visível some quando o
+    // IntersectionObserver do topo reporta isIntersecting: false. Os
+    // testes existentes de scroll já mockam isso — replicando o mesmo
+    // espião aqui.
+    class ObservadorFalso {
+      constructor(cb: (e: { isIntersecting: boolean }[]) => void) {
+        setTimeout(() => cb([{ isIntersecting: false }]), 0);
+      }
+      observe() {}
+      disconnect() {}
+    }
+    vi.stubGlobal('IntersectionObserver', ObservadorFalso);
+
+    render(<BarraEgo />);
+    // Espera o efeito real do IntersectionObserver (barraVisivel === false)
+    // aparecer no DOM — o botão flutuante só existe quando a barra some —
+    // em vez de um delay fixo, que corre contra o timer mockado acima e é
+    // sensível à carga da máquina.
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: /abrir a janela do alter ego/i })).toBeInTheDocument(),
+    );
+    fireEvent.keyDown(window, { key: 'k', metaKey: true });
+    await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
+    vi.unstubAllGlobals();
+  });
+
+  it('previne o comportamento padrão do navegador para Ctrl+K', () => {
+    render(<BarraEgo />);
+    const evento = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, cancelable: true });
+    window.dispatchEvent(evento);
+    expect(evento.defaultPrevented).toBe(true);
   });
 });

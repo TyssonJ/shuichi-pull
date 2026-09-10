@@ -51,7 +51,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
             <span className="font-mono text-[9px] text-dim">Peso {item.peso} kg</span>
           )}
           {item.loja && (
-            <span className="font-mono text-[9px] text-teal">
+            <span className="font-mono text-[9px] text-alter-green">
               Loja: {item.loja.preco} monomoedas
             </span>
           )}
@@ -100,7 +100,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
                   <li key={u.id}>
                     <Link
                       href={`/itens/${u.id}/`}
-                      className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-[#D6D6E0] hover:border-teal hover:text-teal"
+                      className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-[#D6D6E0] hover:border-alter-green hover:text-alter-green"
                     >
                       {u.nome.pt}
                     </Link>
@@ -124,7 +124,7 @@ export default async function FichaItem({ params }: { params: Promise<{ id: stri
           <Papel titulo="DESCRIÇÃO">
             <p className="text-[12px] leading-relaxed">{item.descricao.pt}</p>
             {!item.traducaoRevisada && (
-              <p className="mt-3 font-mono text-[8px] text-tinta/50">
+              <p className="mt-3 font-mono text-[8px] text-dim/70">
                 Tradução ainda não revisada por um ADM.
               </p>
             )}

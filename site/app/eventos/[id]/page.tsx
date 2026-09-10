@@ -18,7 +18,7 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
 
   return (
     <article className="mx-auto max-w-2xl px-4 py-8">
-      <Link href="/eventos/" className="font-mono text-[9px] text-dim hover:text-teal">
+      <Link href="/eventos/" className="font-mono text-[9px] text-dim hover:text-alter-green">
         ← todos os eventos
       </Link>
 

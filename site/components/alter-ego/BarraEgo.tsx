@@ -8,15 +8,58 @@ import { buscar, type Resultado } from '@/lib/busca';
 import type { EstadoEgo } from '@/lib/alter-ego';
 
 const SECOES = [
-  { nome: 'Começar', url: '/comecar/' },
-  { nome: 'Elenco', url: '/elenco/' },
-  { nome: 'Itens', url: '/itens/' },
-  { nome: 'Mapa', url: '/mapa/' },
-  { nome: 'Mecânicas', url: '/mecanicas/' },
-  { nome: 'Eventos', url: '/eventos/' },
-  { nome: 'Códigos', url: '/codigos/' },
-  { nome: 'FAQ', url: '/faq/' },
+  { numero: '01', nome: 'Elenco', url: '/elenco/' },
+  { numero: '02', nome: 'Itens', url: '/itens/' },
+  { numero: '03', nome: 'Mapa', url: '/mapa/' },
+  { numero: '04', nome: 'Mecânicas', url: '/mecanicas/' },
+  { numero: '05', nome: 'Eventos', url: '/eventos/' },
+  { numero: '06', nome: 'Códigos', url: '/codigos/' },
+  { numero: '07', nome: 'FAQ', url: '/faq/' },
+  { numero: '08', nome: 'Começar', url: '/comecar/' },
 ];
+
+function Busca({
+  id,
+  termo,
+  resultados,
+  setTermo,
+}: {
+  id: string;
+  termo: string;
+  resultados: Resultado[];
+  setTermo: (termo: string) => void;
+}) {
+  return (
+    <div className="relative flex-1">
+      <input
+        id={id}
+        type="search"
+        role="searchbox"
+        aria-label="Buscar no Shuichi Pull"
+        placeholder="buscar item, local, personagem…"
+        value={termo}
+        onChange={(e) => setTermo(e.target.value)}
+        className="w-full rounded-[3px] border border-cyber-cyan/40 bg-[#0A0A10] px-2 py-1.5 font-mono text-[10px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
+      />
+      {termo.length >= 2 && (
+        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
+          {resultados.length === 0 ? (
+            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
+          ) : (
+            resultados.map((r) => (
+              <li key={r.id}>
+                <Link href={r.url} className="block px-2 py-1.5 hover:bg-cyber-cyan/10">
+                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
+                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
+                </Link>
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export function BarraEgo() {
   const [termo, setTermo] = useState('');
@@ -42,50 +85,46 @@ export function BarraEgo() {
     : resultados.length > 0 ? 'busca-com-resultado'
     : 'busca-sem-resultado';
 
-  const busca = (
-    <div className="relative flex-1">
-      <input
-        type="search"
-        role="searchbox"
-        aria-label="Buscar no Shuichi Pull"
-        placeholder="buscar item, local, personagem…"
-        value={termo}
-        onChange={(e) => setTermo(e.target.value)}
-        className="w-full rounded-[3px] border border-[#2E2E3A] bg-[#141419] px-2 py-1.5 font-mono text-[10px] text-[#D6D6E0] placeholder:text-[#6E6E7E]"
-      />
-      {termo.length >= 2 && (
-        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-line bg-sur">
-          {resultados.length === 0 ? (
-            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
-          ) : (
-            resultados.map((r) => (
-              <li key={r.id}>
-                <Link href={r.url} className="block px-2 py-1.5 hover:bg-[#22222C]">
-                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
-                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
-                </Link>
-              </li>
-            ))
-          )}
-        </ul>
-      )}
-    </div>
-  );
+  useEffect(() => {
+    function aoTeclar(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (barraVisivel) {
+          document.getElementById('busca-header')?.focus();
+          return;
+        }
+        if (!flutuanteAberta) setFlutuanteAberta(true);
+        // A janela flutuante só existe no DOM depois do próximo render —
+        // requestAnimationFrame garante que já montou antes de focar.
+        requestAnimationFrame(() => document.getElementById('busca-flutuante')?.focus());
+      }
+    }
+    window.addEventListener('keydown', aoTeclar);
+    return () => window.removeEventListener('keydown', aoTeclar);
+  }, [barraVisivel, flutuanteAberta, setFlutuanteAberta]);
 
   return (
     <>
       <div ref={alvo} aria-hidden className="h-px" />
 
-      <header className="sticky top-0 z-40 flex items-center gap-2 border-b-2 border-teal-escuro bg-[#0A0A0D] px-2 py-1.5">
+      <header className="sticky top-0 z-40 flex items-center gap-2 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-2 py-1.5">
         <div className="w-[52px] shrink-0">
           <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
         </div>
-        {busca}
+        <Busca id="busca-header" termo={termo} resultados={resultados} setTermo={setTermo} />
         <nav className="hidden gap-3 sm:flex">
           {SECOES.map((s) => (
             <Link key={s.url} href={s.url}
-              className="font-mono text-[9px] tracking-[.12em] text-[#B9C9C6] hover:text-teal">
-              {s.nome.toUpperCase()}
+              className="group relative font-mono text-[9px] tracking-[.12em] text-dim hover:text-cyber-cyan">
+              {s.numero}. {s.nome.toUpperCase()}
+              <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
+                className="pointer-events-none absolute -right-3 -top-2 h-3 w-3 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
+                <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
+                <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
+                <line x1="0" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1" />
+                <line x1="18" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
+              </svg>
             </Link>
           ))}
         </nav>
@@ -109,7 +148,9 @@ export function BarraEgo() {
             variaveis={{ n: resultados.length }}
             onFechar={() => setFlutuanteAberta(false)}
           />
-          <div className="mt-1">{busca}</div>
+          <div className="mt-1">
+            <Busca id="busca-flutuante" termo={termo} resultados={resultados} setTermo={setTermo} />
+          </div>
         </div>
       )}
     </>
