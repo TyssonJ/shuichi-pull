@@ -8,20 +8,34 @@ import path from 'node:path';
  */
 export const SILHUETA = '/sprites/silhueta.svg';
 
-const PASTA = path.join(process.cwd(), 'public', 'sprites', 'elenco');
+const RAIZ = path.join(process.cwd(), 'public', 'sprites');
 
-let existentes: Set<string> | null = null;
+const cache = new Map<string, Set<string>>();
 
-function spritesDisponiveis(): Set<string> {
-  if (existentes) return existentes;
-  existentes = fs.existsSync(PASTA)
-    ? new Set(fs.readdirSync(PASTA).filter((a) => a.endsWith('.webp')))
+function spritesDisponiveis(pasta: string): Set<string> {
+  const guardado = cache.get(pasta);
+  if (guardado) return guardado;
+  const caminho = path.join(RAIZ, pasta);
+  const lista = fs.existsSync(caminho)
+    ? new Set(fs.readdirSync(caminho).filter((a) => a.endsWith('.webp')))
     : new Set<string>();
-  return existentes;
+  cache.set(pasta, lista);
+  return lista;
 }
 
 export function spriteDoPersonagem(id: string): string {
-  return spritesDisponiveis().has(`${id}.webp`)
+  return spritesDisponiveis('elenco').has(`${id}.webp`)
     ? `/sprites/elenco/${id}.webp`
     : SILHUETA;
+}
+
+/**
+ * Corpo inteiro so aparece na ficha aberta, que tem altura para ele. Nem todo
+ * personagem tem — a Ryoko, por exemplo, so existe como ilustracao — e quem
+ * nao tem devolve null para a ficha ficar com o retrato de meio-corpo.
+ */
+export function spriteInteiroDoPersonagem(id: string): string | null {
+  return spritesDisponiveis('fullbody').has(`${id}.webp`)
+    ? `/sprites/fullbody/${id}.webp`
+    : null;
 }

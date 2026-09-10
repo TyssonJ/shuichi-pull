@@ -12,6 +12,8 @@
     "dados": "tsx scripts/ingerir-elenco.ts",
     "sprites": "tsx scripts/otimizar-sprites.ts",
     "sprites:baixar": "tsx scripts/baixar-sprites.ts",
+    "fullbody:baixar": "tsx scripts/baixar-fullbody.ts",
+    "fundo": "tsx scripts/remover-fundo.ts",
     "dados:itens": "tsx scripts/ingerir-itens.ts",
     "dados:faq": "tsx scripts/ingerir-faq.ts",
     "dados:controles": "tsx scripts/ingerir-controles.ts",

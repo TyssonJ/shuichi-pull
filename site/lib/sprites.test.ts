@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spriteDoPersonagem, SILHUETA } from './sprites';
+import { spriteDoPersonagem, spriteInteiroDoPersonagem, SILHUETA } from './sprites';
 import { listarPersonagens } from './dados';
 
 describe('spriteDoPersonagem', () => {
@@ -24,6 +24,31 @@ describe('spriteDoPersonagem', () => {
   it('ninguém ficou na silhueta depois do download', () => {
     const semArte = listarPersonagens().filter((p) => p.sprite === SILHUETA);
     expect(semArte.map((p) => p.id)).toEqual([]);
+  });
+});
+
+describe('spriteInteiroDoPersonagem', () => {
+  it('devolve o corpo inteiro de quem tem', () => {
+    expect(spriteInteiroDoPersonagem('shuichi-saihara'))
+      .toBe('/sprites/fullbody/shuichi-saihara.webp');
+  });
+
+  it('devolve null para quem não tem corpo inteiro na wiki', () => {
+    expect(spriteInteiroDoPersonagem('ryoko-otonashi')).toBeNull();
+    expect(spriteInteiroDoPersonagem('personagem-que-nao-existe')).toBeNull();
+  });
+
+  it('quase todo o elenco tem corpo inteiro', () => {
+    const sem = listarPersonagens().filter((p) => !spriteInteiroDoPersonagem(p.id));
+    expect(sem.map((p) => p.id)).toEqual(['ryoko-otonashi']);
+  });
+
+  it('todo caminho de corpo inteiro aponta para um arquivo que existe', () => {
+    for (const p of listarPersonagens()) {
+      const caminho = spriteInteiroDoPersonagem(p.id);
+      if (!caminho) continue;
+      expect(fs.existsSync(path.join(process.cwd(), 'public', caminho)), p.id).toBe(true);
+    }
   });
 });
 
