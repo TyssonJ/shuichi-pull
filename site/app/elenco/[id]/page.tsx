@@ -43,6 +43,11 @@ export default async function FichaPersonagem({
       <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-cyber-cyan/40" />
       <span aria-hidden className="pointer-events-none absolute -bottom-1 -right-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
 
+      {/* Fita de interdição — a diagonal "linha de perigo" clássica de cena
+          de investigação, rareando o fundo preto chapado nos dois extremos. */}
+      <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-hazard-tape opacity-25" />
+      <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-hazard-tape opacity-25" />
+
       <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green xl:col-span-3">
         ← todo o elenco
       </Link>

@@ -50,6 +50,13 @@ body { overflow-x: hidden; }
     background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
     background-size: 12px 12px;
   }
+  .bg-hazard-tape {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-execution-pink) 0px, var(--color-execution-pink) 8px,
+      #0A0A0D 8px, #0A0A0D 16px
+    );
+  }
 }
 
 @theme {
