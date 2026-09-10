@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BarraEgo } from './BarraEgo';
 
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/elenco/',
+}));
+
 describe('BarraEgo', () => {
   beforeEach(() => localStorage.clear());
 
@@ -127,5 +131,31 @@ describe('BarraEgo — Terminal OS', () => {
     const campo = screen.getAllByRole('searchbox')[0];
     fireEvent.focus(campo);
     expect(screen.queryByTestId('log-alterego')).not.toBeInTheDocument();
+  });
+});
+
+describe('BarraEgo — destaque de seção atual', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('marca a seção da página atual com aria-current e destaque visual', () => {
+    render(<BarraEgo />);
+    const linkAtual = screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i });
+    const linkOutro = screen.getByRole('link', { name: /02\s*\/\/\s*ITENS/i });
+    expect(linkAtual).toHaveAttribute('aria-current', 'page');
+    expect(linkAtual.className).toMatch(/execution-pink/);
+    expect(linkOutro).not.toHaveAttribute('aria-current');
+  });
+
+  it('não recorta a retícula decorativa com overflow-hidden', () => {
+    render(<BarraEgo />);
+    const link = screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i });
+    expect(link.className).not.toMatch(/overflow-hidden/);
+  });
+
+  it('a fala do log usa a cor "dim" do tema (contraste AA), não uma cor customizada mais escura', () => {
+    render(<BarraEgo />);
+    const linha = screen.getByTestId('log-alterego');
+    const falaSpan = linha.querySelector('span:last-child');
+    expect(falaSpan).toHaveClass('text-dim');
   });
 });

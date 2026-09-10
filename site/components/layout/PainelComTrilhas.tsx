@@ -25,6 +25,7 @@ export function PainelComTrilhas({ as = 'div', children }: Props) {
               <Link
                 key={s.url}
                 href={s.url}
+                aria-current={ativa ? 'page' : undefined}
                 className={`block rounded-[2px] border px-2 py-1.5 font-mono text-[8px] tracking-[.08em] ${
                   ativa
                     ? 'border-execution-pink text-execution-pink'
@@ -44,6 +45,7 @@ export function PainelComTrilhas({ as = 'div', children }: Props) {
         <button
           type="button"
           data-testid="feed-alterego"
+          aria-label="Pedir uma nova leitura ao Alter Ego"
           onClick={forcarNovaLinha}
           className="sticky top-20 w-full rounded-[3px] border border-line bg-sur p-3 text-left transition-colors hover:border-alter-green"
         >

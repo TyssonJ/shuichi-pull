@@ -44,4 +44,17 @@ describe('PainelComTrilhas', () => {
     );
     expect(container.querySelector('article')).toBeInTheDocument();
   });
+
+  it('marca a seção atual com aria-current="page"', () => {
+    render(<PainelComTrilhas><p>x</p></PainelComTrilhas>);
+    expect(screen.getByRole('link', { name: /02 \/\/ ITENS/i })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: /01 \/\/ ELENCO/i })).not.toHaveAttribute('aria-current');
+  });
+
+  it('o feed do Alter Ego tem nome acessível estável, independente da fala atual', () => {
+    render(<PainelComTrilhas><p>x</p></PainelComTrilhas>);
+    expect(
+      screen.getByRole('button', { name: /pedir uma nova leitura ao alter ego/i }),
+    ).toBeInTheDocument();
+  });
 });

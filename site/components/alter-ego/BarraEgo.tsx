@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { JanelaEgo } from './JanelaEgo';
 import { usePersistencia } from './usePersistencia';
 import { useLogAlterEgo } from './useLogAlterEgo';
@@ -64,6 +65,7 @@ function Busca({
 }
 
 export function BarraEgo() {
+  const pathname = usePathname();
   const [termo, setTermo] = useState('');
   const [barraVisivel, setBarraVisivel] = useState(true);
   const [flutuanteAberta, setFlutuanteAberta] = usePersistencia('ego-flutuante-aberta', false);
@@ -152,26 +154,37 @@ export function BarraEgo() {
             {!buscaEmFoco && (
               <p data-testid="log-alterego" className="mt-1 truncate font-mono text-[8px] tracking-[.02em]">
                 <span className="text-alter-green">[{logTag}]</span>{' '}
-                <span className="text-[#5A5A68]">{logTexto}</span>
+                <span className="text-dim">{logTexto}</span>
               </p>
             )}
           </div>
 
-          <nav className="hidden flex-wrap gap-1.5 sm:flex">
-            {SECOES.map((s) => (
-              <Link key={s.url} href={s.url}
-                className="group relative overflow-hidden rounded-[2px] border border-execution-pink/30 px-1.5 py-0.5 font-mono text-[8px] tracking-[.08em] text-dim hover:text-execution-pink">
-                {s.numero} {'//'} {s.nome.toUpperCase()}
-                <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
-                  className="pointer-events-none absolute -right-2 -top-1.5 h-2.5 w-2.5 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
-                  <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
-                  <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
-                  <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
-                  <line x1="0" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1" />
-                  <line x1="18" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
-                </svg>
-              </Link>
-            ))}
+          <nav aria-label="Navegação principal" className="hidden flex-wrap gap-1.5 sm:flex">
+            {SECOES.map((s) => {
+              const ativa = pathname?.startsWith(s.url);
+              return (
+                <Link
+                  key={s.url}
+                  href={s.url}
+                  aria-current={ativa ? 'page' : undefined}
+                  className={`group relative rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.08em] ${
+                    ativa
+                      ? 'border-execution-pink text-execution-pink'
+                      : 'border-execution-pink/30 text-dim hover:text-execution-pink'
+                  }`}
+                >
+                  {s.numero} {'//'} {s.nome.toUpperCase()}
+                  <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
+                    className="pointer-events-none absolute -right-2 -top-1.5 h-2.5 w-2.5 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
+                    <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
+                    <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
+                    <line x1="0" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1" />
+                    <line x1="18" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
+                  </svg>
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </header>
