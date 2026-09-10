@@ -31,22 +31,47 @@ export default async function FichaPersonagem({
 
   return (
     <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
-      {/* Moldura HUD: prende o painel inteiro num chassi de terminal —
-          cantos chanfrados + marcação de mira, mesma família visual do
-          canto "+" do card do elenco, só que na escala da janela toda. */}
-      <span aria-hidden className="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-cyber-cyan/40" />
-      <span aria-hidden className="pointer-events-none absolute -left-1 -top-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
-      <span aria-hidden className="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-cyber-cyan/40" />
-      <span aria-hidden className="pointer-events-none absolute -right-1 -top-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
-      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2 border-cyber-cyan/40" />
-      <span aria-hidden className="pointer-events-none absolute -bottom-1 -left-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
-      <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-cyber-cyan/40" />
-      <span aria-hidden className="pointer-events-none absolute -bottom-1 -right-1 font-mono text-[11px] leading-none text-cyber-cyan/50">+</span>
-
-      {/* Fita de interdição — a diagonal "linha de perigo" clássica de cena
-          de investigação, rareando o fundo preto chapado nos dois extremos. */}
-      <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-hazard-tape opacity-25" />
-      <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-hazard-tape opacity-25" />
+      {/* Moldura HUD: uma peça só, não quatro cantos soltos — uma borda com
+          chanfro nos 4 vértices (clip-path), chassi de dossiê fechado em
+          vez de tiques desencontrados. As marcas de mira ficam exatamente
+          nos vértices que o chanfro corta, centralizadas por transform
+          (não por offset chutado, que é o que ficava torto). */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 border-2 border-cyber-cyan/25"
+        style={{
+          clipPath:
+            'polygon(28px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 28px), calc(100% - 28px) 100%, 28px 100%, 0 calc(100% - 28px), 0 28px)',
+        }}
+      />
+      {/* Fita de interdição preenchendo os dois chanfros opostos — o
+          triângulo é do mesmo tamanho (28px) e no mesmo lugar que o
+          clip-path da moldura corta, então encaixa exato em vez de
+          flutuar por cima dela. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 h-[28px] w-[28px] bg-hazard-tape opacity-40"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-0 h-[28px] w-[28px] bg-hazard-tape opacity-40"
+        style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}
+      />
+      {[
+        'left-0 top-0 -translate-x-1/2 -translate-y-1/2',
+        'right-0 top-0 translate-x-1/2 -translate-y-1/2',
+        'left-0 bottom-0 -translate-x-1/2 translate-y-1/2',
+        'right-0 bottom-0 translate-x-1/2 translate-y-1/2',
+      ].map((pos) => (
+        <span
+          key={pos}
+          aria-hidden
+          className={`pointer-events-none absolute ${pos} font-mono text-sm leading-none text-cyber-cyan/40`}
+        >
+          +
+        </span>
+      ))}
 
       <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green xl:col-span-3">
         ← todo o elenco
@@ -66,6 +91,14 @@ export default async function FichaPersonagem({
             className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[125%] w-auto max-w-none grayscale opacity-[0.13] [mask-image:linear-gradient(to_left,black_30%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_left,black_30%,transparent_85%)]"
           />
         )}
+        {/* Carimbo de dossiê — cai no vazio abaixo da descrição, translúcido
+            o bastante pra ler como textura de arquivo e não como aviso. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute bottom-6 left-0 -rotate-6 select-none whitespace-nowrap border-2 border-execution-pink/25 px-3 py-1 font-mono text-2xl font-black uppercase tracking-[.25em] text-execution-pink/10 sm:text-3xl"
+        >
+          [ trial record ]
+        </span>
         <p className="font-mono text-[8px] tracking-[.2em] text-dim">{p.jogo}</p>
         <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
           {p.nome}
