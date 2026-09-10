@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BarraEgo } from './BarraEgo';
 
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/elenco/',
+}));
+
 describe('BarraEgo', () => {
   beforeEach(() => localStorage.clear());
 
@@ -42,13 +46,13 @@ describe('BarraEgo — numeração e retícula', () => {
 
   it('numera os links de seção', () => {
     render(<BarraEgo />);
-    expect(screen.getByRole('link', { name: /01\.\s*ELENCO/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /02\.\s*ITENS/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /02\s*\/\/\s*ITENS/i })).toBeInTheDocument();
   });
 
   it('cada link de seção tem uma retícula decorativa escondida do leitor de tela', () => {
     render(<BarraEgo />);
-    const link = screen.getByRole('link', { name: /01\.\s*ELENCO/i });
+    const link = screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i });
     expect(link.querySelector('[data-testid="reticula"]')).toHaveAttribute('aria-hidden', 'true');
   });
 });
@@ -79,12 +83,14 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     render(<BarraEgo />);
     // Espera o efeito real do IntersectionObserver (barraVisivel === false)
     // aparecer no DOM — o botão flutuante só existe quando a barra some —
-    // em vez de um delay fixo, que corre contra o timer mockado acima e é
-    // sensível à carga da máquina.
+    // em vez de um delay fixo, que é sensível à carga da máquina.
     await waitFor(() =>
       expect(screen.getByRole('button', { name: /abrir a janela do alter ego/i })).toBeInTheDocument(),
     );
     fireEvent.keyDown(window, { key: 'k', metaKey: true });
+    // O foco agora acontece dentro de um useEffect (não mais um
+    // requestAnimationFrame) — sem corrida de timer real pra esperar, mas
+    // o waitFor continua aqui como rede de segurança.
     await waitFor(() => expect(document.getElementById('busca-flutuante')).toHaveFocus());
     vi.unstubAllGlobals();
   });
@@ -94,5 +100,62 @@ describe('BarraEgo — atalho Ctrl+K', () => {
     const evento = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, cancelable: true });
     window.dispatchEvent(evento);
     expect(evento.defaultPrevented).toBe(true);
+  });
+});
+
+describe('BarraEgo — Terminal OS', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('mostra o indicador de núcleo online', () => {
+    render(<BarraEgo />);
+    expect(screen.getByText('CORE: ONLINE')).toBeInTheDocument();
+  });
+
+  it('o campo de busca troca de placeholder quando ganha foco', () => {
+    render(<BarraEgo />);
+    const campo = screen.getAllByRole('searchbox')[0];
+    expect(campo).toHaveAttribute('placeholder', 'buscar item, local, personagem…');
+    fireEvent.focus(campo);
+    expect(campo).toHaveAttribute('placeholder', 'digite pra consultar os registros…');
+    fireEvent.blur(campo);
+    expect(campo).toHaveAttribute('placeholder', 'buscar item, local, personagem…');
+  });
+
+  it('mostra a linha de log do Alter Ego quando o campo não está em foco', () => {
+    render(<BarraEgo />);
+    expect(screen.getByTestId('log-alterego')).toBeInTheDocument();
+  });
+
+  it('esconde a linha de log enquanto o campo de busca está em foco', () => {
+    render(<BarraEgo />);
+    const campo = screen.getAllByRole('searchbox')[0];
+    fireEvent.focus(campo);
+    expect(screen.queryByTestId('log-alterego')).not.toBeInTheDocument();
+  });
+});
+
+describe('BarraEgo — destaque de seção atual', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('marca a seção da página atual com aria-current e destaque visual', () => {
+    render(<BarraEgo />);
+    const linkAtual = screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i });
+    const linkOutro = screen.getByRole('link', { name: /02\s*\/\/\s*ITENS/i });
+    expect(linkAtual).toHaveAttribute('aria-current', 'page');
+    expect(linkAtual.className).toMatch(/execution-pink/);
+    expect(linkOutro).not.toHaveAttribute('aria-current');
+  });
+
+  it('não recorta a retícula decorativa com overflow-hidden', () => {
+    render(<BarraEgo />);
+    const link = screen.getByRole('link', { name: /01\s*\/\/\s*ELENCO/i });
+    expect(link.className).not.toMatch(/overflow-hidden/);
+  });
+
+  it('a fala do log usa a cor "dim" do tema (contraste AA), não uma cor customizada mais escura', () => {
+    render(<BarraEgo />);
+    const linha = screen.getByTestId('log-alterego');
+    const falaSpan = linha.querySelector('span:last-child');
+    expect(falaSpan).toHaveClass('text-dim');
   });
 });

@@ -36,19 +36,29 @@ function tierDeVariante(titulo: string): number {
   return parenteses.every((p) => VARIANTE_NEUTRA.test(p)) ? 0 : 1;
 }
 
+export type Enquadramento = 'meio' | 'inteiro';
+
 /**
  * Meio-corpo e o enquadramento padrao da ficha. Corpo inteiro vem muito mais
  * alto que o resto e quebra a grade da listagem, entao so entra se nao houver
- * nada melhor.
+ * nada melhor — ou quando e justamente ele que se quer, na ficha aberta do
+ * personagem, e ai a ordem se inverte.
  */
-function tierDeEnquadramento(titulo: string): number {
-  if (/halfbody|bustup/i.test(titulo)) return 0;
-  if (/fullbody/i.test(titulo)) return 2;
+function tierDeEnquadramento(titulo: string, alvo: Enquadramento): number {
+  const meio = /halfbody|bustup/i.test(titulo);
+  const inteiro = /fullbody/i.test(titulo);
+  if (alvo === 'inteiro') {
+    if (inteiro) return 0;
+    if (meio) return 2;
+    return 1;
+  }
+  if (meio) return 0;
+  if (inteiro) return 2;
   return 1;
 }
 
 export function escolherSprite(
-  titulos: string[], nome: string, jogo?: string
+  titulos: string[], nome: string, jogo?: string, enquadramento: Enquadramento = 'meio'
 ): string | null {
   // O nome inteiro, nao so o sobrenome: "Tsumugi Shirogane Halfbody Sprite
   // (Nekomaru Nidai)" e a Tsumugi cosplayada, nao o Nekomaru.
@@ -68,7 +78,7 @@ export function escolherSprite(
 
   return [...fila].sort(
     (a, b) =>
-      tierDeEnquadramento(a) - tierDeEnquadramento(b) ||
+      tierDeEnquadramento(a, enquadramento) - tierDeEnquadramento(b, enquadramento) ||
       tierDeVariante(a) - tierDeVariante(b) ||
       numeroDaPose(a) - numeroDaPose(b) ||
       a.localeCompare(b)

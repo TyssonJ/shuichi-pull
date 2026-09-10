@@ -1,5 +1,6 @@
 import { faqPorSecao, listarFaq } from '@/lib/faq';
 import { Prosa } from '@/components/conteudo/Prosa';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'FAQ — Shuichi Pull' };
 
@@ -7,7 +8,7 @@ export default function PaginaFaq() {
   const secoes = faqPorSecao();
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 04</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">FAQ</h1>
       <p className="mb-6 text-[11px] text-dim">
@@ -53,6 +54,6 @@ export default function PaginaFaq() {
           </div>
         </section>
       ))}
-    </div>
+    </PainelComTrilhas>
   );
 }
