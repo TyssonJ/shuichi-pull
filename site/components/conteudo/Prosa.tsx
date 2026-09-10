@@ -16,7 +16,7 @@ function formatar(texto: string, chave: string) {
     }
     if (/^`[^`]+`$/.test(pedaco)) {
       return (
-        <code key={k} className="rounded-[2px] bg-[#22222C] px-1 font-mono text-[.92em] text-teal">
+        <code key={k} className="rounded-[2px] bg-[#22222C] px-1 font-mono text-[.92em] text-alter-green">
           {pedaco.slice(1, -1)}
         </code>
       );
@@ -25,7 +25,7 @@ function formatar(texto: string, chave: string) {
       const href = pedaco.startsWith('http') ? pedaco : `https://${pedaco}`;
       return (
         <a key={k} href={href} target="_blank" rel="noreferrer"
-           className="text-teal underline underline-offset-2 hover:text-papel">
+           className="text-alter-green underline underline-offset-2 hover:text-dim">
           {pedaco}
         </a>
       );

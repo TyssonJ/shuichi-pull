@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { listarLocais, iconeDoItem } from '@/lib/itens';
 import { buscarLocalComCorrecoes } from '@/lib/itens-corrigidos';
 import { Icone } from '@/components/itens/Icone';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export function generateStaticParams() {
   return listarLocais().map((l) => ({ id: l.id }));
@@ -14,7 +15,7 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
   if (!local) notFound();
 
   return (
-    <article className="px-4 py-8">
+    <PainelComTrilhas as="article">
       <header className="relative overflow-hidden">
         <span
           aria-hidden
@@ -47,7 +48,7 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
                   <Icone src={iconeDoItem(i.id)} nome={i.nome.pt} className="h-7 w-7" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2 text-[11px]">
-                      <Link href={`/itens/${i.id}/`} className="truncate text-teal hover:underline">
+                      <Link href={`/itens/${i.id}/`} className="truncate text-alter-green hover:underline">
                         {i.nome.pt}
                       </Link>
                       <span className="ml-auto shrink-0 font-mono text-[9px] text-dim">
@@ -62,7 +63,7 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
                       role="img"
                       aria-label={`${i.chance}% de chance de ${i.nome.pt}`}
                     >
-                      <div className="h-full bg-teal" style={{ width: `${i.chance}%` }} />
+                      <div className="h-full bg-alter-green" style={{ width: `${i.chance}%` }} />
                     </div>
                   </div>
                 </li>
@@ -71,6 +72,6 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
           </section>
         ))}
       </div>
-    </article>
+    </PainelComTrilhas>
   );
 }

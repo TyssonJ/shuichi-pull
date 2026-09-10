@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { buscarEvento, listarEventos } from '@/lib/eventos';
 import { Prosa } from '@/components/conteudo/Prosa';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export async function generateStaticParams() {
   return (await listarEventos()).map((e) => ({ id: e.id }));
@@ -17,8 +18,8 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
   if (!evento) notFound();
 
   return (
-    <article className="mx-auto max-w-2xl px-4 py-8">
-      <Link href="/eventos/" className="font-mono text-[9px] text-dim hover:text-teal">
+    <PainelComTrilhas as="article">
+      <Link href="/eventos/" className="font-mono text-[9px] text-dim hover:text-alter-green">
         ← todos os eventos
       </Link>
 
@@ -39,6 +40,6 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
       <div className="mt-6 border-t border-line pt-6">
         <Prosa texto={evento.corpo} />
       </div>
-    </article>
+    </PainelComTrilhas>
   );
 }

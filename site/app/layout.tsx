@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { BarraEgo } from '@/components/alter-ego/BarraEgo';
 import { Rodape } from '@/components/layout/Rodape';
+import { CamadaAmbiente } from '@/components/ambiente/CamadaAmbiente';
 
 export const metadata: Metadata = {
   title: 'Shuichi Pull — o arquivo da comunidade BR/PT de Shinri Trial',
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body className="bg-bg">
+        <CamadaAmbiente />
         <BarraEgo />
         <main>{children}</main>
         <Rodape />

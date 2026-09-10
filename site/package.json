@@ -12,6 +12,8 @@
     "dados": "tsx scripts/ingerir-elenco.ts",
     "sprites": "tsx scripts/otimizar-sprites.ts",
     "sprites:baixar": "tsx scripts/baixar-sprites.ts",
+    "fullbody:baixar": "tsx scripts/baixar-fullbody.ts",
+    "fundo": "tsx scripts/remover-fundo.ts",
     "dados:itens": "tsx scripts/ingerir-itens.ts",
     "dados:faq": "tsx scripts/ingerir-faq.ts",
     "dados:controles": "tsx scripts/ingerir-controles.ts",
@@ -24,6 +26,7 @@
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",
+    "framer-motion": "^13.2.0",
     "next": "16.3.4",
     "next-auth": "^5.0.0-beta.20",
     "postgres": "^3.4.4",

@@ -61,12 +61,12 @@ export default async function PaginaIniciantes() {
                 >
                   <span
                     aria-hidden
-                    className="font-mono text-[18px] font-black leading-none text-teal-escuro"
+                    className="font-mono text-[18px] font-black leading-none text-ego-escuro"
                   >
                     {f.n}
                   </span>
                   <div className="min-w-0">
-                    <p className="mb-1 font-mono text-[10px] font-bold tracking-[.14em] text-teal">
+                    <p className="mb-1 font-mono text-[10px] font-bold tracking-[.14em] text-alter-green">
                       {f.nome.toUpperCase()}
                     </p>
                     <Prosa texto={f.texto} />
@@ -85,7 +85,7 @@ export default async function PaginaIniciantes() {
                 <li key={p.n} className="flex gap-3">
                   <span
                     aria-hidden
-                    className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal-escuro font-mono text-[9px] font-bold text-teal"
+                    className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-ego-escuro font-mono text-[9px] font-bold text-alter-green"
                   >
                     {p.n}
                   </span>
@@ -104,7 +104,7 @@ export default async function PaginaIniciantes() {
             <ul className="space-y-2">
               {c.dicas.map((d) => (
                 <li key={d} className="flex gap-2 text-[12px] leading-relaxed">
-                  <span aria-hidden className="text-tinta/40">—</span>
+                  <span aria-hidden className="text-dim/40">—</span>
                   <span>{d}</span>
                 </li>
               ))}
@@ -122,7 +122,7 @@ export default async function PaginaIniciantes() {
                     href={l.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[12px] font-bold text-teal hover:underline"
+                    className="text-[12px] font-bold text-alter-green hover:underline"
                   >
                     {l.rotulo}
                   </a>
@@ -132,33 +132,33 @@ export default async function PaginaIniciantes() {
             </ul>
           </section>
 
-          <section className="rounded-[4px] border border-teal-escuro bg-[#12201F] p-3">
-            <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-teal">
+          <section className="rounded-[4px] border border-ego-escuro bg-[#12201F] p-3">
+            <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-alter-green">
               JÁ ENTENDEU? ENTRA NO ARQUIVO
             </h2>
             <ul className="space-y-1.5 text-[11px]">
               <li>
-                <Link href="/elenco/" className="text-[#D6D6E0] hover:text-teal">
+                <Link href="/elenco/" className="text-[#D6D6E0] hover:text-alter-green">
                   Elenco — {totalPersonagens} alunos e seus atributos
                 </Link>
               </li>
               <li>
-                <Link href="/itens/" className="text-[#D6D6E0] hover:text-teal">
+                <Link href="/itens/" className="text-[#D6D6E0] hover:text-alter-green">
                   Itens — {totalItens} itens, receitas e onde spawnam
                 </Link>
               </li>
               <li>
-                <Link href="/mapa/" className="text-[#D6D6E0] hover:text-teal">
+                <Link href="/mapa/" className="text-[#D6D6E0] hover:text-alter-green">
                   Mapa — {totalLocais} locais da academia
                 </Link>
               </li>
               <li>
-                <Link href="/mecanicas/" className="text-[#D6D6E0] hover:text-teal">
+                <Link href="/mecanicas/" className="text-[#D6D6E0] hover:text-alter-green">
                   Mecânicas — todas as teclas e mecânicas
                 </Link>
               </li>
               <li>
-                <Link href="/faq/" className="text-[#D6D6E0] hover:text-teal">
+                <Link href="/faq/" className="text-[#D6D6E0] hover:text-alter-green">
                   FAQ — 51 perguntas respondidas
                 </Link>
               </li>

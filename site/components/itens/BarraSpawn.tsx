@@ -21,7 +21,7 @@ export function BarraSpawn({ spawns }: { spawns: Spawn[] }) {
       {spawns.map((s) => (
         <li key={`${s.fonteId}-${s.conteiner.en}`}>
           <div className="flex items-baseline gap-2 text-[11px]">
-            <Link href={`/mapa/${s.localId}/`} className="text-teal hover:underline">
+            <Link href={`/mapa/${s.localId}/`} className="text-alter-green hover:underline">
               {s.local.pt}
             </Link>
             {s.andar && <span className="font-mono text-[8px] text-dim">{s.andar.pt}</span>}
@@ -37,7 +37,7 @@ export function BarraSpawn({ spawns }: { spawns: Spawn[] }) {
             role="img"
             aria-label={`${s.chance}% de chance em ${s.conteiner.pt}, ${s.local.pt}`}
           >
-            <div className="h-full bg-teal" style={{ width: `${s.chance}%` }} />
+            <div className="h-full bg-alter-green" style={{ width: `${s.chance}%` }} />
           </div>
         </li>
       ))}

@@ -4,6 +4,9 @@ import { listarPersonagens, valoresDoElenco } from '@/lib/dados';
 import { buscarPersonagemComCorrecoes } from '@/lib/dados-corrigidos';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { Regua } from '@/components/dados/Regua';
+import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
+import { CofreAlterEgo } from '@/components/ficha/CofreAlterEgo';
+import { TelemetriaLateral } from '@/components/ficha/TelemetriaLateral';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
@@ -24,118 +27,221 @@ export default async function FichaPersonagem({
   const p = await buscarPersonagemComCorrecoes(id);
   if (!p) notFound();
 
-  const total = listarPersonagens().length;
-  // Na ficha aberta cabe o corpo inteiro; quem nao tem fica com o retrato da
-  // listagem mesmo.
-  const retrato = spriteInteiroDoPersonagem(p.id) ?? p.sprite;
+  const todos = listarPersonagens();
+  const total = todos.length;
+  const numero = todos.findIndex((x) => x.id === id) + 1;
+  const corpoInteiro = spriteInteiroDoPersonagem(id);
 
   return (
-    <article className="mx-auto max-w-5xl px-4 py-8">
-      <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-teal">
+    <>
+      <TelemetriaLateral personagem={p} lado="esquerda" />
+      <TelemetriaLateral personagem={p} lado="direita" />
+
+      <article className="relative mx-auto max-w-[1400px] px-4 py-8 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:gap-10">
+      {/* Moldura HUD: uma peça só, não quatro cantos soltos — uma borda com
+          chanfro nos 4 vértices (clip-path), chassi de dossiê fechado em
+          vez de tiques desencontrados. As marcas de mira ficam exatamente
+          nos vértices que o chanfro corta, centralizadas por transform
+          (não por offset chutado, que é o que ficava torto). */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 border-2 border-cyber-cyan/25"
+        style={{
+          clipPath:
+            'polygon(28px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 28px), calc(100% - 28px) 100%, 28px 100%, 0 calc(100% - 28px), 0 28px)',
+        }}
+      />
+      {/* Fita de interdição preenchendo os dois chanfros opostos — o
+          triângulo é do mesmo tamanho (28px) e no mesmo lugar que o
+          clip-path da moldura corta, então encaixa exato em vez de
+          flutuar por cima dela. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 h-[28px] w-[28px] bg-hazard-tape opacity-40"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-0 h-[28px] w-[28px] bg-hazard-tape opacity-40"
+        style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}
+      />
+      {[
+        'left-0 top-0 -translate-x-1/2 -translate-y-1/2',
+        'right-0 top-0 translate-x-1/2 -translate-y-1/2',
+        'left-0 bottom-0 -translate-x-1/2 translate-y-1/2',
+        'right-0 bottom-0 translate-x-1/2 translate-y-1/2',
+      ].map((pos) => (
+        <span
+          key={pos}
+          aria-hidden
+          className={`pointer-events-none absolute ${pos} font-mono text-sm leading-none text-cyber-cyan/40`}
+        >
+          +
+        </span>
+      ))}
+
+      <Link href="/elenco/" className="font-mono text-[9px] text-dim hover:text-alter-green xl:col-span-3">
         ← todo o elenco
       </Link>
 
-      {/* Retrato e identificação, lado a lado: a descrição é a primeira coisa
-          que se lê, e os atributos ficam para depois. */}
-      <div className="mt-4 grid gap-6 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-8">
-        <div className="mx-auto w-48 sm:mx-0 sm:w-full">
-          <div className="overflow-hidden rounded-[4px] border border-line bg-gradient-to-b from-[#1B1B22] to-[#101014] p-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={retrato}
-              alt={`Sprite de ${p.nome}`}
-              className="mx-auto block max-h-[420px] w-auto object-contain"
-            />
-          </div>
-        </div>
-
-        <header className="min-w-0">
-          <p className="font-mono text-[8px] tracking-[.2em] text-dim">{p.jogo}</p>
-          <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
-            {p.nome}
-          </h1>
-          <p className="mt-1 font-serif text-[17px] italic leading-tight text-teal">
-            {p.talento.pt}
-          </p>
-          <p className="font-mono text-[9px] text-dim">{p.talento.en}</p>
-
-          <p className="mt-4 max-w-prose text-[13px] leading-relaxed text-[#C8C8D4]">
-            {p.descricao.pt}
-          </p>
-
-          {p.etiquetas.length > 0 && (
-            <ul className="mt-4 flex flex-wrap gap-1.5">
-              {p.etiquetas.map((e) => (
-                <li
-                  key={e.en}
-                  title={e.en}
-                  className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px]"
-                  style={{
-                    color: e.bom ? 'var(--color-teal)' : 'var(--color-red)',
-                    borderColor: 'currentColor',
-                  }}
-                >
-                  {e.pt}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3">
-            <div className="flex items-baseline gap-1.5">
-              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">VIDA</dt>
-              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.vida}</dd>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">VELOCIDADE</dt>
-              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.velocidade}</dd>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">MOCHILA</dt>
-              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.mochila}</dd>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <dt className="font-mono text-[8px] tracking-[.14em] text-dim">PERCEPÇÃO</dt>
-              <dd className="font-mono text-[12px] font-bold text-[#D6D6E0]">{p.percepcao}</dd>
-            </div>
-          </dl>
-        </header>
+      <div className="relative mx-auto mt-4 w-40 xl:mx-0 xl:mt-6 xl:w-full">
+        <CarteirinhaEstudante personagem={p} numero={numero} />
       </div>
 
-      <section className="mt-12">
-        <h2 className="mb-1 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#B9B9C6]">
-          <span className="h-px flex-1 bg-line" />
-          Como se compara
-          <span className="h-px flex-1 bg-line" />
-        </h2>
-        <p className="mb-6 text-center font-mono text-[8px] tracking-[.14em] text-dim">
-          CADA COLUNA É QUANTOS DOS {total} ALUNOS TÊM AQUELE VALOR
+      <header className="relative isolate mt-6 min-w-0 overflow-hidden min-h-[320px] xl:mt-6 xl:min-h-[420px]">
+        {corpoInteiro && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            aria-hidden
+            alt=""
+            src={corpoInteiro}
+            className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[125%] w-auto max-w-none grayscale opacity-[0.13] [mask-image:linear-gradient(to_left,black_30%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_left,black_30%,transparent_85%)]"
+          />
+        )}
+        {/* Carimbo de dossiê — cai no vazio abaixo da descrição, translúcido
+            o bastante pra ler como textura de arquivo e não como aviso. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute bottom-6 left-0 -rotate-6 select-none whitespace-nowrap border-2 border-execution-pink/25 px-3 py-1 font-mono text-2xl font-black uppercase tracking-[.25em] text-execution-pink/10 sm:text-3xl"
+        >
+          [ trial record ]
+        </span>
+        <p className="font-mono text-[8px] tracking-[.2em] text-dim">{p.jogo}</p>
+        <h1 className="mt-1 text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-4xl">
+          {p.nome}
+        </h1>
+        <p className="mt-1 font-serif text-[17px] italic leading-tight text-alter-green">
+          {p.talento.pt}
+        </p>
+        <p className="font-mono text-[9px] text-dim">{p.talento.en}</p>
+
+        <p className="mt-4 max-w-prose text-[13px] leading-relaxed text-[#C8C8D4]">
+          {p.descricao.pt}
         </p>
 
-        <div className="mx-auto max-w-3xl">
-          <Regua
-            nome="VELOCIDADE" valor={p.velocidade} unidade="u/s"
-            valores={valoresDoElenco('velocidade')} passo={5}
-            maiorEhMelhor sentido="mais rápido"
-          />
-          <Regua
-            nome="MOCHILA" valor={p.mochila} unidade="unid."
-            valores={valoresDoElenco('mochila')} passo={1}
-            maiorEhMelhor sentido="carrega mais"
-          />
-          <Regua
-            nome="PERCEPÇÃO" valor={p.percepcao} unidade="de 10"
-            valores={valoresDoElenco('percepcao')} passo={1}
-            maiorEhMelhor sentido="enxerga mais"
-          />
-        </div>
+        {p.etiquetas.length > 0 && (
+          <ul className="mt-4 flex flex-wrap gap-1.5">
+            {p.etiquetas.map((e) => (
+              <li
+                key={e.en}
+                title={e.en}
+                className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px]"
+                style={{
+                  color: e.bom ? 'var(--color-alter-green)' : 'var(--color-alerta)',
+                  borderColor: 'currentColor',
+                }}
+              >
+                {e.pt}
+              </li>
+            ))}
+          </ul>
+        )}
+      </header>
+
+      <section className="mt-8 xl:mt-6">
+        <h2 className="mb-1 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+          <span className="h-px flex-1 bg-line" />
+          — // ANÁLISE // —
+          <span className="h-px flex-1 bg-line" />
+        </h2>
+        <p className="mb-4 text-center font-mono text-[7px] tracking-[.1em] text-dim">
+          DE {total} ALUNOS
+        </p>
+
+        <dl className="mb-6 grid grid-cols-2 gap-x-4 gap-y-1.5 border-b border-line pb-4">
+          <div className="flex items-baseline gap-1.5">
+            <dt className="font-mono text-[7px] tracking-[.1em] text-dim">VIDA</dt>
+            <dd className="font-mono text-[11px] font-bold text-[#D6D6E0]">{p.vida}</dd>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <dt className="font-mono text-[7px] tracking-[.1em] text-dim">VELOCIDADE</dt>
+            <dd className="font-mono text-[11px] font-bold text-[#D6D6E0]">{p.velocidade}</dd>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <dt className="font-mono text-[7px] tracking-[.1em] text-dim">MOCHILA</dt>
+            <dd className="font-mono text-[11px] font-bold text-[#D6D6E0]">{p.mochila}</dd>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <dt className="font-mono text-[7px] tracking-[.1em] text-dim">PERCEPÇÃO</dt>
+            <dd className="font-mono text-[11px] font-bold text-[#D6D6E0]">{p.percepcao}</dd>
+          </div>
+        </dl>
+
+        <Regua
+          nome="VELOCIDADE" valor={p.velocidade} unidade="u/s"
+          valores={valoresDoElenco('velocidade')} passo={5}
+          maiorEhMelhor sentido="mais rápido"
+        />
+        <Regua
+          nome="MOCHILA" valor={p.mochila} unidade="unid."
+          valores={valoresDoElenco('mochila')} passo={1}
+          maiorEhMelhor sentido="carrega mais"
+        />
+        <Regua
+          nome="PERCEPÇÃO" valor={p.percepcao} unidade="de 10"
+          valores={valoresDoElenco('percepcao')} passo={1}
+          maiorEhMelhor sentido="enxerga mais"
+        />
       </section>
 
+      {(p.personalidade || p.aparencia || p.historia || p.segredo) && (
+        <div className="mt-10 space-y-8 xl:col-span-3 xl:mt-16 xl:max-w-3xl">
+          {p.personalidade && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // PERSONALIDADE // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.personalidade}</p>
+            </section>
+          )}
+
+          {p.aparencia && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // APARÊNCIA // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.aparencia}</p>
+            </section>
+          )}
+
+          {p.historia && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // HISTÓRIA / PASSADO // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <CofreAlterEgo titulo="Arquivo de história">
+                <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.historia}</p>
+              </CofreAlterEgo>
+            </section>
+          )}
+
+          {p.segredo && (
+            <section>
+              <h2 className="mb-2 flex items-center gap-2 font-serif text-[11px] tracking-[.14em] text-[#B9B9C6]">
+                <span className="h-px flex-1 bg-line" />
+                — // SEGREDO // —
+                <span className="h-px flex-1 bg-line" />
+              </h2>
+              <CofreAlterEgo titulo="Arquivo confidencial">
+                <p className="text-[13px] leading-relaxed text-[#C8C8D4]">{p.segredo}</p>
+              </CofreAlterEgo>
+            </section>
+          )}
+        </div>
+      )}
+
       {!p.traducaoRevisada && (
-        <p className="mt-10 text-center font-mono text-[8px] text-dim">
+        <p className="mt-10 text-center font-mono text-[8px] text-dim xl:col-span-3">
           Tradução ainda não revisada por um ADM.
         </p>
       )}
     </article>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import { faqPorSecaoComCorrecoes, listarFaqComCorrecoes } from '@/lib/faq';
 import { Prosa } from '@/components/conteudo/Prosa';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'FAQ — Shuichi Pull' };
 
@@ -8,7 +9,7 @@ export default async function PaginaFaq() {
   const totalFaq = (await listarFaqComCorrecoes()).length;
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 04</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">FAQ</h1>
       <p className="mb-6 text-[11px] text-dim">
@@ -20,7 +21,7 @@ export default async function PaginaFaq() {
           <a
             key={s.secao}
             href={`#${encodeURIComponent(s.secao)}`}
-            className="rounded-[2px] border border-line px-2 py-1 font-mono text-[8px] tracking-[.1em] text-dim hover:border-teal hover:text-teal"
+            className="rounded-[2px] border border-line px-2 py-1 font-mono text-[8px] tracking-[.1em] text-dim hover:border-alter-green hover:text-alter-green"
           >
             {s.secao.toUpperCase()} · {s.perguntas.length}
           </a>
@@ -40,10 +41,10 @@ export default async function PaginaFaq() {
               <details
                 key={p.id}
                 id={p.id}
-                className="group scroll-mt-16 rounded-[4px] border border-line bg-sur px-3 py-2 open:border-teal-escuro"
+                className="group scroll-mt-16 rounded-[4px] border border-line bg-sur px-3 py-2 open:border-ego-escuro"
               >
-                <summary className="cursor-pointer list-none text-[12px] font-bold text-[#D6D6E0] marker:content-none group-open:text-teal">
-                  <span className="mr-1.5 font-mono text-[9px] text-dim group-open:text-teal">?</span>
+                <summary className="cursor-pointer list-none text-[12px] font-bold text-[#D6D6E0] marker:content-none group-open:text-alter-green">
+                  <span className="mr-1.5 font-mono text-[9px] text-dim group-open:text-alter-green">?</span>
                   {p.pergunta}
                 </summary>
                 <div className="mt-2 border-t border-line pt-2">
@@ -54,6 +55,6 @@ export default async function PaginaFaq() {
           </div>
         </section>
       ))}
-    </div>
+    </PainelComTrilhas>
   );
 }

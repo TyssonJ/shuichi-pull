@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { iconeDoItem } from '@/lib/itens';
 import { listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
 import { Icone } from '@/components/itens/Icone';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import type { Local } from '@/lib/schema-itens';
 
 /** Os itens mais provaveis do local, sem repetir quem cai em varios conteineres. */
@@ -33,7 +34,7 @@ export default async function PaginaMapa() {
   }
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 03</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">MAPA</h1>
       <p className="mb-8 text-[11px] text-dim">
@@ -52,7 +53,7 @@ export default async function PaginaMapa() {
               <Link
                 key={l.id}
                 href={`/mapa/${l.id}/`}
-                className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-teal"
+                className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-alter-green"
               >
                 <p className="text-[12px] font-bold leading-tight text-[#D6D6E0]">{l.nome.pt}</p>
                 <p className="font-mono text-[8px] text-dim">{l.nome.en}</p>
@@ -63,7 +64,7 @@ export default async function PaginaMapa() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-2 font-mono text-[8px] text-teal">
+                <p className="mt-2 font-mono text-[8px] text-alter-green">
                   {l.conteineres.length} contêineres · {l.totalItens} itens
                 </p>
               </Link>
@@ -88,7 +89,7 @@ export default async function PaginaMapa() {
               <li key={l.id}>
                 <Link
                   href={`/mapa/${l.id}/`}
-                  className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-dim hover:border-teal hover:text-teal"
+                  className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-dim hover:border-alter-green hover:text-alter-green"
                 >
                   {l.nome.pt}
                 </Link>
@@ -97,6 +98,6 @@ export default async function PaginaMapa() {
           </ul>
         </section>
       )}
-    </div>
+    </PainelComTrilhas>
   );
 }

@@ -5,32 +5,84 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { JanelaEgo } from './JanelaEgo';
 import { usePersistencia } from './usePersistencia';
+import { useLogAlterEgo } from './useLogAlterEgo';
 import { buscar, type Resultado } from '@/lib/busca';
 import {
   falaDaSecao, kaomojiDaSecao, secaoDoCaminho, type EstadoEgo,
 } from '@/lib/alter-ego';
+import { SECOES } from '@/lib/secoes';
 
-const SECOES = [
-  { nome: 'Começar', url: '/comecar/' },
-  { nome: 'Elenco', url: '/elenco/' },
-  { nome: 'Itens', url: '/itens/' },
-  { nome: 'Mapa', url: '/mapa/' },
-  { nome: 'Mecânicas', url: '/mecanicas/' },
-  { nome: 'Eventos', url: '/eventos/' },
-  { nome: 'Códigos', url: '/codigos/' },
-  { nome: 'FAQ', url: '/faq/' },
-];
+function Busca({
+  id,
+  termo,
+  resultados,
+  setTermo,
+  emFoco = false,
+  aoFocar,
+  aoDesfocar,
+}: {
+  id: string;
+  termo: string;
+  resultados: Resultado[];
+  setTermo: (termo: string) => void;
+  emFoco?: boolean;
+  aoFocar?: () => void;
+  aoDesfocar?: () => void;
+}) {
+  return (
+    <div className="relative flex-1">
+      <span className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 font-mono text-[10px] text-cyber-cyan">
+        &gt;
+      </span>
+      <input
+        id={id}
+        type="search"
+        role="searchbox"
+        aria-label="Buscar no Shuichi Pull"
+        placeholder={emFoco ? 'digite pra consultar os registros…' : 'buscar item, local, personagem…'}
+        value={termo}
+        onChange={(e) => setTermo(e.target.value)}
+        onFocus={aoFocar}
+        onBlur={aoDesfocar}
+        className="w-full rounded-[3px] border border-cyber-cyan/40 bg-[#0A0A10] py-1.5 pl-6 pr-2 font-mono text-[10px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
+      />
+      {termo.length >= 2 && (
+        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
+          {resultados.length === 0 ? (
+            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
+          ) : (
+            resultados.map((r) => (
+              <li key={r.id}>
+                <Link href={r.url} className="block px-2 py-1.5 hover:bg-cyber-cyan/10">
+                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
+                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
+                </Link>
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 /** De quanto em quanto tempo ele arrisca um novo comentário na mesma página. */
 const INTERVALO_FALA = 2 * 60 * 1000;
 
 export function BarraEgo() {
+  const pathname = usePathname();
   const [termo, setTermo] = useState('');
   const [barraVisivel, setBarraVisivel] = useState(true);
   const [flutuanteAberta, setFlutuanteAberta] = usePersistencia('ego-flutuante-aberta', false);
   const [falaPagina, setFalaPagina] = useState<string | null>(null);
   const [temAlgoADizer, setTemAlgoADizer] = useState(false);
   const alvo = useRef<HTMLDivElement>(null);
+  const [buscaEmFoco, setBuscaEmFoco] = useState(false);
+  const { tag: logTag, texto: logTexto } = useLogAlterEgo();
+  // Marca que o Ctrl+K pediu pra abrir a janela flutuante e focar a busca
+  // dela assim que ela existir no DOM — ver o useEffect logo abaixo do
+  // handler de teclado.
+  const focarFlutuanteRef = useRef(false);
 
   const secao = secaoDoCaminho(usePathname() ?? '/');
 
@@ -75,35 +127,40 @@ export function BarraEgo() {
   // só aparece quando ele não tem nada mais útil a dizer.
   const fala = estado === 'ocioso' ? falaPagina ?? undefined : undefined;
 
-  const busca = (
-    <div className="relative flex-1">
-      <input
-        type="search"
-        role="searchbox"
-        aria-label="Buscar no Shuichi Pull"
-        placeholder="buscar item, local, personagem…"
-        value={termo}
-        onChange={(e) => setTermo(e.target.value)}
-        className="w-full rounded-[3px] border border-[#2E2E3A] bg-[#141419] px-2 py-1.5 font-mono text-[10px] text-[#D6D6E0] placeholder:text-[#6E6E7E]"
-      />
-      {termo.length >= 2 && (
-        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-line bg-sur">
-          {resultados.length === 0 ? (
-            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
-          ) : (
-            resultados.map((r) => (
-              <li key={r.id}>
-                <Link href={r.url} className="block px-2 py-1.5 hover:bg-[#22222C]">
-                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
-                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
-                </Link>
-              </li>
-            ))
-          )}
-        </ul>
-      )}
-    </div>
-  );
+  useEffect(() => {
+    function aoTeclar(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (barraVisivel) {
+          document.getElementById('busca-header')?.focus();
+          return;
+        }
+        if (flutuanteAberta) {
+          document.getElementById('busca-flutuante')?.focus();
+        } else {
+          // A janela flutuante só existe no DOM depois que o React montar
+          // o próximo render — o useEffect abaixo (que roda só depois que
+          // o DOM já foi atualizado) faz o foco de verdade, sem depender
+          // de nenhum timer real.
+          focarFlutuanteRef.current = true;
+          setFlutuanteAberta(true);
+        }
+      }
+    }
+    window.addEventListener('keydown', aoTeclar);
+    return () => window.removeEventListener('keydown', aoTeclar);
+  }, [barraVisivel, flutuanteAberta, setFlutuanteAberta]);
+
+  // Termina o pedido de foco do Ctrl+K assim que a janela flutuante
+  // realmente existe no DOM — useEffect só roda depois que o React já
+  // aplicou a mudança, então não há corrida como havia com
+  // requestAnimationFrame (que podia disparar antes do commit).
+  useEffect(() => {
+    if (flutuanteAberta && focarFlutuanteRef.current) {
+      focarFlutuanteRef.current = false;
+      document.getElementById('busca-flutuante')?.focus();
+    }
+  }, [flutuanteAberta]);
 
   return (
     <>
@@ -113,22 +170,62 @@ export function BarraEgo() {
           foco continuaria entrando numa barra que ninguém enxerga. */}
       <header
         inert={!barraVisivel}
-        className={`sticky top-0 z-40 flex items-center gap-2 border-b-2 border-teal-escuro bg-[#0A0A0D] px-2 py-1.5 transition-all duration-200 ${
+        className={`sticky top-0 z-40 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-2 py-1.5 transition-all duration-200 ${
           barraVisivel ? '' : 'pointer-events-none -translate-y-full opacity-0'
         }`}
       >
-        <div className="w-[52px] shrink-0">
-          <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
+        <div className="flex items-center gap-3">
+          <div className="flex shrink-0 flex-col items-center gap-1">
+            <div className="w-[52px] overflow-hidden rounded-[4px] border border-alter-green shadow-[0_0_8px_rgba(0,255,102,0.35)]">
+              <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
+            </div>
+            <p className="flex items-center gap-1 font-mono text-[6px] tracking-[.1em] text-alter-green">
+              <span className="h-1 w-1 animate-pulse rounded-full bg-alter-green" aria-hidden />
+              CORE: ONLINE
+            </p>
+          </div>
+
+          <div className="flex-1">
+            <Busca
+              id="busca-header" termo={termo} resultados={resultados} setTermo={setTermo}
+              emFoco={buscaEmFoco} aoFocar={() => setBuscaEmFoco(true)} aoDesfocar={() => setBuscaEmFoco(false)}
+            />
+            {!buscaEmFoco && (
+              <p data-testid="log-alterego" className="mt-1 truncate font-mono text-[8px] tracking-[.02em]">
+                <span className="text-alter-green">[{logTag}]</span>{' '}
+                <span className="text-dim">{logTexto}</span>
+              </p>
+            )}
+          </div>
+
+          <nav aria-label="Navegação principal" className="hidden flex-wrap gap-1.5 sm:flex">
+            {SECOES.map((s) => {
+              const ativa = pathname?.startsWith(s.url);
+              return (
+                <Link
+                  key={s.url}
+                  href={s.url}
+                  aria-current={ativa ? 'page' : undefined}
+                  className={`group relative rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.08em] ${
+                    ativa
+                      ? 'border-execution-pink text-execution-pink'
+                      : 'border-execution-pink/30 text-dim hover:text-execution-pink'
+                  }`}
+                >
+                  {s.numero} {'//'} {s.nome.toUpperCase()}
+                  <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
+                    className="pointer-events-none absolute -right-2 -top-1.5 h-2.5 w-2.5 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
+                    <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
+                    <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
+                    <line x1="0" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1" />
+                    <line x1="18" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
+                  </svg>
+                </Link>
+              );
+            })}
+          </nav>
         </div>
-        {busca}
-        <nav className="hidden gap-3 sm:flex">
-          {SECOES.map((s) => (
-            <Link key={s.url} href={s.url}
-              className="font-mono text-[9px] tracking-[.12em] text-[#B9C9C6] hover:text-teal">
-              {s.nome.toUpperCase()}
-            </Link>
-          ))}
-        </nav>
       </header>
 
       {!barraVisivel && !flutuanteAberta && (
@@ -152,7 +249,9 @@ export function BarraEgo() {
             fala={fala}
             onFechar={() => setFlutuanteAberta(false)}
           />
-          <div className="mt-1">{busca}</div>
+          <div className="mt-1">
+            <Busca id="busca-flutuante" termo={termo} resultados={resultados} setTermo={setTermo} />
+          </div>
         </div>
       )}
     </>

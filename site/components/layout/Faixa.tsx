@@ -2,20 +2,20 @@ import Link from 'next/link';
 
 type Props = {
   numero: string; titulo: string; descricao: string; url: string;
-  sprite?: string; variante: 'teal' | 'papel' | 'escura';
+  sprite?: string; variante: 'pink' | 'cyan' | 'escura';
 };
 
 const ESTILOS = {
-  teal: 'bg-teal-escuro text-papel',
-  papel: 'bg-papel text-tinta',
-  escura: 'bg-bg text-papel',
+  pink: 'bg-execution-pink text-[#08090D]',
+  cyan: 'bg-cyber-cyan text-[#08090D]',
+  escura: 'border border-alter-green/40 bg-bg text-[#D6D6E0]',
 } as const;
 
 export function Faixa({ numero, titulo, descricao, url, sprite, variante }: Props) {
   return (
     <Link
       href={url}
-      className={`relative flex min-h-[110px] items-center overflow-hidden border-t-2 border-tinta px-4 py-4 ${ESTILOS[variante]}`}
+      className={`clip-tab-slanted group relative flex min-h-[110px] items-center overflow-hidden border-t-2 border-[#08090D] px-4 py-4 transition-transform hover:translate-x-2 ${ESTILOS[variante]}`}
     >
       <span className="mr-3 font-mono text-[9px] tracking-[.24em] opacity-60 [writing-mode:vertical-rl] rotate-180">
         {numero}
@@ -29,11 +29,17 @@ export function Faixa({ numero, titulo, descricao, url, sprite, variante }: Prop
         <img
           data-testid="sprite-faixa" aria-hidden alt=""
           src={sprite}
-          // Ancorado pelo topo: o rosto fica sempre visivel e o corpo sangra na
-          // borda de baixo. Ancorar pelo pe cortava a cabeca dos meio-corpo.
           className="pointer-events-none absolute -top-2 right-2 h-[190%] w-auto max-w-[40%] object-contain object-top sm:right-6"
         />
       )}
+      <svg data-testid="reticula-faixa" aria-hidden viewBox="0 0 24 24"
+        className="pointer-events-none absolute right-3 top-3 h-4 w-4 opacity-0 transition-opacity group-hover:opacity-60 group-hover:animate-spin-slow">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
+        <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
+        <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
+        <line x1="0" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1" />
+        <line x1="18" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
+      </svg>
     </Link>
   );
 }

@@ -1,6 +1,7 @@
 import { tabelasDeTeclas, mecanicasPorGrupoComCorrecoes, cardsDeMecanicaComCorrecoes } from '@/lib/controles';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { Tecla } from '@/components/conteudo/Tecla';
+import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Mecânicas e Controles — Shuichi Pull' };
 
@@ -10,7 +11,7 @@ export default async function PaginaMecanicas() {
   const totalCards = (await cardsDeMecanicaComCorrecoes()).length;
 
   return (
-    <div className="px-4 py-8">
+    <PainelComTrilhas>
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 05</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">
         MECÂNICAS
@@ -29,7 +30,7 @@ export default async function PaginaMecanicas() {
         <div className="grid gap-6 md:grid-cols-2">
           {tabelas.map((t) => (
             <div key={t.grupo} className="rounded-[4px] border border-line bg-sur p-3">
-              <h3 className="mb-3 font-mono text-[9px] tracking-[.14em] text-teal">
+              <h3 className="mb-3 font-mono text-[9px] tracking-[.14em] text-alter-green">
                 {t.grupo.toUpperCase()}
               </h3>
               <dl className="space-y-2">
@@ -55,7 +56,7 @@ export default async function PaginaMecanicas() {
           <a
             key={g.grupo}
             href={`#${encodeURIComponent(g.grupo)}`}
-            className="rounded-[2px] border border-line px-2 py-1 font-mono text-[8px] tracking-[.1em] text-dim hover:border-teal hover:text-teal"
+            className="rounded-[2px] border border-line px-2 py-1 font-mono text-[8px] tracking-[.1em] text-dim hover:border-alter-green hover:text-alter-green"
           >
             {g.grupo.toUpperCase()} · {g.cards.length}
           </a>
@@ -84,6 +85,6 @@ export default async function PaginaMecanicas() {
           </div>
         </section>
       ))}
-    </div>
+    </PainelComTrilhas>
   );
 }

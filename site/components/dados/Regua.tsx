@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { calcularDistribuicao, frasePosicao } from '@/lib/distribuicao';
 
 type Props = {
@@ -17,7 +20,7 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
 
   // Verde quando é bom estar onde está, vermelho quando não é.
   const bom = maiorEhMelhor ? d.acima <= d.abaixo : d.abaixo <= d.acima;
-  const cor = bom ? 'var(--color-teal)' : 'var(--color-red)';
+  const cor = bom ? 'var(--color-alter-green)' : 'var(--color-alerta)';
 
   const posMedia = ((d.media - d.min) / Math.max(d.max - d.min, 1)) * 100;
   const resumo =
@@ -34,29 +37,45 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
       </div>
 
       <div className="relative" role="img" aria-label={resumo}>
-        <div className="flex h-[38px] items-end gap-[3px] overflow-x-auto" aria-hidden>
-          {d.colunas.map((c) => (
-            <div
-              key={c.valor}
-              data-testid="coluna"
-              data-ativa={c.ehOValor}
-              title={`${c.valor} ${unidade}: ${c.quantidade} aluno(s)`}
-              className="relative min-h-px flex-1 rounded-t-[1px]"
-              style={{
-                height: `${Math.max((c.quantidade / pico) * 100, 1)}%`,
-                background: c.ehOValor ? cor : '#22222C',
-              }}
-            >
-              {c.ehOValor && (
-                <span
-                  className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded-[2px] px-1.5 py-px font-mono text-[7.5px] font-bold"
-                  style={{ background: cor, color: '#0A0A0D' }}
-                >
-                  {c.valor} ← aqui
-                </span>
-              )}
-            </div>
-          ))}
+        <div className="flex h-[56px] items-end gap-[3px] overflow-x-auto" aria-hidden>
+          {d.colunas.map((c, i) => {
+            // Perto das pontas da escala, centralizar a etiqueta "aqui" na
+            // coluna a empurra pra fora da coluna de 320px — e como a página
+            // nunca rola na horizontal, ela some cortada. Perto da ponta,
+            // a etiqueta gruda no lado de dentro em vez de centralizar.
+            const posicaoRelativa = d.colunas.length > 1 ? i / (d.colunas.length - 1) : 0.5;
+            const alinhamento =
+              posicaoRelativa < 0.12 ? 'left-0'
+              : posicaoRelativa > 0.88 ? 'right-0'
+              : 'left-1/2 -translate-x-1/2';
+
+            return (
+              <motion.div
+                key={c.valor}
+                data-testid="coluna"
+                data-ativa={c.ehOValor}
+                title={`${c.valor} ${unidade}: ${c.quantidade} aluno(s)`}
+                className="relative min-h-px flex-1 origin-bottom rounded-t-[1px]"
+                style={{
+                  height: `${Math.max((c.quantidade / pico) * 100, 1)}%`,
+                  background: c.ehOValor ? cor : '#22222C',
+                  boxShadow: c.ehOValor ? `0 0 8px ${cor}` : undefined,
+                }}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ type: 'spring', stiffness: 120, delay: i * 0.02 }}
+              >
+                {c.ehOValor && (
+                  <span
+                    className={`absolute bottom-full mb-1 whitespace-nowrap rounded-[2px] px-1.5 py-px font-mono text-[7.5px] font-bold ${alinhamento}`}
+                    style={{ background: cor, color: '#0A0A0D' }}
+                  >
+                    {c.valor} ← aqui
+                  </span>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
         <div
@@ -64,13 +83,21 @@ export function Regua({ nome, valor, unidade, valores, passo, maiorEhMelhor, sen
           className="pointer-events-none absolute -top-1 bottom-0 w-px bg-white/25"
           style={{ left: `${posMedia}%` }}
         >
-          <span className="absolute -top-3 left-1 whitespace-nowrap font-mono text-[7px] text-white/50">
+          {/* Embaixo, não em cima: a etiqueta "← aqui" já mora no topo da
+              barra ativa, e a média cai perto dela sempre que o valor do
+              personagem está perto da média — em cima dos dois lados os
+              textos se atropelam. */}
+          <span
+            className={`absolute top-full mt-1 whitespace-nowrap rounded-[2px] border border-line bg-[#0A0A0D] px-1 font-mono text-[7px] text-white/60 ${
+              posMedia > 88 ? 'right-0' : posMedia < 12 ? 'left-0' : 'left-1/2 -translate-x-1/2'
+            }`}
+          >
             média {Math.round(d.media)}
           </span>
         </div>
       </div>
 
-      <div className="mt-1 flex items-center justify-between border-t border-line pt-1 font-mono text-[7.5px] text-dim">
+      <div className="mt-4 flex items-center justify-between border-t border-line pt-1 font-mono text-[7.5px] text-dim">
         <span className="ponta-min">{d.min}</span>
         <span className="text-[#4E4E5C]">{sentido} →</span>
         <span className="ponta-max">{d.max}</span>
