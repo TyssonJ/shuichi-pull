@@ -1,6 +1,7 @@
 import { listarItens, listarLocais } from './itens';
 import type { Item, Local } from './schema-itens';
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { repositorioItensAdm } from '@/db/repositorios/itens-adm';
 import { aplicarCorrecoes } from './correcoes-merge';
 
 // Separado de `itens.ts` de propósito: `itens.ts` é importado por
@@ -13,8 +14,13 @@ import { aplicarCorrecoes } from './correcoes-merge';
 // puxa o cliente do banco.
 
 export async function listarItensComCorrecoes(): Promise<Item[]> {
-  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('itens');
-  return aplicarCorrecoes(listarItens(), correcoes);
+  const [correcoes, removidos, extras] = await Promise.all([
+    repositorioCorrecoes.buscarCorrecoesPorColecao('itens'),
+    repositorioItensAdm.listarRemovidos(),
+    repositorioItensAdm.listarExtras(),
+  ]);
+  const base = aplicarCorrecoes(listarItens(), correcoes).filter((i) => !removidos.has(i.id));
+  return [...base, ...extras];
 }
 
 export async function buscarItemComCorrecoes(id: string): Promise<Item | null> {
