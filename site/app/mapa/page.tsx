@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { iconeDoItem } from '@/lib/itens';
 import { listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
 import { Icone } from '@/components/itens/Icone';
+import { RadarTatico } from '@/components/mapa/RadarTatico';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import type { Local } from '@/lib/schema-itens';
 
@@ -35,26 +36,36 @@ export default async function PaginaMapa() {
 
   return (
     <PainelComTrilhas>
-      <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 03</p>
-      <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">MAPA</h1>
-      <p className="mb-8 text-[11px] text-dim">
-        {locais.length} locais da academia. {comLoot.length} têm loot mapeado.
-      </p>
+      <div className="mb-8 flex flex-col-reverse items-center gap-6 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 03</p>
+          <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">MAPA</h1>
+          <p className="text-[11px] text-dim">
+            {locais.length} locais da academia. {comLoot.length} têm loot mapeado.
+          </p>
+        </div>
+        <RadarTatico total={locais.length} />
+      </div>
 
       {[...porAndar.entries()].map(([andar, lista]) => (
         <section key={andar} className="mb-10">
-          <h2 className="mb-3 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#B9B9C6]">
-            <span className="h-px flex-1 bg-line" />
+          <h2 className="mb-3 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#8FE0F0]">
+            <span className="h-px flex-1 bg-cyber-cyan/25" />
             {andar}
-            <span className="h-px flex-1 bg-line" />
+            <span className="h-px flex-1 bg-cyber-cyan/25" />
           </h2>
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
             {lista.map((l) => (
               <Link
                 key={l.id}
                 href={`/mapa/${l.id}/`}
-                className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-alter-green"
+                className="bg-blueprint-grid group relative block overflow-hidden rounded-[4px] border border-cyber-cyan/25 bg-[#050B14] p-3 transition-colors hover:border-cyber-cyan"
               >
+                <span
+                  aria-hidden
+                  className="absolute right-2 top-2 h-1.5 w-1.5 animate-pulse rounded-full bg-cyber-cyan"
+                  style={{ boxShadow: '0 0 6px #00F0FF' }}
+                />
                 <p className="text-[12px] font-bold leading-tight text-[#D6D6E0]">{l.nome.pt}</p>
                 <p className="font-mono text-[8px] text-dim">{l.nome.en}</p>
                 <ul className="mt-2 flex flex-wrap gap-1">
@@ -64,7 +75,7 @@ export default async function PaginaMapa() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-2 font-mono text-[8px] text-alter-green">
+                <p className="mt-2 font-mono text-[8px] text-cyber-cyan">
                   {l.conteineres.length} contêineres · {l.totalItens} itens
                 </p>
               </Link>
@@ -75,10 +86,10 @@ export default async function PaginaMapa() {
 
       {semLoot.length > 0 && (
         <section className="mb-10">
-          <h2 className="mb-3 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#B9B9C6]">
-            <span className="h-px flex-1 bg-line" />
+          <h2 className="mb-3 flex items-center gap-2 font-serif text-[13px] tracking-[.16em] text-[#8FE0F0]">
+            <span className="h-px flex-1 bg-cyber-cyan/25" />
             Sem loot mapeado
-            <span className="h-px flex-1 bg-line" />
+            <span className="h-px flex-1 bg-cyber-cyan/25" />
           </h2>
           <p className="mb-3 text-[11px] text-dim">
             Estes locais existem na academia, mas ainda não têm contêiner
@@ -89,7 +100,7 @@ export default async function PaginaMapa() {
               <li key={l.id}>
                 <Link
                   href={`/mapa/${l.id}/`}
-                  className="rounded-[2px] border border-line px-1.5 py-0.5 text-[10px] text-dim hover:border-alter-green hover:text-alter-green"
+                  className="rounded-[2px] border border-cyber-cyan/25 px-1.5 py-0.5 text-[10px] text-dim hover:border-cyber-cyan hover:text-cyber-cyan"
                 >
                   {l.nome.pt}
                 </Link>

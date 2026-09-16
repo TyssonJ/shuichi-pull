@@ -40,30 +40,38 @@ export default async function FichaLocal({ params }: { params: Promise<{ id: str
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {local.conteineres.map((c) => (
-          <section key={c.fonteId} className="rounded-[4px] border border-line bg-sur p-3">
-            <h2 className="mb-3 text-[12px] font-bold text-[#D6D6E0]">{c.nome.pt}</h2>
+          <section
+            key={c.fonteId}
+            className="bg-blueprint-grid rounded-[4px] border border-cyber-cyan/25 bg-[#050B14] p-3"
+          >
+            <h2 className="mb-3 font-mono text-[10px] tracking-[.1em] text-cyber-cyan">
+              &gt; {c.nome.pt.toUpperCase()}
+            </h2>
             <ul className="space-y-2">
               {[...c.itens].sort((a, b) => b.chance - a.chance).map((i, n) => (
                 <li key={`${i.id}-${n}`} className="flex items-center gap-2">
                   <Icone src={iconeDoItem(i.id)} nome={i.nome.pt} className="h-7 w-7" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2 text-[11px]">
-                      <Link href={`/itens/${i.id}/`} className="truncate text-alter-green hover:underline">
+                      <Link href={`/itens/${i.id}/`} className="truncate text-[#D6D6E0] hover:text-cyber-cyan hover:underline">
                         {i.nome.pt}
                       </Link>
                       <span className="ml-auto shrink-0 font-mono text-[9px] text-dim">
                         {i.qtdMin === i.qtdMax ? `${i.qtdMin} un.` : `${i.qtdMin}–${i.qtdMax} un.`}
                       </span>
-                      <span className="w-9 shrink-0 text-right font-mono text-[10px] font-bold text-[#D6D6E0]">
+                      <span className="w-9 shrink-0 text-right font-mono text-[10px] font-bold text-cyber-cyan">
                         {i.chance}%
                       </span>
                     </div>
                     <div
-                      className="mt-1 h-1 overflow-hidden rounded-[1px] bg-[#22222C]"
+                      className="mt-1 h-1 overflow-hidden rounded-[1px] bg-[#0A1A24]"
                       role="img"
                       aria-label={`${i.chance}% de chance de ${i.nome.pt}`}
                     >
-                      <div className="h-full bg-alter-green" style={{ width: `${i.chance}%` }} />
+                      <div
+                        className="h-full bg-cyber-cyan"
+                        style={{ width: `${i.chance}%`, boxShadow: '0 0 4px #00F0FF' }}
+                      />
                     </div>
                   </div>
                 </li>
