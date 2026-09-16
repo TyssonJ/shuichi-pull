@@ -1,6 +1,7 @@
 import { listarPersonagens } from './dados';
 import type { Personagem } from './schema';
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { repositorioPersonagensAdm } from '@/db/repositorios/personagens-adm';
 import { aplicarCorrecoes } from './correcoes-merge';
 
 // Este arquivo existe separado de `dados.ts` de propósito: `dados.ts` é
@@ -13,8 +14,13 @@ import { aplicarCorrecoes } from './correcoes-merge';
 // (as páginas de servidor) puxa o cliente do banco.
 
 export async function listarPersonagensComCorrecoes(): Promise<Personagem[]> {
-  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('personagens');
-  return aplicarCorrecoes(listarPersonagens(), correcoes);
+  const [correcoes, removidos, extras] = await Promise.all([
+    repositorioCorrecoes.buscarCorrecoesPorColecao('personagens'),
+    repositorioPersonagensAdm.listarRemovidos(),
+    repositorioPersonagensAdm.listarExtras(),
+  ]);
+  const base = aplicarCorrecoes(listarPersonagens(), correcoes).filter((p) => !removidos.has(p.id));
+  return [...base, ...extras];
 }
 
 export async function buscarPersonagemComCorrecoes(id: string): Promise<Personagem | null> {

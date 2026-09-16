@@ -69,6 +69,33 @@ export const itensRemovidos = pgTable('itens_removidos', {
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
 
+// Mesma lógica de itensExtras/itensRemovidos, para personagens criados ou
+// escondidos direto no painel — achatado a partir de site/lib/schema.ts
+// (Personagem). Etiquetas e o perfil expandido (personalidade/aparência/
+// história/segredo) ficam de fora do formulário rápido do ADM.
+export const personagensExtras = pgTable('personagens_extras', {
+  id: text('id').primaryKey(),
+  nome: text('nome').notNull(),
+  talentoPt: text('talento_pt').notNull(),
+  talentoEn: text('talento_en').notNull(),
+  descricaoPt: text('descricao_pt').notNull(),
+  descricaoEn: text('descricao_en').notNull(),
+  jogo: text('jogo').notNull(),
+  velocidade: integer('velocidade').notNull(),
+  mochila: integer('mochila').notNull(),
+  percepcao: integer('percepcao').notNull(),
+  vida: integer('vida').notNull(),
+  sprite: text('sprite'),
+  autor: text('autor').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const personagensRemovidos = pgTable('personagens_removidos', {
+  personagemId: text('personagem_id').primaryKey(),
+  autor: text('autor').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const auditoria = pgTable('auditoria', {
   id: serial('id').primaryKey(),
   autor: text('autor').notNull(),

@@ -15,6 +15,13 @@
       "when": 1789587819018,
       "tag": "0001_faulty_black_bolt",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789588699666,
+      "tag": "0002_premium_celestials",
+      "breakpoints": true
     }
   ]
 }
