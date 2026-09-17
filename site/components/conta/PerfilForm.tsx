@@ -56,6 +56,11 @@ export function PerfilForm({
           placeholder="STEAM_0:1:xxxxxxxx"
           className="w-full max-w-xs rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[11px] text-[#D6D6E0] placeholder:text-dim/60 focus:border-alter-green focus:outline-none"
         />
+        <p className="mt-1.5 max-w-xs text-[10px] leading-relaxed text-dim">
+          É o identificador que aparece no canto inferior esquerdo da tela dentro do
+          jogo. Não é obrigatório, mas é o que liga sua conta do site ao seu
+          personagem nas Partidas e no seu perfil público.
+        </p>
       </label>
 
       <div>

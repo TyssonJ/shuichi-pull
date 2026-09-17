@@ -162,6 +162,16 @@ export default async function PaginaIniciantes() {
                   FAQ — 51 perguntas respondidas
                 </Link>
               </li>
+              <li>
+                <Link href="/conta/" className="text-[#D6D6E0] hover:text-alter-green">
+                  Minha Conta — salve seu UUID e seus mains
+                </Link>
+              </li>
+              <li>
+                <Link href="/partidas/" className="text-[#D6D6E0] hover:text-alter-green">
+                  Partidas — organize ou entre numa sessão
+                </Link>
+              </li>
             </ul>
           </section>
         </aside>

@@ -76,6 +76,11 @@
       "n": 7,
       "titulo": "Procure uma partida e boa sorte",
       "texto": "A partida rápida é gratuita, não tem host, junta 16 pessoas e dura de 1 a 2 horas. É o melhor jeito de conhecer o projeto."
+    },
+    {
+      "n": 8,
+      "titulo": "Crie sua conta neste site (opcional, mas ajuda)",
+      "texto": "Entre com o mesmo Discord em **Minha Conta** e salve seu UUID do GMod — o mesmo identificador que aparece no canto inferior esquerdo da tela dentro do jogo. Isso deixa seu perfil público reconhecível pra outros jogadores e libera marcar seus mains e entrar em **Partidas** organizadas pelo site, com histórico salvo."
     }
   ],
   "dicas": [
