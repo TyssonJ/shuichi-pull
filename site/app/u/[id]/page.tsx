@@ -16,14 +16,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: usuario ? `${usuario.discordNome} — Shuichi Pull` : 'Perfil não encontrado — Shuichi Pull' };
 }
 
+function Estatistica({ valor, rotulo, cor }: { valor: number; rotulo: string; cor: string }) {
+  return (
+    <div className="clip-dossier-card border border-line bg-[#0E0E13] p-2.5 text-center">
+      <p className="font-mono text-2xl font-black leading-none" style={{ color: cor }}>{valor}</p>
+      <p className="mt-1 font-mono text-[7px] uppercase tracking-[.1em] text-dim">{rotulo}</p>
+    </div>
+  );
+}
+
 export default async function PerfilPublico({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [historico, totalFinalizadas, personagens] = await Promise.all([
+  const [historico, totalFinalizadas, estatisticas, personagens] = await Promise.all([
     repositorioPartidas.historicoDoUsuario(id),
     repositorioPartidas.contarFinalizadas(id),
+    repositorioPartidas.estatisticasDoUsuario(id),
     Promise.resolve(listarPersonagens()),
   ]);
   const porId = new Map(personagens.map((p) => [p.id, p]));
@@ -32,29 +42,54 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
 
   return (
     <PainelComTrilhas as="article">
-      <div className="flex items-center gap-3">
-        {usuario.discordAvatar && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={usuario.discordAvatar}
-            alt=""
-            className="h-16 w-16 rounded-full border-2 border-alter-green"
-          />
-        )}
-        <div>
-          <h1 className="text-3xl font-black leading-none tracking-tight text-[#F2F2F5]">
-            {usuario.discordNome}
-          </h1>
-          <p className="mt-1 font-mono text-[8px] tracking-[.1em] text-dim">
-            NO ARQUIVO DESDE {formatarData(usuario.criadoEm)}
-          </p>
-          {titulo && (
-            <span className="mt-1.5 inline-block rounded-[2px] border border-alter-green px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] text-alter-green">
-              {titulo}
-            </span>
+      <div className="clip-dossier-card relative overflow-hidden border-2 border-alter-green/40 bg-[#050805] p-4">
+        <div aria-hidden className="crt-lines pointer-events-none absolute inset-0 opacity-20" />
+        <p className="relative font-mono text-[8px] tracking-[.25em] text-alter-green/70">
+          [ ARQUIVO DE ESTUDANTE // CONFIDENCIAL ]
+        </p>
+        <div className="relative mt-2 flex items-center gap-3">
+          {usuario.discordAvatar && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={usuario.discordAvatar}
+              alt=""
+              className="h-16 w-16 rounded-full border-2 border-alter-green"
+            />
           )}
+          <div>
+            <h1 className="text-3xl font-black leading-none tracking-tight text-[#F2F2F5]">
+              {usuario.discordNome}
+            </h1>
+            <p className="mt-1 font-mono text-[8px] tracking-[.1em] text-dim">
+              NO ARQUIVO DESDE {formatarData(usuario.criadoEm)}
+            </p>
+            {titulo && (
+              <span className="mt-1.5 inline-block rounded-[2px] border border-alter-green px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] text-alter-green">
+                {titulo}
+              </span>
+            )}
+          </div>
         </div>
       </div>
+
+      <section className="mt-6">
+        <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
+          ESTATÍSTICAS DE COMBATE E INVESTIGAÇÃO
+        </h2>
+        {estatisticas.total === 0 ? (
+          <p className="text-[11px] text-dim">Nenhuma partida finalizada ainda.</p>
+        ) : (
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+            <Estatistica valor={estatisticas.total} rotulo="Partidas" cor="#D6D6E0" />
+            <Estatistica valor={estatisticas.vitorias} rotulo="Vitórias" cor="#00FF66" />
+            <Estatistica valor={estatisticas.derrotas} rotulo="Derrotas" cor="#FF007F" />
+            <Estatistica valor={estatisticas.tragedias} rotulo="Tragédias" cor="#7A7A88" />
+            <Estatistica valor={estatisticas.comoBlackened} rotulo="Como Blackened" cor="#FF007F" />
+            <Estatistica valor={estatisticas.comoDetetive} rotulo="Como Detetive" cor="#00F0FF" />
+            <Estatistica valor={estatisticas.casosResolvidos} rotulo="Casos Resolvidos" cor="#00FF66" />
+          </div>
+        )}
+      </section>
 
       {mains.length > 0 && (
         <section className="mt-6">
@@ -78,25 +113,41 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
 
       <section className="mt-6">
         <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
-          ÚLTIMAS PARTIDAS {totalFinalizadas > 0 && `— ${totalFinalizadas} finalizada${totalFinalizadas > 1 ? 's' : ''} no total`}
+          HISTÓRICO DE PARTIDAS {totalFinalizadas > 0 && `— ${totalFinalizadas} finalizada${totalFinalizadas > 1 ? 's' : ''} no total`}
         </h2>
         {historico.length === 0 ? (
           <p className="text-[11px] text-dim">Nenhuma partida finalizada ainda.</p>
         ) : (
           <ul className="space-y-1.5">
-            {historico.map((p) => (
-              <li key={p.id}>
-                <Link
-                  href={`/partidas/${p.id}/`}
-                  className="flex items-baseline gap-2 rounded-[3px] border border-line bg-sur px-2 py-1.5 text-[12px] text-[#D6D6E0] hover:border-cyber-cyan"
-                >
-                  <span className="font-bold">{p.titulo}</span>
-                  <span className="ml-auto font-mono text-[9px] text-dim">
-                    {formatarData(p.dataHora)}
-                  </span>
-                </Link>
-              </li>
-            ))}
+            {historico.map((p) => {
+              const eraBlackened = p.blackened === id;
+              const venceu = p.resultado === 'tragedia' ? null
+                : p.resultado === 'vitoria_mestre' ? eraBlackened
+                : p.resultado === 'vitoria_alunos' ? !eraBlackened
+                : null;
+              const corBorda = venceu === null ? 'border-line' : venceu ? 'border-alter-green/50' : 'border-execution-pink/50';
+              return (
+                <li key={p.id}>
+                  <Link
+                    href={`/partidas/${p.id}/`}
+                    className={`flex items-baseline gap-2 rounded-[3px] border ${corBorda} bg-sur px-2 py-1.5 text-[12px] text-[#D6D6E0] hover:border-cyber-cyan`}
+                  >
+                    <span className="font-bold">{p.titulo}</span>
+                    {eraBlackened && (
+                      <span className="font-mono text-[8px] text-execution-pink">BLACKENED</span>
+                    )}
+                    {venceu !== null && (
+                      <span className={`font-mono text-[8px] ${venceu ? 'text-alter-green' : 'text-execution-pink'}`}>
+                        {venceu ? 'VITÓRIA' : 'DERROTA'}
+                      </span>
+                    )}
+                    <span className="ml-auto font-mono text-[9px] text-dim">
+                      {formatarData(p.dataHora)}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </section>
