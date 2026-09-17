@@ -139,6 +139,17 @@ export const partidaParticipantes = pgTable('partida_participantes', {
   unique('partida_participante_unico').on(t.partidaId, t.discordId),
 ]));
 
+// Comentário de qualquer usuário logado num evento/notícia. `eventoId`
+// referencia `eventos.id` com cascade: se o evento sai, os comentários somem
+// junto — não faz sentido guardar comentário órfão.
+export const eventoComentarios = pgTable('evento_comentarios', {
+  id: serial('id').primaryKey(),
+  eventoId: text('evento_id').notNull().references(() => eventos.id, { onDelete: 'cascade' }),
+  discordId: text('discord_id').notNull(),
+  texto: text('texto').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const auditoria = pgTable('auditoria', {
   id: serial('id').primaryKey(),
   autor: text('autor').notNull(),

@@ -1,12 +1,18 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buscarEvento, listarEventos } from '@/lib/eventos';
+import { auth } from '@/auth';
+import { buscarEvento } from '@/lib/eventos';
+import { repositorioEventoComentarios } from '@/db/repositorios/eventos-comentarios';
+import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { Prosa } from '@/components/conteudo/Prosa';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
+import { Comentarios, type ComentarioExibido } from '@/components/eventos/Comentarios';
+import { comentarAction, removerComentarioAction } from './acoes';
 
-export async function generateStaticParams() {
-  return (await listarEventos()).map((e) => ({ id: e.id }));
-}
+// Sem generateStaticParams: a página precisa de sessão (auth()) e dos
+// comentários mais recentes a cada visita, então já renderiza sob demanda —
+// diferente de /elenco e /itens, que continuam SSG porque o conteúdo é
+// igual pra todo mundo.
 
 function formatar(data: string): string {
   return data.split('-').reverse().join('/');
@@ -16,6 +22,28 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
   const { id } = await params;
   const evento = await buscarEvento(id);
   if (!evento) notFound();
+
+  const [sessao, comentariosBrutos] = await Promise.all([
+    auth(),
+    repositorioEventoComentarios.listar(id),
+  ]);
+
+  const autores = new Map(
+    await Promise.all(
+      [...new Set(comentariosBrutos.map((c) => c.discordId))].map(
+        async (discordId) => [discordId, await repositorioUsuarios.buscar(discordId)] as const
+      )
+    )
+  );
+
+  const comentarios: ComentarioExibido[] = comentariosBrutos.map((c) => ({
+    id: c.id,
+    discordId: c.discordId,
+    texto: c.texto,
+    criadoEm: c.criadoEm.toISOString(),
+    autorNome: autores.get(c.discordId)?.discordNome ?? 'alguém',
+    autorAvatar: autores.get(c.discordId)?.discordAvatar ?? null,
+  }));
 
   return (
     <PainelComTrilhas as="article">
@@ -40,6 +68,15 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
       <div className="mt-6 border-t border-line pt-6">
         <Prosa texto={evento.corpo} />
       </div>
+
+      <Comentarios
+        eventoId={evento.id}
+        comentarios={comentarios}
+        discordIdAtual={sessao?.user?.discordId ?? null}
+        souAdm={sessao?.user?.papel === 'adm' || sessao?.user?.papel === 'chefe'}
+        aoComentar={comentarAction}
+        aoRemover={removerComentarioAction}
+      />
     </PainelComTrilhas>
   );
 }
