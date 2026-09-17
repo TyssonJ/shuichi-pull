@@ -66,6 +66,15 @@ export default async function PaginaMapa() {
                   className="absolute right-2 top-2 h-1.5 w-1.5 animate-pulse rounded-full bg-cyber-cyan"
                   style={{ boxShadow: '0 0 6px #00F0FF' }}
                 />
+                <span
+                  aria-hidden
+                  className="crt-lines pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-1 bg-[#050B14]/92 px-2 text-center opacity-0 shadow-[inset_0_0_20px_rgba(0,240,255,0.25)] transition-opacity duration-150 group-hover:opacity-100"
+                >
+                  <span className="font-mono text-[9px] tracking-[.08em] text-cyber-cyan">{l.nome.pt}</span>
+                  <span className="font-mono text-[8px] text-[#8FE0F0]">
+                    {l.conteineres.length} contêineres · {l.totalItens} itens
+                  </span>
+                </span>
                 <p className="text-[12px] font-bold leading-tight text-[#D6D6E0]">{l.nome.pt}</p>
                 <p className="font-mono text-[8px] text-dim">{l.nome.en}</p>
                 <ul className="mt-2 flex flex-wrap gap-1">
