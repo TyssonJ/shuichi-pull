@@ -4,27 +4,38 @@ import { useState } from 'react';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 
 type Personagem = { id: string; nome: string; sprite: string };
+type Tipo = 'participante' | 'reserva';
 
 export function EntrarPartida({
-  partidaId, personagemAtual, personagens, souHost = false, aoEntrar, aoSair,
+  partidaId, personagemAtual, tipoAtual, personagens, souHost = false, aoEntrar, aoSair,
 }: {
   partidaId: number;
   personagemAtual: string | null;
+  tipoAtual?: Tipo;
   personagens: Personagem[];
   souHost?: boolean;
-  aoEntrar: (partidaId: number, personagemId: string | null) => Promise<void>;
+  aoEntrar: (partidaId: number, personagemId: string | null, tipo: Tipo) => Promise<void>;
   aoSair: (partidaId: number) => Promise<void>;
 }) {
   const jaEntrou = personagemAtual !== undefined && personagemAtual !== null;
   const [personagemId, setPersonagemId] = useState(personagemAtual ?? '');
+  const [monokumaFlash, setMonokumaFlash] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
-  async function entrar() {
+  function selecionar(id: string) {
+    setPersonagemId(id);
+    if (id === ID_MONOKUMA) {
+      setMonokumaFlash(true);
+      setTimeout(() => setMonokumaFlash(false), 500);
+    }
+  }
+
+  async function entrar(tipo: Tipo) {
     setErro(null);
     setCarregando(true);
     try {
-      await aoEntrar(partidaId, personagemId || null);
+      await aoEntrar(partidaId, personagemId || null, tipo);
     } catch (err) {
       setErro(err instanceof Error ? err.message : 'Não deu certo. Tenta de novo?');
     } finally {
@@ -46,20 +57,30 @@ export function EntrarPartida({
   }
 
   return (
-    <div className="rounded-[4px] border border-line bg-sur p-3">
+    <div className="relative rounded-[4px] border border-line bg-sur p-3">
+      {monokumaFlash && (
+        <div
+          aria-hidden
+          className="animate-monokuma-flash pointer-events-none fixed inset-0 z-[100]"
+          style={{
+            background: 'repeating-linear-gradient(45deg, #FF007F 0 8px, #0A0A0D 8px 16px)',
+          }}
+        />
+      )}
+
       {erro && <p role="alert" className="mb-2 font-mono text-[9px] text-alerta">{erro}</p>}
 
       <p className="mb-2 font-mono text-[8px] tracking-[.1em] text-dim">
-        SEU PERSONAGEM NESTA PARTIDA (opcional)
+        SEU PERSONAGEM NESTA PARTIDA (opcional — deixe em branco pra vaga genérica)
       </p>
       <div className="mb-3 grid max-h-64 grid-cols-4 gap-1.5 overflow-y-auto rounded-[3px] border border-line p-2 sm:grid-cols-5">
         {souHost && (
           <button
             type="button"
-            onClick={() => setPersonagemId(ID_MONOKUMA)}
+            onClick={() => selecionar(ID_MONOKUMA)}
             aria-pressed={personagemId === ID_MONOKUMA}
             className={`bg-hazard-tape flex flex-col items-center gap-1 rounded-[3px] border-2 p-1.5 transition-colors ${
-              personagemId === ID_MONOKUMA ? 'border-execution-pink' : 'border-line'
+              personagemId === ID_MONOKUMA ? 'border-execution-pink animate-monokuma-glitch' : 'border-line'
             }`}
           >
             <span
@@ -79,7 +100,7 @@ export function EntrarPartida({
           <button
             key={p.id}
             type="button"
-            onClick={() => setPersonagemId(p.id)}
+            onClick={() => selecionar(p.id)}
             aria-pressed={personagemId === p.id}
             className={`flex flex-col items-center gap-1 rounded-[3px] border-2 bg-[#0E0E13] p-1.5 transition-colors ${
               personagemId === p.id ? 'border-alter-green' : 'border-line hover:border-alter-green/50'
@@ -102,11 +123,27 @@ export function EntrarPartida({
       <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
-          onClick={entrar}
+          onClick={() => entrar('participante')}
           disabled={carregando}
-          className="rounded-[3px] border-2 border-alter-green bg-ego-escuro px-3 py-1.5 font-mono text-[10px] tracking-[.1em] text-[#D6D6E0] hover:bg-alter-green hover:text-[#08090D] disabled:opacity-60"
+          className={`rounded-[3px] border-2 px-3 py-1.5 font-mono text-[10px] tracking-[.1em] disabled:opacity-60 ${
+            jaEntrou && tipoAtual === 'participante'
+              ? 'border-alter-green bg-alter-green text-[#08090D]'
+              : 'border-alter-green bg-ego-escuro text-[#D6D6E0] hover:bg-alter-green hover:text-[#08090D]'
+          }`}
         >
-          {jaEntrou ? 'Atualizar personagem' : 'Entrar nesta partida'}
+          {jaEntrou ? 'Atualizar como participante' : 'Entrar como participante'}
+        </button>
+        <button
+          type="button"
+          onClick={() => entrar('reserva')}
+          disabled={carregando}
+          className={`rounded-[3px] border-2 px-3 py-1.5 font-mono text-[10px] tracking-[.1em] disabled:opacity-60 ${
+            jaEntrou && tipoAtual === 'reserva'
+              ? 'border-amber bg-amber text-[#08090D]'
+              : 'border-amber/60 text-amber hover:bg-amber/10'
+          }`}
+        >
+          {jaEntrou ? 'Atualizar como reserva' : 'Entrar como reserva'}
         </button>
         {personagemId && (
           <button

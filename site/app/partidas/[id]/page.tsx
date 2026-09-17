@@ -11,6 +11,7 @@ import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
 import { AvaliarParticipantes } from '@/components/partidas/AvaliarParticipantes';
 import { CapitulosPartida } from '@/components/partidas/CapitulosPartida';
+import { AlertaInicio } from '@/components/partidas/AlertaInicio';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
@@ -57,10 +58,15 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
   const nomePersonagem = new Map(personagens.map((p) => [p.id, p.nome]));
 
   const usuariosParticipantes = new Map<string, string>();
+  const uidsParticipantes = new Map<string, string | null>();
   for (const part of participantes) {
     const u = await repositorioUsuarios.buscar(part.discordId);
     usuariosParticipantes.set(part.discordId, u?.discordNome ?? 'alguém');
+    uidsParticipantes.set(part.discordId, u?.uuidGmod ?? null);
   }
+
+  const titulares = participantes.filter((p) => p.tipo === 'participante');
+  const reservas = participantes.filter((p) => p.tipo === 'reserva');
 
   const discordId = sessao?.user?.discordId;
   const souHost = discordId === partida.hostDiscordId;
@@ -98,6 +104,10 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           alt=""
           className="mb-4 h-48 w-full rounded-[4px] border border-line object-cover sm:h-64"
         />
+      )}
+
+      {minhaEntrada && partida.status === 'agendada' && (
+        <AlertaInicio dataHora={partida.dataHora.toISOString()} />
       )}
 
       <header className="mb-6">
@@ -173,14 +183,14 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
 
       <section className="mb-6">
         <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
-          PARTICIPANTES ({participantes.length})
+          PARTICIPANTES ({titulares.length})
         </h2>
-        {participantes.length === 0 ? (
+        {titulares.length === 0 ? (
           <p className="text-[11px] text-dim">Ninguém entrou ainda.</p>
         ) : (
           <ul className="space-y-1.5">
-            {participantes.map((p) => (
-              <li key={p.discordId} className="flex items-center gap-2 text-[12px] text-[#D6D6E0]">
+            {titulares.map((p) => (
+              <li key={p.discordId} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[#D6D6E0]">
                 <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
                   {usuariosParticipantes.get(p.discordId)}
                 </a>
@@ -191,11 +201,41 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
                     → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
                   </span>
                 )}
+                <span className="font-mono text-[8px] text-dim">
+                  UID: {uidsParticipantes.get(p.discordId) ?? 'não informado'}
+                </span>
               </li>
             ))}
           </ul>
         )}
       </section>
+
+      {reservas.length > 0 && (
+        <section className="mb-6">
+          <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-amber">
+            RESERVAS ({reservas.length})
+          </h2>
+          <ul className="space-y-1.5">
+            {reservas.map((p) => (
+              <li key={p.discordId} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[#D6D6E0]">
+                <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
+                  {usuariosParticipantes.get(p.discordId)}
+                </a>
+                {p.personagemId === ID_MONOKUMA ? (
+                  <span className="font-mono text-[9px] text-execution-pink">→ MONOKUMA (HOST)</span>
+                ) : p.personagemId && (
+                  <span className="font-mono text-[9px] text-amber">
+                    → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
+                  </span>
+                )}
+                <span className="font-mono text-[8px] text-dim">
+                  UID: {uidsParticipantes.get(p.discordId) ?? 'não informado'}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {avaliaveis.length > 0 && (
         <AvaliarParticipantes
@@ -210,6 +250,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         <EntrarPartida
           partidaId={partida.id}
           personagemAtual={minhaEntrada?.personagemId ?? null}
+          tipoAtual={minhaEntrada?.tipo}
           personagens={personagens.map((p) => ({ id: p.id, nome: p.nome, sprite: p.sprite }))}
           souHost={souHost}
           aoEntrar={entrarPartidaAction}

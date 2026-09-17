@@ -95,6 +95,21 @@ body { overflow-x: hidden; }
   --animate-marquee-slow: marquee-slow 35s linear infinite;
   --animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
   --animate-laser: laser-scan 3s ease-in-out infinite;
+  --animate-monokuma-glitch: monokuma-glitch 0.4s steps(2, end) 2;
+  --animate-monokuma-flash: monokuma-flash 0.5s ease-out;
+
+  @keyframes monokuma-glitch {
+    0%, 100% { transform: translate(0); filter: none; }
+    10% { transform: translate(-2px, 1px); filter: hue-rotate(25deg) contrast(1.4); }
+    30% { transform: translate(2px, -1px); filter: invert(0.15); }
+    50% { transform: translate(-1px, 2px); filter: contrast(1.6); }
+    70% { transform: translate(2px, 1px); filter: hue-rotate(-25deg); }
+    90% { transform: translate(-1px, -1px); }
+  }
+  @keyframes monokuma-flash {
+    0% { opacity: 0.85; }
+    100% { opacity: 0; }
+  }
 
   @keyframes ambient-glow {
     0%, 100% { opacity: 0.15; transform: scale(1); }
@@ -122,7 +137,8 @@ body { overflow-x: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-ambient-glow, .animate-spin-slow, .animate-marquee-slow, .animate-crt-flicker {
+  .animate-ambient-glow, .animate-spin-slow, .animate-marquee-slow, .animate-crt-flicker,
+  .animate-monokuma-glitch, .animate-monokuma-flash {
     animation: none !important;
   }
 }
