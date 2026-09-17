@@ -38,10 +38,10 @@ function Nucleo() {
       type="button"
       onClick={() => signIn('discord')}
       aria-label="Entrar com o Discord"
-      title="Entrar com o Discord"
-      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-dim text-[9px] text-dim transition-colors hover:border-cyber-cyan hover:text-cyber-cyan"
+      className="flex shrink-0 items-center gap-1 rounded-[2px] border-2 border-execution-pink bg-execution-pink/10 px-2 py-1 font-mono text-[9px] font-bold tracking-[.08em] text-execution-pink transition-colors hover:bg-execution-pink hover:text-[#08090D]"
     >
-      ?
+      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-execution-pink" />
+      CONECTAR
     </button>
   );
 }
