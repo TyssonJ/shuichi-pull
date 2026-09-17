@@ -60,7 +60,11 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           {partida.titulo}
         </h1>
         <p className="mt-1 font-mono text-[10px] text-dim">
-          host: {host?.discordNome ?? 'alguém'} · {formatarDataHora(partida.dataHora)}
+          host:{' '}
+          <a href={`/u/${partida.hostDiscordId}/`} className="text-[#D6D6E0] hover:text-cyber-cyan hover:underline">
+            {host?.discordNome ?? 'alguém'}
+          </a>
+          {' '}· {formatarDataHora(partida.dataHora)}
         </p>
         <span
           className={`mt-2 inline-block rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] ${
@@ -90,7 +94,9 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           <ul className="space-y-1.5">
             {participantes.map((p) => (
               <li key={p.discordId} className="flex items-center gap-2 text-[12px] text-[#D6D6E0]">
-                <span className="font-bold">{usuariosParticipantes.get(p.discordId)}</span>
+                <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
+                  {usuariosParticipantes.get(p.discordId)}
+                </a>
                 {p.personagemId && (
                   <span className="font-mono text-[9px] text-alter-green">
                     → {nomePersonagem.get(p.personagemId) ?? p.personagemId}

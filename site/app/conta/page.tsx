@@ -68,6 +68,12 @@ export default async function PaginaConta() {
               {sessao.user.papel}
             </p>
           )}
+          <a
+            href={`/u/${sessao.user.discordId}/`}
+            className="mt-1 inline-block font-mono text-[9px] text-cyber-cyan hover:underline"
+          >
+            ver perfil público →
+          </a>
         </div>
       </div>
 
