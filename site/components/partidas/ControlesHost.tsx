@@ -7,9 +7,9 @@ export function ControlesHost({
   partidaId, inicial, status, aoAtualizar, aoMudarStatus,
 }: {
   partidaId: number;
-  inicial: { titulo: string; dataHora: string; regras: string };
+  inicial: { titulo: string; dataHora: string; regras: string; capaUrl: string };
   status: 'agendada' | 'finalizada' | 'cancelada';
-  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null }) => Promise<void>;
+  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) => Promise<void>;
   aoMudarStatus: (partidaId: number, status: 'agendada' | 'finalizada' | 'cancelada') => Promise<void>;
 }) {
   const [aberto, setAberto] = useState(false);

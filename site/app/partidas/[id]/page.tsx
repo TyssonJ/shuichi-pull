@@ -3,6 +3,7 @@ import { auth } from '@/auth';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { listarPersonagens } from '@/lib/dados';
+import { ID_MONOKUMA } from '@/lib/monokuma';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
@@ -55,6 +56,15 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
   return (
     <PainelComTrilhas as="article">
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 09</p>
+      {partida.capaUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={partida.capaUrl}
+          alt=""
+          className="mb-4 h-48 w-full rounded-[4px] border border-line object-cover sm:h-64"
+        />
+      )}
+
       <header className="mb-6">
         <h1 className="text-3xl font-black leading-tight tracking-tight text-[#F2F2F5] sm:text-4xl">
           {partida.titulo}
@@ -97,7 +107,9 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
                 <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
                   {usuariosParticipantes.get(p.discordId)}
                 </a>
-                {p.personagemId && (
+                {p.personagemId === ID_MONOKUMA ? (
+                  <span className="font-mono text-[9px] text-execution-pink">→ MONOKUMA (HOST)</span>
+                ) : p.personagemId && (
                   <span className="font-mono text-[9px] text-alter-green">
                     → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
                   </span>
@@ -112,7 +124,8 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         <EntrarPartida
           partidaId={partida.id}
           personagemAtual={minhaEntrada?.personagemId ?? null}
-          personagens={personagens.map((p) => ({ id: p.id, nome: p.nome }))}
+          personagens={personagens.map((p) => ({ id: p.id, nome: p.nome, sprite: p.sprite }))}
+          souHost={souHost}
           aoEntrar={entrarPartidaAction}
           aoSair={sairPartidaAction}
         />
@@ -132,6 +145,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
             titulo: partida.titulo,
             dataHora: paraDatetimeLocal(partida.dataHora),
             regras: partida.regras ?? '',
+            capaUrl: partida.capaUrl ?? '',
           }}
           aoAtualizar={atualizarPartidaAction}
           aoMudarStatus={mudarStatusPartidaAction}

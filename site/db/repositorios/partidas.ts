@@ -5,7 +5,9 @@ import { partidas, partidaParticipantes } from '../schema';
 type Banco = typeof DbClient;
 export type PartidaLinha = typeof partidas.$inferSelect;
 export type ParticipanteLinha = typeof partidaParticipantes.$inferSelect;
-export type NovaPartida = { titulo: string; hostDiscordId: string; dataHora: Date; regras: string | null };
+export type NovaPartida = {
+  titulo: string; hostDiscordId: string; dataHora: Date; regras: string | null; capaUrl: string | null;
+};
 
 export function criarRepositorioPartidas(db: Banco) {
   return {

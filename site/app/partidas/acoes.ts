@@ -14,7 +14,9 @@ async function exigirSessao() {
  * fora de try/catch, e o formulário (compartilhado com o de editar) sempre
  * chama `aoSalvar` dentro de um try/catch pra mostrar erro de validação.
  * Quem cria navega pro id depois, no cliente. */
-export async function criarPartidaAction(args: { titulo: string; dataHora: string; regras: string | null }): Promise<number> {
+export async function criarPartidaAction(
+  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null },
+): Promise<number> {
   const sessao = await exigirSessao();
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
   const dataHora = new Date(args.dataHora);
@@ -25,6 +27,7 @@ export async function criarPartidaAction(args: { titulo: string; dataHora: strin
     hostDiscordId: sessao.user.discordId,
     dataHora,
     regras: args.regras?.trim() || null,
+    capaUrl: args.capaUrl?.trim() || null,
   });
   revalidatePath('/partidas');
   return id;
@@ -56,7 +59,7 @@ async function exigirHost(partidaId: number) {
 
 export async function atualizarPartidaAction(
   partidaId: number,
-  args: { titulo: string; dataHora: string; regras: string | null },
+  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null },
 ) {
   await exigirHost(partidaId);
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
@@ -67,6 +70,7 @@ export async function atualizarPartidaAction(
     titulo: args.titulo.trim(),
     dataHora,
     regras: args.regras?.trim() || null,
+    capaUrl: args.capaUrl?.trim() || null,
   });
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');

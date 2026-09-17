@@ -5,13 +5,14 @@ import { useState } from 'react';
 export function FormularioPartida({
   inicial, aoSalvar, textoBotao,
 }: {
-  inicial?: { titulo: string; dataHora: string; regras: string };
-  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null }) => Promise<void>;
+  inicial?: { titulo: string; dataHora: string; regras: string; capaUrl: string };
+  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) => Promise<void>;
   textoBotao: string;
 }) {
   const [titulo, setTitulo] = useState(inicial?.titulo ?? '');
   const [dataHora, setDataHora] = useState(inicial?.dataHora ?? '');
   const [regras, setRegras] = useState(inicial?.regras ?? '');
+  const [capaUrl, setCapaUrl] = useState(inicial?.capaUrl ?? '');
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
@@ -20,7 +21,7 @@ export function FormularioPartida({
     setErro(null);
     setSalvando(true);
     try {
-      await aoSalvar({ titulo, dataHora, regras: regras.trim() || null });
+      await aoSalvar({ titulo, dataHora, regras: regras.trim() || null, capaUrl: capaUrl.trim() || null });
     } catch (err) {
       setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
       setSalvando(false);
@@ -51,6 +52,22 @@ export function FormularioPartida({
           required
           className="w-full rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[11px] text-[#D6D6E0] focus:border-alter-green focus:outline-none"
         />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block font-mono text-[9px] tracking-[.14em] text-dim">
+          IMAGEM DE CAPA (opcional, URL)
+        </span>
+        <input
+          value={capaUrl}
+          onChange={(e) => setCapaUrl(e.target.value)}
+          placeholder="https://…"
+          className="w-full rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 text-[12px] text-[#D6D6E0] placeholder:text-dim/60 focus:border-alter-green focus:outline-none"
+        />
+        {capaUrl.trim() && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={capaUrl} alt="" className="mt-2 h-24 w-full rounded-[3px] border border-line object-cover" />
+        )}
       </label>
 
       <label className="block">

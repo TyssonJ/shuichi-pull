@@ -71,15 +71,21 @@ export default async function PaginaPartidas() {
               <li key={p.id}>
                 <Link
                   href={`/partidas/${p.id}/`}
-                  className="block rounded-[4px] border border-line bg-sur p-3 transition-colors hover:border-alter-green"
+                  className="block overflow-hidden rounded-[4px] border border-line bg-sur transition-colors hover:border-alter-green"
                 >
-                  <p className="text-[12px] font-bold text-[#D6D6E0]">{p.titulo}</p>
-                  <p className="mt-1 font-mono text-[9px] text-dim">
-                    host: {hosts.get(p.hostDiscordId)} · {formatarDataHora(p.dataHora)}
-                  </p>
-                  <p className="mt-1 font-mono text-[8px] text-alter-green">
-                    {participantesPorPartida.get(p.id) ?? 0} participante(s)
-                  </p>
+                  {p.capaUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.capaUrl} alt="" className="h-24 w-full object-cover" />
+                  )}
+                  <div className="p-3">
+                    <p className="text-[12px] font-bold text-[#D6D6E0]">{p.titulo}</p>
+                    <p className="mt-1 font-mono text-[9px] text-dim">
+                      host: {hosts.get(p.hostDiscordId)} · {formatarDataHora(p.dataHora)}
+                    </p>
+                    <p className="mt-1 font-mono text-[8px] text-alter-green">
+                      {participantesPorPartida.get(p.id) ?? 0} participante(s)
+                    </p>
+                  </div>
                 </Link>
               </li>
             ))}
