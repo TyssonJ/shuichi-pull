@@ -1,4 +1,4 @@
-import { eq, and, asc, desc, ne } from 'drizzle-orm';
+import { eq, and, asc, desc, ne, inArray, count } from 'drizzle-orm';
 import type { db as DbClient } from '../client';
 import { partidas, partidaParticipantes } from '../schema';
 
@@ -71,6 +71,21 @@ export function criarRepositorioPartidas(db: Banco) {
         .orderBy(desc(partidas.dataHora));
       const idsDoUsuario = new Set(entradas.map((e) => e.partidaId));
       return todas.filter((p) => idsDoUsuario.has(p.id)).slice(0, limite);
+    },
+
+    /** Total de partidas finalizadas de que um usuário participou — usado
+     * pro título/badge do perfil público, separado do histórico porque esse
+     * é limitado a `limite` linhas. */
+    async contarFinalizadas(discordId: string): Promise<number> {
+      const entradas = await db.select({ partidaId: partidaParticipantes.partidaId })
+        .from(partidaParticipantes)
+        .where(eq(partidaParticipantes.discordId, discordId));
+      if (entradas.length === 0) return 0;
+
+      const idsDoUsuario = [...new Set(entradas.map((e) => e.partidaId))];
+      const [linha] = await db.select({ total: count() }).from(partidas)
+        .where(and(eq(partidas.status, 'finalizada'), inArray(partidas.id, idsDoUsuario)));
+      return linha?.total ?? 0;
     },
   };
 }

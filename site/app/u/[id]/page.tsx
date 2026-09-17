@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { listarPersonagens } from '@/lib/dados';
+import { tituloPorPartidas } from '@/lib/titulos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 function formatarData(d: Date): string {
@@ -20,12 +21,14 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [historico, personagens] = await Promise.all([
+  const [historico, totalFinalizadas, personagens] = await Promise.all([
     repositorioPartidas.historicoDoUsuario(id),
+    repositorioPartidas.contarFinalizadas(id),
     Promise.resolve(listarPersonagens()),
   ]);
   const porId = new Map(personagens.map((p) => [p.id, p]));
   const mains = usuario.mains.map((mid) => porId.get(mid)).filter((p) => p !== undefined);
+  const titulo = tituloPorPartidas(totalFinalizadas);
 
   return (
     <PainelComTrilhas as="article">
@@ -45,6 +48,11 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
           <p className="mt-1 font-mono text-[8px] tracking-[.1em] text-dim">
             NO ARQUIVO DESDE {formatarData(usuario.criadoEm)}
           </p>
+          {titulo && (
+            <span className="mt-1.5 inline-block rounded-[2px] border border-alter-green px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] text-alter-green">
+              {titulo}
+            </span>
+          )}
         </div>
       </div>
 
@@ -70,7 +78,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
 
       <section className="mt-6">
         <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
-          ÚLTIMAS PARTIDAS
+          ÚLTIMAS PARTIDAS {totalFinalizadas > 0 && `— ${totalFinalizadas} finalizada${totalFinalizadas > 1 ? 's' : ''} no total`}
         </h2>
         {historico.length === 0 ? (
           <p className="text-[11px] text-dim">Nenhuma partida finalizada ainda.</p>
