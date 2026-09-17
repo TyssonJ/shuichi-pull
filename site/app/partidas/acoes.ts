@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
+import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 
 async function exigirSessao() {
   const sessao = await auth();
@@ -84,4 +85,47 @@ export async function mudarStatusPartidaAction(
   await repositorioPartidas.mudarStatus(partidaId, status);
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
+}
+
+export async function salvarRelatorioAction(partidaId: number, dados: {
+  capitulo: string | null;
+  blackened: string | null;
+  mvpDiscordId: string | null;
+  resultado: 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia' | null;
+}) {
+  await exigirHost(partidaId);
+  await repositorioPartidas.salvarRelatorio(partidaId, {
+    capitulo: dados.capitulo?.trim() || null,
+    blackened: dados.blackened?.trim() || null,
+    mvpDiscordId: dados.mvpDiscordId || null,
+    resultado: dados.resultado,
+  });
+  revalidatePath(`/partidas/${partidaId}`);
+}
+
+export async function avaliarParticipanteAction(
+  partidaId: number, avaliadoDiscordId: string, tipo: 'like' | 'dislike', comentario: string | null,
+) {
+  const sessao = await exigirSessao();
+  const avaliadorDiscordId = sessao.user.discordId;
+  if (avaliadoDiscordId === avaliadorDiscordId) throw new Error('Não dá pra avaliar a si mesmo.');
+
+  const partida = await repositorioPartidas.buscar(partidaId);
+  if (!partida) throw new Error('Partida não existe mais.');
+  if (partida.status !== 'finalizada') throw new Error('Só dá pra avaliar depois que a partida for finalizada.');
+
+  const participantes = await repositorioPartidas.participantes(partidaId);
+  const souParticipante = participantes.some((p) => p.discordId === avaliadorDiscordId);
+  if (!souParticipante) throw new Error('Só quem participou da partida pode avaliar.');
+
+  await repositorioPartidaAvaliacoes.avaliar({
+    partidaId, avaliadorDiscordId, avaliadoDiscordId, tipo, comentario: comentario?.trim() || null,
+  });
+  revalidatePath(`/partidas/${partidaId}`);
+}
+
+export async function removerAvaliacaoAction(partidaId: number, avaliadoDiscordId: string) {
+  const sessao = await exigirSessao();
+  await repositorioPartidaAvaliacoes.remover(partidaId, sessao.user.discordId, avaliadoDiscordId);
+  revalidatePath(`/partidas/${partidaId}`);
 }

@@ -2,14 +2,21 @@ import { notFound } from 'next/navigation';
 import { auth } from '@/auth';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
+import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { listarPersonagens } from '@/lib/dados';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
+import { AvaliarParticipantes } from '@/components/partidas/AvaliarParticipantes';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
+  salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
 } from '../acoes';
+
+const ROTULO_RESULTADO: Record<string, string> = {
+  vitoria_alunos: 'Vitória dos alunos', vitoria_mestre: 'Vitória do mestre', tragedia: 'Tragédia (ninguém venceu)',
+};
 
 function paraDatetimeLocal(d: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0');
@@ -53,6 +60,28 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
   const souHost = discordId === partida.hostDiscordId;
   const minhaEntrada = discordId ? participantes.find((p) => p.discordId === discordId) : undefined;
 
+  const avaliaveis = partida.status === 'finalizada' && discordId && minhaEntrada
+    ? await (async () => {
+        const avaliacoes = await repositorioPartidaAvaliacoes.listarPorPartida(id);
+        return participantes
+          .filter((p) => p.discordId !== discordId)
+          .map((p) => {
+            const doOutros = avaliacoes.filter((a) => a.avaliadoDiscordId === p.discordId);
+            const minha = avaliacoes.find(
+              (a) => a.avaliadoDiscordId === p.discordId && a.avaliadorDiscordId === discordId,
+            );
+            return {
+              discordId: p.discordId,
+              nome: usuariosParticipantes.get(p.discordId) ?? 'alguém',
+              likes: doOutros.filter((a) => a.tipo === 'like').length,
+              dislikes: doOutros.filter((a) => a.tipo === 'dislike').length,
+              minhaAvaliacao: (minha?.tipo as 'like' | 'dislike' | undefined) ?? null,
+              meuComentario: minha?.comentario ?? '',
+            };
+          });
+      })()
+    : [];
+
   return (
     <PainelComTrilhas as="article">
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 09</p>
@@ -94,6 +123,35 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         </section>
       )}
 
+      {(partida.capitulo || partida.blackened || partida.mvpDiscordId || partida.resultado) && (
+        <section className="mb-6 max-w-2xl rounded-[4px] border border-cyber-cyan/30 bg-[#0A1218] p-3">
+          <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-cyber-cyan">RELATÓRIO DA PARTIDA</h2>
+          <dl className="space-y-1 text-[11px] text-[#C8C8D4]">
+            {partida.capitulo && (
+              <div><dt className="inline text-dim">Capítulo: </dt><dd className="inline">{partida.capitulo}</dd></div>
+            )}
+            {partida.blackened && (
+              <div>
+                <dt className="inline text-dim">Blackened: </dt>
+                <dd className="inline">{usuariosParticipantes.get(partida.blackened) ?? 'alguém'}</dd>
+              </div>
+            )}
+            {partida.mvpDiscordId && (
+              <div>
+                <dt className="inline text-dim">MVP: </dt>
+                <dd className="inline">{usuariosParticipantes.get(partida.mvpDiscordId) ?? 'alguém'}</dd>
+              </div>
+            )}
+            {partida.resultado && (
+              <div>
+                <dt className="inline text-dim">Status: </dt>
+                <dd className="inline">{ROTULO_RESULTADO[partida.resultado] ?? partida.resultado}</dd>
+              </div>
+            )}
+          </dl>
+        </section>
+      )}
+
       <section className="mb-6">
         <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
           PARTICIPANTES ({participantes.length})
@@ -120,6 +178,15 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         )}
       </section>
 
+      {avaliaveis.length > 0 && (
+        <AvaliarParticipantes
+          partidaId={partida.id}
+          participantes={avaliaveis}
+          aoAvaliar={avaliarParticipanteAction}
+          aoRemover={removerAvaliacaoAction}
+        />
+      )}
+
       {partida.status === 'agendada' && discordId && (
         <EntrarPartida
           partidaId={partida.id}
@@ -141,14 +208,24 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         <ControlesHost
           partidaId={partida.id}
           status={partida.status}
+          participantes={participantes.map((p) => ({
+            discordId: p.discordId, nome: usuariosParticipantes.get(p.discordId) ?? 'alguém',
+          }))}
           inicial={{
             titulo: partida.titulo,
             dataHora: paraDatetimeLocal(partida.dataHora),
             regras: partida.regras ?? '',
             capaUrl: partida.capaUrl ?? '',
           }}
+          relatorioInicial={{
+            capitulo: partida.capitulo ?? '',
+            blackened: partida.blackened ?? '',
+            mvpDiscordId: partida.mvpDiscordId ?? '',
+            resultado: partida.resultado,
+          }}
           aoAtualizar={atualizarPartidaAction}
           aoMudarStatus={mudarStatusPartidaAction}
+          aoSalvarRelatorio={salvarRelatorioAction}
         />
       )}
     </PainelComTrilhas>

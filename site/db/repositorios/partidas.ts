@@ -41,6 +41,18 @@ export function criarRepositorioPartidas(db: Banco) {
       await db.update(partidas).set({ status }).where(eq(partidas.id, id));
     },
 
+    /** Relatório pós-partida (AAR) — só faz sentido depois que a partida
+     * já foi marcada finalizada, mas fica separado de mudarStatus porque o
+     * host pode preencher aos poucos ou editar depois de finalizar. */
+    async salvarRelatorio(id: number, dados: {
+      capitulo: string | null;
+      blackened: string | null;
+      mvpDiscordId: string | null;
+      resultado: 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia' | null;
+    }) {
+      await db.update(partidas).set(dados).where(eq(partidas.id, id));
+    },
+
     /** Entrar de novo com outro personagem substitui a entrada anterior —
      * daí o onConflictDoUpdate no lugar de barrar a segunda entrada. */
     async entrar(partidaId: number, discordId: string, personagemId: string | null) {
