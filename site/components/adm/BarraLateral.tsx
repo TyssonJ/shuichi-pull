@@ -8,6 +8,7 @@ const ITENS_COMUNS = [
   { rotulo: 'Mapa', url: '/adm/mapa' },
   { rotulo: 'Mecânicas', url: '/adm/mecanicas' },
   { rotulo: 'Textos', url: '/adm/faq' },
+  { rotulo: 'Configurações', url: '/adm/configuracoes' },
 ];
 
 const ITENS_CHEFE = [

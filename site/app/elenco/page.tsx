@@ -1,11 +1,17 @@
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
+import { repositorioConfiguracoes } from '@/db/repositorios/configuracoes';
+import { obterToggle } from '@/lib/configuracoes';
 import { CartaoPersonagem } from '@/components/ficha/CartaoPersonagem';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Elenco — Shuichi Pull' };
 
 export default async function PaginaElenco() {
-  const personagens = await listarPersonagensComCorrecoes();
+  const [personagens, config] = await Promise.all([
+    listarPersonagensComCorrecoes(),
+    repositorioConfiguracoes.listar(),
+  ]);
+  const mostrarPendente = obterToggle(config, 'elenco.mostrarBadgePendente');
 
   // O "Student ID" reflete a ordem global do elenco, não o agrupamento por
   // jogo abaixo — a ficha individual (app/elenco/[id]/page.tsx) calcula o
@@ -35,7 +41,12 @@ export default async function PaginaElenco() {
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {lista.map((p) => (
-              <CartaoPersonagem key={p.id} personagem={p} numero={numeroPorId.get(p.id)!} />
+              <CartaoPersonagem
+                key={p.id}
+                personagem={p}
+                numero={numeroPorId.get(p.id)!}
+                mostrarPendente={mostrarPendente}
+              />
             ))}
           </div>
         </section>

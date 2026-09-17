@@ -2,7 +2,9 @@ import Link from 'next/link';
 import type { Personagem } from '@/lib/schema';
 
 export function CartaoPersonagem(
-  { personagem: p, numero }: { personagem: Personagem; numero: number }
+  { personagem: p, numero, mostrarPendente = true }: {
+    personagem: Personagem; numero: number; mostrarPendente?: boolean;
+  }
 ) {
   const studentId = String(numero).padStart(3, '0');
 
@@ -49,7 +51,7 @@ export function CartaoPersonagem(
         <p className="mt-0.5 font-mono text-[8px] text-dim">{p.talento.en}</p>
       </div>
 
-      {!p.traducaoRevisada && (
+      {mostrarPendente && !p.traducaoRevisada && (
         <span
           title="Tradução não revisada por um ADM"
           className="absolute left-1.5 top-1.5 z-10 rounded-[2px] border border-amber/40 px-1 font-mono text-[7px] text-amber"

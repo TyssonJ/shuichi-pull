@@ -1,0 +1,1 @@
+ALTER TABLE "partidas" DROP COLUMN "mvp_discord_id";

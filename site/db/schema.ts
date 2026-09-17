@@ -2,6 +2,15 @@ import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, uniqu
 
 export const papelAdm = pgEnum('papel_adm', ['adm', 'chefe']);
 
+// Configuração de exibição do site, editável pelo ADM sem mexer em código —
+// chave/valor genérico pra não precisar de migração a cada novo toggle.
+// Valor é sempre texto; quem lê decide como interpretar ('true'/'false' etc).
+export const configuracoes = pgTable('configuracoes', {
+  chave: text('chave').primaryKey(),
+  valor: text('valor').notNull(),
+  atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const administradores = pgTable('administradores', {
   discordId: text('discord_id').primaryKey(),
   nome: text('nome').notNull(),
@@ -103,11 +112,15 @@ export const personagensRemovidos = pgTable('personagens_removidos', {
 // grande maioria das contas aqui nunca vai virar ADM. `garantir()` no
 // repositório cria a linha no primeiro login e atualiza nome/avatar do
 // Discord a cada visita à página de conta, sem mexer em uuidGmod/mains.
+export const statusUuid = pgEnum('status_uuid', ['pendente', 'aprovado', 'banido']);
+
 export const usuarios = pgTable('usuarios', {
   discordId: text('discord_id').primaryKey(),
   discordNome: text('discord_nome').notNull(),
   discordAvatar: text('discord_avatar'),
   uuidGmod: text('uuid_gmod'),
+  uuidStatus: statusUuid('uuid_status').notNull().default('pendente'),
+  podeSerHost: boolean('pode_ser_host').notNull().default(true),
   mains: text('mains').array().notNull().default([]),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
   atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
@@ -131,23 +144,43 @@ export const partidas = pgTable('partidas', {
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
   // Relatório pós-partida (AAR), preenchido pelo host ao finalizar — todos
   // opcionais porque uma partida pode ser marcada finalizada sem relatório.
+  // O detalhe por capítulo (quem matou/morreu/ficou AFK em cada um) vive em
+  // partidaCapitulos, abaixo — capitulo/blackened aqui viraram um resumo
+  // geral só pra quem não quer preencher capítulo por capítulo.
   capitulo: text('capitulo'),
   blackened: text('blackened'),
-  mvpDiscordId: text('mvp_discord_id'),
+  mvpDiscordIds: text('mvp_discord_ids').array().notNull().default([]),
   resultado: resultadoPartida('resultado'),
 });
 
 // Um participante só pode entrar numa vez em cada partida (índice único em
 // partidaId+discordId) — entrar de novo com outro personagem primeiro sai
 // da entrada anterior.
+export const tipoParticipante = pgEnum('tipo_participante', ['participante', 'reserva']);
+
 export const partidaParticipantes = pgTable('partida_participantes', {
   id: serial('id').primaryKey(),
   partidaId: integer('partida_id').notNull().references(() => partidas.id, { onDelete: 'cascade' }),
   discordId: text('discord_id').notNull(),
   personagemId: text('personagem_id'),
+  tipo: tipoParticipante('tipo').notNull().default('participante'),
   entradaEm: timestamp('entrada_em', { withTimezone: true }).notNull().defaultNow(),
 }, (t) => ([
   unique('partida_participante_unico').on(t.partidaId, t.discordId),
+]));
+
+// Registro por capítulo, preenchido pelo host no relatório pós-partida —
+// uma partida pode ter vários capítulos, cada um com seu próprio
+// assassino/vítima revelados (ou nenhum, se ninguém matou naquele capítulo).
+export const partidaCapitulos = pgTable('partida_capitulos', {
+  id: serial('id').primaryKey(),
+  partidaId: integer('partida_id').notNull().references(() => partidas.id, { onDelete: 'cascade' }),
+  numero: integer('numero').notNull(),
+  assassinoDiscordId: text('assassino_discord_id'),
+  vitimaDiscordId: text('vitima_discord_id'),
+  afk: text('afk').array().notNull().default([]),
+}, (t) => ([
+  unique('partida_capitulo_unico').on(t.partidaId, t.numero),
 ]));
 
 // Comentário de qualquer usuário logado num evento/notícia. `eventoId`
