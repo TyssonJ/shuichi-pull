@@ -29,6 +29,13 @@
       "when": 1789643774486,
       "tag": "0003_fluffy_scarlet_spider",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789644808248,
+      "tag": "0004_steady_bushwacker",
+      "breakpoints": true
     }
   ]
 }

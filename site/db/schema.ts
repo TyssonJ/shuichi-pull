@@ -111,6 +111,34 @@ export const usuarios = pgTable('usuarios', {
   atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
 });
 
+export const statusPartida = pgEnum('status_partida', ['agendada', 'finalizada', 'cancelada']);
+
+// Organização de partida: quem é o host, quando é, as regras — e quem
+// participa é a tabela partidaParticipantes logo abaixo, porque uma partida
+// tem vários participantes e um participante entra em várias partidas.
+export const partidas = pgTable('partidas', {
+  id: serial('id').primaryKey(),
+  titulo: text('titulo').notNull(),
+  hostDiscordId: text('host_discord_id').notNull(),
+  dataHora: timestamp('data_hora', { withTimezone: true }).notNull(),
+  regras: text('regras'),
+  status: statusPartida('status').notNull().default('agendada'),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
+// Um participante só pode entrar numa vez em cada partida (índice único em
+// partidaId+discordId) — entrar de novo com outro personagem primeiro sai
+// da entrada anterior.
+export const partidaParticipantes = pgTable('partida_participantes', {
+  id: serial('id').primaryKey(),
+  partidaId: integer('partida_id').notNull().references(() => partidas.id, { onDelete: 'cascade' }),
+  discordId: text('discord_id').notNull(),
+  personagemId: text('personagem_id'),
+  entradaEm: timestamp('entrada_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  unique('partida_participante_unico').on(t.partidaId, t.discordId),
+]));
+
 export const auditoria = pgTable('auditoria', {
   id: serial('id').primaryKey(),
   autor: text('autor').notNull(),

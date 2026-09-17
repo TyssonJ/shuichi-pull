@@ -9,4 +9,5 @@ export const SECOES: Secao[] = [
   { numero: '06', nome: 'Códigos', url: '/codigos/' },
   { numero: '07', nome: 'FAQ', url: '/faq/' },
   { numero: '08', nome: 'Começar', url: '/comecar/' },
+  { numero: '09', nome: 'Partidas', url: '/partidas/' },
 ];
