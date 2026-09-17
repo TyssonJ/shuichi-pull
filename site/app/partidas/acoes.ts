@@ -117,6 +117,8 @@ export async function avaliarParticipanteAction(
   const participantes = await repositorioPartidas.participantes(partidaId);
   const souParticipante = participantes.some((p) => p.discordId === avaliadorDiscordId);
   if (!souParticipante) throw new Error('Só quem participou da partida pode avaliar.');
+  const alvoParticipou = participantes.some((p) => p.discordId === avaliadoDiscordId);
+  if (!alvoParticipou) throw new Error('Só dá pra avaliar quem participou da partida.');
 
   await repositorioPartidaAvaliacoes.avaliar({
     partidaId, avaliadorDiscordId, avaliadoDiscordId, tipo, comentario: comentario?.trim() || null,
