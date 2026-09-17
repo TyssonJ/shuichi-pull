@@ -1,6 +1,9 @@
 import Link from 'next/link';
 
 const ITENS_COMUNS = [
+  { rotulo: 'Painel', url: '/adm' },
+  { rotulo: 'Partidas', url: '/adm/partidas' },
+  { rotulo: 'Usuários', url: '/adm/usuarios' },
   { rotulo: 'Eventos', url: '/adm/eventos' },
   { rotulo: 'Códigos', url: '/adm/codigos' },
   { rotulo: 'Itens', url: '/adm/itens' },
