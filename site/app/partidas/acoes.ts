@@ -4,6 +4,8 @@ import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
+import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
+import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 
 async function exigirSessao() {
   const sessao = await auth();
@@ -19,6 +21,8 @@ export async function criarPartidaAction(
   args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null },
 ): Promise<number> {
   const sessao = await exigirSessao();
+  const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
+  if (usuario && !usuario.podeSerHost) throw new Error('Sua permissão de host foi revogada por um ADM.');
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
   const dataHora = new Date(args.dataHora);
   if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
@@ -34,9 +38,11 @@ export async function criarPartidaAction(
   return id;
 }
 
-export async function entrarPartidaAction(partidaId: number, personagemId: string | null) {
+export async function entrarPartidaAction(
+  partidaId: number, personagemId: string | null, tipo: 'participante' | 'reserva' = 'participante',
+) {
   const sessao = await exigirSessao();
-  await repositorioPartidas.entrar(partidaId, sessao.user.discordId, personagemId);
+  await repositorioPartidas.entrar(partidaId, sessao.user.discordId, personagemId, tipo);
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
 }
@@ -90,16 +96,34 @@ export async function mudarStatusPartidaAction(
 export async function salvarRelatorioAction(partidaId: number, dados: {
   capitulo: string | null;
   blackened: string | null;
-  mvpDiscordId: string | null;
+  mvpDiscordIds: string[];
   resultado: 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia' | null;
 }) {
   await exigirHost(partidaId);
   await repositorioPartidas.salvarRelatorio(partidaId, {
     capitulo: dados.capitulo?.trim() || null,
     blackened: dados.blackened?.trim() || null,
-    mvpDiscordId: dados.mvpDiscordId || null,
+    mvpDiscordIds: dados.mvpDiscordIds,
     resultado: dados.resultado,
   });
+  revalidatePath(`/partidas/${partidaId}`);
+}
+
+export async function salvarCapituloAction(partidaId: number, dados: {
+  numero: number;
+  assassinoDiscordId: string | null;
+  vitimaDiscordId: string | null;
+  afk: string[];
+}) {
+  await exigirHost(partidaId);
+  if (!Number.isInteger(dados.numero) || dados.numero < 1) throw new Error('Número de capítulo inválido.');
+  await repositorioPartidaCapitulos.salvar({ partidaId, ...dados });
+  revalidatePath(`/partidas/${partidaId}`);
+}
+
+export async function removerCapituloAction(partidaId: number, numero: number) {
+  await exigirHost(partidaId);
+  await repositorioPartidaCapitulos.remover(partidaId, numero);
   revalidatePath(`/partidas/${partidaId}`);
 }
 

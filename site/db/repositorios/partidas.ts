@@ -47,20 +47,24 @@ export function criarRepositorioPartidas(db: Banco) {
     async salvarRelatorio(id: number, dados: {
       capitulo: string | null;
       blackened: string | null;
-      mvpDiscordId: string | null;
+      mvpDiscordIds: string[];
       resultado: 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia' | null;
     }) {
       await db.update(partidas).set(dados).where(eq(partidas.id, id));
     },
 
-    /** Entrar de novo com outro personagem substitui a entrada anterior —
-     * daí o onConflictDoUpdate no lugar de barrar a segunda entrada. */
-    async entrar(partidaId: number, discordId: string, personagemId: string | null) {
+    /** Entrar de novo com outro personagem (ou trocar de participante pra
+     * reserva) substitui a entrada anterior — daí o onConflictDoUpdate no
+     * lugar de barrar a segunda entrada. */
+    async entrar(
+      partidaId: number, discordId: string, personagemId: string | null,
+      tipo: 'participante' | 'reserva' = 'participante',
+    ) {
       await db.insert(partidaParticipantes)
-        .values({ partidaId, discordId, personagemId })
+        .values({ partidaId, discordId, personagemId, tipo })
         .onConflictDoUpdate({
           target: [partidaParticipantes.partidaId, partidaParticipantes.discordId],
-          set: { personagemId },
+          set: { personagemId, tipo },
         });
     },
 
@@ -100,6 +104,48 @@ export function criarRepositorioPartidas(db: Banco) {
       const [linha] = await db.select({ total: count() }).from(partidas)
         .where(and(eq(partidas.status, 'finalizada'), inArray(partidas.id, idsDoUsuario)));
       return linha?.total ?? 0;
+    },
+
+    /** Estatísticas completas do perfil público — vitórias/derrotas dependem
+     * de cruzar o resultado da partida com se o usuário era o blackened
+     * revelado nela, então precisa das partidas inteiras, não só da
+     * contagem. "Casos resolvidos" = vitórias como não-blackened, ou seja,
+     * partidas em que o grupo pegou o culpado certo. */
+    async estatisticasDoUsuario(discordId: string) {
+      const entradas = await db.select({ partidaId: partidaParticipantes.partidaId })
+        .from(partidaParticipantes)
+        .where(eq(partidaParticipantes.discordId, discordId));
+      const idsDoUsuario = new Set(entradas.map((e) => e.partidaId));
+      if (idsDoUsuario.size === 0) {
+        return {
+          total: 0, vitorias: 0, derrotas: 0, tragedias: 0,
+          comoBlackened: 0, comoDetetive: 0, casosResolvidos: 0, mvps: 0,
+        };
+      }
+
+      const todas = await db.select().from(partidas)
+        .where(and(eq(partidas.status, 'finalizada'), inArray(partidas.id, [...idsDoUsuario])));
+
+      let vitorias = 0, derrotas = 0, tragedias = 0, comoBlackened = 0, mvps = 0, casosResolvidos = 0;
+      for (const p of todas) {
+        const eraBlackened = p.blackened === discordId;
+        if (eraBlackened) comoBlackened++;
+        if (p.mvpDiscordIds.includes(discordId)) mvps++;
+
+        if (p.resultado === 'tragedia') { tragedias++; continue; }
+        if (p.resultado === 'vitoria_mestre') {
+          if (eraBlackened) vitorias++; else derrotas++;
+        } else if (p.resultado === 'vitoria_alunos') {
+          if (eraBlackened) { derrotas++; } else { vitorias++; casosResolvidos++; }
+        }
+      }
+
+      return {
+        total: todas.length,
+        vitorias, derrotas, tragedias,
+        comoBlackened, comoDetetive: todas.length - comoBlackened,
+        casosResolvidos, mvps,
+      };
     },
   };
 }

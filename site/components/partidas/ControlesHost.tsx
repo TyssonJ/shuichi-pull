@@ -13,11 +13,11 @@ export function ControlesHost({
   inicial: { titulo: string; dataHora: string; regras: string; capaUrl: string };
   status: 'agendada' | 'finalizada' | 'cancelada';
   participantes: { discordId: string; nome: string }[];
-  relatorioInicial: { capitulo: string; blackened: string; mvpDiscordId: string; resultado: Resultado | null };
+  relatorioInicial: { capitulo: string; blackened: string; mvpDiscordIds: string[]; resultado: Resultado | null };
   aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) => Promise<void>;
   aoMudarStatus: (partidaId: number, status: 'agendada' | 'finalizada' | 'cancelada') => Promise<void>;
   aoSalvarRelatorio: (partidaId: number, dados: {
-    capitulo: string | null; blackened: string | null; mvpDiscordId: string | null; resultado: Resultado | null;
+    capitulo: string | null; blackened: string | null; mvpDiscordIds: string[]; resultado: Resultado | null;
   }) => Promise<void>;
 }) {
   const [aberto, setAberto] = useState(false);

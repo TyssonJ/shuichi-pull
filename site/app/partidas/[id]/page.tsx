@@ -3,19 +3,24 @@ import { auth } from '@/auth';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
+import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { listarPersonagens } from '@/lib/dados';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
 import { AvaliarParticipantes } from '@/components/partidas/AvaliarParticipantes';
+import { CapitulosPartida } from '@/components/partidas/CapitulosPartida';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
+  salvarCapituloAction, removerCapituloAction,
 } from '../acoes';
 
 const ROTULO_RESULTADO: Record<string, string> = {
-  vitoria_alunos: 'Vitória dos alunos', vitoria_mestre: 'Vitória do mestre', tragedia: 'Tragédia (ninguém venceu)',
+  vitoria_alunos: 'Cápsulas (culpado capturado)',
+  vitoria_mestre: 'Vitória do assassino',
+  tragedia: 'Sobreviventes sem resolução',
 };
 
 function paraDatetimeLocal(d: Date): string {
@@ -41,10 +46,11 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
   const partida = await repositorioPartidas.buscar(id);
   if (!partida) notFound();
 
-  const [sessao, participantes, host] = await Promise.all([
+  const [sessao, participantes, host, capitulos] = await Promise.all([
     auth(),
     repositorioPartidas.participantes(id),
     repositorioUsuarios.buscar(partida.hostDiscordId),
+    repositorioPartidaCapitulos.listarPorPartida(id),
   ]);
 
   const personagens = listarPersonagens();
@@ -123,12 +129,12 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         </section>
       )}
 
-      {(partida.capitulo || partida.blackened || partida.mvpDiscordId || partida.resultado) && (
+      {(partida.capitulo || partida.blackened || partida.mvpDiscordIds.length > 0 || partida.resultado) && (
         <section className="mb-6 max-w-2xl rounded-[4px] border border-cyber-cyan/30 bg-[#0A1218] p-3">
           <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-cyber-cyan">RELATÓRIO DA PARTIDA</h2>
           <dl className="space-y-1 text-[11px] text-[#C8C8D4]">
             {partida.capitulo && (
-              <div><dt className="inline text-dim">Capítulo: </dt><dd className="inline">{partida.capitulo}</dd></div>
+              <div><dt className="inline text-dim">Resumo: </dt><dd className="inline">{partida.capitulo}</dd></div>
             )}
             {partida.blackened && (
               <div>
@@ -136,21 +142,34 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
                 <dd className="inline">{usuariosParticipantes.get(partida.blackened) ?? 'alguém'}</dd>
               </div>
             )}
-            {partida.mvpDiscordId && (
+            {partida.mvpDiscordIds.length > 0 && (
               <div>
-                <dt className="inline text-dim">MVP: </dt>
-                <dd className="inline">{usuariosParticipantes.get(partida.mvpDiscordId) ?? 'alguém'}</dd>
+                <dt className="inline text-dim">MVP{partida.mvpDiscordIds.length > 1 ? 's' : ''}: </dt>
+                <dd className="inline">
+                  {partida.mvpDiscordIds.map((id) => usuariosParticipantes.get(id) ?? 'alguém').join(', ')}
+                </dd>
               </div>
             )}
             {partida.resultado && (
               <div>
-                <dt className="inline text-dim">Status: </dt>
+                <dt className="inline text-dim">Desfecho: </dt>
                 <dd className="inline">{ROTULO_RESULTADO[partida.resultado] ?? partida.resultado}</dd>
               </div>
             )}
           </dl>
         </section>
       )}
+
+      <CapitulosPartida
+        partidaId={partida.id}
+        capitulos={capitulos}
+        participantes={participantes.map((p) => ({
+          discordId: p.discordId, nome: usuariosParticipantes.get(p.discordId) ?? 'alguém',
+        }))}
+        editavel={souHost && partida.status === 'finalizada'}
+        aoSalvar={salvarCapituloAction}
+        aoRemover={removerCapituloAction}
+      />
 
       <section className="mb-6">
         <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
@@ -220,7 +239,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           relatorioInicial={{
             capitulo: partida.capitulo ?? '',
             blackened: partida.blackened ?? '',
-            mvpDiscordId: partida.mvpDiscordId ?? '',
+            mvpDiscordIds: partida.mvpDiscordIds,
             resultado: partida.resultado,
           }}
           aoAtualizar={atualizarPartidaAction}
