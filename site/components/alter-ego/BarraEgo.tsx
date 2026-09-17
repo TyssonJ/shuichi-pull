@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { JanelaEgo } from './JanelaEgo';
+import { NucleoDiscord } from './NucleoDiscord';
 import { usePersistencia } from './usePersistencia';
 import { useLogAlterEgo } from './useLogAlterEgo';
 import { buscar, type Resultado } from '@/lib/busca';
@@ -197,6 +198,8 @@ export function BarraEgo() {
               </p>
             )}
           </div>
+
+          <NucleoDiscord />
 
           <nav aria-label="Navegação principal" className="hidden flex-wrap gap-1.5 sm:flex">
             {SECOES.map((s) => {
