@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export function Rodape() {
   return (
     <footer className="mt-16 border-t border-line px-4 py-8 text-[9px] leading-relaxed text-dim">
@@ -10,6 +12,12 @@ export function Rodape() {
         Personagens e sprites são propriedade da Spike Chunsoft. Dados de jogo
         conferidos com a extração do Kirigiri Press. Obrigado à equipe do Shinri Trial.
       </p>
+      <Link
+        href="/conta/"
+        className="mt-4 inline-block font-mono text-[9px] tracking-[.1em] text-alter-green hover:underline"
+      >
+        [ MINHA CONTA ]
+      </Link>
     </footer>
   );
 }

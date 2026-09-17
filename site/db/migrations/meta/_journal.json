@@ -22,6 +22,13 @@
       "when": 1789588699666,
       "tag": "0002_premium_celestials",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789643774486,
+      "tag": "0003_fluffy_scarlet_spider",
+      "breakpoints": true
     }
   ]
 }

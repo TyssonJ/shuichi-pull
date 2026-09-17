@@ -96,6 +96,21 @@ export const personagensRemovidos = pgTable('personagens_removidos', {
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
 
+// Conta de qualquer visitante que entra com Discord — separada de
+// `administradores`: toda conta de ADM também é uma conta de usuário, mas a
+// grande maioria das contas aqui nunca vai virar ADM. `garantir()` no
+// repositório cria a linha no primeiro login e atualiza nome/avatar do
+// Discord a cada visita à página de conta, sem mexer em uuidGmod/mains.
+export const usuarios = pgTable('usuarios', {
+  discordId: text('discord_id').primaryKey(),
+  discordNome: text('discord_nome').notNull(),
+  discordAvatar: text('discord_avatar'),
+  uuidGmod: text('uuid_gmod'),
+  mains: text('mains').array().notNull().default([]),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+  atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const auditoria = pgTable('auditoria', {
   id: serial('id').primaryKey(),
   autor: text('autor').notNull(),
