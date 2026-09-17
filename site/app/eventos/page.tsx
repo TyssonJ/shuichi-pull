@@ -50,6 +50,14 @@ export default async function PaginaEventos() {
                     <span className="font-mono text-[8px] tracking-[.1em] text-alter-green">EM DESTAQUE</span>
                   )}
                 </div>
+                {e.imagemUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={e.imagemUrl}
+                    alt=""
+                    className="mb-2 h-32 w-full rounded-[3px] border border-line object-cover"
+                  />
+                )}
                 <p className="text-[13px] font-bold leading-tight text-[#D6D6E0]">{e.titulo}</p>
                 <p className="mt-1 text-[11px] leading-relaxed text-dim">{e.resumo}</p>
               </Link>

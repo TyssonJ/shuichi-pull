@@ -14,6 +14,7 @@ export const EventoSchema = z.object({
   autor: z.string().min(1),
   resumo: z.string().min(1),
   corpo: z.string().min(1),
+  imagemUrl: z.string().url().nullable(),
 });
 export type Evento = z.infer<typeof EventoSchema>;
 
@@ -23,6 +24,7 @@ export const CodigoSchema = z.object({
   descricao: z.string().min(1),
   expiraEm: z.string().regex(DATA).nullable(),
   fonte: z.string().url().nullable(),
+  iconeUrl: z.string().url().nullable(),
 });
 export type Codigo = z.infer<typeof CodigoSchema>;
 

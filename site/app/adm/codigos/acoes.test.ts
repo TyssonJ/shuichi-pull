@@ -13,7 +13,7 @@ import { salvarCodigo, excluirCodigo } from './acoes';
 
 const codigoValido = {
   codigo: 'BEMVINDO2026', recompensa: '500 moedas', descricao: 'código de teste',
-  expiraEm: null, fonte: null,
+  expiraEm: null, fonte: null, iconeUrl: null,
 };
 
 describe('salvarCodigo', () => {

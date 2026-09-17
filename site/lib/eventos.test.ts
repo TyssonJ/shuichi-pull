@@ -3,7 +3,7 @@ import { estaExpirado, type Codigo } from './eventos';
 
 describe('estaExpirado', () => {
   const base: Codigo = {
-    codigo: 'X', recompensa: 'r', descricao: 'd', expiraEm: null, fonte: null,
+    codigo: 'X', recompensa: 'r', descricao: 'd', expiraEm: null, fonte: null, iconeUrl: null,
   };
 
   it('nunca expira sem data', () => {

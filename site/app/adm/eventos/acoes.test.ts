@@ -13,7 +13,7 @@ import { salvarEvento, excluirEvento } from './acoes';
 
 const eventoValido = {
   id: 'evento-teste', tipo: 'noticia' as const, titulo: 'Título', data: '2026-01-01',
-  ate: null, destaque: false, autor: 'admin', resumo: 'resumo', corpo: 'corpo',
+  ate: null, destaque: false, autor: 'admin', resumo: 'resumo', corpo: 'corpo', imagemUrl: null,
 };
 
 describe('salvarEvento', () => {

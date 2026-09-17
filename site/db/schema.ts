@@ -20,6 +20,7 @@ export const eventos = pgTable('eventos', {
   autor: text('autor').notNull(),
   resumo: text('resumo').notNull(),
   corpo: text('corpo').notNull(),
+  imagemUrl: text('imagem_url'),
 });
 
 export const codigos = pgTable('codigos', {
@@ -28,6 +29,7 @@ export const codigos = pgTable('codigos', {
   descricao: text('descricao').notNull(),
   expiraEm: text('expira_em'),
   fonte: text('fonte'),
+  iconeUrl: text('icone_url'),
 });
 
 export const correcoes = pgTable('correcoes', {
@@ -116,14 +118,23 @@ export const statusPartida = pgEnum('status_partida', ['agendada', 'finalizada',
 // Organização de partida: quem é o host, quando é, as regras — e quem
 // participa é a tabela partidaParticipantes logo abaixo, porque uma partida
 // tem vários participantes e um participante entra em várias partidas.
+export const resultadoPartida = pgEnum('resultado_partida', ['vitoria_alunos', 'vitoria_mestre', 'tragedia']);
+
 export const partidas = pgTable('partidas', {
   id: serial('id').primaryKey(),
   titulo: text('titulo').notNull(),
   hostDiscordId: text('host_discord_id').notNull(),
   dataHora: timestamp('data_hora', { withTimezone: true }).notNull(),
   regras: text('regras'),
+  capaUrl: text('capa_url'),
   status: statusPartida('status').notNull().default('agendada'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+  // Relatório pós-partida (AAR), preenchido pelo host ao finalizar — todos
+  // opcionais porque uma partida pode ser marcada finalizada sem relatório.
+  capitulo: text('capitulo'),
+  blackened: text('blackened'),
+  mvpDiscordId: text('mvp_discord_id'),
+  resultado: resultadoPartida('resultado'),
 });
 
 // Um participante só pode entrar numa vez em cada partida (índice único em
@@ -149,6 +160,23 @@ export const eventoComentarios = pgTable('evento_comentarios', {
   texto: text('texto').notNull(),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
+
+export const tipoAvaliacao = pgEnum('tipo_avaliacao', ['like', 'dislike']);
+
+// Avaliação de um participante sobre outro, numa partida finalizada —
+// like/dislike + comentário breve de RP. Um avaliador só avalia cada colega
+// uma vez por partida (índice único); avaliar de novo substitui a anterior.
+export const partidaAvaliacoes = pgTable('partida_avaliacoes', {
+  id: serial('id').primaryKey(),
+  partidaId: integer('partida_id').notNull().references(() => partidas.id, { onDelete: 'cascade' }),
+  avaliadorDiscordId: text('avaliador_discord_id').notNull(),
+  avaliadoDiscordId: text('avaliado_discord_id').notNull(),
+  tipo: tipoAvaliacao('tipo').notNull(),
+  comentario: text('comentario'),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  unique('partida_avaliacao_unica').on(t.partidaId, t.avaliadorDiscordId, t.avaliadoDiscordId),
+]));
 
 export const auditoria = pgTable('auditoria', {
   id: serial('id').primaryKey(),

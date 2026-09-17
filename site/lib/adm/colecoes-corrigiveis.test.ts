@@ -4,7 +4,7 @@ import { CAMPOS_POR_COLECAO, registrosBase } from './colecoes-corrigiveis';
 describe('CAMPOS_POR_COLECAO', () => {
   it('define os campos corrigíveis de personagens', () => {
     const caminhos = CAMPOS_POR_COLECAO.personagens.map((c) => c.caminho);
-    expect(caminhos).toEqual(['nome', 'talento.pt', 'talento.en', 'descricao.pt', 'descricao.en', 'jogo']);
+    expect(caminhos).toEqual(['nome', 'talento.pt', 'talento.en', 'descricao.pt', 'descricao.en', 'jogo', 'sprite']);
   });
 
   it('não inclui campos numéricos de personagens', () => {

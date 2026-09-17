@@ -5,7 +5,7 @@ import { FormularioEvento } from './FormularioEvento';
 describe('FormularioEvento', () => {
   it('preenche os campos a partir de um evento existente', () => {
     render(<FormularioEvento
-      evento={{ id: 'e1', tipo: 'noticia', titulo: 'Título', data: '2026-01-01', ate: null, destaque: false, autor: 'admin', resumo: 'resumo', corpo: 'corpo' }}
+      evento={{ id: 'e1', tipo: 'noticia', titulo: 'Título', data: '2026-01-01', ate: null, destaque: false, autor: 'admin', resumo: 'resumo', corpo: 'corpo', imagemUrl: null }}
       aoSalvar={vi.fn()}
     />);
     expect(screen.getByDisplayValue('Título')).toBeInTheDocument();

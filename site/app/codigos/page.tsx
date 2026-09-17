@@ -44,7 +44,13 @@ export default async function PaginaCodigos() {
                 </code>
                 <StatusCodigo expiraEm={c.expiraEm} expiradoNoBuild={estaExpirado(c)} />
               </div>
-              <p className="text-[12px] font-bold text-alter-green">{c.recompensa}</p>
+              <div className="flex items-center gap-2">
+                {c.iconeUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={c.iconeUrl} alt="" className="h-8 w-8 shrink-0 rounded object-contain" />
+                )}
+                <p className="text-[12px] font-bold text-alter-green">{c.recompensa}</p>
+              </div>
               <p className="mt-1 text-[11px] leading-relaxed text-dim">{c.descricao}</p>
               {c.fonte && (
                 <a

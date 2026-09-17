@@ -5,7 +5,7 @@ import type { Evento } from '@/lib/eventos';
 
 const VAZIO: Evento = {
   id: '', tipo: 'noticia', titulo: '', data: '', ate: null, destaque: false,
-  autor: '', resumo: '', corpo: '',
+  autor: '', resumo: '', corpo: '', imagemUrl: null,
 };
 
 export function FormularioEvento({
@@ -62,6 +62,13 @@ export function FormularioEvento({
       <label>Corpo
         <textarea value={dados.corpo} onChange={(e) => campo('corpo', e.target.value)} />
       </label>
+      <label>Imagem de capa (opcional, URL)
+        <input value={dados.imagemUrl ?? ''} onChange={(e) => campo('imagemUrl', e.target.value || null)} />
+      </label>
+      {dados.imagemUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={dados.imagemUrl} alt="" className="h-24 w-auto rounded border border-neutral-700 object-contain" />
+      )}
       <button type="submit">Salvar</button>
       {erro && <p role="alert" className="text-red-400">{erro}</p>}
     </form>

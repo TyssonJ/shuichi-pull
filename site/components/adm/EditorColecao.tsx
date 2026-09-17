@@ -74,6 +74,10 @@ export function EditorColecao({
                     }}
                   />
                 </label>
+                {(campo.caminho === 'sprite' || campo.caminho === 'icone') && valorMostrado && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={valorMostrado} alt="" className="mt-1 h-16 w-16 rounded border border-neutral-700 object-contain" />
+                )}
                 {conflito && (
                   <p className="text-amber-400">
                     O jogo mudou isto para <b>{valorBaseAtual}</b>. Sua correção (<b>{correcao.valor}</b>) continua valendo.

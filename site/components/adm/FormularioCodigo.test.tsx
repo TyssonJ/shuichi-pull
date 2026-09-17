@@ -5,7 +5,7 @@ import { FormularioCodigo } from './FormularioCodigo';
 describe('FormularioCodigo', () => {
   it('preenche os campos a partir de um código existente', () => {
     render(<FormularioCodigo
-      codigo={{ codigo: 'X2026', recompensa: '100 moedas', descricao: 'd', expiraEm: null, fonte: null }}
+      codigo={{ codigo: 'X2026', recompensa: '100 moedas', descricao: 'd', expiraEm: null, fonte: null, iconeUrl: null }}
       aoSalvar={vi.fn()}
     />);
     expect(screen.getByDisplayValue('X2026')).toBeInTheDocument();

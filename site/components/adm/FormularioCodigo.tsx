@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Codigo } from '@/lib/eventos';
 
-const VAZIO: Codigo = { codigo: '', recompensa: '', descricao: '', expiraEm: null, fonte: null };
+const VAZIO: Codigo = { codigo: '', recompensa: '', descricao: '', expiraEm: null, fonte: null, iconeUrl: null };
 
 export function FormularioCodigo({
   codigo, aoSalvar,
@@ -42,6 +42,13 @@ export function FormularioCodigo({
       <label>Fonte (opcional, URL)
         <input value={dados.fonte ?? ''} onChange={(e) => campo('fonte', e.target.value || null)} />
       </label>
+      <label>Ícone da recompensa (opcional, URL)
+        <input value={dados.iconeUrl ?? ''} onChange={(e) => campo('iconeUrl', e.target.value || null)} />
+      </label>
+      {dados.iconeUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={dados.iconeUrl} alt="" className="h-12 w-12 rounded border border-neutral-700 object-contain" />
+      )}
       <button type="submit">Salvar</button>
       {erro && <p role="alert" className="text-red-400">{erro}</p>}
     </form>

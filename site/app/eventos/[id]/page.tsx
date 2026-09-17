@@ -51,6 +51,15 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
         ← todos os eventos
       </Link>
 
+      {evento.imagemUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={evento.imagemUrl}
+          alt=""
+          className="mt-4 h-56 w-full rounded-[4px] border border-line object-cover"
+        />
+      )}
+
       <header className="mt-4">
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <time dateTime={evento.data} className="font-mono text-[8px] tracking-[.14em] text-dim">

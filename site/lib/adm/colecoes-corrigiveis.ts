@@ -14,6 +14,7 @@ export const CAMPOS_POR_COLECAO: Record<Colecao, CampoCorrigivel[]> = {
     { rotulo: 'Descrição (PT)', caminho: 'descricao.pt' },
     { rotulo: 'Descrição (EN)', caminho: 'descricao.en' },
     { rotulo: 'Jogo de origem', caminho: 'jogo' },
+    { rotulo: 'Sprite (URL)', caminho: 'sprite' },
   ],
   itens: [
     { rotulo: 'Nome (PT)', caminho: 'nome.pt' },
@@ -28,6 +29,7 @@ export const CAMPOS_POR_COLECAO: Record<Colecao, CampoCorrigivel[]> = {
     { rotulo: 'Descrição (EN)', caminho: 'descricao.en' },
     { rotulo: 'Efeito (PT)', caminho: 'efeito.pt' },
     { rotulo: 'Efeito (EN)', caminho: 'efeito.en' },
+    { rotulo: 'Ícone (URL)', caminho: 'icone' },
   ],
   locais: [
     { rotulo: 'Nome (PT)', caminho: 'nome.pt' },
