@@ -6,6 +6,7 @@ import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliaco
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { listarPersonagens } from '@/lib/dados';
 import { ID_MONOKUMA } from '@/lib/monokuma';
+import { spritePixelDe } from '@/lib/sprites-pixel';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
@@ -251,7 +252,9 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           partidaId={partida.id}
           personagemAtual={minhaEntrada?.personagemId ?? null}
           tipoAtual={minhaEntrada?.tipo}
-          personagens={personagens.map((p) => ({ id: p.id, nome: p.nome, sprite: p.sprite }))}
+          personagens={personagens.map((p) => ({
+            id: p.id, nome: p.nome, sprite: p.sprite, pixel: spritePixelDe(p.id),
+          }))}
           souHost={souHost}
           aoEntrar={entrarPartidaAction}
           aoSair={sairPartidaAction}

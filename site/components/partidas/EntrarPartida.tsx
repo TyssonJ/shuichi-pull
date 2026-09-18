@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { ID_MONOKUMA } from '@/lib/monokuma';
+import { ID_MONOKUMA, SPRITE_MONOKUMA } from '@/lib/monokuma';
 
-type Personagem = { id: string; nome: string; sprite: string };
+/** `pixel` é o sprite 8-bit; sem ele (Ryoko Otonashi) cai no retrato `sprite`. */
+type Personagem = { id: string; nome: string; sprite: string; pixel: string | null };
 type Tipo = 'participante' | 'reserva';
 
 export function EntrarPartida({
@@ -83,12 +84,13 @@ export function EntrarPartida({
               personagemId === ID_MONOKUMA ? 'border-execution-pink animate-monokuma-glitch' : 'border-line'
             }`}
           >
-            <span
-              aria-hidden
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0A0A0D] bg-[#F2F2F5] text-[16px]"
-            >
-              🐻
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={SPRITE_MONOKUMA}
+              alt=""
+              className="h-10 w-10 border-2 border-[#0A0A0D] object-contain"
+              style={{ imageRendering: 'pixelated' }}
+            />
             <span className="text-center font-mono text-[7px] font-bold leading-tight text-[#F2F2F5]">
               MONOKUMA
               <br />(HOST)
@@ -108,7 +110,7 @@ export function EntrarPartida({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={p.sprite}
+              src={p.pixel ?? p.sprite}
               alt=""
               className="h-10 w-10 object-contain"
               style={{ imageRendering: 'pixelated' }}
