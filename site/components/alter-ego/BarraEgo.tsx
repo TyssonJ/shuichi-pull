@@ -32,7 +32,7 @@ function Busca({
 }) {
   return (
     <div className="relative flex-1">
-      <span className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 font-mono text-[10px] text-cyber-cyan">
+      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 font-mono text-[15px] text-cyber-cyan">
         &gt;
       </span>
       <input
@@ -45,18 +45,18 @@ function Busca({
         onChange={(e) => setTermo(e.target.value)}
         onFocus={aoFocar}
         onBlur={aoDesfocar}
-        className="w-full rounded-[3px] border border-cyber-cyan/40 bg-[#0A0A10] py-1.5 pl-6 pr-2 font-mono text-[10px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
+        className="w-full rounded-[3px] border-2 border-cyber-cyan/40 bg-[#0A0A10] py-2.5 pl-8 pr-3 font-mono text-[14px] uppercase tracking-[.08em] text-[#D6D6E0] placeholder:text-dim focus:border-cyber-cyan focus:outline-none"
       />
       {termo.length >= 2 && (
-        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
+        <ul className="absolute left-0 right-0 top-full z-50 mt-1 max-h-80 overflow-y-auto rounded-[3px] border border-cyber-cyan/20 bg-sur">
           {resultados.length === 0 ? (
-            <li className="px-2 py-2 text-[10px] text-dim">Não achei nada... tenta outro nome?</li>
+            <li className="px-3 py-3 text-[13px] text-dim">Não achei nada... tenta outro nome?</li>
           ) : (
             resultados.map((r) => (
               <li key={r.id}>
-                <Link href={r.url} className="block px-2 py-1.5 hover:bg-cyber-cyan/10">
-                  <span className="block text-[11px] text-[#D6D6E0]">{r.titulo}</span>
-                  <span className="block font-mono text-[8px] text-dim">{r.subtitulo}</span>
+                <Link href={r.url} className="block px-3 py-2 hover:bg-cyber-cyan/10">
+                  <span className="block text-[14px] text-[#D6D6E0]">{r.titulo}</span>
+                  <span className="block font-mono text-[10px] text-dim">{r.subtitulo}</span>
                 </Link>
               </li>
             ))
@@ -171,17 +171,17 @@ export function BarraEgo() {
           foco continuaria entrando numa barra que ninguém enxerga. */}
       <header
         inert={!barraVisivel}
-        className={`sticky top-0 z-40 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-2 py-1.5 transition-all duration-200 ${
+        className={`sticky top-0 z-40 border-b-2 border-cyber-cyan/40 bg-[#0A0A0D] px-4 py-3 transition-all duration-200 ${
           barraVisivel ? '' : 'pointer-events-none -translate-y-full opacity-0'
         }`}
       >
-        <div className="flex items-center gap-3">
-          <div className="flex shrink-0 flex-col items-center gap-1">
-            <div className="w-[52px] overflow-hidden rounded-[4px] border border-alter-green shadow-[0_0_8px_rgba(0,255,102,0.35)]">
+        <div className="flex items-center gap-4">
+          <div className="flex shrink-0 flex-col items-center gap-1.5">
+            <div className="w-[88px] overflow-hidden rounded-[4px] border-2 border-alter-green shadow-[0_0_12px_rgba(0,255,102,0.4)]">
               <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
             </div>
-            <p className="flex items-center gap-1 font-mono text-[6px] tracking-[.1em] text-alter-green">
-              <span className="h-1 w-1 animate-pulse rounded-full bg-alter-green" aria-hidden />
+            <p className="flex items-center gap-1.5 font-mono text-[10px] tracking-[.1em] text-alter-green">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-alter-green" aria-hidden />
               CORE: ONLINE
             </p>
           </div>
@@ -192,7 +192,7 @@ export function BarraEgo() {
               emFoco={buscaEmFoco} aoFocar={() => setBuscaEmFoco(true)} aoDesfocar={() => setBuscaEmFoco(false)}
             />
             {!buscaEmFoco && (
-              <p data-testid="log-alterego" className="mt-1 truncate font-mono text-[8px] tracking-[.02em]">
+              <p data-testid="log-alterego" className="mt-1.5 truncate font-mono text-[12px] tracking-[.02em]">
                 <span className="text-alter-green">[{logTag}]</span>{' '}
                 <span className="text-dim">{logTexto}</span>
               </p>
@@ -201,7 +201,7 @@ export function BarraEgo() {
 
           <NucleoDiscord />
 
-          <nav aria-label="Navegação principal" className="hidden flex-wrap gap-1.5 sm:flex">
+          <nav aria-label="Navegação principal" className="hidden flex-wrap gap-2.5 sm:flex">
             {SECOES.map((s) => {
               const ativa = pathname?.startsWith(s.url);
               return (
@@ -209,7 +209,7 @@ export function BarraEgo() {
                   key={s.url}
                   href={s.url}
                   aria-current={ativa ? 'page' : undefined}
-                  className={`group relative rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.08em] ${
+                  className={`group relative rounded-[2px] border-2 px-3 py-1.5 font-mono text-[12px] font-bold tracking-[.08em] ${
                     ativa
                       ? 'border-execution-pink text-execution-pink'
                       : 'border-execution-pink/30 text-dim hover:text-execution-pink'
@@ -217,7 +217,7 @@ export function BarraEgo() {
                 >
                   {s.numero} {'//'} {s.nome.toUpperCase()}
                   <svg data-testid="reticula" aria-hidden viewBox="0 0 24 24"
-                    className="pointer-events-none absolute -right-2 -top-1.5 h-2.5 w-2.5 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
+                    className="pointer-events-none absolute -right-2.5 -top-2 h-4 w-4 opacity-0 text-execution-pink transition-opacity group-hover:opacity-100 group-hover:animate-spin-slow">
                     <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1" />
                     <line x1="12" y1="0" x2="12" y2="6" stroke="currentColor" strokeWidth="1" />
                     <line x1="12" y1="18" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
