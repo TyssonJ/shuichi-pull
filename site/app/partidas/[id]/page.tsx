@@ -4,7 +4,7 @@ import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { spritePixelDe } from '@/lib/sprites-pixel';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
@@ -55,7 +55,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
     repositorioPartidaCapitulos.listarPorPartida(id),
   ]);
 
-  const personagens = listarPersonagens();
+  const personagens = await listarPersonagensComCorrecoes();
   const nomePersonagem = new Map(personagens.map((p) => [p.id, p.nome]));
 
   const usuariosParticipantes = new Map<string, string>();

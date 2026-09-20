@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { listarPersonagens, valoresDoElenco } from '@/lib/dados';
-import { buscarPersonagemComCorrecoes } from '@/lib/dados-corrigidos';
+import { buscarPersonagemComCorrecoes, listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
@@ -27,7 +27,9 @@ export default async function FichaPersonagem({
   const p = await buscarPersonagemComCorrecoes(id);
   if (!p) notFound();
 
-  const todos = listarPersonagens();
+  // Mesma lista da página de elenco (com extras e sem removidos) — senão o
+  // Student ID de um personagem criado pelo ADM sairia 000.
+  const todos = await listarPersonagensComCorrecoes();
   const total = todos.length;
   const numero = todos.findIndex((x) => x.id === id) + 1;
   const corpoInteiro = spriteInteiroDoPersonagem(id);

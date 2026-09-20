@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { tituloPorPartidas } from '@/lib/titulos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
@@ -34,7 +34,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
     repositorioPartidas.historicoDoUsuario(id),
     repositorioPartidas.contarFinalizadas(id),
     repositorioPartidas.estatisticasDoUsuario(id),
-    Promise.resolve(listarPersonagens()),
+    listarPersonagensComCorrecoes(),
   ]);
   const porId = new Map(personagens.map((p) => [p.id, p]));
   const mains = usuario.mains.map((mid) => porId.get(mid)).filter((p) => p !== undefined);

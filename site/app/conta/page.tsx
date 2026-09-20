@@ -1,6 +1,6 @@
 import { auth, signIn, signOut } from '@/auth';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
-import { listarPersonagens } from '@/lib/dados';
+import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { PerfilForm } from '@/components/conta/PerfilForm';
 import { atualizarPerfilAction } from './acoes';
@@ -45,7 +45,7 @@ export default async function PaginaConta() {
     sessao.user.image ?? null,
   );
   const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
-  const personagens = listarPersonagens().map((p) => ({ id: p.id, nome: p.nome }));
+  const personagens = (await listarPersonagensComCorrecoes()).map((p) => ({ id: p.id, nome: p.nome }));
 
   return (
     <PainelComTrilhas>
