@@ -1,7 +1,9 @@
-import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb, primaryKey } from 'drizzle-orm/pg-core';
+import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb, primaryKey, index } from 'drizzle-orm/pg-core';
 import type { Craft, Spawn } from '../lib/schema-itens';
 import type { Etiqueta } from '../lib/schema';
 import type { EstiloPerfil } from '../lib/estilo-perfil';
+import type { AnexoPost } from '../lib/perfil-posts';
+import type { AnexoChat } from '../lib/chat';
 
 export const papelAdm = pgEnum('papel_adm', ['adm', 'chefe']);
 
@@ -364,4 +366,40 @@ export const perfilEstilos = pgTable('perfil_estilos', {
   revisadoPor: text('revisado_por'),
   revisadoEm: timestamp('revisado_em', { withTimezone: true }),
   atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
+// Blog do perfil: posts curtos do próprio dono, com imagens ou um vídeo de até
+// 5 min (arquivos no Vercel Blob; aqui só o endereço).
+export const perfilPosts = pgTable('perfil_posts', {
+  id: serial('id').primaryKey(),
+  discordId: text('discord_id').notNull(),
+  texto: text('texto').notNull().default(''),
+  anexos: jsonb('anexos').$type<AnexoPost[]>().notNull().default([]),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  index('perfil_posts_discord_idx').on(t.discordId, t.criadoEm),
+]));
+
+// Chat do Alter Ego. `sala` é 'geral' ou 'partida:<id>'. Mensagens antigas
+// (> 24 h) são apagadas junto dos arquivos; quem vê o quê por tempo é regra do
+// servidor (4 h jogador, 24 h ADM), não do banco.
+export const chatMensagens = pgTable('chat_mensagens', {
+  id: serial('id').primaryKey(),
+  sala: text('sala').notNull(),
+  autorDiscordId: text('autor_discord_id').notNull(),
+  texto: text('texto').notNull().default(''),
+  anexos: jsonb('anexos').$type<AnexoChat[]>().notNull().default([]),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  index('chat_mensagens_sala_idx').on(t.sala, t.id),
+  index('chat_mensagens_criado_idx').on(t.criadoEm),
+  index('chat_mensagens_autor_idx').on(t.autorDiscordId, t.criadoEm),
+]));
+
+// Quem está com o chat aberto em qual sala (batimento a cada consulta do
+// navegador). "Online" = visto há poucos segundos.
+export const chatPresenca = pgTable('chat_presenca', {
+  discordId: text('discord_id').primaryKey(),
+  sala: text('sala').notNull(),
+  vistoEm: timestamp('visto_em', { withTimezone: true }).notNull().defaultNow(),
 });

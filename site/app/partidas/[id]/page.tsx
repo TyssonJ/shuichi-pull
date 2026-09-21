@@ -22,6 +22,8 @@ import { Contagem } from '@/components/partidas/Contagem';
 import { Cronometro } from '@/components/partidas/Cronometro';
 import { GestaoParticipantes } from '@/components/partidas/GestaoParticipantes';
 import { duracaoMs, formatarDuracao, estaAberta } from '@/lib/status-partida';
+import { AbrirChat } from '@/components/chat/AbrirChat';
+import { salaDaPartida } from '@/lib/chat';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
@@ -167,6 +169,9 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         >
           {ROTULO_STATUS[partida.status]}
         </span>
+        {(souHost || minhaEntrada || sessao?.user?.papel) && estaAberta(partida.status) && (
+          <AbrirChat sala={salaDaPartida(id)} />
+        )}
 
         {partida.status === 'em_andamento' && partida.iniciadaEm && (
           <div className="mt-4 flex flex-wrap items-end gap-x-8 gap-y-3">

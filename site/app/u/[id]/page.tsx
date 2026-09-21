@@ -10,6 +10,9 @@ import { CabecalhoPerfil } from '@/components/perfil/CabecalhoPerfil';
 import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
 import { Conquistas } from '@/components/perfil/Conquistas';
 import { MoldePerfil } from '@/components/perfil/MoldePerfil';
+import { BlogDoPerfil } from '@/components/perfil/BlogDoPerfil';
+import { repositorioPerfilPosts } from '@/db/repositorios/perfil-posts';
+import { publicarPostAction, apagarPostAction } from '@/app/conta/post-acoes';
 import { repositorioPerfilEstilos } from '@/db/repositorios/perfil-estilos';
 import { repositorioCargos } from '@/db/repositorios/cargos';
 import { repositorioConquistas } from '@/db/repositorios/conquistas';
@@ -49,7 +52,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas, estiloLinha] = await Promise.all([
+  const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas, estiloLinha, posts] = await Promise.all([
     repositorioPartidas.perfilDoUsuario(id),
     listarPersonagensComCorrecoes(),
     repositorioPartidaAvaliacoes.listarRecebidas(id),
@@ -57,6 +60,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
     repositorioCargos.cargosDoUsuario(id),
     repositorioConquistas.conquistasDoUsuario(id),
     repositorioPerfilEstilos.buscar(id),
+    repositorioPerfilPosts.listar(id),
   ]);
   const estilo = estiloLinha?.publicado ?? null;
   const souAdm = Boolean(sessao?.user?.papel);
@@ -142,6 +146,13 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
           id: c.id, nome: c.nome, descricaoCurta: c.descricaoCurta, descricaoLonga: c.descricaoLonga,
           iconeUrl: c.iconeUrl, concedidaEm: formatarData(c.concedidaEm), motivo: c.motivo,
         }))}
+      />
+
+      <BlogDoPerfil
+        posts={posts.map((p) => ({ id: p.id, texto: p.texto, anexos: p.anexos, quando: formatarData(p.criadoEm) }))}
+        emojis={estilo?.emojis}
+        aoPublicar={souDono ? publicarPostAction : undefined}
+        aoApagar={souDono || souAdm ? apagarPostAction : undefined}
       />
 
       <AvaliacoesRecebidas resumo={resumo} moderar={souAdm} aoRemover={removerAvaliacao} />
