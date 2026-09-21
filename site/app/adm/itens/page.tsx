@@ -1,16 +1,20 @@
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
 import { repositorioItensAdm } from '@/db/repositorios/itens-adm';
-import { CAMPOS_POR_COLECAO, registrosBase } from '@/lib/adm/colecoes-corrigiveis';
+import { camposDoEditor, camposParaMontar } from '@/lib/adm/campos-editor';
+import { montarRegistrosDoGuia } from '@/lib/adm/montar-registros';
 import { listarItens } from '@/lib/itens';
 import { listarItensComCorrecoes, listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
-import { salvarCorrecaoAction, reverterCorrecaoAction } from '../correcoes-acoes';
+import { salvarRegistroAction, reverterRegistroAction } from '../conteudo-acoes';
 import {
   criarItemAction, atualizarItemAction, excluirItemAction, restaurarItemAction,
 } from './acoes';
-import { EditorColecao } from '@/components/adm/EditorColecao';
+import { EditorConteudo } from '@/components/adm/EditorConteudo';
 import { GerenciarItens } from '@/components/adm/GerenciarItens';
 
-export default async function AdmItens() {
+export default async function AdmItens({
+  searchParams,
+}: { searchParams: Promise<{ abrir?: string }> }) {
+  const { abrir } = await searchParams;
   const [correcoes, itensAtivos, idsRemovidos, extras, locais] = await Promise.all([
     repositorioCorrecoes.buscarCorrecoesPorColecao('itens'),
     listarItensComCorrecoes(),
@@ -21,6 +25,10 @@ export default async function AdmItens() {
 
   const nomeDoGuia = new Map(listarItens().map((i) => [i.id, i.nome.pt]));
   const removidos = [...idsRemovidos].map((id) => ({ id, nome: nomeDoGuia.get(id) ?? id }));
+  const registrosGuia = montarRegistrosDoGuia(
+    listarItens().filter((i) => !idsRemovidos.has(i.id)),
+    camposParaMontar('itens'), correcoes, 'nome.pt', 'categoria.pt',
+  );
   const locaisOpcao = locais.map((l) => ({
     id: l.id, nome: l.nome, andar: l.andar,
     conteineres: l.conteineres.map((c) => ({ fonteId: c.fonteId, nome: c.nome })),
@@ -45,16 +53,20 @@ export default async function AdmItens() {
         aoRestaurar={restaurarItemAction}
       />
 
-      <h2 className="mb-1 font-bold">Corrigir campos do guia</h2>
+      <h2 className="mb-1 mt-8 font-bold">Editar os itens do guia</h2>
       <p className="mb-3 text-sm text-neutral-400">
-        Pra ajustar texto ou imagem de um item que já vem do guia, sem apagar o original.
+        Nome, descrição, efeito e imagem de um item que já vem do guia. O original nunca é apagado,
+        e &quot;ver na página&quot; abre o item como o público vê.
       </p>
-      <EditorColecao
-        registros={registrosBase('itens')}
-        campos={CAMPOS_POR_COLECAO.itens}
-        correcoes={correcoes}
-        aoSalvar={salvarCorrecaoAction.bind(null, 'itens')}
-        aoReverter={reverterCorrecaoAction.bind(null, 'itens')}
+      <EditorConteudo
+        colecao="itens"
+        abertoInicial={abrir ?? null}
+        singular="item"
+        campos={camposDoEditor('itens')}
+        registros={registrosGuia}
+        preview="nenhum"
+        aoSalvar={salvarRegistroAction.bind(null, 'itens')}
+        aoReverter={reverterRegistroAction.bind(null, 'itens')}
       />
     </div>
   );

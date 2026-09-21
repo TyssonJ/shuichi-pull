@@ -1,16 +1,20 @@
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
 import { repositorioPersonagensAdm } from '@/db/repositorios/personagens-adm';
-import { CAMPOS_POR_COLECAO, registrosBase } from '@/lib/adm/colecoes-corrigiveis';
+import { camposDoEditor, camposParaMontar } from '@/lib/adm/campos-editor';
+import { montarRegistrosDoGuia } from '@/lib/adm/montar-registros';
 import { listarPersonagens } from '@/lib/dados';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
-import { salvarCorrecaoAction, reverterCorrecaoAction } from '../correcoes-acoes';
+import { salvarRegistroAction, reverterRegistroAction } from '../conteudo-acoes';
 import {
   criarPersonagemAction, atualizarPersonagemAction, excluirPersonagemAction, restaurarPersonagemAction,
 } from './acoes';
-import { EditorColecao } from '@/components/adm/EditorColecao';
+import { EditorConteudo } from '@/components/adm/EditorConteudo';
 import { GerenciarPersonagens } from '@/components/adm/GerenciarPersonagens';
 
-export default async function AdmPersonagens() {
+export default async function AdmPersonagens({
+  searchParams,
+}: { searchParams: Promise<{ abrir?: string }> }) {
+  const { abrir } = await searchParams;
   const [correcoes, personagensAtivos, idsRemovidos, extras] = await Promise.all([
     repositorioCorrecoes.buscarCorrecoesPorColecao('personagens'),
     listarPersonagensComCorrecoes(),
@@ -20,6 +24,10 @@ export default async function AdmPersonagens() {
 
   const nomeDoGuia = new Map(listarPersonagens().map((p) => [p.id, p.nome]));
   const removidos = [...idsRemovidos].map((id) => ({ id, nome: nomeDoGuia.get(id) ?? id }));
+  const registrosGuia = montarRegistrosDoGuia(
+    listarPersonagens().filter((p) => !idsRemovidos.has(p.id)),
+    camposParaMontar('personagens'), correcoes, 'nome', 'jogo',
+  );
 
   return (
     <div>
@@ -40,16 +48,20 @@ export default async function AdmPersonagens() {
         aoRestaurar={restaurarPersonagemAction}
       />
 
-      <h2 className="mb-1 font-bold">Corrigir campos do guia</h2>
+      <h2 className="mb-1 mt-8 font-bold">Editar os personagens do guia</h2>
       <p className="mb-3 text-sm text-neutral-400">
-        Pra ajustar texto ou sprite de um personagem que já vem do guia, sem apagar o original.
+        Personalidade, aparência, história, segredo e os demais textos de quem já vem do guia —
+        a prévia mostra a ficha como aparece no site, e o original nunca é apagado.
       </p>
-      <EditorColecao
-        registros={registrosBase('personagens')}
-        campos={CAMPOS_POR_COLECAO.personagens}
-        correcoes={correcoes}
-        aoSalvar={salvarCorrecaoAction.bind(null, 'personagens')}
-        aoReverter={reverterCorrecaoAction.bind(null, 'personagens')}
+      <EditorConteudo
+        colecao="personagens"
+        abertoInicial={abrir ?? null}
+        singular="personagem"
+        campos={camposDoEditor('personagens')}
+        registros={registrosGuia}
+        preview="personagem"
+        aoSalvar={salvarRegistroAction.bind(null, 'personagens')}
+        aoReverter={reverterRegistroAction.bind(null, 'personagens')}
       />
     </div>
   );

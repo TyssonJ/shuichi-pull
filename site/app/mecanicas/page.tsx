@@ -1,5 +1,6 @@
 import { tabelasDeTeclas, mecanicasPorGrupoComCorrecoes, cardsDeMecanicaComCorrecoes } from '@/lib/controles';
 import { Prosa } from '@/components/conteudo/Prosa';
+import { obterTextos } from '@/lib/textos';
 import { Tecla } from '@/components/conteudo/Tecla';
 import { JanelaTerminal } from '@/components/mecanicas/JanelaTerminal';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
@@ -10,6 +11,7 @@ export default async function PaginaMecanicas() {
   const tabelas = tabelasDeTeclas();
   const grupos = await mecanicasPorGrupoComCorrecoes();
   const totalCards = (await cardsDeMecanicaComCorrecoes()).length;
+  const t = await obterTextos();
 
   return (
     <PainelComTrilhas>
@@ -18,7 +20,7 @@ export default async function PaginaMecanicas() {
         MECÂNICAS
       </h1>
       <p className="mb-6 text-[11px] text-dim">
-        Todas as teclas e {totalCards} mecânicas explicadas, em português.
+        {t('mecanicas.introducao', { total: totalCards })}
       </p>
 
       <JanelaTerminal>

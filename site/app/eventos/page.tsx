@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { listarEventos } from '@/lib/eventos';
+import { obterTextos } from '@/lib/textos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Eventos e notícias — Shuichi Pull' };
@@ -20,8 +21,7 @@ export default async function PaginaEventos() {
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 06</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">EVENTOS</h1>
       <p className="mb-8 max-w-2xl text-[11px] text-dim">
-        Eventos, notícias e mudanças no site, escritos pela administração. Não é
-        fonte oficial de anúncios do Shinri Trial — para isso, o Discord oficial.
+        {(await obterTextos())('eventos.introducao')}
       </p>
 
       {eventos.length === 0 ? (

@@ -1,6 +1,7 @@
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { repositorioConfiguracoes } from '@/db/repositorios/configuracoes';
 import { obterToggle } from '@/lib/configuracoes';
+import { criarTextos } from '@/lib/textos-site';
 import { CartaoPersonagem } from '@/components/ficha/CartaoPersonagem';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
@@ -12,6 +13,7 @@ export default async function PaginaElenco() {
     repositorioConfiguracoes.listar(),
   ]);
   const mostrarPendente = obterToggle(config, 'elenco.mostrarBadgePendente');
+  const t = criarTextos(config);
 
   // O "Student ID" reflete a ordem global do elenco, não o agrupamento por
   // jogo abaixo — a ficha individual (app/elenco/[id]/page.tsx) calcula o
@@ -29,7 +31,7 @@ export default async function PaginaElenco() {
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 01</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">ELENCO</h1>
       <p className="mb-8 text-[11px] text-dim">
-        {personagens.length} alunos, de {porJogo.size} jogos.
+        {t('elenco.introducao', { total: personagens.length, jogos: porJogo.size })}
       </p>
 
       {[...porJogo.entries()].map(([jogo, lista]) => (

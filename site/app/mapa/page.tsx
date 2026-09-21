@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { iconeDoItem } from '@/lib/itens';
 import { listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
+import { obterTextos } from '@/lib/textos';
 import { Icone } from '@/components/itens/Icone';
 import { RadarTatico } from '@/components/mapa/RadarTatico';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
@@ -23,7 +24,7 @@ function amostraDeLoot(local: Local, quantos = 6) {
 export const metadata = { title: 'Mapa — Shuichi Pull' };
 
 export default async function PaginaMapa() {
-  const locais = await listarLocaisComCorrecoes();
+  const [locais, t] = await Promise.all([listarLocaisComCorrecoes(), obterTextos()]);
   const comLoot = locais.filter((l) => l.conteineres.length > 0);
   const semLoot = locais.filter((l) => l.conteineres.length === 0);
 
@@ -41,7 +42,7 @@ export default async function PaginaMapa() {
           <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 03</p>
           <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">MAPA</h1>
           <p className="text-[11px] text-dim">
-            {locais.length} locais da academia. {comLoot.length} têm loot mapeado.
+            {t('mapa.introducao', { locais: locais.length, loot: comLoot.length })}
           </p>
         </div>
         <RadarTatico total={locais.length} />

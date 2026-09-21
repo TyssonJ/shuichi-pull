@@ -1,6 +1,7 @@
 import conteudo from '@/content/faq.pt.json';
 import bruto from '@/content/faq.json';
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { repositorioConteudoAdm } from '@/db/repositorios/conteudo-adm';
 import { aplicarCorrecoes } from './correcoes-merge';
 
 export type Pergunta = {
@@ -50,9 +51,23 @@ export function faqSemTraducao(): Pergunta[] {
     .filter(Boolean);
 }
 
+/** Guia corrigido pelo ADM, sem as perguntas escondidas, mais as que o ADM
+ * criou (no fim, na ordem de criação; seção nova vira seção nova). */
 export async function listarFaqComCorrecoes(): Promise<Pergunta[]> {
-  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('faq');
-  return aplicarCorrecoes(perguntas, correcoes);
+  const [correcoes, removidos, extras] = await Promise.all([
+    repositorioCorrecoes.buscarCorrecoesPorColecao('faq'),
+    repositorioConteudoAdm.listarRemovidos('faq'),
+    repositorioConteudoAdm.listarExtras('faq'),
+  ]);
+  const doGuia = aplicarCorrecoes(perguntas, correcoes).filter((p) => !removidos.has(p.id));
+  const criadas: Pergunta[] = extras.map((e) => ({
+    id: e.id,
+    secao: e.dados.secao ?? 'Outras',
+    pergunta: e.dados.pergunta ?? '',
+    resposta: e.dados.resposta ?? '',
+    traducaoRevisada: true,
+  }));
+  return [...doGuia, ...criadas];
 }
 
 export async function faqPorSecaoComCorrecoes(): Promise<{ secao: string; perguntas: Pergunta[] }[]> {

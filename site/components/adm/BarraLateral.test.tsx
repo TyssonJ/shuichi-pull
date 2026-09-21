@@ -10,19 +10,21 @@ describe('BarraLateral', () => {
 
   it('mostra os itens comuns para um adm', () => {
     render(<BarraLateral papel="adm" />);
-    for (const nome of ['Painel', 'Partidas', 'Usuários', 'Eventos', 'Códigos', 'Itens', 'Personagens', 'Mapa', 'Mecânicas', 'Textos', 'Configurações']) {
+    for (const nome of ['Painel', 'Partidas', 'Usuários', 'Eventos', 'Códigos', 'Itens', 'Personagens', 'Mapa', 'Mecânicas', 'FAQ', 'Textos', 'Configurações']) {
       expect(screen.getByRole('link', { name: nome })).toBeInTheDocument();
     }
   });
 
-  it('esconde ADMs e Auditoria para quem não é chefe', () => {
+  it('esconde ADMs, Auditoria e Junko Bot para quem não é chefe', () => {
     render(<BarraLateral papel="adm" />);
+    expect(screen.queryByRole('link', { name: 'Junko Bot' })).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'ADMs' })).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Auditoria' })).not.toBeInTheDocument();
   });
 
-  it('mostra ADMs e Auditoria para chefe', () => {
+  it('mostra ADMs, Auditoria e Junko Bot para chefe', () => {
     render(<BarraLateral papel="chefe" />);
+    expect(screen.getByRole('link', { name: 'Junko Bot' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'ADMs' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Auditoria' })).toBeInTheDocument();
   });

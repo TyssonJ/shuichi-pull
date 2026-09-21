@@ -18,7 +18,8 @@ const CONTEUDO: Item[] = [
   { rotulo: 'Personagens', url: '/adm/personagens' },
   { rotulo: 'Mapa', url: '/adm/mapa' },
   { rotulo: 'Mecânicas', url: '/adm/mecanicas' },
-  { rotulo: 'Textos', url: '/adm/faq' },
+  { rotulo: 'FAQ', url: '/adm/faq' },
+  { rotulo: 'Textos', url: '/adm/textos' },
 ];
 
 const SISTEMA: Item[] = [
@@ -26,6 +27,7 @@ const SISTEMA: Item[] = [
 ];
 
 const SISTEMA_CHEFE: Item[] = [
+  { rotulo: 'Junko Bot', url: '/adm/junko' },
   { rotulo: 'ADMs', url: '/adm/administradores' },
   { rotulo: 'Auditoria', url: '/adm/auditoria' },
 ];

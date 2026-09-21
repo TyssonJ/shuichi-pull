@@ -2,12 +2,29 @@
 
 import { SessionProvider, useSession, signIn } from 'next-auth/react';
 import type { Session } from 'next-auth';
+import { usePathname } from 'next/navigation';
+import { atalhoDeEdicao } from '@/lib/adm/atalho-edicao';
 
 function Nucleo() {
   const { data: sessao, status } = useSession();
+  const pathname = usePathname();
 
   if (status === 'authenticated' && sessao?.user) {
+    // Só ADM vê: leva do site como o público vê direto pro editor daquela
+    // página (já abrindo o registro, quando a página é de um personagem/item).
+    const atalho = sessao.user.papel ? atalhoDeEdicao(pathname ?? '') : null;
+
     return (
+      <div className="flex shrink-0 items-center gap-2">
+      {atalho && (
+        <a
+          href={atalho.href}
+          title={atalho.rotulo}
+          className="rounded-[2px] border-2 border-amber px-2.5 py-1.5 font-mono text-[12px] font-bold tracking-[.1em] text-amber transition-colors hover:bg-amber hover:text-[#08090D]"
+        >
+          ✎ EDITAR
+        </a>
+      )}
       <a
         href="/conta/"
         aria-label={`Conta de ${sessao.user.name ?? 'usuário'}`}
@@ -30,6 +47,7 @@ function Nucleo() {
           className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-[#0A0A0D] bg-alter-green"
         />
       </a>
+      </div>
     );
   }
 

@@ -1,6 +1,7 @@
 import bruto from '@/content/controles.json';
 import pt from '@/content/controles.pt.json';
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+import { repositorioConteudoAdm } from '@/db/repositorios/conteudo-adm';
 import { aplicarCorrecoes } from './correcoes-merge';
 
 export type Tecla = { teclas: string; descricao: string; nota: string | null };
@@ -52,9 +53,22 @@ export function mecanicasSemTraducao(): string[] {
   return (bruto.cards as BrutoCard[]).filter((c) => !cardsPt[c.id]).map((c) => c.id);
 }
 
+/** Cards do guia corrigidos pelo ADM, sem os escondidos, mais os que o ADM criou. */
 export async function cardsDeMecanicaComCorrecoes(): Promise<Card[]> {
-  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('controles');
-  return aplicarCorrecoes(cardsDeMecanica(), correcoes);
+  const [correcoes, removidos, extras] = await Promise.all([
+    repositorioCorrecoes.buscarCorrecoesPorColecao('controles'),
+    repositorioConteudoAdm.listarRemovidos('controles'),
+    repositorioConteudoAdm.listarExtras('controles'),
+  ]);
+  const doGuia = aplicarCorrecoes(cardsDeMecanica(), correcoes).filter((c) => !removidos.has(c.id));
+  const criados: Card[] = extras.map((e) => ({
+    id: e.id,
+    grupo: e.dados.grupo ?? 'Outras',
+    titulo: e.dados.titulo ?? '',
+    texto: e.dados.texto ?? '',
+    traducaoRevisada: true,
+  }));
+  return [...doGuia, ...criados];
 }
 
 export async function mecanicasPorGrupoComCorrecoes(): Promise<{ grupo: string; cards: Card[] }[]> {

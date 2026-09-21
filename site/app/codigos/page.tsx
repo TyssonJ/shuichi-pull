@@ -1,4 +1,5 @@
 import { listarCodigos, separarCodigos, estaExpirado } from '@/lib/eventos';
+import { obterTextos } from '@/lib/textos';
 import { StatusCodigo } from '@/components/conteudo/StatusCodigo';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
@@ -13,9 +14,7 @@ export default async function PaginaCodigos() {
       <p className="font-mono text-[8px] tracking-[.2em] text-dim">ARQUIVO 07</p>
       <h1 className="mb-1 text-4xl font-black tracking-tight text-[#F2F2F5]">CÓDIGOS</h1>
       <p className="mb-8 max-w-2xl text-[11px] text-dim">
-        Códigos promocionais do Shinri Trial, com os que ainda funcionam separados
-        dos que já venceram. O prazo é conferido no seu navegador, então a etiqueta
-        continua certa mesmo que o site não seja republicado.
+        {(await obterTextos())('codigos.introducao')}
       </p>
 
       {todos.length === 0 ? (

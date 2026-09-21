@@ -4,7 +4,15 @@ import { CAMPOS_POR_COLECAO, registrosBase } from './colecoes-corrigiveis';
 describe('CAMPOS_POR_COLECAO', () => {
   it('define os campos corrigíveis de personagens', () => {
     const caminhos = CAMPOS_POR_COLECAO.personagens.map((c) => c.caminho);
-    expect(caminhos).toEqual(['nome', 'talento.pt', 'talento.en', 'descricao.pt', 'descricao.en', 'jogo', 'sprite']);
+    expect(caminhos).toEqual([
+      'nome', 'talento.pt', 'talento.en', 'descricao.pt', 'descricao.en', 'jogo', 'sprite',
+      'personalidade', 'aparencia', 'historia', 'segredo',
+    ]);
+  });
+
+  it('história e segredo do personagem são editáveis em texto longo', () => {
+    const longos = CAMPOS_POR_COLECAO.personagens.filter((c) => c.longo).map((c) => c.caminho);
+    expect(longos).toEqual(expect.arrayContaining(['historia', 'segredo', 'personalidade', 'aparencia']));
   });
 
   it('não inclui campos numéricos de personagens', () => {

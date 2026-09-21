@@ -7,6 +7,10 @@ vi.mock('@/db/repositorios/correcoes', () => ({
   repositorioCorrecoes: { buscarCorrecoesPorColecao: vi.fn() },
 }));
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
+vi.mock('@/db/repositorios/conteudo-adm', () => ({
+  repositorioConteudoAdm: { listarRemovidos: vi.fn(), listarExtras: vi.fn() },
+}));
+import { repositorioConteudoAdm } from '@/db/repositorios/conteudo-adm';
 import { cardsDeMecanicaComCorrecoes, mecanicasPorGrupoComCorrecoes } from './controles';
 
 describe('controles', () => {
@@ -51,7 +55,11 @@ describe('controles', () => {
 });
 
 describe('cardsDeMecanicaComCorrecoes', () => {
-  beforeEach(() => vi.clearAllMocks());
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(repositorioConteudoAdm.listarRemovidos).mockResolvedValue(new Set());
+    vi.mocked(repositorioConteudoAdm.listarExtras).mockResolvedValue([]);
+  });
 
   it('aplica uma correção de texto', async () => {
     const idReal = cardsDeMecanica()[0].id;
@@ -66,11 +74,37 @@ describe('cardsDeMecanicaComCorrecoes', () => {
 });
 
 describe('mecanicasPorGrupoComCorrecoes', () => {
-  beforeEach(() => vi.clearAllMocks());
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(repositorioConteudoAdm.listarRemovidos).mockResolvedValue(new Set());
+    vi.mocked(repositorioConteudoAdm.listarExtras).mockResolvedValue([]);
+  });
 
   it('agrupa usando os cards já corrigidos', async () => {
     vi.mocked(repositorioCorrecoes.buscarCorrecoesPorColecao).mockResolvedValue(new Map());
     const grupos = await mecanicasPorGrupoComCorrecoes();
     expect(grupos.length).toBeGreaterThan(0);
+  });
+});
+
+describe('mecânicas: cards criados e escondidos pelo ADM', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(repositorioConteudoAdm.listarRemovidos).mockResolvedValue(new Set());
+    vi.mocked(repositorioConteudoAdm.listarExtras).mockResolvedValue([]);
+  });
+
+  it('card escondido some e o criado entra no fim', async () => {
+    const escondido = cardsDeMecanica()[0].id;
+    vi.mocked(repositorioCorrecoes.buscarCorrecoesPorColecao).mockResolvedValue(new Map());
+    vi.mocked(repositorioConteudoAdm.listarRemovidos).mockResolvedValue(new Set([escondido]));
+    vi.mocked(repositorioConteudoAdm.listarExtras).mockResolvedValue([
+      { id: 'novo', dados: { grupo: 'Grupo novo', titulo: 'T', texto: 'X' } },
+    ]);
+
+    const lista = await cardsDeMecanicaComCorrecoes();
+
+    expect(lista.some((c) => c.id === escondido)).toBe(false);
+    expect(lista.at(-1)).toMatchObject({ id: 'novo', grupo: 'Grupo novo', titulo: 'T', texto: 'X' });
   });
 });

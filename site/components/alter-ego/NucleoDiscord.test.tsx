@@ -3,6 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import type { Session } from 'next-auth';
 import { NucleoDiscord } from './NucleoDiscord';
 
+const pathnameMock = vi.hoisted(() => vi.fn(() => '/'));
+vi.mock('next/navigation', () => ({ usePathname: pathnameMock }));
+
 const signInMock = vi.hoisted(() => vi.fn());
 vi.mock('next-auth/react', async (importOriginal) => {
   const mod = await importOriginal<typeof import('next-auth/react')>();
@@ -37,5 +40,29 @@ describe('NucleoDiscord', () => {
     const semAvatar: Session = { ...sessaoFalsa, user: { ...sessaoFalsa.user, image: null } };
     render(<NucleoDiscord sessaoInicial={semAvatar} />);
     expect(screen.getByText('M')).toBeInTheDocument();
+  });
+
+  describe('atalho de edição (só ADM)', () => {
+    const adm: Session = { ...sessaoFalsa, user: { ...sessaoFalsa.user, papel: 'adm' } };
+
+    it('ADM na página de um personagem vê o botão que abre o editor naquele registro', () => {
+      pathnameMock.mockReturnValue('/elenco/kaede-akamatsu/');
+      render(<NucleoDiscord sessaoInicial={adm} />);
+      expect(screen.getByRole('link', { name: /editar/i })).toHaveAttribute(
+        'href', '/adm/personagens/?abrir=kaede-akamatsu',
+      );
+    });
+
+    it('quem não é ADM não vê o botão', () => {
+      pathnameMock.mockReturnValue('/faq/');
+      render(<NucleoDiscord sessaoInicial={sessaoFalsa} />);
+      expect(screen.queryByRole('link', { name: /editar/i })).toBeNull();
+    });
+
+    it('dentro do painel não aparece (já está editando)', () => {
+      pathnameMock.mockReturnValue('/adm/faq/');
+      render(<NucleoDiscord sessaoInicial={adm} />);
+      expect(screen.queryByRole('link', { name: /editar/i })).toBeNull();
+    });
   });
 });
