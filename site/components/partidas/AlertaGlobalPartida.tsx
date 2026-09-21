@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Contagem } from './Contagem';
 import { chaveAvisoFechado, type PartidaAvisada } from '@/lib/alerta-partida';
+import { agoraSincronizado, garantirSincronia } from '@/lib/relogio-cliente';
 
 const REPETIR_BUSCA_MS = 60_000;
 
@@ -31,7 +32,9 @@ export function AlertaGlobalPartida() {
     async function atualizar() {
       // Aba em segundo plano nao gasta chamada ao servidor: na volta, a proxima consulta atualiza.
       if (document.visibilityState === 'hidden') return;
-      setAgora(Date.now());
+      // "Já começou?" precisa do horário do servidor, não do relógio do aparelho.
+      await garantirSincronia();
+      setAgora(agoraSincronizado());
       try {
         const r = await fetch('/api/partidas/proximas/', { cache: 'no-store' });
         if (!r.ok) return;

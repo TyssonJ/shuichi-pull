@@ -4,6 +4,11 @@ import { BarraVagas } from './BarraVagas';
 import { IconesInscritos } from './IconesInscritos';
 import { Contagem } from './Contagem';
 
+// O relógio sincronizado tem teste próprio (lib/relogio.test.ts e relogio-sincronizado.test.tsx); aqui o
+// relógio é o do aparelho, que estes testes controlam com timers falsos.
+vi.mock('@/lib/use-relogio', () => ({ useRelogioPronto: () => true }));
+vi.mock('@/lib/relogio-cliente', () => ({ agoraSincronizado: () => Date.now(), garantirSincronia: () => Promise.resolve() }));
+
 describe('BarraVagas', () => {
   it('descreve a lotação pra leitor de tela', () => {
     render(<BarraVagas ocupadas={7} total={16} />);

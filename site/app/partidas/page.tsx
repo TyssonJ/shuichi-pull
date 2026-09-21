@@ -9,6 +9,7 @@ import { iconeDoInscrito } from '@/lib/sprites-pixel';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { ocupamVaga, vagasRestantes } from '@/lib/vagas';
 import { miniaturaDoSprite } from '@/lib/sprites-mini';
+import { MonitorDePartidas } from '@/components/partidas/MonitorDePartidas';
 import { SELO_RESULTADO } from '@/lib/rotulos-partida';
 import { duracaoMs, formatarDuracao } from '@/lib/status-partida';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
@@ -84,6 +85,11 @@ export default async function PaginaPartidas() {
 
   return (
     <PainelComTrilhas>
+      {/* O lobby também acompanha: partida que começa ou termina troca de seção sem recarregar. */}
+      <MonitorDePartidas partidas={[...aoVivo, ...agendadas].map((c) => ({
+        id: c.partida.id, status: c.partida.status, iniciadaEm: c.partida.iniciadaEm ? c.partida.iniciadaEm.toISOString() : null,
+      }))} />
+
       <JanelaTerminal titulo="[ LOBBY_CENTRAL v1.0 // PARTIDAS.EXE ]">
         <div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>

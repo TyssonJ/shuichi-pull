@@ -1,21 +1,25 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { agoraSincronizado } from '@/lib/relogio-cliente';
+import { useRelogioPronto } from '@/lib/use-relogio';
 
 /** Só existe enquanto a partida está a até 30min de começar (ou até 15min
  * depois, pra quem chegou atrasado ver que já rolou) — fora dessa janela
  * não mostra nada, sem precisar de um sistema de notificação de verdade. */
 export function AlertaInicio({ dataHora }: { dataHora: string }) {
+  const pronto = useRelogioPronto();
   const [minutos, setMinutos] = useState<number | null>(null);
 
   useEffect(() => {
+    if (!pronto) return;
     function calcular() {
-      setMinutos((new Date(dataHora).getTime() - Date.now()) / 60000);
+      setMinutos((new Date(dataHora).getTime() - agoraSincronizado()) / 60000);
     }
     calcular();
     const t = setInterval(calcular, 30_000);
     return () => clearInterval(t);
-  }, [dataHora]);
+  }, [dataHora, pronto]);
 
   if (minutos === null || minutos < -15 || minutos > 30) return null;
 

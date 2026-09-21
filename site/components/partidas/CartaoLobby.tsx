@@ -3,6 +3,7 @@ import { BarraVagas } from './BarraVagas';
 import { Contagem } from './Contagem';
 import { Cronometro } from './Cronometro';
 import { IconesInscritos, type IconeInscrito } from './IconesInscritos';
+import { HorarioLocal } from './HorarioLocal';
 
 export type DadosCartaoLobby = {
   id: number;
@@ -50,6 +51,7 @@ export function CartaoLobbyDestaque({ d }: { d: DadosCartaoLobby }) {
           <h2 className="text-3xl font-black leading-[.95] tracking-tight text-[#F2F2F5] sm:text-5xl">{d.titulo}</h2>
           <p className="mt-2 font-mono text-[12px] text-[#B9B9C6]">
             host: <b className="text-[#F2F2F5]">{d.hostNome}</b> · {d.dataHoraTexto}
+            <HorarioLocal iso={d.dataHoraIso} className="block" />
           </p>
           <div className="mt-4"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} reservas={d.reservas} /></div>
           <div className="mt-3"><IconesInscritos inscritos={d.inscritos} /></div>
@@ -82,6 +84,7 @@ export function CartaoLobby({ d }: { d: DadosCartaoLobby }) {
         </div>
         <p className="mt-1 font-mono text-[11px] text-[#B9B9C6]">
           {d.hostNome} · {d.dataHoraTexto}
+          <HorarioLocal iso={d.dataHoraIso} className="block" />
           {d.voceInscrito && <span className="ml-2 text-alter-green">● VOCÊ ESTÁ DENTRO</span>}
         </p>
         <div className="mt-3"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} reservas={d.reservas} /></div>

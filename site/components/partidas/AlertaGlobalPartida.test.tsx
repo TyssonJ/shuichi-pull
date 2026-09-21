@@ -5,6 +5,11 @@ import { AlertaGlobalPartida } from './AlertaGlobalPartida';
 import { chaveAvisoFechado } from '@/lib/alerta-partida';
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn(() => '/elenco/') }));
+// O relógio sincronizado tem teste próprio (lib/relogio.test.ts e relogio-sincronizado.test.tsx); aqui o
+// relógio é o do aparelho, que estes testes controlam com timers falsos.
+vi.mock('@/lib/use-relogio', () => ({ useRelogioPronto: () => true }));
+vi.mock('@/lib/relogio-cliente', () => ({ agoraSincronizado: () => Date.now(), garantirSincronia: () => Promise.resolve() }));
+
 
 function responder(partidas: unknown[]) {
   vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ partidas }), { status: 200 })));

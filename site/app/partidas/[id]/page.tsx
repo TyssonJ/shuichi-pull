@@ -23,6 +23,8 @@ import { Cronometro } from '@/components/partidas/Cronometro';
 import { GestaoParticipantes } from '@/components/partidas/GestaoParticipantes';
 import { duracaoMs, formatarDuracao, estaAberta } from '@/lib/status-partida';
 import { AbrirChat } from '@/components/chat/AbrirChat';
+import { MonitorDePartidas } from '@/components/partidas/MonitorDePartidas';
+import { HorarioLocal } from '@/components/partidas/HorarioLocal';
 import { salaDaPartida } from '@/lib/chat';
 import { miniaturaDoSprite } from '@/lib/sprites-mini';
 import {
@@ -149,6 +151,9 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         <AlertaInicio dataHora={partida.dataHora.toISOString()} />
       )}
 
+      {/* Sem isto a página ficava congelada no que era quando abriu (contagem parada em AGORA, cronômetro rodando depois do fim). */}
+      <MonitorDePartidas partidas={[{ id, status: partida.status, iniciadaEm: partida.iniciadaEm ? partida.iniciadaEm.toISOString() : null }]} />
+
       <header className="mb-6">
         <h1 className="text-3xl font-black leading-tight tracking-tight text-[#F2F2F5] sm:text-4xl">
           {partida.titulo}
@@ -159,6 +164,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
             {host ? identidadeDe(host).nome : 'alguém'}
           </a>
           {' '}· {formatarDataHoraBR(partida.dataHora)} <span className="text-dim/70">({ROTULO_FUSO})</span>
+          <HorarioLocal iso={partida.dataHora.toISOString()} className="mt-0.5 block" />
         </p>
         <span
           className={`mt-2 inline-block rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] ${

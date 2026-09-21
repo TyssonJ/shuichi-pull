@@ -67,6 +67,14 @@ export function criarRepositorioPartidas(db: Banco) {
       await db.update(partidas).set({ status, ...horarios }).where(eq(partidas.id, id));
     },
 
+    /** Só o estado (status e horários) de várias partidas, pro monitor da página. */
+    async estados(ids: number[]): Promise<Pick<PartidaLinha, 'id' | 'status' | 'iniciadaEm' | 'finalizadaEm'>[]> {
+      if (ids.length === 0) return [];
+      return db.select({
+        id: partidas.id, status: partidas.status, iniciadaEm: partidas.iniciadaEm, finalizadaEm: partidas.finalizadaEm,
+      }).from(partidas).where(inArray(partidas.id, ids));
+    },
+
     /** Partidas rolando agora, as mais antigas primeiro. */
     async emAndamento(): Promise<PartidaLinha[]> {
       return db.select().from(partidas)

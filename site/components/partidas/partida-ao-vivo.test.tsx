@@ -1,5 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+// O relógio sincronizado tem teste próprio (lib/relogio.test.ts e relogio-sincronizado.test.tsx); aqui o
+// relógio é o do aparelho, que estes testes controlam com timers falsos.
+vi.mock('@/lib/use-relogio', () => ({ useRelogioPronto: () => true }));
+vi.mock('@/lib/relogio-cliente', () => ({ agoraSincronizado: () => Date.now(), garantirSincronia: () => Promise.resolve() }));
 import { Cronometro } from './Cronometro';
 import { CartaoAoVivo, type DadosCartaoLobby } from './CartaoLobby';
 import { ControlesHost } from './ControlesHost';
