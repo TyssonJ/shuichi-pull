@@ -1,6 +1,7 @@
 import { listarItensComCorrecoes } from '@/lib/itens-corrigidos';
 import { obterTextos } from '@/lib/textos';
 import { GradeEvidencias } from '@/components/itens/GradeEvidencias';
+import { resumirItem } from '@/lib/itens-resumo';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
 export const metadata = { title: 'Itens — Shuichi Pull' };
@@ -18,7 +19,7 @@ export default async function PaginaItens() {
         {t('itens.introducao', { total: itens.length })}
       </p>
 
-      <GradeEvidencias itens={itens} />
+      <GradeEvidencias itens={itens.map(resumirItem)} />
     </PainelComTrilhas>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useMovimentoReduzido } from '@/lib/motion';
+import { useModoLeve } from '@/lib/use-modo-leve';
 
 const TEXTO_MARQUEE =
   'NON-STOP DEBATE // TRUTH BULLET // SHINRI TRIAL // CLASS TRIAL PROTOCOL // ';
@@ -10,7 +10,7 @@ type Particula = { forma: string; esquerda: number; atraso: number; duracao: num
 
 // Sorteadas uma vez, no módulo — não a cada render, senão as partículas
 // "pulariam" de posição a cada re-render do layout.
-const PARTICULAS: Particula[] = Array.from({ length: 14 }, (_, i) => ({
+const PARTICULAS: Particula[] = Array.from({ length: 8 }, (_, i) => ({
   forma: i % 3 === 0 ? 'rotate-45' : i % 3 === 1 ? '' : 'rounded-full',
   esquerda: (i * 7.3) % 100,
   atraso: (i * 1.7) % 8,
@@ -19,6 +19,11 @@ const PARTICULAS: Particula[] = Array.from({ length: 14 }, (_, i) => ({
 
 export function CamadaAmbiente() {
   const movimentoReduzido = useMovimentoReduzido();
+  const leve = useModoLeve();
+
+  // Modo leve: a camada inteira (scanlines, halftone, marquee e particulas) nem existe.
+  // Antes da hidratacao quem esconde e o CSS (`html[data-leve] [data-ambiente]`).
+  if (leve) return null;
 
   // Camada de ambiencia fica no nivel mais baixo (z-0): abaixo do header
   // (sticky, z-40), da janela/botao flutuante do Alter Ego (fixed, z-50) e
@@ -27,7 +32,7 @@ export function CamadaAmbiente() {
   // overlays/modais devem escolher um z-index acima de 0 e checar contra
   // esta lista.
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div data-ambiente aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden [contain:strict]">
       {/* Vinheta radial — estática, sem custo de animação. */}
       <div
         className="absolute inset-0"
@@ -52,13 +57,13 @@ export function CamadaAmbiente() {
 
       {/* Partículas flutuantes — só com movimento não-reduzido. */}
       {!movimentoReduzido && PARTICULAS.map((p, i) => (
-        <motion.div
+        // CSS puro (transform/opacity na GPU): eram 14 componentes do framer-motion
+        // atualizando estilo a cada quadro, o tempo todo, em toda pagina.
+        <div
           key={i}
           data-testid="particula"
-          className={`absolute h-1.5 w-1.5 bg-white/10 ${p.forma}`}
-          style={{ left: `${p.esquerda}%`, bottom: '-5%' }}
-          animate={{ y: ['0vh', '-110vh'], opacity: [0, 0.3, 0.3, 0] }}
-          transition={{ duration: p.duracao, delay: p.atraso, repeat: Infinity, ease: 'linear' }}
+          className={`particula-flutuante absolute h-1.5 w-1.5 bg-white/10 ${p.forma}`}
+          style={{ left: `${p.esquerda}%`, bottom: '-5%', '--duracao': `${p.duracao}s`, '--atraso': `${p.atraso}s` } as React.CSSProperties}
         />
       ))}
     </div>

@@ -50,6 +50,8 @@ export function Conquistas({ conquistas }: { conquistas: ConquistaExibida[] }) {
                     <img
                       src={c.iconeUrl}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="h-12 w-12 shrink-0 rounded-[3px] border border-line bg-[#0E0E13] object-cover"
                     />
                     <span className="min-w-0">

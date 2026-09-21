@@ -53,6 +53,11 @@ body { overflow-x: hidden; }
 }
 
 @layer utilities {
+  /* Entrada dos cartões: só opacity/transform (vai pra GPU), sem JavaScript por quadro. */
+  .animar-entrada {
+    animation: entrada-cartao 0.25s ease-out both;
+    animation-delay: var(--atraso, 0s);
+  }
   .clip-dossier-card {
     clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
   }
@@ -136,9 +141,60 @@ body { overflow-x: hidden; }
   }
 }
 
+@keyframes entrada-cartao {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ambient-glow, .animate-spin-slow, .animate-marquee-slow, .animate-crt-flicker,
   .animate-monokuma-glitch, .animate-monokuma-flash {
     animation: none !important;
   }
+}
+
+/* Particulas da camada de ambiente: sobem e somem. So transform/opacity (vao pra GPU). */
+@keyframes particula-subir {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  10%, 90% { opacity: 0.3; }
+  100% { transform: translate3d(0, -110vh, 0); opacity: 0; }
+}
+.particula-flutuante {
+  animation: particula-subir var(--duracao, 16s) linear var(--atraso, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* ------------------------------------------------------------------------ */
+/* MODO LEVE (`<html data-leve>`): menos efeito, mais rapido em aparelho fraco. */
+/* Liga pelo botao do cabecalho (ou sozinho, em aparelho fraco): lib/modo-leve.ts. */
+/* Vale ja na primeira pintura, antes do React hidratar.                        */
+/* ------------------------------------------------------------------------ */
+html[data-leve] *,
+html[data-leve] *::before,
+html[data-leve] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-shadow: none !important;
+  will-change: auto !important;
+}
+/* Camada decorativa: scanlines, halftone, marquee e particulas. */
+html[data-leve] [data-ambiente] {
+  display: none !important;
+}
+/* Texturas de fundo que sao so enfeite (viram cor lisa). */
+html[data-leve] .crt-lines,
+html[data-leve] .bg-halftone-pattern {
+  background-image: none !important;
+}
+/* Brilhos ("glow"): sombras grandes e coloridas que so enfeitam. */
+html[data-leve] [class*='shadow-[0_0'],
+html[data-leve] [style*='box-shadow'] {
+  box-shadow: none !important;
+}
+/* Cartoes de lista nao precisam do "sobe ao passar o mouse" no modo leve. */
+html[data-leve] .group:hover {
+  transform: none !important;
 }

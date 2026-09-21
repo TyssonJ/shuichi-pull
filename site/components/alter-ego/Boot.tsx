@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { JanelaEgo } from './JanelaEgo';
+import { modoLeveAtivo } from '@/lib/modo-leve';
 
 /** Sempre 4 linhas, com ou sem números — o efeito da animação não depende da lista. */
 const TOTAL_DE_LINHAS = 4;
@@ -27,6 +28,8 @@ export function Boot({ contagens }: { contagens?: Contagens } = {}) {
 
   useEffect(() => {
     if (localStorage.getItem('ego-ja-visitou') === 'true') return;
+    // Modo leve: nada de abertura animada de ~3 s tapando a tela na primeira visita.
+    if (modoLeveAtivo()) return;
     // Quem já visitou não vê o boot, e isso só dá para saber no cliente.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisivel(true);

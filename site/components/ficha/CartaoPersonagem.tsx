@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Personagem } from '@/lib/schema';
+import { miniaturaDoSprite } from '@/lib/sprites-mini';
 
 export function CartaoPersonagem(
   { personagem: p, numero, mostrarPendente = true }: {
@@ -11,7 +12,8 @@ export function CartaoPersonagem(
   return (
     <Link
       href={`/elenco/${p.id}/`}
-      className="group relative block overflow-hidden rounded-[4px] border border-line bg-sur transition-colors hover:border-alter-green"
+      // content-visibility: o navegador pula os cartões fora da tela (a página tem ~56).
+      className="group relative block overflow-hidden rounded-[4px] border border-line bg-sur transition-colors [contain-intrinsic-size:auto_250px] [content-visibility:auto] hover:border-alter-green"
     >
       <span aria-hidden className="pointer-events-none absolute left-1 top-0.5 font-mono text-[9px] leading-none text-line">+</span>
       <span aria-hidden className="pointer-events-none absolute right-1 top-0.5 font-mono text-[9px] leading-none text-line">+</span>
@@ -37,8 +39,10 @@ export function CartaoPersonagem(
         </svg>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={p.sprite}
+          src={miniaturaDoSprite(p.sprite)}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="h-full object-contain object-bottom grayscale transition-all duration-300 group-hover:scale-[1.02] group-hover:grayscale-0 group-hover:saturate-150 group-hover:drop-shadow-[0_0_15px_rgba(255,0,127,0.6)]"
         />
       </div>

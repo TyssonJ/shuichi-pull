@@ -24,6 +24,7 @@ import { GestaoParticipantes } from '@/components/partidas/GestaoParticipantes';
 import { duracaoMs, formatarDuracao, estaAberta } from '@/lib/status-partida';
 import { AbrirChat } from '@/components/chat/AbrirChat';
 import { salaDaPartida } from '@/lib/chat';
+import { miniaturaDoSprite } from '@/lib/sprites-mini';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
@@ -48,7 +49,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
 
   const personagens = await listarPersonagensComCorrecoes();
   const nomePersonagem = new Map(personagens.map((p) => [p.id, p.nome]));
-  const retratoPorId = new Map(personagens.map((p) => [p.id, p.sprite]));
+  const retratoPorId = new Map(personagens.map((p) => [p.id, miniaturaDoSprite(p.sprite)]));
 
   const usuariosParticipantes = new Map<string, string>();
   const nomesOriginais = new Map<string, string | null>();

@@ -72,7 +72,7 @@ export function Comentarios({
             <li key={c.id} className="flex gap-2 rounded-[4px] border border-line bg-sur p-3">
               {c.autorAvatar && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={c.autorAvatar} alt="" className="h-8 w-8 shrink-0 rounded-full" />
+                <img src={c.autorAvatar} alt="" loading="lazy" decoding="async" className="h-8 w-8 shrink-0 rounded-full" />
               )}
               <div className="min-w-0 flex-1">
                 <div className="flex items-baseline justify-between gap-2">

@@ -8,6 +8,7 @@ import { formatarDataBR, formatarDataHoraBR } from '@/lib/fuso';
 import { iconeDoInscrito } from '@/lib/sprites-pixel';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { ocupamVaga, vagasRestantes } from '@/lib/vagas';
+import { miniaturaDoSprite } from '@/lib/sprites-mini';
 import { SELO_RESULTADO } from '@/lib/rotulos-partida';
 import { duracaoMs, formatarDuracao } from '@/lib/status-partida';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
@@ -35,7 +36,7 @@ export default async function PaginaPartidas() {
   ]);
   const discordId = sessao?.user?.discordId;
 
-  const retratoPorId = new Map(personagens.map((p) => [p.id, p.sprite]));
+  const retratoPorId = new Map(personagens.map((p) => [p.id, miniaturaDoSprite(p.sprite)]));
   const nomePorId = new Map(personagens.map((p) => [p.id, p.nome]));
 
   const carregadas = await Promise.all(todas.map(async (p: PartidaLinha) => {

@@ -26,7 +26,7 @@ export function IconesInscritos({ inscritos, max = 14 }: { inscritos: IconeInscr
         >
           {i.src ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={i.src} alt="" className="h-full w-full object-contain" style={{ imageRendering: 'pixelated' }} />
+            <img src={i.src} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain" style={{ imageRendering: 'pixelated' }} />
           ) : (
             <span aria-hidden className="font-mono text-[12px] text-dim">?</span>
           )}

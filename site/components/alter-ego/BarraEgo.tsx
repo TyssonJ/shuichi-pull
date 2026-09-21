@@ -12,6 +12,7 @@ import {
   falaDaSecao, kaomojiDaSecao, secaoDoCaminho, type EstadoEgo,
 } from '@/lib/alter-ego';
 import { SECOES } from '@/lib/secoes';
+import { BotaoModoLeve, BotaoModoLeveCompacto } from '@/components/layout/BotaoModoLeve';
 
 function Busca({
   id,
@@ -213,6 +214,8 @@ export function BarraEgo() {
 
           <NucleoDiscord />
 
+          <BotaoModoLeveCompacto className="hidden sm:block" />
+
           <button
             type="button"
             aria-expanded={menuAberto}
@@ -273,6 +276,7 @@ export function BarraEgo() {
                 </Link>
               );
             })}
+            <BotaoModoLeve className="col-span-2 rounded-[2px] border-2 border-alter-green/40 px-3 py-2.5 font-mono text-[12px] font-bold tracking-[.08em] text-alter-green active:bg-alter-green/10" />
           </nav>
         )}
       </header>

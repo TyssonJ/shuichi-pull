@@ -29,7 +29,7 @@ export function QuemJogaDeMain({ jogadores }: { jogadores: JogadorMain[] }) {
               >
                 {j.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={j.avatar} alt="" className="h-6 w-6 rounded-full object-cover object-top" />
+                  <img src={j.avatar} alt="" loading="lazy" decoding="async" className="h-6 w-6 rounded-full object-cover object-top" />
                 ) : (
                   <span aria-hidden className="h-6 w-6 rounded-full bg-neutral-800" />
                 )}

@@ -24,6 +24,7 @@ import { identidadeDe } from '@/lib/identidade';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { auth } from '@/auth';
 import { usuarioDoPerfil } from '@/lib/usuario-do-perfil';
+import { miniaturaDoSprite } from '@/lib/sprites-mini';
 import { removerAvaliacaoAdmAction } from './acoes';
 
 const formatarData = (d: Date) => formatarDataBR(d, true);
@@ -134,7 +135,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
                   className="flex items-center gap-1.5 rounded-[3px] border border-line bg-sur px-2 py-1 hover:border-alter-green"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p!.sprite} alt="" className="h-6 w-6 object-contain" />
+                  <img src={miniaturaDoSprite(p!.sprite)} alt="" loading="lazy" decoding="async" className="h-6 w-6 object-contain" />
                   <span className="text-[12px] text-[#D6D6E0]">{p!.nome}</span>
                 </Link>
               </li>

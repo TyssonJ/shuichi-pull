@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useModoLeve } from './use-modo-leve';
 
 // Não usamos o `useReducedMotion` do framer-motion: ele lê `window.matchMedia`
 // uma única vez, em um singleton de módulo (`motion-dom`), e não reavalia em
@@ -12,6 +13,7 @@ import { useEffect, useState } from 'react';
 // (igual ao servidor) e só ajustamos para o valor real dentro de um
 // `useEffect`, depois que a hidratação já terminou.
 export function useMovimentoReduzido() {
+  const leve = useModoLeve();
   const [reduzido, setReduzido] = useState(false);
   useEffect(() => {
     // A preferencia so pode ser lida no cliente; comeca em `false` (linha
@@ -19,5 +21,6 @@ export function useMovimentoReduzido() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setReduzido(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   }, []);
-  return reduzido;
+  // O modo leve conta como "menos movimento": quem usa este hook para de animar sozinho.
+  return reduzido || leve;
 }

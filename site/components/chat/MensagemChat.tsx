@@ -55,7 +55,7 @@ export function MensagemChat({
       <Link href={`/u/${m.autorId}/`} className="shrink-0" aria-label={`Perfil de ${m.autorNome}`}>
         {m.autorAvatar ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={m.autorAvatar} alt="" className="h-8 w-8 rounded-full border border-line object-cover object-top" />
+          <img src={m.autorAvatar} alt="" loading="lazy" decoding="async" className="h-8 w-8 rounded-full border border-line object-cover object-top" />
         ) : (
           <span className="flex h-8 w-8 items-center justify-center rounded-full border border-line font-mono text-[12px] text-dim">
             {m.autorNome.slice(0, 1).toUpperCase()}

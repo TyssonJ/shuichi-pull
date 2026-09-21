@@ -25,7 +25,7 @@ export type DadosCartaoLobby = {
 function Capa({ url }: { url: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={url} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-25" />
+    <img src={url} alt="" aria-hidden loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-25" />
   );
 }
 

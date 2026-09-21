@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BotaoModoLeve } from './BotaoModoLeve';
 
 export function Rodape() {
   return (
@@ -18,6 +19,7 @@ export function Rodape() {
       >
         [ MINHA CONTA ]
       </Link>
+      <BotaoModoLeve className="ml-4 mt-4 inline-block font-mono text-[9px] tracking-[.1em] text-dim hover:text-alter-green hover:underline" />
     </footer>
   );
 }

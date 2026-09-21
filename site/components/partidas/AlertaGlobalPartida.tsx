@@ -29,6 +29,8 @@ export function AlertaGlobalPartida() {
   useEffect(() => {
     let vivo = true;
     async function atualizar() {
+      // Aba em segundo plano nao gasta chamada ao servidor: na volta, a proxima consulta atualiza.
+      if (document.visibilityState === 'hidden') return;
       setAgora(Date.now());
       try {
         const r = await fetch('/api/partidas/proximas/', { cache: 'no-store' });

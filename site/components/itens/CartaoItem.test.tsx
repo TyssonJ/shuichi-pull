@@ -2,8 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { CartaoItem } from './CartaoItem';
 import { buscarItem } from '@/lib/itens';
+import { resumirItem } from '@/lib/itens-resumo';
 
-const item = buscarItem('small-parts')!;
+const item = resumirItem(buscarItem('small-parts')!);
 
 describe('CartaoItem', () => {
   it('mostra o nome em PT com o inglês junto', () => {

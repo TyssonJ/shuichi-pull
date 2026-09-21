@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Selo } from './Selo';
 import { Icone } from './Icone';
-import type { Item } from '@/lib/schema-itens';
+import type { ItemResumo } from '@/lib/itens-resumo';
 
 // Número de série determinístico a partir do id — mesmo item sempre gera o
 // mesmo "#EV-XXX", sem Math.random() (divergiria entre servidor e cliente).
@@ -32,15 +32,18 @@ const ESTILO_TIER: Record<Tier, { borda: string; sombra?: string; pulso?: boolea
   lendario: { borda: 'border-amber/60', sombra: '0 0 20px rgba(245,158,11,0.3)', pulso: true },
 };
 
-export function CartaoItem({ item }: { item: Item }) {
+export function CartaoItem({ item }: { item: ItemResumo }) {
   const tier = tierDoNivel(item.nivelRaridade);
   const estilo = ESTILO_TIER[tier];
-  const local = item.spawns[0]?.local.pt ?? null;
+  const local = item.local;
 
   return (
     <Link
       href={`/itens/${item.id}/`}
-      className={`group relative block overflow-hidden rounded-[4px] border bg-white/[0.02] p-2.5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${estilo.borda}`}
+      // Sem backdrop-blur: com ~140 cartões era um blur de fundo por cartão (caro pra GPU)
+      // sobre um fundo quase transparente, sem diferença visível. `content-visibility` deixa
+      // o navegador pular o que está fora da tela.
+      className={`group relative block overflow-hidden rounded-[4px] border bg-white/[0.02] p-2.5 transition-transform duration-300 [contain-intrinsic-size:auto_112px] [content-visibility:auto] hover:-translate-y-1 ${estilo.borda}`}
       style={{ boxShadow: estilo.sombra }}
     >
       {estilo.pulso && (
@@ -56,7 +59,7 @@ export function CartaoItem({ item }: { item: Item }) {
         <p className="flex-1 text-[12px] font-bold leading-tight text-[#D6D6E0]">
           {item.nome.pt}
         </p>
-        {item.craft && (
+        {item.fabricavel && (
           <span
             title="Dá para fabricar"
             className="font-mono text-[9px] text-alter-green"

@@ -1,10 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
 import { RARIDADES } from '@/lib/vocabulario';
 import { CartaoItem } from './CartaoItem';
-import type { Item } from '@/lib/schema-itens';
+import type { ItemResumo } from '@/lib/itens-resumo';
 
 type Filtro = 'todos' | number;
 
@@ -17,7 +16,10 @@ const ESTILO_ABA: Record<number, { borda: string; texto: string }> = {
   5: { borda: 'border-amber/60', texto: 'text-amber' },
 };
 
-export function GradeEvidencias({ itens }: { itens: Item[] }) {
+/** Só os primeiros cartões entram animados: o resto está fora da tela e animar tudo era trabalho à toa. */
+const CARTOES_ANIMADOS = 16;
+
+export function GradeEvidencias({ itens }: { itens: ItemResumo[] }) {
   const [filtro, setFiltro] = useState<Filtro>('todos');
 
   const abas = useMemo(() => {
@@ -83,14 +85,13 @@ export function GradeEvidencias({ itens }: { itens: Item[] }) {
 
       <div key={filtro} className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
         {filtrados.map((item, i) => (
-          <motion.div
+          <div
             key={item.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25, delay: Math.min(i * 0.02, 0.4) }}
+            className={i < CARTOES_ANIMADOS ? 'animar-entrada' : undefined}
+            style={i < CARTOES_ANIMADOS ? ({ '--atraso': `${i * 0.02}s` } as React.CSSProperties) : undefined}
           >
             <CartaoItem item={item} />
-          </motion.div>
+          </div>
         ))}
       </div>
 
