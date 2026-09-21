@@ -1,4 +1,4 @@
-import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb, primaryKey } from 'drizzle-orm/pg-core';
 import type { Craft, Spawn } from '../lib/schema-itens';
 import type { Etiqueta } from '../lib/schema';
 
@@ -140,6 +140,12 @@ export const usuarios = pgTable('usuarios', {
   uuidStatus: statusUuid('uuid_status').notNull().default('pendente'),
   podeSerHost: boolean('pode_ser_host').notNull().default(true),
   mains: text('mains').array().notNull().default([]),
+  // Personalização do perfil público. Nulo = padrão do site (sem descrição,
+  // banner "terminal"). bannerTipo/bannerValor são validados em
+  // lib/perfil-visual.ts antes de gravar.
+  bio: text('bio'),
+  bannerTipo: text('banner_tipo'),
+  bannerValor: text('banner_valor'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
   atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
 });
@@ -240,3 +246,28 @@ export const auditoria = pgTable('auditoria', {
   valorNovo: text('valor_novo'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
+
+// Conteúdo textual criado pelo ADM que não vem do guidebook (hoje: perguntas
+// do FAQ e cards de mecânica). `dados` guarda os campos da coleção (FAQ:
+// secao/pergunta/resposta; controles: grupo/titulo/texto). A validação mora
+// em lib/adm/conteudo.ts — o banco só guarda.
+export const conteudoExtras = pgTable('conteudo_extras', {
+  colecao: text('colecao').notNull(),
+  id: text('id').notNull(),
+  dados: jsonb('dados').$type<Record<string, string>>().notNull(),
+  autor: text('autor').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  primaryKey({ columns: [t.colecao, t.id] }),
+]));
+
+// Esconde um registro do guidebook (pergunta do FAQ, card de mecânica) sem
+// apagar o original — restaurável, igual a itens_removidos/personagens_removidos.
+export const conteudoRemovidos = pgTable('conteudo_removidos', {
+  colecao: text('colecao').notNull(),
+  registroId: text('registro_id').notNull(),
+  autor: text('autor').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  primaryKey({ columns: [t.colecao, t.registroId] }),
+]));

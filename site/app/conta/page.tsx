@@ -3,7 +3,13 @@ import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { PerfilForm } from '@/components/conta/PerfilForm';
-import { atualizarPerfilAction } from './acoes';
+import { PersonalizarPerfil } from '@/components/conta/PersonalizarPerfil';
+import { bannerDoRegistro } from '@/lib/perfil-visual';
+import { spriteInteiroDoPersonagem } from '@/lib/sprites';
+import { formatarDataBR } from '@/lib/fuso';
+import { repositorioPartidas } from '@/db/repositorios/partidas';
+import { tituloPorPartidas } from '@/lib/titulos';
+import { atualizarPerfilAction, salvarPersonalizacaoAction } from './acoes';
 
 export const metadata = { title: 'Minha conta — Shuichi Pull' };
 
@@ -45,7 +51,12 @@ export default async function PaginaConta() {
     sessao.user.image ?? null,
   );
   const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
-  const personagens = (await listarPersonagensComCorrecoes()).map((p) => ({ id: p.id, nome: p.nome }));
+  const elenco = await listarPersonagensComCorrecoes();
+  const personagens = elenco.map((p) => ({ id: p.id, nome: p.nome }));
+  const bannersDePersonagem = elenco.map((p) => ({
+    id: p.id, nome: p.nome, sprite: spriteInteiroDoPersonagem(p.id) ?? p.sprite,
+  }));
+  const { estatisticas } = await repositorioPartidas.perfilDoUsuario(sessao.user.discordId);
 
   return (
     <PainelComTrilhas>
@@ -82,6 +93,17 @@ export default async function PaginaConta() {
         mainsIniciais={usuario?.mains ?? []}
         personagens={personagens}
         aoSalvar={atualizarPerfilAction}
+      />
+
+      <PersonalizarPerfil
+        nome={sessao.user.name ?? 'Sem nome'}
+        avatar={sessao.user.image ?? null}
+        desde={usuario ? formatarDataBR(usuario.criadoEm, true) : ''}
+        titulo={tituloPorPartidas(estatisticas.total)}
+        bioInicial={usuario?.bio ?? ''}
+        bannerInicial={bannerDoRegistro(usuario?.bannerTipo ?? null, usuario?.bannerValor ?? null, new Set(elenco.map((p) => p.id)))}
+        personagens={bannersDePersonagem}
+        aoSalvar={salvarPersonalizacaoAction}
       />
 
       <form

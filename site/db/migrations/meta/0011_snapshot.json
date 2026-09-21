@@ -1,0 +1,1310 @@
+{
+  "id": "acaa1725-8332-485b-a965-32035419bdad",
+  "prevId": "f725fc6f-77a0-4eca-b865-274868ba255b",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.administradores": {
+      "name": "administradores",
+      "schema": "",
+      "columns": {
+        "discord_id": {
+          "name": "discord_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "papel": {
+          "name": "papel",
+          "type": "papel_adm",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "promovido_por": {
+          "name": "promovido_por",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.auditoria": {
+      "name": "auditoria",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "acao": {
+          "name": "acao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alvo": {
+          "name": "alvo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valor_antigo": {
+          "name": "valor_antigo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valor_novo": {
+          "name": "valor_novo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.codigos": {
+      "name": "codigos",
+      "schema": "",
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "recompensa": {
+          "name": "recompensa",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expira_em": {
+          "name": "expira_em",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fonte": {
+          "name": "fonte",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "icone_url": {
+          "name": "icone_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.configuracoes": {
+      "name": "configuracoes",
+      "schema": "",
+      "columns": {
+        "chave": {
+          "name": "chave",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "valor": {
+          "name": "valor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "atualizado_em": {
+          "name": "atualizado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.conteudo_extras": {
+      "name": "conteudo_extras",
+      "schema": "",
+      "columns": {
+        "colecao": {
+          "name": "colecao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dados": {
+          "name": "dados",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "conteudo_extras_colecao_id_pk": {
+          "name": "conteudo_extras_colecao_id_pk",
+          "columns": [
+            "colecao",
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.conteudo_removidos": {
+      "name": "conteudo_removidos",
+      "schema": "",
+      "columns": {
+        "colecao": {
+          "name": "colecao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "registro_id": {
+          "name": "registro_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "conteudo_removidos_colecao_registro_id_pk": {
+          "name": "conteudo_removidos_colecao_registro_id_pk",
+          "columns": [
+            "colecao",
+            "registro_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.correcoes": {
+      "name": "correcoes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "colecao": {
+          "name": "colecao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "registro_id": {
+          "name": "registro_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "campo": {
+          "name": "campo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valor": {
+          "name": "valor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valor_base": {
+          "name": "valor_base",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "correcoes_alvo_unico": {
+          "name": "correcoes_alvo_unico",
+          "nullsNotDistinct": false,
+          "columns": [
+            "colecao",
+            "registro_id",
+            "campo"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.evento_comentarios": {
+      "name": "evento_comentarios",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "evento_id": {
+          "name": "evento_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "texto": {
+          "name": "texto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "evento_comentarios_evento_id_eventos_id_fk": {
+          "name": "evento_comentarios_evento_id_eventos_id_fk",
+          "tableFrom": "evento_comentarios",
+          "tableTo": "eventos",
+          "columnsFrom": [
+            "evento_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.eventos": {
+      "name": "eventos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "name": "data",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ate": {
+          "name": "ate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "destaque": {
+          "name": "destaque",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resumo": {
+          "name": "resumo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "corpo": {
+          "name": "corpo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imagem_url": {
+          "name": "imagem_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.itens_extras": {
+      "name": "itens_extras",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome_pt": {
+          "name": "nome_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nome_en": {
+          "name": "nome_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "categoria_pt": {
+          "name": "categoria_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "categoria_en": {
+          "name": "categoria_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raridade_pt": {
+          "name": "raridade_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "raridade_en": {
+          "name": "raridade_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nivel_raridade": {
+          "name": "nivel_raridade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "peso": {
+          "name": "peso",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "icone": {
+          "name": "icone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descricao_pt": {
+          "name": "descricao_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ramo_pt": {
+          "name": "ramo_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ramo_en": {
+          "name": "ramo_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descricao_en": {
+          "name": "descricao_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "efeito_pt": {
+          "name": "efeito_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "efeito_en": {
+          "name": "efeito_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "loja_vendedor": {
+          "name": "loja_vendedor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "loja_preco": {
+          "name": "loja_preco",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "craft": {
+          "name": "craft",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "spawns": {
+          "name": "spawns",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.itens_removidos": {
+      "name": "itens_removidos",
+      "schema": "",
+      "columns": {
+        "item_id": {
+          "name": "item_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.partida_avaliacoes": {
+      "name": "partida_avaliacoes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "partida_id": {
+          "name": "partida_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "avaliador_discord_id": {
+          "name": "avaliador_discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "avaliado_discord_id": {
+          "name": "avaliado_discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "tipo_avaliacao",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "comentario": {
+          "name": "comentario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "partida_avaliacoes_partida_id_partidas_id_fk": {
+          "name": "partida_avaliacoes_partida_id_partidas_id_fk",
+          "tableFrom": "partida_avaliacoes",
+          "tableTo": "partidas",
+          "columnsFrom": [
+            "partida_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "partida_avaliacao_unica": {
+          "name": "partida_avaliacao_unica",
+          "nullsNotDistinct": false,
+          "columns": [
+            "partida_id",
+            "avaliador_discord_id",
+            "avaliado_discord_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.partida_capitulos": {
+      "name": "partida_capitulos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "partida_id": {
+          "name": "partida_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "numero": {
+          "name": "numero",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "assassino_discord_id": {
+          "name": "assassino_discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vitima_discord_id": {
+          "name": "vitima_discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "afk": {
+          "name": "afk",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "partida_capitulos_partida_id_partidas_id_fk": {
+          "name": "partida_capitulos_partida_id_partidas_id_fk",
+          "tableFrom": "partida_capitulos",
+          "tableTo": "partidas",
+          "columnsFrom": [
+            "partida_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "partida_capitulo_unico": {
+          "name": "partida_capitulo_unico",
+          "nullsNotDistinct": false,
+          "columns": [
+            "partida_id",
+            "numero"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.partida_participantes": {
+      "name": "partida_participantes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "partida_id": {
+          "name": "partida_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "personagem_id": {
+          "name": "personagem_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "tipo_participante",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'participante'"
+        },
+        "entrada_em": {
+          "name": "entrada_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "partida_participantes_partida_id_partidas_id_fk": {
+          "name": "partida_participantes_partida_id_partidas_id_fk",
+          "tableFrom": "partida_participantes",
+          "tableTo": "partidas",
+          "columnsFrom": [
+            "partida_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "partida_participante_unico": {
+          "name": "partida_participante_unico",
+          "nullsNotDistinct": false,
+          "columns": [
+            "partida_id",
+            "discord_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.partidas": {
+      "name": "partidas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "host_discord_id": {
+          "name": "host_discord_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_hora": {
+          "name": "data_hora",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "regras": {
+          "name": "regras",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "capa_url": {
+          "name": "capa_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vagas": {
+          "name": "vagas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 16
+        },
+        "status": {
+          "name": "status",
+          "type": "status_partida",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'agendada'"
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "capitulo": {
+          "name": "capitulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blackened": {
+          "name": "blackened",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mvp_discord_ids": {
+          "name": "mvp_discord_ids",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        },
+        "resultado": {
+          "name": "resultado",
+          "type": "resultado_partida",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.personagens_extras": {
+      "name": "personagens_extras",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "talento_pt": {
+          "name": "talento_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "talento_en": {
+          "name": "talento_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao_pt": {
+          "name": "descricao_pt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao_en": {
+          "name": "descricao_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jogo": {
+          "name": "jogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "velocidade": {
+          "name": "velocidade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mochila": {
+          "name": "mochila",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "percepcao": {
+          "name": "percepcao",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vida": {
+          "name": "vida",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sprite": {
+          "name": "sprite",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "etiquetas": {
+          "name": "etiquetas",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "personalidade": {
+          "name": "personalidade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "aparencia": {
+          "name": "aparencia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "historia": {
+          "name": "historia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "segredo": {
+          "name": "segredo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.personagens_removidos": {
+      "name": "personagens_removidos",
+      "schema": "",
+      "columns": {
+        "personagem_id": {
+          "name": "personagem_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "autor": {
+          "name": "autor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.usuarios": {
+      "name": "usuarios",
+      "schema": "",
+      "columns": {
+        "discord_id": {
+          "name": "discord_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "discord_nome": {
+          "name": "discord_nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discord_avatar": {
+          "name": "discord_avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uuid_gmod": {
+          "name": "uuid_gmod",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uuid_status": {
+          "name": "uuid_status",
+          "type": "status_uuid",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pendente'"
+        },
+        "pode_ser_host": {
+          "name": "pode_ser_host",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "mains": {
+          "name": "mains",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        },
+        "bio": {
+          "name": "bio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "banner_tipo": {
+          "name": "banner_tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "banner_valor": {
+          "name": "banner_valor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "atualizado_em": {
+          "name": "atualizado_em",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.papel_adm": {
+      "name": "papel_adm",
+      "schema": "public",
+      "values": [
+        "adm",
+        "chefe"
+      ]
+    },
+    "public.resultado_partida": {
+      "name": "resultado_partida",
+      "schema": "public",
+      "values": [
+        "vitoria_alunos",
+        "vitoria_mestre",
+        "tragedia"
+      ]
+    },
+    "public.status_partida": {
+      "name": "status_partida",
+      "schema": "public",
+      "values": [
+        "agendada",
+        "finalizada",
+        "cancelada"
+      ]
+    },
+    "public.status_uuid": {
+      "name": "status_uuid",
+      "schema": "public",
+      "values": [
+        "pendente",
+        "aprovado",
+        "banido"
+      ]
+    },
+    "public.tipo_avaliacao": {
+      "name": "tipo_avaliacao",
+      "schema": "public",
+      "values": [
+        "like",
+        "dislike"
+      ]
+    },
+    "public.tipo_participante": {
+      "name": "tipo_participante",
+      "schema": "public",
+      "values": [
+        "participante",
+        "reserva"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

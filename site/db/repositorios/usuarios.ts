@@ -40,6 +40,16 @@ export function criarRepositorioUsuarios(db: Banco) {
         .where(eq(usuarios.discordId, discordId));
     },
 
+    /** Descrição e banner do perfil público. Já chegam validados por
+     * lib/perfil-visual.ts — o repositório só grava. */
+    async atualizarPersonalizacao(discordId: string, dados: {
+      bio: string | null; bannerTipo: string | null; bannerValor: string | null;
+    }) {
+      await db.update(usuarios)
+        .set({ ...dados, atualizadoEm: new Date() })
+        .where(eq(usuarios.discordId, discordId));
+    },
+
     async listarTodos(): Promise<UsuarioLinha[]> {
       return db.select().from(usuarios).orderBy(desc(usuarios.criadoEm));
     },

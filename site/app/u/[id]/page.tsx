@@ -6,6 +6,14 @@ import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { tituloPorPartidas } from '@/lib/titulos';
 import { formatarDataBR } from '@/lib/fuso';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
+import { CabecalhoPerfil } from '@/components/perfil/CabecalhoPerfil';
+import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
+import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
+import { resumirAvaliacoes, reputacao } from '@/lib/avaliacoes-perfil';
+import { bannerDoRegistro } from '@/lib/perfil-visual';
+import { spriteInteiroDoPersonagem } from '@/lib/sprites';
+import { sessaoAdm } from '@/lib/adm/sessao';
+import { removerAvaliacaoAdmAction } from './acoes';
 
 const formatarData = (d: Date) => formatarDataBR(d, true);
 
@@ -35,45 +43,38 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [{ historico, estatisticas }, personagens] = await Promise.all([
+  const [{ historico, estatisticas }, personagens, recebidas, adm] = await Promise.all([
     repositorioPartidas.perfilDoUsuario(id),
     listarPersonagensComCorrecoes(),
+    repositorioPartidaAvaliacoes.listarRecebidas(id),
+    sessaoAdm(),
   ]);
+  const resumo = resumirAvaliacoes(recebidas);
+  const banner = bannerDoRegistro(usuario.bannerTipo, usuario.bannerValor, new Set(personagens.map((p) => p.id)));
+  const personagemDoBanner = banner.tipo === 'personagem' ? personagens.find((p) => p.id === banner.valor) : undefined;
+  const spriteDoBanner = personagemDoBanner
+    ? spriteInteiroDoPersonagem(personagemDoBanner.id) ?? personagemDoBanner.sprite
+    : null;
+  async function removerAvaliacao(avaliacaoId: number) {
+    'use server';
+    await removerAvaliacaoAdmAction(id, avaliacaoId);
+  }
   const porId = new Map(personagens.map((p) => [p.id, p]));
   const mains = usuario.mains.map((mid) => porId.get(mid)).filter((p) => p !== undefined);
   const titulo = tituloPorPartidas(estatisticas.total);
 
   return (
     <PainelComTrilhas as="article">
-      <div className="clip-dossier-card relative overflow-hidden border-2 border-alter-green/40 bg-[#050805] p-4">
-        <div aria-hidden className="crt-lines pointer-events-none absolute inset-0 opacity-20" />
-        <p className="relative font-mono text-[8px] tracking-[.25em] text-alter-green/70">
-          [ ARQUIVO DE ESTUDANTE // CONFIDENCIAL ]
-        </p>
-        <div className="relative mt-2 flex items-center gap-3">
-          {usuario.discordAvatar && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={usuario.discordAvatar}
-              alt=""
-              className="h-16 w-16 rounded-full border-2 border-alter-green"
-            />
-          )}
-          <div>
-            <h1 className="text-3xl font-black leading-none tracking-tight text-[#F2F2F5]">
-              {usuario.discordNome}
-            </h1>
-            <p className="mt-1 font-mono text-[9px] tracking-[.1em] text-dim">
-              NO ARQUIVO DESDE {formatarData(usuario.criadoEm)}
-            </p>
-            {titulo && (
-              <span className="mt-1.5 inline-block rounded-[2px] border border-alter-green px-1.5 py-0.5 font-mono text-[9px] tracking-[.1em] text-alter-green">
-                {titulo}
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
+      <CabecalhoPerfil
+        nome={usuario.discordNome}
+        avatar={usuario.discordAvatar}
+        desde={formatarData(usuario.criadoEm)}
+        titulo={titulo}
+        reputacao={reputacao(resumo)}
+        bio={usuario.bio}
+        banner={banner}
+        spritePersonagem={spriteDoBanner}
+      />
 
       <section className="mt-6">
         <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-dim">
@@ -116,6 +117,8 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
           </ul>
         </section>
       )}
+
+      <AvaliacoesRecebidas resumo={resumo} moderar={adm !== null} aoRemover={removerAvaliacao} />
 
       <section className="mt-6">
         <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-dim">
