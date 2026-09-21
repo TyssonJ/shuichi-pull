@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { tituloPorPartidas } from '@/lib/titulos';
@@ -24,13 +23,14 @@ import { bannerDoRegistro } from '@/lib/perfil-visual';
 import { identidadeDe } from '@/lib/identidade';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { auth } from '@/auth';
+import { usuarioDoPerfil } from '@/lib/usuario-do-perfil';
 import { removerAvaliacaoAdmAction } from './acoes';
 
 const formatarData = (d: Date) => formatarDataBR(d, true);
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const usuario = await repositorioUsuarios.buscar(id);
+  const usuario = await usuarioDoPerfil(id);
   return { title: usuario ? `${usuario.apelido ?? usuario.discordNome} — Shuichi Pull` : 'Perfil não encontrado — Shuichi Pull' };
 }
 
@@ -51,7 +51,7 @@ const DESFECHO_COR = {
 
 export default async function PerfilPublico({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const usuario = await repositorioUsuarios.buscar(id);
+  const usuario = await usuarioDoPerfil(id);
   if (!usuario) notFound();
 
   const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas, estiloLinha, posts] = await Promise.all([

@@ -15,6 +15,17 @@ export async function resolvePapel(discordId: string): Promise<'adm' | 'chefe' |
 }
 
 const callbacks = {
+  // Toda pessoa que entra passa a ter conta no site já no login — antes ela só
+  // nascia ao abrir /conta/, e quem nunca abriu tomava 404 no próprio perfil.
+  // Falha do banco não pode impedir o login.
+  async signIn({ user, profile }) {
+    if (profile?.id) {
+      try {
+        await repositorioUsuarios.garantir(String(profile.id), user?.name ?? 'Sem nome', user?.image ?? null);
+      } catch { /* entra assim mesmo; a conta é criada na próxima oportunidade */ }
+    }
+    return true;
+  },
   async jwt({ token, account, profile }) {
     // account/profile só existem no login inicial — é o único momento em
     // que o discordId é obtido do provedor Discord.
@@ -64,4 +75,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 /** Exportado separadamente para ser testável sem precisar reconstruir a
  * forma do objeto de config que NextAuth(...) retorna. */
 export const jwtCallback = callbacks.jwt;
+export const signInCallback = callbacks.signIn;
 

@@ -16,10 +16,10 @@ vi.mock('@/db/repositorios/administradores', () => ({
   repositorioAdms: { buscarAdm: vi.fn() },
 }));
 
-vi.mock('@/db/repositorios/usuarios', () => ({ repositorioUsuarios: { buscar: vi.fn().mockResolvedValue(null) } }));
+vi.mock('@/db/repositorios/usuarios', () => ({ repositorioUsuarios: { buscar: vi.fn().mockResolvedValue(null), garantir: vi.fn().mockResolvedValue(undefined) } }));
 
 import { repositorioAdms } from '@/db/repositorios/administradores';
-import { resolvePapel, jwtCallback } from './auth';
+import { resolvePapel, jwtCallback, signInCallback } from './auth';
 
 describe('resolvePapel', () => {
   beforeEach(() => vi.clearAllMocks());
@@ -83,5 +83,32 @@ describe('jwtCallback', () => {
 
     expect(token.discordId).toBe('456');
     expect(repositorioAdms.buscarAdm).toHaveBeenCalledWith('456');
+  });
+});
+
+describe('signInCallback', () => {
+  const entrar = (dados: object) => signInCallback(dados as unknown as Parameters<typeof signInCallback>[0]);
+
+  it('cria a conta no login com o nome e o ícone do Discord (quem nunca abriu /conta/ tinha 404 no perfil)', async () => {
+    const { repositorioUsuarios } = await import('@/db/repositorios/usuarios');
+    vi.mocked(repositorioUsuarios.garantir).mockClear();
+    expect(await entrar({ user: { name: 'Ana', image: 'https://cdn/a.png' }, profile: { id: 123 } })).toBe(true);
+    expect(repositorioUsuarios.garantir).toHaveBeenCalledWith('123', 'Ana', 'https://cdn/a.png');
+  });
+
+  it('sem nome usa um padrão; sem profile.id não cria nada', async () => {
+    const { repositorioUsuarios } = await import('@/db/repositorios/usuarios');
+    vi.mocked(repositorioUsuarios.garantir).mockClear();
+    await entrar({ user: {}, profile: { id: '9' } });
+    expect(repositorioUsuarios.garantir).toHaveBeenCalledWith('9', 'Sem nome', null);
+    vi.mocked(repositorioUsuarios.garantir).mockClear();
+    expect(await entrar({ user: { name: 'X' }, profile: {} })).toBe(true);
+    expect(repositorioUsuarios.garantir).not.toHaveBeenCalled();
+  });
+
+  it('banco fora do ar não derruba o login', async () => {
+    const { repositorioUsuarios } = await import('@/db/repositorios/usuarios');
+    vi.mocked(repositorioUsuarios.garantir).mockRejectedValueOnce(new Error('db fora'));
+    expect(await entrar({ user: { name: 'Ana' }, profile: { id: 1 } })).toBe(true);
   });
 });
