@@ -3,6 +3,7 @@ import './globals.css';
 import { BarraEgo } from '@/components/alter-ego/BarraEgo';
 import { Rodape } from '@/components/layout/Rodape';
 import { CamadaAmbiente } from '@/components/ambiente/CamadaAmbiente';
+import { AlertaGlobalPartida } from '@/components/partidas/AlertaGlobalPartida';
 
 export const metadata: Metadata = {
   title: 'Shuichi Pull — o arquivo da comunidade BR/PT de Shinri Trial',
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BarraEgo />
         <main>{children}</main>
         <Rodape />
+        <AlertaGlobalPartida />
       </body>
     </html>
   );

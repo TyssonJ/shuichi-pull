@@ -1,9 +1,10 @@
-import { eq, and, asc, desc, ne, inArray } from 'drizzle-orm';
+import { eq, and, asc, desc, ne, inArray, gte, lte } from 'drizzle-orm';
 import type { db as DbClient } from '../client';
 import { partidas, partidaParticipantes, partidaCapitulos } from '../schema';
 import {
   calcularEstatisticas, desfechoParaUsuario, foiBlackened, type Desfecho, type Estatisticas,
 } from '../../lib/estatisticas-usuario';
+import type { PartidaAvisada } from '../../lib/alerta-partida';
 
 type Banco = typeof DbClient;
 export type PartidaLinha = typeof partidas.$inferSelect;
@@ -79,6 +80,28 @@ export function criarRepositorioPartidas(db: Banco) {
           eq(partidaParticipantes.partidaId, partidaId),
           eq(partidaParticipantes.discordId, discordId),
         ));
+    },
+
+    /**
+     * Partidas agendadas em que o usuário está inscrito (titular ou reserva)
+     * com horário dentro de [de, ate] — alimenta o aviso global do site.
+     */
+    async proximasDoUsuario(discordId: string, de: Date, ate: Date): Promise<PartidaAvisada[]> {
+      const linhas = await db
+        .select({
+          id: partidas.id, titulo: partidas.titulo, dataHora: partidas.dataHora,
+          tipo: partidaParticipantes.tipo,
+        })
+        .from(partidaParticipantes)
+        .innerJoin(partidas, eq(partidas.id, partidaParticipantes.partidaId))
+        .where(and(
+          eq(partidaParticipantes.discordId, discordId),
+          eq(partidas.status, 'agendada'),
+          gte(partidas.dataHora, de),
+          lte(partidas.dataHora, ate),
+        ))
+        .orderBy(asc(partidas.dataHora));
+      return linhas.map((l) => ({ ...l, dataHora: l.dataHora.toISOString() }));
     },
 
     /**
