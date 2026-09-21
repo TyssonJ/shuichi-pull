@@ -8,6 +8,7 @@ import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { iconeDoInscrito, spritePixelDe } from '@/lib/sprites-pixel';
 import { ocupamVaga } from '@/lib/vagas';
+import { formatarDataHoraBR, paraInputBrasilia, ROTULO_FUSO } from '@/lib/fuso';
 import { ROTULO_RESULTADO, ROTULO_STATUS } from '@/lib/rotulos-partida';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
@@ -22,17 +23,6 @@ import {
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
   salvarCapituloAction, removerCapituloAction,
 } from '../acoes';
-
-function paraDatetimeLocal(d: Date): string {
-  const pad = (n: number) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
-function formatarDataHora(d: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', {
-    weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
-  }).format(d);
-}
 
 export default async function PaginaPartida({ params }: { params: Promise<{ id: string }> }) {
   const { id: idTexto } = await params;
@@ -151,7 +141,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           <a href={`/u/${partida.hostDiscordId}/`} className="text-[#D6D6E0] hover:text-cyber-cyan hover:underline">
             {host?.discordNome ?? 'alguém'}
           </a>
-          {' '}· {formatarDataHora(partida.dataHora)}
+          {' '}· {formatarDataHoraBR(partida.dataHora)} <span className="text-dim/70">({ROTULO_FUSO})</span>
         </p>
         <span
           className={`mt-2 inline-block rounded-[2px] border px-1.5 py-0.5 font-mono text-[8px] tracking-[.1em] ${
@@ -288,7 +278,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           }))}
           inicial={{
             titulo: partida.titulo,
-            dataHora: paraDatetimeLocal(partida.dataHora),
+            dataHora: paraInputBrasilia(partida.dataHora),
             regras: partida.regras ?? '',
             capaUrl: partida.capaUrl ?? '',
             vagas: partida.vagas,

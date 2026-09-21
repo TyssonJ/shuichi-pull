@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { VAGAS_MAX, VAGAS_MIN, VAGAS_PADRAO } from '@/lib/vagas';
+import { ROTULO_FUSO } from '@/lib/fuso';
 
 export function FormularioPartida({
   inicial, aoSalvar, textoBotao,
@@ -49,7 +50,7 @@ export function FormularioPartida({
       </label>
 
       <label className="block">
-        <span className="mb-1 block font-mono text-[9px] tracking-[.14em] text-dim">DATA E HORA</span>
+        <span className="mb-1 block font-mono text-[9px] tracking-[.14em] text-dim">DATA E HORA ({ROTULO_FUSO.toUpperCase()})</span>
         <input
           type="datetime-local"
           value={dataHora}

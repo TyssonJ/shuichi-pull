@@ -3,11 +3,7 @@ import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { CartaoPartida } from '@/components/adm/CartaoPartida';
 import { cancelarPartidaAdminAction, transferirHostAction } from './acoes';
 
-function formatarDataHora(d: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
-  }).format(d);
-}
+import { formatarDataHoraBR } from '@/lib/fuso';
 
 export default async function AdmPartidas() {
   const todas = await repositorioPartidas.listarAbertas();
@@ -39,7 +35,7 @@ export default async function AdmPartidas() {
               partidaId={p.id}
               titulo={p.titulo}
               hostNome={hosts.get(p.hostDiscordId) ?? p.hostDiscordId}
-              dataHora={formatarDataHora(p.dataHora)}
+              dataHora={formatarDataHoraBR(p.dataHora)}
               status={p.status}
               totalParticipantes={totais.get(p.id) ?? 0}
               aoCancelar={cancelarPartidaAdminAction}

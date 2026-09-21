@@ -3,6 +3,8 @@ import { auth } from '@/auth';
 import { repositorioPartidas, type PartidaLinha } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
+import { agoraMs } from '@/lib/agora';
+import { formatarDataBR, formatarDataHoraBR } from '@/lib/fuso';
 import { iconeDoInscrito } from '@/lib/sprites-pixel';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { ocupamVaga, vagasRestantes } from '@/lib/vagas';
@@ -14,20 +16,6 @@ import { CartaoLobby, CartaoLobbyDestaque, type DadosCartaoLobby } from '@/compo
 export const metadata = { title: 'Partidas — Shuichi Pull' };
 
 const TRES_HORAS = 3 * 60 * 60 * 1000;
-
-/** A página é dinâmica: "agora" é o momento do pedido, de propósito — e a
- * regra de pureza do React não vê através de uma função de módulo. */
-const agoraMs = () => Date.now();
-
-function formatarDataHora(d: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', {
-    weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
-  }).format(d);
-}
-
-function formatarData(d: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' }).format(d);
-}
 
 function Painel({ valor, rotulo, cor }: { valor: string | number; rotulo: string; cor: string }) {
   return (
@@ -61,7 +49,7 @@ export default async function PaginaPartidas() {
       capaUrl: p.capaUrl,
       hostNome: host?.discordNome ?? 'alguém',
       dataHoraIso: p.dataHora.toISOString(),
-      dataHoraTexto: formatarDataHora(p.dataHora),
+      dataHoraTexto: `${formatarDataHoraBR(p.dataHora)} (Brasília)`,
       vagas: p.vagas,
       ocupadas: ocupamVaga(inscritos).length,
       reservas: inscritos.filter((i) => i.tipo === 'reserva').length,
@@ -178,7 +166,7 @@ export default async function PaginaPartidas() {
                     </span>
                   )}
                   <span className="ml-auto font-mono text-[11px] text-dim">
-                    {c.dados.ocupadas} jogadores · {formatarData(c.partida.dataHora)}
+                    {c.dados.ocupadas} jogadores · {formatarDataBR(c.partida.dataHora)}
                   </span>
                 </Link>
               </li>

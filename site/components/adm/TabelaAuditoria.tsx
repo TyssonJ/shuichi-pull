@@ -1,3 +1,5 @@
+import { FUSO_SITE } from '@/lib/fuso';
+
 type Linha = {
   id: number; autor: string; acao: string; alvo: string;
   valorAntigo: string | null; valorNovo: string | null; criadoEm: Date;
@@ -16,7 +18,7 @@ export function TabelaAuditoria({ linhas }: { linhas: Linha[] }) {
       <tbody>
         {linhas.map((l) => (
           <tr key={l.id}>
-            <td>{l.criadoEm.toLocaleString('pt-BR')}</td>
+            <td>{l.criadoEm.toLocaleString('pt-BR', { timeZone: FUSO_SITE })}</td>
             <td>{l.autor}</td>
             <td>{l.acao}</td>
             <td>{l.alvo}</td>

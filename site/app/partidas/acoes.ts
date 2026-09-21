@@ -7,6 +7,7 @@ import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliaco
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { ID_MONOKUMA } from '@/lib/monokuma';
+import { dateDeBrasilia } from '@/lib/fuso';
 import { podeEntrarComoTitular, validarVagas, VAGAS_PADRAO } from '@/lib/vagas';
 
 async function exigirSessao() {
@@ -26,7 +27,7 @@ export async function criarPartidaAction(
   const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
   if (usuario && !usuario.podeSerHost) throw new Error('Sua permissão de host foi revogada por um ADM.');
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
-  const dataHora = new Date(args.dataHora);
+  const dataHora = dateDeBrasilia(args.dataHora);
   if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
   const vagas = args.vagas ?? VAGAS_PADRAO;
   validarVagas(vagas);
@@ -91,7 +92,7 @@ export async function atualizarPartidaAction(
 ) {
   await exigirHost(partidaId);
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
-  const dataHora = new Date(args.dataHora);
+  const dataHora = dateDeBrasilia(args.dataHora);
   if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
   validarVagas(args.vagas);
 

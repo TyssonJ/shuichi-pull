@@ -4,11 +4,10 @@ import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { tituloPorPartidas } from '@/lib/titulos';
+import { formatarDataBR } from '@/lib/fuso';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 
-function formatarData(d: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(d);
-}
+const formatarData = (d: Date) => formatarDataBR(d, true);
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

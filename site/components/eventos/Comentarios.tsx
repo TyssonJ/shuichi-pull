@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FUSO_SITE } from '@/lib/fuso';
 
 export type ComentarioExibido = {
   id: number;
@@ -80,7 +81,7 @@ export function Comentarios({
                   </a>
                   <span className="font-mono text-[8px] text-dim">
                     {new Date(c.criadoEm).toLocaleString('pt-BR', {
-                      day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+                      timeZone: FUSO_SITE, day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
                     })}
                   </span>
                 </div>
