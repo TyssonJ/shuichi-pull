@@ -5,9 +5,11 @@ vi.mock('@/db/repositorios/administradores', () => ({
   repositorioAdms: { promoverAdm: vi.fn(), rebaixarAdm: vi.fn() },
 }));
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }));
+vi.mock('@/db/repositorios/auditoria', () => ({ repositorioAuditoria: { registrar: vi.fn() } }));
 
 import { exigirChefe } from '@/lib/adm/sessao';
 import { repositorioAdms } from '@/db/repositorios/administradores';
+import { repositorioAuditoria } from '@/db/repositorios/auditoria';
 import { promoverAdmAction, rebaixarAdmAction } from './acoes';
 
 describe('promoverAdmAction', () => {
@@ -26,6 +28,9 @@ describe('promoverAdmAction', () => {
     expect(repositorioAdms.promoverAdm).toHaveBeenCalledWith({
       discordId: '1', nome: 'Novo', papel: 'adm', promovidoPor: '9',
     });
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith({
+      autor: '9', acao: 'adm.promover', alvo: '1', valorAntigo: null, valorNovo: 'adm',
+    });
   });
 });
 
@@ -41,5 +46,8 @@ describe('rebaixarAdmAction', () => {
     vi.mocked(exigirChefe).mockResolvedValue({ discordId: '9', papel: 'chefe' });
     await rebaixarAdmAction('1');
     expect(repositorioAdms.rebaixarAdm).toHaveBeenCalledWith('1');
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith({
+      autor: '9', acao: 'adm.rebaixar', alvo: '1', valorAntigo: null, valorNovo: null,
+    });
   });
 });

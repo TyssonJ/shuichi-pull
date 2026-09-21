@@ -2,7 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 vi.mock('@/lib/adm/sessao', () => ({ sessaoAdm: vi.fn() }));
-vi.mock('next/navigation', () => ({ redirect: vi.fn(() => { throw new Error('REDIRECT'); }) }));
+vi.mock('next/navigation', () => ({
+  redirect: vi.fn(() => { throw new Error('REDIRECT'); }),
+  usePathname: vi.fn(() => '/adm/'),
+}));
 import { sessaoAdm } from '@/lib/adm/sessao';
 import { redirect } from 'next/navigation';
 import AdmLayout from './layout';

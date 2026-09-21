@@ -1,17 +1,18 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { usePathname } from 'next/navigation';
 import { BarraLateral } from './BarraLateral';
 
+vi.mock('next/navigation', () => ({ usePathname: vi.fn(() => '/adm/') }));
+
 describe('BarraLateral', () => {
+  beforeEach(() => vi.mocked(usePathname).mockReturnValue('/adm/'));
+
   it('mostra os itens comuns para um adm', () => {
     render(<BarraLateral papel="adm" />);
-    expect(screen.getByRole('link', { name: 'Eventos' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Códigos' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Itens' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Personagens' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Mapa' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Mecânicas' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Textos' })).toBeInTheDocument();
+    for (const nome of ['Painel', 'Partidas', 'Usuários', 'Eventos', 'Códigos', 'Itens', 'Personagens', 'Mapa', 'Mecânicas', 'Textos', 'Configurações']) {
+      expect(screen.getByRole('link', { name: nome })).toBeInTheDocument();
+    }
   });
 
   it('esconde ADMs e Auditoria para quem não é chefe', () => {
@@ -24,5 +25,24 @@ describe('BarraLateral', () => {
     render(<BarraLateral papel="chefe" />);
     expect(screen.getByRole('link', { name: 'ADMs' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Auditoria' })).toBeInTheDocument();
+  });
+
+  it('marca a página atual, com ou sem barra final na URL', () => {
+    vi.mocked(usePathname).mockReturnValue('/adm/itens/');
+    render(<BarraLateral papel="adm" />);
+    expect(screen.getByRole('link', { name: 'Itens' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Painel' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('o Painel só acende na raiz, não em toda página do admin', () => {
+    vi.mocked(usePathname).mockReturnValue('/adm');
+    render(<BarraLateral papel="adm" />);
+    expect(screen.getByRole('link', { name: 'Painel' })).toHaveAttribute('aria-current', 'page');
+  });
+
+  it('uma subpágina acende a seção dela', () => {
+    vi.mocked(usePathname).mockReturnValue('/adm/partidas/12/');
+    render(<BarraLateral papel="adm" />);
+    expect(screen.getByRole('link', { name: 'Partidas' })).toHaveAttribute('aria-current', 'page');
   });
 });

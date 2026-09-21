@@ -5,9 +5,9 @@ import { useState } from 'react';
 type StatusUuid = 'pendente' | 'aprovado' | 'banido';
 
 const CORES_STATUS: Record<StatusUuid, string> = {
-  pendente: 'border-amber-500 text-amber-400',
-  aprovado: 'border-green-500 text-green-400',
-  banido: 'border-red-500 text-red-400',
+  pendente: 'border-amber text-amber',
+  aprovado: 'border-alter-green text-alter-green',
+  banido: 'border-execution-pink text-execution-pink',
 };
 
 export function CartaoUsuario({
@@ -49,7 +49,7 @@ export function CartaoUsuario({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded border border-neutral-800 bg-neutral-900 p-3">
+    <div className="clip-dossier-card flex flex-wrap items-center gap-3 border-2 border-neutral-800 bg-[#0A0D0A] p-3">
       {discordAvatar ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={discordAvatar} alt="" className="h-10 w-10 rounded-full" />
@@ -71,7 +71,7 @@ export function CartaoUsuario({
             type="button"
             disabled={carregando}
             onClick={() => mudarStatus(s)}
-            className={`rounded border px-2 py-1 text-xs uppercase tracking-wide disabled:opacity-50 ${
+            className={`border px-2 py-1 font-mono text-[10px] uppercase tracking-[.12em] disabled:opacity-50 ${
               status === s ? CORES_STATUS[s] : 'border-neutral-700 text-neutral-500 hover:border-neutral-500'
             }`}
           >

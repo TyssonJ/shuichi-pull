@@ -5,10 +5,12 @@ vi.mock('@/db/repositorios/eventos', () => ({
   repositorioEventos: { criar: vi.fn(), atualizar: vi.fn(), excluir: vi.fn(), buscar: vi.fn() },
 }));
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }));
+vi.mock('@/db/repositorios/auditoria', () => ({ repositorioAuditoria: { registrar: vi.fn() } }));
 
 import { exigirAdm } from '@/lib/adm/sessao';
 import { repositorioEventos } from '@/db/repositorios/eventos';
 import { revalidatePath } from 'next/cache';
+import { repositorioAuditoria } from '@/db/repositorios/auditoria';
 import { salvarEvento, excluirEvento } from './acoes';
 
 const eventoValido = {
@@ -37,6 +39,9 @@ describe('salvarEvento', () => {
     await salvarEvento(eventoValido);
 
     expect(repositorioEventos.criar).toHaveBeenCalledWith(eventoValido);
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith(
+      expect.objectContaining({ autor: '1', acao: 'evento.criar', alvo: 'evento-teste' }),
+    );
     expect(repositorioEventos.atualizar).not.toHaveBeenCalled();
     expect(revalidatePath).toHaveBeenCalledWith('/eventos');
     expect(revalidatePath).toHaveBeenCalledWith('/eventos/evento-teste');
@@ -64,6 +69,9 @@ describe('excluirEvento', () => {
     await excluirEvento('evento-teste');
 
     expect(repositorioEventos.excluir).toHaveBeenCalledWith('evento-teste');
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith(
+      expect.objectContaining({ acao: 'evento.excluir', alvo: 'evento-teste' }),
+    );
     expect(revalidatePath).toHaveBeenCalledWith('/eventos');
   });
 });

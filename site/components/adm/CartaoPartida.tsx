@@ -49,15 +49,15 @@ export function CartaoPartida({
   }
 
   return (
-    <div className="rounded border border-neutral-800 bg-neutral-900 p-3">
+    <div className="clip-dossier-card border-2 border-neutral-800 bg-[#0A0D0A] p-3">
       <div className="flex flex-wrap items-center gap-2">
         <a href={`/partidas/${partidaId}/`} target="_blank" rel="noreferrer" className="font-bold hover:underline">
           {titulo}
         </a>
-        <span className={`rounded px-1.5 py-0.5 text-[10px] uppercase ${
-          status === 'agendada' ? 'bg-green-900 text-green-300'
-          : status === 'finalizada' ? 'bg-cyan-900 text-cyan-300'
-          : 'bg-red-900 text-red-300'
+        <span className={`px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[.1em] ${
+          status === 'agendada' ? 'border border-alter-green text-alter-green'
+          : status === 'finalizada' ? 'border border-cyber-cyan text-cyber-cyan'
+          : 'border border-execution-pink text-execution-pink'
         }`}>
           {ROTULO_STATUS[status]}
         </span>

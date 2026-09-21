@@ -7,9 +7,10 @@ export default async function AdmLayout({ children }: { children: React.ReactNod
   if (!sessao) redirect('/sem-acesso');
 
   return (
-    <div className="flex min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="relative flex min-h-screen flex-col bg-[#050805] text-neutral-100 md:flex-row">
+      <div aria-hidden className="crt-lines pointer-events-none fixed inset-0 z-0 opacity-[.1]" />
       <BarraLateral papel={sessao.papel} />
-      <main className="flex-1 p-6">{children}</main>
+      <main className="relative z-10 min-w-0 flex-1 p-4 md:p-6">{children}</main>
     </div>
   );
 }

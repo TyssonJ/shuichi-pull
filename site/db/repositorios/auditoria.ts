@@ -1,4 +1,4 @@
-import { eq, like, and, desc } from 'drizzle-orm';
+import { eq, like, and, desc, gte } from 'drizzle-orm';
 import type { db as DbClient } from '../client';
 import { auditoria } from '../schema';
 
@@ -15,13 +15,20 @@ export function criarRepositorioAuditoria(db: Banco) {
       await db.insert(auditoria).values(args);
     },
 
-    async listarAuditoria(filtros: { autor?: string; colecao?: string } = {}): Promise<AuditoriaLinha[]> {
+    /** `desde`/`limite` existem pro painel: o gráfico de 7 dias e o feed de
+     * 10 linhas não precisam carregar a tabela inteira. */
+    async listarAuditoria(
+      filtros: { autor?: string; colecao?: string; desde?: Date; limite?: number } = {},
+    ): Promise<AuditoriaLinha[]> {
       const condicoes = [];
       if (filtros.autor) condicoes.push(eq(auditoria.autor, filtros.autor));
       if (filtros.colecao) condicoes.push(like(auditoria.alvo, `${filtros.colecao}/%`));
+      if (filtros.desde) condicoes.push(gte(auditoria.criadoEm, filtros.desde));
 
-      const consulta = db.select().from(auditoria).orderBy(desc(auditoria.criadoEm));
-      return condicoes.length > 0 ? consulta.where(and(...condicoes)) : consulta;
+      const consulta = db.select().from(auditoria)
+        .where(condicoes.length > 0 ? and(...condicoes) : undefined)
+        .orderBy(desc(auditoria.criadoEm));
+      return filtros.limite ? await consulta.limit(filtros.limite) : await consulta;
     },
   };
 }

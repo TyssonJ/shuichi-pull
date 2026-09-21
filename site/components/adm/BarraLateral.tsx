@@ -1,9 +1,17 @@
-import Link from 'next/link';
+'use client';
 
-const ITENS_COMUNS = [
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+type Item = { rotulo: string; url: string };
+
+const OPERACAO: Item[] = [
   { rotulo: 'Painel', url: '/adm' },
   { rotulo: 'Partidas', url: '/adm/partidas' },
   { rotulo: 'Usuários', url: '/adm/usuarios' },
+];
+
+const CONTEUDO: Item[] = [
   { rotulo: 'Eventos', url: '/adm/eventos' },
   { rotulo: 'Códigos', url: '/adm/codigos' },
   { rotulo: 'Itens', url: '/adm/itens' },
@@ -11,23 +19,73 @@ const ITENS_COMUNS = [
   { rotulo: 'Mapa', url: '/adm/mapa' },
   { rotulo: 'Mecânicas', url: '/adm/mecanicas' },
   { rotulo: 'Textos', url: '/adm/faq' },
+];
+
+const SISTEMA: Item[] = [
   { rotulo: 'Configurações', url: '/adm/configuracoes' },
 ];
 
-const ITENS_CHEFE = [
+const SISTEMA_CHEFE: Item[] = [
   { rotulo: 'ADMs', url: '/adm/administradores' },
   { rotulo: 'Auditoria', url: '/adm/auditoria' },
 ];
 
-export function BarraLateral({ papel }: { papel: 'adm' | 'chefe' }) {
-  const itens = papel === 'chefe' ? [...ITENS_COMUNS, ...ITENS_CHEFE] : ITENS_COMUNS;
+function semBarraFinal(caminho: string): string {
+  return caminho.length > 1 ? caminho.replace(/\/+$/, '') : caminho;
+}
+
+/** "/adm" só é ativo na raiz — senão acenderia junto com toda página do painel. */
+function estaAtivo(caminho: string, url: string): boolean {
+  const atual = semBarraFinal(caminho);
+  return url === '/adm' ? atual === '/adm' : atual === url || atual.startsWith(`${url}/`);
+}
+
+function Grupo({ titulo, itens, caminho }: { titulo: string; itens: Item[]; caminho: string }) {
   return (
-    <nav aria-label="Navegação do painel" className="flex flex-col gap-1 p-3">
-      {itens.map((i) => (
-        <Link key={i.url} href={i.url} className="rounded px-2 py-1.5 text-sm hover:bg-neutral-800">
-          {i.rotulo}
-        </Link>
-      ))}
+    <div>
+      <p className="mb-1 px-2 font-mono text-[9px] tracking-[.22em] text-alter-green/60">{titulo}</p>
+      <ul className="flex flex-col gap-0.5">
+        {itens.map((i) => {
+          const ativo = estaAtivo(caminho, i.url);
+          return (
+            <li key={i.url}>
+              <Link
+                href={i.url}
+                aria-current={ativo ? 'page' : undefined}
+                className={`block border-l-2 px-2.5 py-1.5 text-sm transition-colors ${
+                  ativo
+                    ? 'border-execution-pink bg-execution-pink/10 font-bold text-execution-pink'
+                    : 'border-transparent text-neutral-300 hover:border-alter-green hover:bg-alter-green/10 hover:text-alter-green'
+                }`}
+              >
+                {i.rotulo}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+export function BarraLateral({ papel }: { papel: 'adm' | 'chefe' }) {
+  const caminho = usePathname() ?? '';
+  const sistema = papel === 'chefe' ? [...SISTEMA, ...SISTEMA_CHEFE] : SISTEMA;
+
+  return (
+    <nav
+      aria-label="Navegação do painel"
+      className="relative z-10 flex flex-col gap-4 overflow-y-auto border-b border-[#0F5A2E] bg-[#03100A] p-3 md:sticky md:top-0 md:h-screen md:w-56 md:shrink-0 md:border-b-0 md:border-r"
+    >
+      <div>
+        <p className="font-mono text-[10px] font-bold tracking-[.2em] text-alter-green">[ ADMIN_CONSOLE ]</p>
+        <p className="mt-0.5 font-mono text-[9px] tracking-[.16em] text-execution-pink">
+          ACESSO: {papel.toUpperCase()}
+        </p>
+      </div>
+      <Grupo titulo="OPERAÇÃO" itens={OPERACAO} caminho={caminho} />
+      <Grupo titulo="CONTEÚDO" itens={CONTEUDO} caminho={caminho} />
+      <Grupo titulo="SISTEMA" itens={sistema} caminho={caminho} />
     </nav>
   );
 }

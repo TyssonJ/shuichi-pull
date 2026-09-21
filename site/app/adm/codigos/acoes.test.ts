@@ -5,10 +5,12 @@ vi.mock('@/db/repositorios/codigos', () => ({
   repositorioCodigos: { criar: vi.fn(), atualizar: vi.fn(), excluir: vi.fn(), buscar: vi.fn() },
 }));
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }));
+vi.mock('@/db/repositorios/auditoria', () => ({ repositorioAuditoria: { registrar: vi.fn() } }));
 
 import { exigirAdm } from '@/lib/adm/sessao';
 import { repositorioCodigos } from '@/db/repositorios/codigos';
 import { revalidatePath } from 'next/cache';
+import { repositorioAuditoria } from '@/db/repositorios/auditoria';
 import { salvarCodigo, excluirCodigo } from './acoes';
 
 const codigoValido = {
@@ -37,6 +39,9 @@ describe('salvarCodigo', () => {
     await salvarCodigo(codigoValido);
 
     expect(repositorioCodigos.criar).toHaveBeenCalledWith(codigoValido);
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith(
+      expect.objectContaining({ autor: '1', acao: 'codigo.criar', alvo: 'BEMVINDO2026' }),
+    );
     expect(revalidatePath).toHaveBeenCalledWith('/codigos');
   });
 
@@ -60,6 +65,9 @@ describe('excluirCodigo', () => {
     await excluirCodigo('BEMVINDO2026');
 
     expect(repositorioCodigos.excluir).toHaveBeenCalledWith('BEMVINDO2026');
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith(
+      expect.objectContaining({ acao: 'codigo.excluir', alvo: 'BEMVINDO2026' }),
+    );
     expect(revalidatePath).toHaveBeenCalledWith('/codigos');
   });
 });

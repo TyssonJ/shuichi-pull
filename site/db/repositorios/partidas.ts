@@ -23,6 +23,11 @@ export function criarRepositorioPartidas(db: Banco) {
         .orderBy(asc(partidas.dataHora));
     },
 
+    /** Inclui as canceladas — só o painel do ADM precisa vê-las. */
+    async listarTodas(): Promise<PartidaLinha[]> {
+      return db.select().from(partidas).orderBy(desc(partidas.dataHora));
+    },
+
     async buscar(id: number): Promise<PartidaLinha | null> {
       const linhas = await db.select().from(partidas).where(eq(partidas.id, id));
       return linhas[0] ?? null;
