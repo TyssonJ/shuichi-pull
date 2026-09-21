@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { exigirAdm } from '@/lib/adm/sessao';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
+import { emitirEvento } from '@/lib/junko/servico';
 
 export async function definirStatusUuidAction(discordId: string, status: 'pendente' | 'aprovado' | 'banido') {
   const sessao = await exigirAdm();
@@ -13,6 +14,7 @@ export async function definirStatusUuidAction(discordId: string, status: 'penden
     valorAntigo: null, valorNovo: status,
   });
   revalidatePath('/adm/usuarios');
+  emitirEvento({ tipo: 'uid.status', discordId, status });
 }
 
 export async function definirPodeSerHostAction(discordId: string, valor: boolean) {
@@ -23,4 +25,5 @@ export async function definirPodeSerHostAction(discordId: string, valor: boolean
     valorAntigo: null, valorNovo: String(valor),
   });
   revalidatePath('/adm/usuarios');
+  emitirEvento({ tipo: 'host.permissao', discordId, podeSerHost: valor });
 }

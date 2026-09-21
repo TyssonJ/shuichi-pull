@@ -6,13 +6,16 @@ import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
-import { ID_MONOKUMA } from '@/lib/monokuma';
 import { dateDeBrasilia } from '@/lib/fuso';
-import { podeEntrarComoTitular, validarVagas, VAGAS_PADRAO } from '@/lib/vagas';
+import { validarVagas, VAGAS_PADRAO } from '@/lib/vagas';
+import { inscreverNaPartida } from '@/lib/inscricao-partida';
+import { emitirEvento } from '@/lib/junko/servico';
+import { resumoDaPartida } from '@/lib/junko/eventos';
+import { executar, ErroDeNegocio } from '@/lib/acao';
 
 async function exigirSessao() {
   const sessao = await auth();
-  if (!sessao?.user?.discordId) throw new Error('Entra com o Discord primeiro.');
+  if (!sessao?.user?.discordId) throw new ErroDeNegocio('Entra com o Discord primeiro.');
   return sessao;
 }
 
@@ -20,15 +23,15 @@ async function exigirSessao() {
  * fora de try/catch, e o formulário (compartilhado com o de editar) sempre
  * chama `aoSalvar` dentro de um try/catch pra mostrar erro de validação.
  * Quem cria navega pro id depois, no cliente. */
-export async function criarPartidaAction(
+async function criarPartidaAction_(
   args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number },
 ): Promise<number> {
   const sessao = await exigirSessao();
   const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
-  if (usuario && !usuario.podeSerHost) throw new Error('Sua permissão de host foi revogada por um ADM.');
-  if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
+  if (usuario && !usuario.podeSerHost) throw new ErroDeNegocio('Sua permissão de host foi revogada por um ADM.');
+  if (!args.titulo.trim()) throw new ErroDeNegocio('Dá um título pra partida.');
   const dataHora = dateDeBrasilia(args.dataHora);
-  if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
+  if (Number.isNaN(dataHora.getTime())) throw new ErroDeNegocio('Data/hora inválida.');
   const vagas = args.vagas ?? VAGAS_PADRAO;
   validarVagas(vagas);
 
@@ -41,32 +44,23 @@ export async function criarPartidaAction(
     vagas,
   });
   revalidatePath('/partidas');
+  emitirEvento({
+    tipo: 'partida.criada',
+    partida: resumoDaPartida({ id, titulo: args.titulo.trim(), hostDiscordId: sessao.user.discordId, dataHora, vagas }),
+  });
   return id;
 }
 
-export async function entrarPartidaAction(
+async function entrarPartidaAction_(
   partidaId: number, personagemId: string | null, tipo: 'participante' | 'reserva' = 'participante',
 ) {
   const sessao = await exigirSessao();
   const discordId = sessao.user.discordId;
 
-  const partida = await repositorioPartidas.buscar(partidaId);
-  if (!partida) throw new Error('Partida não existe mais.');
-  if (partida.status !== 'agendada') throw new Error('Essa partida não está mais aceitando inscrição.');
-  // A trava do Monokuma estava só na interface: quem chamasse a action direto escolhia.
-  if (personagemId === ID_MONOKUMA && partida.hostDiscordId !== discordId) {
-    throw new Error('Só o host da partida pode ser o Monokuma.');
-  }
-  if (tipo === 'participante') {
-    const inscritos = await repositorioPartidas.participantes(partidaId);
-    if (!podeEntrarComoTitular(inscritos, partida.vagas, discordId, personagemId)) {
-      throw new Error('As vagas de titular acabaram — entre como reserva.');
-    }
-  }
-
-  await repositorioPartidas.entrar(partidaId, discordId, personagemId, tipo);
+  await inscreverNaPartida({ partidaId, discordId, personagemId, tipo });
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
+  emitirEvento({ tipo: 'inscricao.entrou', partidaId, discordId, papel: tipo, personagemId });
 }
 
 export async function sairPartidaAction(partidaId: number) {
@@ -74,26 +68,27 @@ export async function sairPartidaAction(partidaId: number) {
   await repositorioPartidas.sair(partidaId, sessao.user.discordId);
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
+  emitirEvento({ tipo: 'inscricao.saiu', partidaId, discordId: sessao.user.discordId });
 }
 
 async function exigirHost(partidaId: number) {
   const sessao = await exigirSessao();
   const partida = await repositorioPartidas.buscar(partidaId);
-  if (!partida) throw new Error('Partida não existe mais.');
+  if (!partida) throw new ErroDeNegocio('Partida não existe mais.');
   if (partida.hostDiscordId !== sessao.user.discordId) {
-    throw new Error('Só o host desta partida pode fazer isso.');
+    throw new ErroDeNegocio('Só o host desta partida pode fazer isso.');
   }
   return partida;
 }
 
-export async function atualizarPartidaAction(
+async function atualizarPartidaAction_(
   partidaId: number,
   args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number },
 ) {
   await exigirHost(partidaId);
-  if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
+  if (!args.titulo.trim()) throw new ErroDeNegocio('Dá um título pra partida.');
   const dataHora = dateDeBrasilia(args.dataHora);
-  if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
+  if (Number.isNaN(dataHora.getTime())) throw new ErroDeNegocio('Data/hora inválida.');
   validarVagas(args.vagas);
 
   await repositorioPartidas.atualizar(partidaId, {
@@ -111,10 +106,16 @@ export async function mudarStatusPartidaAction(
   partidaId: number,
   status: 'agendada' | 'finalizada' | 'cancelada',
 ) {
-  await exigirHost(partidaId);
+  const partida = await exigirHost(partidaId);
   await repositorioPartidas.mudarStatus(partidaId, status);
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
+  if (status === 'finalizada' || status === 'cancelada') {
+    emitirEvento({
+      tipo: status === 'finalizada' ? 'partida.finalizada' : 'partida.cancelada',
+      partida: resumoDaPartida(partida),
+    });
+  }
 }
 
 export async function salvarRelatorioAction(partidaId: number, dados: {
@@ -140,7 +141,7 @@ export async function salvarCapituloAction(partidaId: number, dados: {
   afk: string[];
 }) {
   await exigirHost(partidaId);
-  if (!Number.isInteger(dados.numero) || dados.numero < 1) throw new Error('Número de capítulo inválido.');
+  if (!Number.isInteger(dados.numero) || dados.numero < 1) throw new ErroDeNegocio('Número de capítulo inválido.');
   await repositorioPartidaCapitulos.salvar({ partidaId, ...dados });
   revalidatePath(`/partidas/${partidaId}`);
 }
@@ -156,17 +157,17 @@ export async function avaliarParticipanteAction(
 ) {
   const sessao = await exigirSessao();
   const avaliadorDiscordId = sessao.user.discordId;
-  if (avaliadoDiscordId === avaliadorDiscordId) throw new Error('Não dá pra avaliar a si mesmo.');
+  if (avaliadoDiscordId === avaliadorDiscordId) throw new ErroDeNegocio('Não dá pra avaliar a si mesmo.');
 
   const partida = await repositorioPartidas.buscar(partidaId);
-  if (!partida) throw new Error('Partida não existe mais.');
-  if (partida.status !== 'finalizada') throw new Error('Só dá pra avaliar depois que a partida for finalizada.');
+  if (!partida) throw new ErroDeNegocio('Partida não existe mais.');
+  if (partida.status !== 'finalizada') throw new ErroDeNegocio('Só dá pra avaliar depois que a partida for finalizada.');
 
   const participantes = await repositorioPartidas.participantes(partidaId);
   const souParticipante = participantes.some((p) => p.discordId === avaliadorDiscordId);
-  if (!souParticipante) throw new Error('Só quem participou da partida pode avaliar.');
+  if (!souParticipante) throw new ErroDeNegocio('Só quem participou da partida pode avaliar.');
   const alvoParticipou = participantes.some((p) => p.discordId === avaliadoDiscordId);
-  if (!alvoParticipou) throw new Error('Só dá pra avaliar quem participou da partida.');
+  if (!alvoParticipou) throw new ErroDeNegocio('Só dá pra avaliar quem participou da partida.');
 
   await repositorioPartidaAvaliacoes.avaliar({
     partidaId, avaliadorDiscordId, avaliadoDiscordId, tipo, comentario: comentario?.trim() || null,
@@ -178,4 +179,16 @@ export async function removerAvaliacaoAction(partidaId: number, avaliadoDiscordI
   const sessao = await exigirSessao();
   await repositorioPartidaAvaliacoes.remover(partidaId, sessao.user.discordId, avaliadoDiscordId);
   revalidatePath(`/partidas/${partidaId}`);
+}
+
+export async function criarPartidaAction(...args: Parameters<typeof criarPartidaAction_>) {
+  return executar(() => criarPartidaAction_(...args));
+}
+
+export async function entrarPartidaAction(...args: Parameters<typeof entrarPartidaAction_>) {
+  return executar(() => entrarPartidaAction_(...args));
+}
+
+export async function atualizarPartidaAction(...args: Parameters<typeof atualizarPartidaAction_>) {
+  return executar(() => atualizarPartidaAction_(...args));
 }

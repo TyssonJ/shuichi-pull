@@ -4,9 +4,12 @@ import { revalidatePath } from 'next/cache';
 import { exigirAdm } from '@/lib/adm/sessao';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
+import { emitirEvento } from '@/lib/junko/servico';
+import { resumoDaPartida } from '@/lib/junko/eventos';
 
 export async function cancelarPartidaAdminAction(partidaId: number) {
   const sessao = await exigirAdm();
+  const partida = await repositorioPartidas.buscar(partidaId);
   await repositorioPartidas.mudarStatus(partidaId, 'cancelada');
   await repositorioAuditoria.registrar({
     autor: sessao.discordId, acao: 'partida.cancelar_adm', alvo: String(partidaId),
@@ -15,6 +18,7 @@ export async function cancelarPartidaAdminAction(partidaId: number) {
   revalidatePath('/adm/partidas');
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
+  if (partida) emitirEvento({ tipo: 'partida.cancelada', partida: resumoDaPartida(partida) });
 }
 
 export async function transferirHostAction(partidaId: number, novoHostDiscordId: string) {

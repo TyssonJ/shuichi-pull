@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ID_MONOKUMA, SPRITE_MONOKUMA } from '@/lib/monokuma';
+import { desembrulhar, type Acao, mensagemDeErro } from '@/lib/acao-cliente';
 
 /** `pixel` é o sprite 8-bit; sem ele (Ryoko Otonashi) cai no retrato `sprite`. */
 type Personagem = { id: string; nome: string; sprite: string; pixel: string | null };
@@ -15,7 +16,7 @@ export function EntrarPartida({
   tipoAtual?: Tipo;
   personagens: Personagem[];
   souHost?: boolean;
-  aoEntrar: (partidaId: number, personagemId: string | null, tipo: Tipo) => Promise<void>;
+  aoEntrar: (partidaId: number, personagemId: string | null, tipo: Tipo) => Acao;
   aoSair: (partidaId: number) => Promise<void>;
 }) {
   const jaEntrou = personagemAtual !== undefined && personagemAtual !== null;
@@ -36,9 +37,9 @@ export function EntrarPartida({
     setErro(null);
     setCarregando(true);
     try {
-      await aoEntrar(partidaId, personagemId || null, tipo);
+      await desembrulhar(aoEntrar(partidaId, personagemId || null, tipo));
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu certo. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu certo. Tenta de novo?'));
     } finally {
       setCarregando(false);
     }
@@ -51,7 +52,7 @@ export function EntrarPartida({
       await aoSair(partidaId);
       setPersonagemId('');
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu certo. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu certo. Tenta de novo?'));
     } finally {
       setCarregando(false);
     }

@@ -232,7 +232,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
       {reservas.length > 0 && (
         <section className="mb-6">
           <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-amber">
-            RESERVAS ({reservas.length}) — entram se um titular cair
+            RESERVAS ({reservas.length})
           </h2>
           <ul className="space-y-2">
             {reservas.map((p) => linhaInscrito(p, 'text-amber', 'border-amber/70'))}

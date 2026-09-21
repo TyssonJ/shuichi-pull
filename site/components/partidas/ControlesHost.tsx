@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormularioPartida } from './FormularioPartida';
 import { RelatorioPartida } from './RelatorioPartida';
+import type { Acao } from '@/lib/acao-cliente';
 
 type Resultado = 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia';
 
@@ -14,7 +15,7 @@ export function ControlesHost({
   status: 'agendada' | 'finalizada' | 'cancelada';
   participantes: { discordId: string; nome: string }[];
   relatorioInicial: { capitulo: string; blackened: string; mvpDiscordIds: string[]; resultado: Resultado | null };
-  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Promise<void>;
+  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Acao;
   aoMudarStatus: (partidaId: number, status: 'agendada' | 'finalizada' | 'cancelada') => Promise<void>;
   aoSalvarRelatorio: (partidaId: number, dados: {
     capitulo: string | null; blackened: string | null; mvpDiscordIds: string[]; resultado: Resultado | null;

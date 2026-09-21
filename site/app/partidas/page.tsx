@@ -85,7 +85,7 @@ export default async function PaginaPartidas() {
             </h1>
             <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-[#9BE8B5]">
               Escolha a sala, o seu personagem em 8-bit e entre — como titular, reserva ou numa
-              vaga genérica. O host conduz como Monokuma.
+              vaga genérica.
             </p>
           </div>
 

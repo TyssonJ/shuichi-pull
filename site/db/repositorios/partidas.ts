@@ -28,6 +28,14 @@ export function criarRepositorioPartidas(db: Banco) {
       return db.select().from(partidas).orderBy(desc(partidas.dataHora));
     },
 
+    /** Partidas agendadas a partir de `de`, da mais próxima pra mais distante. */
+    async proximasAgendadas(de: Date, limite: number): Promise<PartidaLinha[]> {
+      return db.select().from(partidas)
+        .where(and(eq(partidas.status, 'agendada'), gte(partidas.dataHora, de)))
+        .orderBy(asc(partidas.dataHora))
+        .limit(limite);
+    },
+
     async buscar(id: number): Promise<PartidaLinha | null> {
       const linhas = await db.select().from(partidas).where(eq(partidas.id, id));
       return linhas[0] ?? null;

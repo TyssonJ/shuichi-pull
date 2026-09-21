@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import { VAGAS_MAX, VAGAS_MIN, VAGAS_PADRAO } from '@/lib/vagas';
 import { ROTULO_FUSO } from '@/lib/fuso';
+import { desembrulhar, type Acao, mensagemDeErro } from '@/lib/acao-cliente';
 
 export function FormularioPartida({
   inicial, aoSalvar, textoBotao,
 }: {
   inicial?: { titulo: string; dataHora: string; regras: string; capaUrl: string; vagas: number };
-  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Promise<void>;
+  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Acao;
   textoBotao: string;
 }) {
   const [titulo, setTitulo] = useState(inicial?.titulo ?? '');
@@ -24,12 +25,12 @@ export function FormularioPartida({
     setErro(null);
     setSalvando(true);
     try {
-      await aoSalvar({
+      await desembrulhar(aoSalvar({
         titulo, dataHora, regras: regras.trim() || null, capaUrl: capaUrl.trim() || null,
         vagas: Number(vagas),
-      });
+      }));
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
       setSalvando(false);
     }
   }
@@ -74,7 +75,7 @@ export function FormularioPartida({
           className="w-24 rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[12px] text-[#D6D6E0] focus:border-alter-green focus:outline-none"
         />
         <span className="mt-1 block text-[10px] text-dim">
-          Reserva e o host de Monokuma não ocupam vaga. O Shinri Trial padrão tem 16.
+          Reservas não ocupam vaga (nem o host, se ele quiser jogar de Monokuma). O Shinri Trial padrão tem 16.
         </span>
       </label>
 

@@ -5,14 +5,20 @@ import { auth } from '@/auth';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { validarBio, validarBanner } from '@/lib/perfil-visual';
+import { emitirEvento } from '@/lib/junko/servico';
 import { executar, ErroDeNegocio } from '@/lib/acao';
 
 export async function atualizarPerfilAction(dados: { uuidGmod: string | null; mains: string[] }) {
   const sessao = await auth();
   if (!sessao?.user?.discordId) throw new ErroDeNegocio('Entra com o Discord primeiro.');
 
+  const antes = await repositorioUsuarios.buscar(sessao.user.discordId);
   await repositorioUsuarios.atualizarPerfil(sessao.user.discordId, dados);
   revalidatePath('/conta');
+  // UID novo volta a "pendente": o bot pode chamar a moderação no Discord.
+  if (dados.uuidGmod && dados.uuidGmod !== antes?.uuidGmod) {
+    emitirEvento({ tipo: 'uid.enviado', discordId: sessao.user.discordId, uid: dados.uuidGmod });
+  }
 }
 
 /** Descrição e banner do perfil público. Quem decide o que vale é o

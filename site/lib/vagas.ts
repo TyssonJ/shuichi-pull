@@ -1,4 +1,5 @@
 import { ID_MONOKUMA } from './monokuma';
+import { ErroDeNegocio } from './acao';
 
 export const VAGAS_PADRAO = 16;
 export const VAGAS_MIN = 2;
@@ -34,6 +35,6 @@ export function podeEntrarComoTitular(
 
 export function validarVagas(vagas: number): void {
   if (!Number.isInteger(vagas) || vagas < VAGAS_MIN || vagas > VAGAS_MAX) {
-    throw new Error(`Vagas precisa ser um número inteiro entre ${VAGAS_MIN} e ${VAGAS_MAX}.`);
+    throw new ErroDeNegocio(`Vagas precisa ser um número inteiro entre ${VAGAS_MIN} e ${VAGAS_MAX}.`);
   }
 }
