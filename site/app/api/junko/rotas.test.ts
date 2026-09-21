@@ -95,7 +95,7 @@ describe('GET /status', () => {
 });
 
 describe('GET /partidas', () => {
-  it('lista as próximas com vagas e inscritos, sem contar reserva nem Monokuma como vaga', async () => {
+  it('lista as próximas com vagas e inscritos: o Monokuma conta como vaga, a reserva não', async () => {
     vi.mocked(repositorioPartidas.proximasAgendadas).mockResolvedValue([partida] as never);
     vi.mocked(repositorioPartidas.participantes).mockResolvedValue([
       { discordId: 'a', tipo: 'participante', personagemId: 'shuichi-saihara' },
@@ -107,7 +107,7 @@ describe('GET /partidas', () => {
 
     expect(corpo.partidas).toHaveLength(1);
     expect(corpo.partidas[0]).toMatchObject({
-      id: 5, vagas: 2, ocupadas: 1, reservas: 1, url: 'https://shuichipull.vercel.app/partidas/5/',
+      id: 5, vagas: 2, ocupadas: 2, reservas: 1, url: 'https://shuichipull.vercel.app/partidas/5/',
     });
     expect(corpo.partidas[0].inscritos).toHaveLength(3);
     expect(corpo.emAndamento).toEqual([]);

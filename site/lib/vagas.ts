@@ -1,19 +1,23 @@
-import { ID_MONOKUMA } from './monokuma';
 import { ErroDeNegocio } from './acao';
 
 export const VAGAS_PADRAO = 16;
 export const VAGAS_MIN = 2;
-export const VAGAS_MAX = 40;
+/** Máximo de vagas de titular (o Monokuma, quando é o host, ocupa uma delas). */
+export const VAGAS_MAX = 20;
 
 type Inscrito = { discordId: string; personagemId: string | null; tipo: 'participante' | 'reserva' };
 
 /**
- * Só participante titular ocupa vaga. Reserva não ocupa (é a fila pra quando
- * alguém cai), e o host jogando de Monokuma também não: ele conduz a
- * partida, não é um dos estudantes.
+ * Todo titular ocupa vaga, inclusive o host jogando de Monokuma. Reserva não
+ * ocupa: é a fila pra quando alguém cai, e não conta como participante.
  */
 export function ocupamVaga(inscritos: Inscrito[]): Inscrito[] {
-  return inscritos.filter((i) => i.tipo === 'participante' && i.personagemId !== ID_MONOKUMA);
+  return inscritos.filter((i) => i.tipo === 'participante');
+}
+
+/** Quantos estão na reserva (não contam como vaga nem como participante). */
+export function contarReservas(inscritos: Inscrito[]): number {
+  return inscritos.filter((i) => i.tipo === 'reserva').length;
 }
 
 export function vagasRestantes(inscritos: Inscrito[], vagas: number): number {
@@ -22,13 +26,10 @@ export function vagasRestantes(inscritos: Inscrito[], vagas: number): number {
 
 /**
  * Quem já é titular pode atualizar o próprio personagem mesmo com a sala
- * cheia (a vaga já é dele); um novo titular só entra se sobrou vaga.
- * Reserva e Monokuma nunca são barrados por lotação.
+ * cheia (a vaga já é dele); um novo titular só entra se sobrou vaga — o
+ * Monokuma também, já que ele ocupa uma. Reserva nunca é barrada por lotação.
  */
-export function podeEntrarComoTitular(
-  inscritos: Inscrito[], vagas: number, discordId: string, personagemId: string | null,
-): boolean {
-  if (personagemId === ID_MONOKUMA) return true;
+export function podeEntrarComoTitular(inscritos: Inscrito[], vagas: number, discordId: string): boolean {
   const outros = inscritos.filter((i) => i.discordId !== discordId);
   return ocupamVaga(outros).length < vagas;
 }

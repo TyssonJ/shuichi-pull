@@ -204,7 +204,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
                 className="block font-mono text-4xl font-black text-execution-pink [text-shadow:0_0_14px_rgba(255,0,127,.45)]"
               />
             </div>
-            <BarraVagas ocupadas={ocupadas} total={partida.vagas} />
+            <BarraVagas ocupadas={ocupadas} total={partida.vagas} reservas={reservas.length} />
           </div>
         )}
       </header>

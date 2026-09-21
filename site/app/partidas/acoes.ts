@@ -136,7 +136,7 @@ async function trocarInscricao_(
   if (personagemId === ID_MONOKUMA && discordId !== partida.hostDiscordId) {
     throw new ErroDeNegocio('Só o host da partida pode ser o Monokuma.');
   }
-  if (tipo === 'participante' && !podeEntrarComoTitular(inscritos, partida.vagas, discordId, personagemId)) {
+  if (tipo === 'participante' && !podeEntrarComoTitular(inscritos, partida.vagas, discordId)) {
     throw new ErroDeNegocio('As vagas de titular acabaram — passe alguém pra reserva primeiro.');
   }
 

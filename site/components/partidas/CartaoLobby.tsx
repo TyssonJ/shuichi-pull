@@ -51,9 +51,8 @@ export function CartaoLobbyDestaque({ d }: { d: DadosCartaoLobby }) {
           <p className="mt-2 font-mono text-[12px] text-[#B9B9C6]">
             host: <b className="text-[#F2F2F5]">{d.hostNome}</b> · {d.dataHoraTexto}
           </p>
-          <div className="mt-4"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} /></div>
+          <div className="mt-4"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} reservas={d.reservas} /></div>
           <div className="mt-3"><IconesInscritos inscritos={d.inscritos} /></div>
-          {d.reservas > 0 && <p className="mt-1.5 font-mono text-[11px] text-amber">+{d.reservas} na reserva</p>}
         </div>
 
         <div className="sm:text-right">
@@ -85,9 +84,8 @@ export function CartaoLobby({ d }: { d: DadosCartaoLobby }) {
           {d.hostNome} · {d.dataHoraTexto}
           {d.voceInscrito && <span className="ml-2 text-alter-green">● VOCÊ ESTÁ DENTRO</span>}
         </p>
-        <div className="mt-3"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} /></div>
+        <div className="mt-3"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} reservas={d.reservas} /></div>
         <div className="mt-2.5"><IconesInscritos inscritos={d.inscritos} max={10} /></div>
-        {d.reservas > 0 && <p className="mt-1 font-mono text-[10px] text-amber">+{d.reservas} na reserva</p>}
       </div>
     </Link>
   );

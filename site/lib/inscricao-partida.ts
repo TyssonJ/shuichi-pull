@@ -30,8 +30,8 @@ export async function inscreverNaPartida(args: {
   }
   if (tipo === 'participante') {
     const inscritos = await repositorioPartidas.participantes(partidaId);
-    if (!podeEntrarComoTitular(inscritos, partida.vagas, discordId, personagemId)) {
-      throw new ErroInscricao('As vagas de titular acabaram — entre como reserva.', 409);
+    if (!podeEntrarComoTitular(inscritos, partida.vagas, discordId)) {
+      throw new ErroInscricao('As vagas de titular acabaram (o Monokuma também ocupa uma) — entre como reserva.', 409);
     }
   }
 

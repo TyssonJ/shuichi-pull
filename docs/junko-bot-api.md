@@ -60,7 +60,7 @@ Cada partida traz `status` (`agendada` \| `em_andamento` \| `finalizada` \| `can
   }]
 }
 ```
-`ocupadas` conta só titulares (reserva e o host jogando de Monokuma não ocupam vaga).
+`ocupadas` conta os titulares, inclusive o host jogando de Monokuma (ele ocupa uma vaga); reserva não ocupa e vem em `reservas`. O máximo de `vagas` é 20.
 `dataHora` é UTC; o site exibe em horário de Brasília (UTC−3).
 
 ### `GET /api/junko/usuarios/{discordId}/`

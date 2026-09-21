@@ -75,7 +75,7 @@ export function FormularioPartida({
           className="w-24 rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[12px] text-[#D6D6E0] focus:border-alter-green focus:outline-none"
         />
         <span className="mt-1 block text-[10px] text-dim">
-          Reservas não ocupam vaga (nem o host, se ele quiser jogar de Monokuma). O Shinri Trial padrão tem 16.
+          O Monokuma (o host) ocupa uma vaga; reservas não ocupam e não contam como participantes. Máximo de {VAGAS_MAX}. O Shinri Trial padrão tem 16.
         </span>
       </label>
 

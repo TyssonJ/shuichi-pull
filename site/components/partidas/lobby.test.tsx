@@ -7,8 +7,26 @@ import { Contagem } from './Contagem';
 describe('BarraVagas', () => {
   it('descreve a lotação pra leitor de tela', () => {
     render(<BarraVagas ocupadas={7} total={16} />);
-    expect(screen.getByRole('img', { name: '7 de 16 vagas ocupadas' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: '7 de 16 vagas ocupadas; 0 reservas, que não contam como vaga' })).toBeInTheDocument();
     expect(screen.getByText(/07\/16 VAGAS/)).toBeInTheDocument();
+  });
+
+  it('mostra a quantidade de reservas num quadrado amarelo, sem contar como vaga', () => {
+    const { container } = render(<BarraVagas ocupadas={7} total={16} reservas={3} />);
+    expect(screen.getByRole('img', { name: '7 de 16 vagas ocupadas; 3 reservas, que não contam como vaga' })).toBeInTheDocument();
+    expect(screen.getByText(/03 RESERVAS/)).toBeInTheDocument();
+    expect(screen.getByText(/07\/16 VAGAS/)).toBeInTheDocument();
+    // o quadrado amarelo é o da legenda: a fileira de vagas continua com 16 casinhas
+    expect(container.querySelectorAll('div > span')).toHaveLength(16);
+    expect(container.querySelector('p span.bg-\\[\\#F5D30E\\]')).not.toBeNull();
+  });
+
+  it('uma reserva fica no singular; sem reserva o quadrado aparece apagado', () => {
+    const { container, rerender } = render(<BarraVagas ocupadas={1} total={16} reservas={1} />);
+    expect(screen.getByText(/01 RESERVA(?!S)/)).toBeInTheDocument();
+    rerender(<BarraVagas ocupadas={1} total={16} />);
+    expect(screen.getByText(/00 RESERVAS/)).toBeInTheDocument();
+    expect(container.querySelector('p span.opacity-40')).not.toBeNull();
   });
 
   it('avisa quando lotou', () => {

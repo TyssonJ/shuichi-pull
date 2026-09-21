@@ -60,6 +60,24 @@ describe('entrarPartidaAction', () => {
     expect(emitirEvento).not.toHaveBeenCalled();
   });
 
+  it('o Monokuma ocupa vaga: com a sala cheia de alunos o host não entra de Monokuma, e com uma sobrando entra', async () => {
+    logadoComo('host1');
+    vi.mocked(repositorioPartidas.participantes).mockResolvedValue([
+      { discordId: 'a', tipo: 'participante', personagemId: 'x' },
+      { discordId: 'b', tipo: 'participante', personagemId: 'y' },
+    ] as never);
+    expect(await entrarPartidaAction(9, 'monokuma')).toEqual({ ok: false, erro: expect.stringContaining('vagas de titular') });
+    expect(repositorioPartidas.entrar).not.toHaveBeenCalled();
+
+    // o host pode entrar como reserva mesmo com a sala cheia (reserva não ocupa vaga)
+    expect((await entrarPartidaAction(9, 'monokuma', 'reserva')).ok).toBe(true);
+
+    vi.mocked(repositorioPartidas.participantes).mockResolvedValue([
+      { discordId: 'a', tipo: 'participante', personagemId: 'x' },
+    ] as never);
+    expect((await entrarPartidaAction(9, 'monokuma')).ok).toBe(true);
+  });
+
   it('Monokuma só pro host; partida encerrada ou já em andamento não aceita inscrição', async () => {
     expect(await entrarPartidaAction(9, 'monokuma')).toEqual({ ok: false, erro: expect.stringContaining('host') });
     comStatus('finalizada');
@@ -212,6 +230,8 @@ describe('avaliarParticipanteAction — estrelas com texto obrigatório', () => 
 describe('poderes do host sobre os inscritos', () => {
   beforeEach(() => {
     logadoComo('host1');
+    // 3 vagas = o Monokuma (host) + 2 alunos: a sala está cheia, porque o Monokuma ocupa uma vaga.
+    vi.mocked(repositorioPartidas.buscar).mockResolvedValue({ ...partida, vagas: 3 } as never);
     vi.mocked(repositorioPartidas.participantes).mockResolvedValue([
       { discordId: 'host1', tipo: 'participante', personagemId: 'monokuma' },
       { discordId: 'a', tipo: 'participante', personagemId: 'x' },
