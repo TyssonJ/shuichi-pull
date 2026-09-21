@@ -1,3 +1,5 @@
+import { ID_MONOKUMA, SPRITE_MONOKUMA } from './monokuma';
+
 /**
  * Sprites 8-bit (ícones pixel de rosto) baixados da wiki do Danganronpa pra
  * `public/sprites/pixel/<id>.png` — a maioria vem do minijogo Despair Dungeon
@@ -69,3 +71,16 @@ export function spritePixelDe(personagemId: string): string | null {
 }
 
 export const IDS_COM_PIXEL: readonly string[] = [...COM_PIXEL];
+
+/**
+ * Imagem de um inscrito numa partida: o sprite pixel, senão o retrato normal
+ * (Ryoko Otonashi, personagens criados pelo ADM), e `null` na vaga genérica
+ * (ainda sem personagem escolhido) — quem desenha decide o "?".
+ */
+export function iconeDoInscrito(
+  personagemId: string | null, retratoPorId: ReadonlyMap<string, string>,
+): string | null {
+  if (!personagemId) return null;
+  if (personagemId === ID_MONOKUMA) return SPRITE_MONOKUMA;
+  return spritePixelDe(personagemId) ?? retratoPorId.get(personagemId) ?? null;
+}

@@ -6,7 +6,9 @@ import { TituloDigitado } from './TituloDigitado';
  * título são decorativos (não há "minimizar" de verdade numa página web),
  * mesma lógica das marcas de mira decorativas na ficha do personagem.
  */
-export function JanelaTerminal({ children }: { children: React.ReactNode }) {
+export function JanelaTerminal({
+  children, titulo = '[ ALTER_EGO_OS v2.4 // SYSTEM_CONTROLS.EXE ]',
+}: { children: React.ReactNode; titulo?: string }) {
   return (
     <div className="relative overflow-hidden rounded-[6px] border-2 border-[#0F5A2E] bg-[#041208] shadow-[0_0_40px_rgba(0,255,102,0.08)]">
       <div
@@ -24,7 +26,7 @@ export function JanelaTerminal({ children }: { children: React.ReactNode }) {
         <span aria-hidden className="h-2.5 w-2.5 bg-[#F5D30E]" />
         <span aria-hidden className="h-2.5 w-2.5 bg-execution-pink" />
         <p className="ml-2 truncate font-mono text-[9px] tracking-[.1em] text-alter-green">
-          <TituloDigitado texto="[ ALTER_EGO_OS v2.4 // SYSTEM_CONTROLS.EXE ]" />
+          <TituloDigitado texto={titulo} />
         </p>
       </div>
 

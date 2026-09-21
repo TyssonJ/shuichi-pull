@@ -6,6 +6,8 @@ import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
+import { ID_MONOKUMA } from '@/lib/monokuma';
+import { podeEntrarComoTitular, validarVagas, VAGAS_PADRAO } from '@/lib/vagas';
 
 async function exigirSessao() {
   const sessao = await auth();
@@ -18,7 +20,7 @@ async function exigirSessao() {
  * chama `aoSalvar` dentro de um try/catch pra mostrar erro de validação.
  * Quem cria navega pro id depois, no cliente. */
 export async function criarPartidaAction(
-  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null },
+  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number },
 ): Promise<number> {
   const sessao = await exigirSessao();
   const usuario = await repositorioUsuarios.buscar(sessao.user.discordId);
@@ -26,6 +28,8 @@ export async function criarPartidaAction(
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
   const dataHora = new Date(args.dataHora);
   if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
+  const vagas = args.vagas ?? VAGAS_PADRAO;
+  validarVagas(vagas);
 
   const id = await repositorioPartidas.criar({
     titulo: args.titulo.trim(),
@@ -33,6 +37,7 @@ export async function criarPartidaAction(
     dataHora,
     regras: args.regras?.trim() || null,
     capaUrl: args.capaUrl?.trim() || null,
+    vagas,
   });
   revalidatePath('/partidas');
   return id;
@@ -42,7 +47,23 @@ export async function entrarPartidaAction(
   partidaId: number, personagemId: string | null, tipo: 'participante' | 'reserva' = 'participante',
 ) {
   const sessao = await exigirSessao();
-  await repositorioPartidas.entrar(partidaId, sessao.user.discordId, personagemId, tipo);
+  const discordId = sessao.user.discordId;
+
+  const partida = await repositorioPartidas.buscar(partidaId);
+  if (!partida) throw new Error('Partida não existe mais.');
+  if (partida.status !== 'agendada') throw new Error('Essa partida não está mais aceitando inscrição.');
+  // A trava do Monokuma estava só na interface: quem chamasse a action direto escolhia.
+  if (personagemId === ID_MONOKUMA && partida.hostDiscordId !== discordId) {
+    throw new Error('Só o host da partida pode ser o Monokuma.');
+  }
+  if (tipo === 'participante') {
+    const inscritos = await repositorioPartidas.participantes(partidaId);
+    if (!podeEntrarComoTitular(inscritos, partida.vagas, discordId, personagemId)) {
+      throw new Error('As vagas de titular acabaram — entre como reserva.');
+    }
+  }
+
+  await repositorioPartidas.entrar(partidaId, discordId, personagemId, tipo);
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');
 }
@@ -66,18 +87,20 @@ async function exigirHost(partidaId: number) {
 
 export async function atualizarPartidaAction(
   partidaId: number,
-  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null },
+  args: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number },
 ) {
   await exigirHost(partidaId);
   if (!args.titulo.trim()) throw new Error('Dá um título pra partida.');
   const dataHora = new Date(args.dataHora);
   if (Number.isNaN(dataHora.getTime())) throw new Error('Data/hora inválida.');
+  validarVagas(args.vagas);
 
   await repositorioPartidas.atualizar(partidaId, {
     titulo: args.titulo.trim(),
     dataHora,
     regras: args.regras?.trim() || null,
     capaUrl: args.capaUrl?.trim() || null,
+    vagas: args.vagas,
   });
   revalidatePath(`/partidas/${partidaId}`);
   revalidatePath('/partidas');

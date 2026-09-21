@@ -1,18 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { VAGAS_MAX, VAGAS_MIN, VAGAS_PADRAO } from '@/lib/vagas';
 
 export function FormularioPartida({
   inicial, aoSalvar, textoBotao,
 }: {
-  inicial?: { titulo: string; dataHora: string; regras: string; capaUrl: string };
-  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) => Promise<void>;
+  inicial?: { titulo: string; dataHora: string; regras: string; capaUrl: string; vagas: number };
+  aoSalvar: (dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Promise<void>;
   textoBotao: string;
 }) {
   const [titulo, setTitulo] = useState(inicial?.titulo ?? '');
   const [dataHora, setDataHora] = useState(inicial?.dataHora ?? '');
   const [regras, setRegras] = useState(inicial?.regras ?? '');
   const [capaUrl, setCapaUrl] = useState(inicial?.capaUrl ?? '');
+  const [vagas, setVagas] = useState(String(inicial?.vagas ?? VAGAS_PADRAO));
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
@@ -21,7 +23,10 @@ export function FormularioPartida({
     setErro(null);
     setSalvando(true);
     try {
-      await aoSalvar({ titulo, dataHora, regras: regras.trim() || null, capaUrl: capaUrl.trim() || null });
+      await aoSalvar({
+        titulo, dataHora, regras: regras.trim() || null, capaUrl: capaUrl.trim() || null,
+        vagas: Number(vagas),
+      });
     } catch (err) {
       setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
       setSalvando(false);
@@ -52,6 +57,24 @@ export function FormularioPartida({
           required
           className="w-full rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[11px] text-[#D6D6E0] focus:border-alter-green focus:outline-none"
         />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block font-mono text-[9px] tracking-[.14em] text-dim">
+          VAGAS DE TITULAR ({VAGAS_MIN}–{VAGAS_MAX})
+        </span>
+        <input
+          type="number"
+          min={VAGAS_MIN}
+          max={VAGAS_MAX}
+          value={vagas}
+          onChange={(e) => setVagas(e.target.value)}
+          required
+          className="w-24 rounded-[3px] border border-line bg-[#141419] px-2 py-1.5 font-mono text-[12px] text-[#D6D6E0] focus:border-alter-green focus:outline-none"
+        />
+        <span className="mt-1 block text-[10px] text-dim">
+          Reserva e o host de Monokuma não ocupam vaga. O Shinri Trial padrão tem 16.
+        </span>
       </label>
 
       <label className="block">

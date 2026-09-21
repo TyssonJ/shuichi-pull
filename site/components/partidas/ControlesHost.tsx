@@ -10,11 +10,11 @@ export function ControlesHost({
   partidaId, inicial, status, participantes, relatorioInicial, aoAtualizar, aoMudarStatus, aoSalvarRelatorio,
 }: {
   partidaId: number;
-  inicial: { titulo: string; dataHora: string; regras: string; capaUrl: string };
+  inicial: { titulo: string; dataHora: string; regras: string; capaUrl: string; vagas: number };
   status: 'agendada' | 'finalizada' | 'cancelada';
   participantes: { discordId: string; nome: string }[];
   relatorioInicial: { capitulo: string; blackened: string; mvpDiscordIds: string[]; resultado: Resultado | null };
-  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) => Promise<void>;
+  aoAtualizar: (partidaId: number, dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) => Promise<void>;
   aoMudarStatus: (partidaId: number, status: 'agendada' | 'finalizada' | 'cancelada') => Promise<void>;
   aoSalvarRelatorio: (partidaId: number, dados: {
     capitulo: string | null; blackened: string | null; mvpDiscordIds: string[]; resultado: Resultado | null;

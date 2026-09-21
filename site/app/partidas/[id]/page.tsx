@@ -6,24 +6,22 @@ import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliaco
 import { repositorioPartidaCapitulos } from '@/db/repositorios/partida-capitulos';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { ID_MONOKUMA } from '@/lib/monokuma';
-import { spritePixelDe } from '@/lib/sprites-pixel';
+import { iconeDoInscrito, spritePixelDe } from '@/lib/sprites-pixel';
+import { ocupamVaga } from '@/lib/vagas';
+import { ROTULO_RESULTADO, ROTULO_STATUS } from '@/lib/rotulos-partida';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { EntrarPartida } from '@/components/partidas/EntrarPartida';
 import { ControlesHost } from '@/components/partidas/ControlesHost';
 import { AvaliarParticipantes } from '@/components/partidas/AvaliarParticipantes';
 import { CapitulosPartida } from '@/components/partidas/CapitulosPartida';
 import { AlertaInicio } from '@/components/partidas/AlertaInicio';
+import { BarraVagas } from '@/components/partidas/BarraVagas';
+import { Contagem } from '@/components/partidas/Contagem';
 import {
   entrarPartidaAction, sairPartidaAction, atualizarPartidaAction, mudarStatusPartidaAction,
   salvarRelatorioAction, avaliarParticipanteAction, removerAvaliacaoAction,
   salvarCapituloAction, removerCapituloAction,
 } from '../acoes';
-
-const ROTULO_RESULTADO: Record<string, string> = {
-  vitoria_alunos: 'Cápsulas (culpado capturado)',
-  vitoria_mestre: 'Vitória do assassino',
-  tragedia: 'Sobreviventes sem resolução',
-};
 
 function paraDatetimeLocal(d: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0');
@@ -35,10 +33,6 @@ function formatarDataHora(d: Date): string {
     weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
   }).format(d);
 }
-
-const ROTULO_STATUS: Record<string, string> = {
-  agendada: 'AGENDADA', finalizada: 'FINALIZADA', cancelada: 'CANCELADA',
-};
 
 export default async function PaginaPartida({ params }: { params: Promise<{ id: string }> }) {
   const { id: idTexto } = await params;
@@ -57,6 +51,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
 
   const personagens = await listarPersonagensComCorrecoes();
   const nomePersonagem = new Map(personagens.map((p) => [p.id, p.nome]));
+  const retratoPorId = new Map(personagens.map((p) => [p.id, p.sprite]));
 
   const usuariosParticipantes = new Map<string, string>();
   const uidsParticipantes = new Map<string, string | null>();
@@ -67,6 +62,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
   }
 
   const titulares = participantes.filter((p) => p.tipo === 'participante');
+  const ocupadas = ocupamVaga(participantes).length;
   const reservas = participantes.filter((p) => p.tipo === 'reserva');
 
   const discordId = sessao?.user?.discordId;
@@ -94,6 +90,41 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
           });
       })()
     : [];
+
+  function linhaInscrito(p: (typeof participantes)[number], corTexto: string, corBorda: string) {
+    const icone = iconeDoInscrito(p.personagemId, retratoPorId);
+    return (
+      <li key={p.discordId} className="flex items-center gap-2.5 text-[13px] text-[#D6D6E0]">
+        <span className={`flex h-9 w-9 shrink-0 items-center justify-center border-2 bg-[#0E0E13] ${corBorda}`}>
+          {icone ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={icone} alt="" className="h-full w-full object-contain" style={{ imageRendering: 'pixelated' }} />
+          ) : (
+            <span aria-hidden className="font-mono text-[13px] text-dim">?</span>
+          )}
+        </span>
+        <span className="flex min-w-0 flex-col">
+          <span className="flex flex-wrap items-baseline gap-x-2">
+            <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
+              {usuariosParticipantes.get(p.discordId)}
+            </a>
+            {p.personagemId === ID_MONOKUMA ? (
+              <span className="font-mono text-[10px] text-execution-pink">→ MONOKUMA (HOST)</span>
+            ) : p.personagemId ? (
+              <span className={`font-mono text-[10px] ${corTexto}`}>
+                → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
+              </span>
+            ) : (
+              <span className="font-mono text-[10px] text-dim">→ vaga genérica</span>
+            )}
+          </span>
+          <span className="font-mono text-[9px] text-dim">
+            UID: {uidsParticipantes.get(p.discordId) ?? 'não informado'}
+          </span>
+        </span>
+      </li>
+    );
+  }
 
   return (
     <PainelComTrilhas as="article">
@@ -131,6 +162,19 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
         >
           {ROTULO_STATUS[partida.status]}
         </span>
+
+        {partida.status === 'agendada' && (
+          <div className="mt-4 flex flex-wrap items-end gap-x-8 gap-y-3">
+            <div>
+              <p className="font-mono text-[10px] tracking-[.2em] text-dim">COMEÇA EM</p>
+              <Contagem
+                dataHora={partida.dataHora.toISOString()}
+                className="block font-mono text-4xl font-black text-execution-pink [text-shadow:0_0_14px_rgba(255,0,127,.45)]"
+              />
+            </div>
+            <BarraVagas ocupadas={ocupadas} total={partida.vagas} />
+          </div>
+        )}
       </header>
 
       {partida.regras && (
@@ -183,57 +227,25 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
       />
 
       <section className="mb-6">
-        <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-dim">
-          PARTICIPANTES ({titulares.length})
+        <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-dim">
+          PARTICIPANTES ({ocupadas}/{partida.vagas})
         </h2>
         {titulares.length === 0 ? (
-          <p className="text-[11px] text-dim">Ninguém entrou ainda.</p>
+          <p className="text-[12px] text-dim">Ninguém entrou ainda.</p>
         ) : (
-          <ul className="space-y-1.5">
-            {titulares.map((p) => (
-              <li key={p.discordId} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[#D6D6E0]">
-                <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
-                  {usuariosParticipantes.get(p.discordId)}
-                </a>
-                {p.personagemId === ID_MONOKUMA ? (
-                  <span className="font-mono text-[9px] text-execution-pink">→ MONOKUMA (HOST)</span>
-                ) : p.personagemId && (
-                  <span className="font-mono text-[9px] text-alter-green">
-                    → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
-                  </span>
-                )}
-                <span className="font-mono text-[8px] text-dim">
-                  UID: {uidsParticipantes.get(p.discordId) ?? 'não informado'}
-                </span>
-              </li>
-            ))}
+          <ul className="space-y-2">
+            {titulares.map((p) => linhaInscrito(p, 'text-alter-green', 'border-alter-green/70'))}
           </ul>
         )}
       </section>
 
       {reservas.length > 0 && (
         <section className="mb-6">
-          <h2 className="mb-2 font-mono text-[9px] tracking-[.14em] text-amber">
-            RESERVAS ({reservas.length})
+          <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-amber">
+            RESERVAS ({reservas.length}) — entram se um titular cair
           </h2>
-          <ul className="space-y-1.5">
-            {reservas.map((p) => (
-              <li key={p.discordId} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[#D6D6E0]">
-                <a href={`/u/${p.discordId}/`} className="font-bold hover:text-cyber-cyan hover:underline">
-                  {usuariosParticipantes.get(p.discordId)}
-                </a>
-                {p.personagemId === ID_MONOKUMA ? (
-                  <span className="font-mono text-[9px] text-execution-pink">→ MONOKUMA (HOST)</span>
-                ) : p.personagemId && (
-                  <span className="font-mono text-[9px] text-amber">
-                    → {nomePersonagem.get(p.personagemId) ?? p.personagemId}
-                  </span>
-                )}
-                <span className="font-mono text-[8px] text-dim">
-                  UID: {uidsParticipantes.get(p.discordId) ?? 'não informado'}
-                </span>
-              </li>
-            ))}
+          <ul className="space-y-2">
+            {reservas.map((p) => linhaInscrito(p, 'text-amber', 'border-amber/70'))}
           </ul>
         </section>
       )}
@@ -279,6 +291,7 @@ export default async function PaginaPartida({ params }: { params: Promise<{ id: 
             dataHora: paraDatetimeLocal(partida.dataHora),
             regras: partida.regras ?? '',
             capaUrl: partida.capaUrl ?? '',
+            vagas: partida.vagas,
           }}
           relatorioInicial={{
             capitulo: partida.capitulo ?? '',

@@ -7,7 +7,7 @@ import { criarPartidaAction } from '@/app/partidas/acoes';
 export function FormularioNovaPartida() {
   const router = useRouter();
 
-  async function aoSalvar(dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null }) {
+  async function aoSalvar(dados: { titulo: string; dataHora: string; regras: string | null; capaUrl: string | null; vagas: number }) {
     const id = await criarPartidaAction(dados);
     router.push(`/partidas/${id}/`);
   }

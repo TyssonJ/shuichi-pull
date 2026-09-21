@@ -11,6 +11,7 @@ export type ParticipanteLinha = typeof partidaParticipantes.$inferSelect;
 export type PartidaHistorico = PartidaLinha & { eraBlackened: boolean; desfecho: Desfecho | null };
 export type NovaPartida = {
   titulo: string; hostDiscordId: string; dataHora: Date; regras: string | null; capaUrl: string | null;
+  vagas?: number;
 };
 
 export function criarRepositorioPartidas(db: Banco) {
