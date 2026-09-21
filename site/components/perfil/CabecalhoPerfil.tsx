@@ -1,4 +1,5 @@
 import { fundoDoPreset, type Banner } from '@/lib/perfil-visual';
+import { SeloCargo } from './SeloCargo';
 
 /** Faixa do topo do perfil. Recebe o sprite já resolvido (quem monta a
  * página sabe o caminho do personagem), então funciona igual no servidor,
@@ -36,7 +37,7 @@ export function BannerPerfil({ banner, spritePersonagem }: { banner: Banner; spr
 }
 
 export function CabecalhoPerfil({
-  nome, avatar, nomeOriginal = null, avatarOriginal = null, desde, titulo, reputacao, bio, banner, spritePersonagem, editarHref,
+  nome, avatar, nomeOriginal = null, avatarOriginal = null, desde, titulo, reputacao, cargos = [], bio, banner, spritePersonagem, editarHref,
 }: {
   /** Em destaque: o apelido e o ícone escolhidos no site (ou, sem eles, os do Discord). */
   nome: string;
@@ -48,6 +49,8 @@ export function CabecalhoPerfil({
   desde: string;
   titulo: string | null;
   reputacao: { rotulo: string; cor: string } | null;
+  /** Cargos que um ADM entregou (nome + cor). */
+  cargos?: { id: number; nome: string; cor: string }[];
   bio: string | null;
   banner: Banner;
   spritePersonagem: string | null;
@@ -101,13 +104,14 @@ export function CabecalhoPerfil({
           </div>
         </div>
 
-        {(titulo || reputacao) && (
+        {(titulo || reputacao || cargos.length > 0) && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {titulo && (
               <span className="rounded-[2px] border border-alter-green px-1.5 py-0.5 font-mono text-[9px] tracking-[.1em] text-alter-green">
                 {titulo}
               </span>
             )}
+            {cargos.map((c) => <SeloCargo key={c.id} nome={c.nome} cor={c.cor} />)}
             {reputacao && (
               <span
                 className="rounded-[2px] border px-1.5 py-0.5 font-mono text-[9px] tracking-[.1em]"

@@ -4,6 +4,8 @@
  * decide) e na prévia do editor (que só antecipa o resultado).
  */
 
+import { MIDIA_HOST } from './midia-host';
+
 export const BIO_MAX = 280;
 
 export type TipoBanner = 'preset' | 'personagem' | 'url';
@@ -62,7 +64,12 @@ export const HOSTS_IMAGEM_PERMITIDOS = [
   'pbs.twimg.com',
   'upload.wikimedia.org',
   'i.pinimg.com',
+  // Arquivos que a pessoa envia pelo próprio site (Vercel Blob).
+  MIDIA_HOST,
 ] as const;
+
+/** Hospedagens externas, pra mostrar na mensagem de erro (o Blob é o botão de upload). */
+export const HOSTS_EXTERNOS_DE_IMAGEM = HOSTS_IMAGEM_PERMITIDOS.filter((h) => h !== MIDIA_HOST);
 
 export const URL_BANNER_MAX = 300;
 
@@ -92,7 +99,7 @@ export function validarUrlBanner(entrada: string): Resultado<string> {
   if (!(HOSTS_IMAGEM_PERMITIDOS as readonly string[]).includes(url.hostname)) {
     return {
       ok: false,
-      erro: `Use uma imagem hospedada em: ${HOSTS_IMAGEM_PERMITIDOS.join(', ')}.`,
+      erro: `Use uma imagem hospedada em: ${HOSTS_EXTERNOS_DE_IMAGEM.join(', ')} — ou envie o arquivo pelo botão de upload.`,
     };
   }
   return { ok: true, valor: url.toString() };

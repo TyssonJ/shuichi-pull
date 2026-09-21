@@ -18,6 +18,8 @@ const CONTEUDO: Item[] = [
   { rotulo: 'Personagens', url: '/adm/personagens' },
   { rotulo: 'Mapa', url: '/adm/mapa' },
   { rotulo: 'Mecânicas', url: '/adm/mecanicas' },
+  { rotulo: 'Cargos', url: '/adm/cargos' },
+  { rotulo: 'Conquistas', url: '/adm/conquistas' },
   { rotulo: 'FAQ', url: '/adm/faq' },
   { rotulo: 'Textos', url: '/adm/textos' },
 ];

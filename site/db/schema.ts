@@ -296,3 +296,55 @@ export const conteudoRemovidos = pgTable('conteudo_removidos', {
 }, (t) => ([
   primaryKey({ columns: [t.colecao, t.registroId] }),
 ]));
+
+// Cada arquivo enviado pelo navegador direto pro Vercel Blob (imagem/vídeo).
+// Serve pra cota por pessoa e pra limpar o arquivo quando o conteúdo some.
+export const midias = pgTable('midias', {
+  id: serial('id').primaryKey(),
+  url: text('url').notNull().unique(),
+  discordId: text('discord_id').notNull(),
+  tipo: text('tipo').notNull(),
+  tipoMime: text('tipo_mime'),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
+// Cargo criado por um ADM (nome + cor), tipo o "Calouro" — entregue a jogadores
+// específicos. Separado do título automático por número de partidas.
+export const cargos = pgTable('cargos', {
+  id: serial('id').primaryKey(),
+  nome: text('nome').notNull(),
+  cor: text('cor').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  unique('cargos_nome_unico').on(t.nome),
+]));
+
+export const usuarioCargos = pgTable('usuario_cargos', {
+  discordId: text('discord_id').notNull(),
+  cargoId: integer('cargo_id').notNull().references(() => cargos.id, { onDelete: 'cascade' }),
+  concedidoPor: text('concedido_por').notNull(),
+  concedidoEm: timestamp('concedido_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  primaryKey({ columns: [t.discordId, t.cargoId] }),
+]));
+
+// Conquista (definição): ícone quadrado, nome, descrição curta e a completa
+// que aparece ao clicar. Entregue e retirada pelos ADMs.
+export const conquistas = pgTable('conquistas', {
+  id: serial('id').primaryKey(),
+  nome: text('nome').notNull(),
+  descricaoCurta: text('descricao_curta').notNull(),
+  descricaoLonga: text('descricao_longa').notNull().default(''),
+  iconeUrl: text('icone_url').notNull(),
+  criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const usuarioConquistas = pgTable('usuario_conquistas', {
+  discordId: text('discord_id').notNull(),
+  conquistaId: integer('conquista_id').notNull().references(() => conquistas.id, { onDelete: 'cascade' }),
+  concedidaPor: text('concedida_por').notNull(),
+  motivo: text('motivo'),
+  concedidaEm: timestamp('concedida_em', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ([
+  primaryKey({ columns: [t.discordId, t.conquistaId] }),
+]));

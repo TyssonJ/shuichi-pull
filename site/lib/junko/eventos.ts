@@ -35,7 +35,11 @@ export type EventoJunko =
   | { tipo: 'host.permissao'; discordId: string; podeSerHost: boolean }
   /** Anônimo de propósito: quem avaliou nunca vai no evento. */
   | { tipo: 'avaliacao.registrada'; avaliacaoId: number; partidaId: number; avaliadoDiscordId: string; estrelas: number; comentario: string }
-  | { tipo: 'avaliacao.removida'; partidaId: number; avaliadoDiscordId: string };
+  | { tipo: 'avaliacao.removida'; partidaId: number; avaliadoDiscordId: string }
+  | { tipo: 'cargo.concedido'; discordId: string; cargo: { id: number; nome: string } }
+  | { tipo: 'cargo.retirado'; discordId: string; cargo: { id: number; nome: string } }
+  | { tipo: 'conquista.concedida'; discordId: string; conquista: { id: number; nome: string; descricaoCurta: string }; motivo: string | null }
+  | { tipo: 'conquista.retirada'; discordId: string; conquista: { id: number; nome: string } };
 
 export type TipoEventoJunko = EventoJunko['tipo'];
 

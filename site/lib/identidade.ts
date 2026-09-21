@@ -19,7 +19,7 @@ const FAIXAS_INVISIVEIS: readonly (readonly [number, number])[] = [
   [0x0000, 0x001f], [0x007f, 0x009f], [0x200b, 0x200f], [0x2028, 0x202f], [0x2060, 0x206f], [0xfeff, 0xfeff],
 ];
 
-function temInvisiveis(texto: string): boolean {
+export function temInvisiveis(texto: string): boolean {
   for (const ch of texto) {
     const c = ch.codePointAt(0)!;
     if (FAIXAS_INVISIVEIS.some(([de, ate]) => c >= de && c <= ate)) return true;

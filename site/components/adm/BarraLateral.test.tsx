@@ -10,7 +10,7 @@ describe('BarraLateral', () => {
 
   it('mostra os itens comuns para um adm', () => {
     render(<BarraLateral papel="adm" />);
-    for (const nome of ['Painel', 'Partidas', 'Usuários', 'Eventos', 'Códigos', 'Itens', 'Personagens', 'Mapa', 'Mecânicas', 'FAQ', 'Textos', 'Configurações']) {
+    for (const nome of ['Painel', 'Partidas', 'Usuários', 'Eventos', 'Códigos', 'Itens', 'Personagens', 'Mapa', 'Mecânicas', 'Cargos', 'Conquistas', 'FAQ', 'Textos', 'Configurações']) {
       expect(screen.getByRole('link', { name: nome })).toBeInTheDocument();
     }
   });

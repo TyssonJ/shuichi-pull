@@ -160,6 +160,9 @@ falha do bot atrapalhar quem está usando o site.
 | `host.permissao` | ADM libera/revoga host | `{ discordId, podeSerHost }` |
 | `avaliacao.registrada` | Alguém avalia um colega (0–5 estrelas + texto) | `{ avaliacaoId, partidaId, avaliadoDiscordId, estrelas, comentario }` |
 | `avaliacao.removida` | Avaliação apagada (pelo autor ou ADM) | `{ partidaId, avaliadoDiscordId }` |
+| `cargo.concedido` / `cargo.retirado` | ADM entrega ou tira um cargo | `{ discordId, cargo: { id, nome } }` |
+| `conquista.concedida` | ADM entrega uma conquista | `{ discordId, conquista: { id, nome, descricaoCurta }, motivo }` |
+| `conquista.retirada` | ADM retira uma conquista | `{ discordId, conquista: { id, nome } }` |
 | `teste` | Botão de teste do painel | `{}` |
 
 `partida` = `{ id, titulo, hostDiscordId, dataHora (ISO/UTC), vagas, url, status, iniciadaEm, duracaoSegundos }`. `iniciadaEm` só existe depois do "Começar";

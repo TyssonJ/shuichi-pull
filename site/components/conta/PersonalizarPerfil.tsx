@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { CabecalhoPerfil } from '@/components/perfil/CabecalhoPerfil';
+import { EnviarArquivo } from '@/components/midia/EnviarArquivo';
 import { desembrulhar, type Acao, mensagemDeErro } from '@/lib/acao-cliente';
 import { APELIDO_MAX, identidadeDe, validarApelido, type TipoAvatar } from '@/lib/identidade';
 import {
-  BIO_MAX, BANNER_PADRAO, PRESETS_BANNER, HOSTS_IMAGEM_PERMITIDOS, fundoDoPreset, validarUrlBanner,
+  BIO_MAX, BANNER_PADRAO, PRESETS_BANNER, HOSTS_EXTERNOS_DE_IMAGEM, fundoDoPreset, validarUrlBanner,
   type Banner, type TipoBanner,
 } from '@/lib/perfil-visual';
 
@@ -198,6 +199,7 @@ export function PersonalizarPerfil({
 
           {avTipo === 'url' && (
             <div className="max-w-lg">
+              <EnviarArquivo tipo="icone" rotulo="ENVIAR ÍCONE" aoConcluir={(a) => alterar(() => setAvUrl(a.url))} className="mb-2" />
               <input
                 aria-label="Link da imagem do ícone"
                 value={avUrl}
@@ -288,6 +290,7 @@ export function PersonalizarPerfil({
 
         {tipo === 'url' && (
           <div className="max-w-lg">
+            <EnviarArquivo tipo="imagem" rotulo="ENVIAR BANNER" aoConcluir={(a) => alterar(() => setUrl(a.url))} className="mb-2" />
             <input
               value={url}
               onChange={(e) => alterar(() => setUrl(e.target.value))}
@@ -298,7 +301,7 @@ export function PersonalizarPerfil({
               <p role="alert" className="mt-1 text-[10px] text-alerta">{urlValidada.erro}</p>
             )}
             <p className="mt-1.5 text-[10px] leading-relaxed text-dim">
-              Hospedagens aceitas: {HOSTS_IMAGEM_PERMITIDOS.join(', ')}. Links de anexo do Discord
+              Hospedagens aceitas: {HOSTS_EXTERNOS_DE_IMAGEM.join(', ')}. Links de anexo do Discord
               expiram em poucas horas, então não funcionam aqui. Imagem larga (ex.: 1200×300) fica melhor.
             </p>
           </div>

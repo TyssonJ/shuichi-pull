@@ -8,6 +8,9 @@ import { formatarDataBR } from '@/lib/fuso';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { CabecalhoPerfil } from '@/components/perfil/CabecalhoPerfil';
 import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
+import { Conquistas } from '@/components/perfil/Conquistas';
+import { repositorioCargos } from '@/db/repositorios/cargos';
+import { repositorioConquistas } from '@/db/repositorios/conquistas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { resumirAvaliacoes, reputacao } from '@/lib/avaliacoes-perfil';
 import { bannerDoRegistro } from '@/lib/perfil-visual';
@@ -44,11 +47,13 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [{ historico, estatisticas }, personagens, recebidas, sessao] = await Promise.all([
+  const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas] = await Promise.all([
     repositorioPartidas.perfilDoUsuario(id),
     listarPersonagensComCorrecoes(),
     repositorioPartidaAvaliacoes.listarRecebidas(id),
     auth(),
+    repositorioCargos.cargosDoUsuario(id),
+    repositorioConquistas.conquistasDoUsuario(id),
   ]);
   const souAdm = Boolean(sessao?.user?.papel);
   const souDono = sessao?.user?.discordId === id;
@@ -77,6 +82,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
         desde={formatarData(usuario.criadoEm)}
         titulo={titulo}
         reputacao={reputacao(resumo)}
+        cargos={cargos}
         bio={usuario.bio}
         banner={banner}
         spritePersonagem={spriteDoBanner}
@@ -124,6 +130,13 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
           </ul>
         </section>
       )}
+
+      <Conquistas
+        conquistas={conquistas.map((c) => ({
+          id: c.id, nome: c.nome, descricaoCurta: c.descricaoCurta, descricaoLonga: c.descricaoLonga,
+          iconeUrl: c.iconeUrl, concedidaEm: formatarData(c.concedidaEm), motivo: c.motivo,
+        }))}
+      />
 
       <AvaliacoesRecebidas resumo={resumo} moderar={souAdm} aoRemover={removerAvaliacao} />
 

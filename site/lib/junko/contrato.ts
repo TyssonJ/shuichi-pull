@@ -24,5 +24,9 @@ export const EVENTOS_PARA_O_BOT: { evento: string; quando: string }[] = [
   { evento: 'host.permissao', quando: 'Um ADM libera ou revoga a permissão de host.' },
   { evento: 'avaliacao.registrada', quando: 'Alguém avalia (0–5 estrelas + texto) um colega. O avaliador não vai no evento.' },
   { evento: 'avaliacao.removida', quando: 'Uma avaliação é apagada (pelo autor ou por um ADM).' },
+  { evento: 'cargo.concedido', quando: 'Um ADM entrega um cargo a alguém.' },
+  { evento: 'cargo.retirado', quando: 'Um ADM tira um cargo de alguém.' },
+  { evento: 'conquista.concedida', quando: 'Um ADM entrega uma conquista (com o motivo, se houver).' },
+  { evento: 'conquista.retirada', quando: 'Um ADM retira uma conquista.' },
   { evento: 'teste', quando: 'Botão "Enviar evento de teste" deste painel.' },
 ];
