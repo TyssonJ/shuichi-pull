@@ -1,6 +1,7 @@
 import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb, primaryKey } from 'drizzle-orm/pg-core';
 import type { Craft, Spawn } from '../lib/schema-itens';
 import type { Etiqueta } from '../lib/schema';
+import type { EstiloPerfil } from '../lib/estilo-perfil';
 
 export const papelAdm = pgEnum('papel_adm', ['adm', 'chefe']);
 
@@ -348,3 +349,19 @@ export const usuarioConquistas = pgTable('usuario_conquistas', {
 }, (t) => ([
   primaryKey({ columns: [t.discordId, t.conquistaId] }),
 ]));
+
+// Estilo do perfil público: cor de tema, fundo nas laterais e emojis próprios.
+// NADA aqui vira público sem um ADM aprovar: a pessoa envia um pedido
+// (`pendente`), o ADM confere e, se estiver ok, o pedido vira `publicado`. Até
+// lá (ou se for rejeitado) o perfil segue com o último estilo aprovado.
+export const perfilEstilos = pgTable('perfil_estilos', {
+  discordId: text('discord_id').primaryKey(),
+  publicado: jsonb('publicado').$type<EstiloPerfil>(),
+  pendente: jsonb('pendente').$type<EstiloPerfil>(),
+  status: text('status').notNull().default('nenhum'),
+  motivoRejeicao: text('motivo_rejeicao'),
+  enviadoEm: timestamp('enviado_em', { withTimezone: true }),
+  revisadoPor: text('revisado_por'),
+  revisadoEm: timestamp('revisado_em', { withTimezone: true }),
+  atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
+});

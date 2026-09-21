@@ -4,12 +4,16 @@ import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { PerfilForm } from '@/components/conta/PerfilForm';
 import { PersonalizarPerfil } from '@/components/conta/PersonalizarPerfil';
+import { EstiloDoPerfil } from '@/components/conta/EstiloDoPerfil';
+import { repositorioPerfilEstilos } from '@/db/repositorios/perfil-estilos';
+import { ESTILO_VAZIO } from '@/lib/estilo-perfil';
 import { bannerDoRegistro } from '@/lib/perfil-visual';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
 import { formatarDataBR } from '@/lib/fuso';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { tituloPorPartidas } from '@/lib/titulos';
 import { atualizarPerfilAction, salvarPersonalizacaoAction } from './acoes';
+import { enviarEstiloAction, cancelarPedidoEstiloAction } from './estilo-acoes';
 
 export const metadata = { title: 'Minha conta — Shuichi Pull' };
 
@@ -57,6 +61,7 @@ export default async function PaginaConta() {
     id: p.id, nome: p.nome, sprite: spriteInteiroDoPersonagem(p.id) ?? p.sprite, retrato: p.sprite,
   }));
   const { estatisticas } = await repositorioPartidas.perfilDoUsuario(sessao.user.discordId);
+  const estilo = await repositorioPerfilEstilos.buscar(sessao.user.discordId);
 
   return (
     <PainelComTrilhas>
@@ -109,6 +114,19 @@ export default async function PaginaConta() {
         bannerInicial={bannerDoRegistro(usuario?.bannerTipo ?? null, usuario?.bannerValor ?? null, new Set(elenco.map((p) => p.id)))}
         personagens={bannersDePersonagem}
         aoSalvar={salvarPersonalizacaoAction}
+      />
+
+      <EstiloDoPerfil
+        inicial={estilo?.pendente ?? estilo?.publicado ?? ESTILO_VAZIO}
+        estado={{
+          status: estilo?.status === 'pendente' || estilo?.status === 'rejeitado' ? estilo.status : 'nenhum',
+          motivo: estilo?.motivoRejeicao ?? null,
+          temPublicado: Boolean(estilo?.publicado),
+        }}
+        souAdm={Boolean(sessao.user.papel)}
+        nome={sessao.user.name ?? 'Sem nome'}
+        aoEnviar={enviarEstiloAction}
+        aoCancelar={cancelarPedidoEstiloAction}
       />
 
       <form

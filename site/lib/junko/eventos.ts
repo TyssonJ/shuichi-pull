@@ -39,7 +39,10 @@ export type EventoJunko =
   | { tipo: 'cargo.concedido'; discordId: string; cargo: { id: number; nome: string } }
   | { tipo: 'cargo.retirado'; discordId: string; cargo: { id: number; nome: string } }
   | { tipo: 'conquista.concedida'; discordId: string; conquista: { id: number; nome: string; descricaoCurta: string }; motivo: string | null }
-  | { tipo: 'conquista.retirada'; discordId: string; conquista: { id: number; nome: string } };
+  | { tipo: 'conquista.retirada'; discordId: string; conquista: { id: number; nome: string } }
+  | { tipo: 'perfil.pendente'; discordId: string }
+  | { tipo: 'perfil.aprovado'; discordId: string }
+  | { tipo: 'perfil.rejeitado'; discordId: string; motivo: string };
 
 export type TipoEventoJunko = EventoJunko['tipo'];
 

@@ -1,5 +1,7 @@
 import { fundoDoPreset, type Banner } from '@/lib/perfil-visual';
 import { SeloCargo } from './SeloCargo';
+import { TextoComEmojis } from './TextoComEmojis';
+import type { EmojiPerfil } from '@/lib/estilo-perfil';
 
 /** Faixa do topo do perfil. Recebe o sprite já resolvido (quem monta a
  * página sabe o caminho do personagem), então funciona igual no servidor,
@@ -37,7 +39,7 @@ export function BannerPerfil({ banner, spritePersonagem }: { banner: Banner; spr
 }
 
 export function CabecalhoPerfil({
-  nome, avatar, nomeOriginal = null, avatarOriginal = null, desde, titulo, reputacao, cargos = [], bio, banner, spritePersonagem, editarHref,
+  nome, avatar, nomeOriginal = null, avatarOriginal = null, desde, titulo, reputacao, cargos = [], bio, emojis = [], banner, spritePersonagem, editarHref,
 }: {
   /** Em destaque: o apelido e o ícone escolhidos no site (ou, sem eles, os do Discord). */
   nome: string;
@@ -52,6 +54,8 @@ export function CabecalhoPerfil({
   /** Cargos que um ADM entregou (nome + cor). */
   cargos?: { id: number; nome: string; cor: string }[];
   bio: string | null;
+  /** Emojis do dono do perfil (só valem aqui): ":codigo:" na descrição vira imagem. */
+  emojis?: EmojiPerfil[];
   banner: Banner;
   spritePersonagem: string | null;
   /** Só o dono do perfil recebe: mostra o botão que leva ao editor. */
@@ -124,7 +128,7 @@ export function CabecalhoPerfil({
         )}
 
         {bio && (
-          <p className="mt-3 max-w-prose whitespace-pre-line text-[13px] leading-relaxed text-[#C8C8D4]">{bio}</p>
+          <p className="mt-3 max-w-prose whitespace-pre-line text-[13px] leading-relaxed text-[#C8C8D4]"><TextoComEmojis texto={bio} emojis={emojis} /></p>
         )}
       </div>
     </div>

@@ -163,6 +163,9 @@ falha do bot atrapalhar quem está usando o site.
 | `cargo.concedido` / `cargo.retirado` | ADM entrega ou tira um cargo | `{ discordId, cargo: { id, nome } }` |
 | `conquista.concedida` | ADM entrega uma conquista | `{ discordId, conquista: { id, nome, descricaoCurta }, motivo }` |
 | `conquista.retirada` | ADM retira uma conquista | `{ discordId, conquista: { id, nome } }` |
+| `perfil.pendente` | alguém manda cor/fundo/emojis do perfil pra aprovação | `{ discordId }` |
+| `perfil.aprovado` | ADM aprova o estilo do perfil | `{ discordId }` |
+| `perfil.rejeitado` | ADM rejeita o estilo do perfil | `{ discordId, motivo }` |
 | `teste` | Botão de teste do painel | `{}` |
 
 `partida` = `{ id, titulo, hostDiscordId, dataHora (ISO/UTC), vagas, url, status, iniciadaEm, duracaoSegundos }`. `iniciadaEm` só existe depois do "Começar";

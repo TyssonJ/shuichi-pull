@@ -3,6 +3,7 @@ import { listarItensComCorrecoes } from '@/lib/itens-corrigidos';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
+import { repositorioPerfilEstilos } from '@/db/repositorios/perfil-estilos';
 import { sessaoAdm } from '@/lib/adm/sessao';
 import { agoraMs } from '@/lib/agora';
 import {
@@ -18,12 +19,13 @@ const DIA = 86_400_000;
 
 export default async function AdmIndex() {
   const agora = agoraMs();
-  const [personagens, itens, partidas, usuarios, sessao] = await Promise.all([
+  const [personagens, itens, partidas, usuarios, sessao, perfisPendentes] = await Promise.all([
     listarPersonagensComCorrecoes(),
     listarItensComCorrecoes(),
     repositorioPartidas.listarTodas(),
     repositorioUsuarios.listarTodos(),
     sessaoAdm(),
+    repositorioPerfilEstilos.contarPendentes(),
   ]);
 
   // Auditoria é só pro chefe (a própria página já é): o gráfico e o log
@@ -62,12 +64,16 @@ export default async function AdmIndex() {
         <AcaoRapida href="/" novaAba>Ver o site ↗</AcaoRapida>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-7">
         <CartaoStatus valor={agendadas.length} rotulo="Partidas agendadas" url="/adm/partidas" cor="#00FF66" />
         <CartaoStatus valor={proximas24h} rotulo="Começam em 24h" url="/adm/partidas" cor="#FF007F" />
         <CartaoStatus
           valor={uidsPendentes} rotulo="UIDs pendentes" url="/adm/usuarios"
           cor={uidsPendentes > 0 ? '#F59E0B' : '#D6D6E0'} alerta={uidsPendentes > 0}
+        />
+        <CartaoStatus
+          valor={perfisPendentes} rotulo="Perfis aguardando" url="/adm/perfis"
+          cor={perfisPendentes > 0 ? '#F59E0B' : '#D6D6E0'} alerta={perfisPendentes > 0}
         />
         <CartaoStatus valor={usuarios.length} rotulo="Usuários" url="/adm/usuarios" cor="#00F0FF" />
         <CartaoStatus valor={itens.length} rotulo="Itens" url="/adm/itens" />

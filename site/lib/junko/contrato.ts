@@ -28,5 +28,8 @@ export const EVENTOS_PARA_O_BOT: { evento: string; quando: string }[] = [
   { evento: 'cargo.retirado', quando: 'Um ADM tira um cargo de alguém.' },
   { evento: 'conquista.concedida', quando: 'Um ADM entrega uma conquista (com o motivo, se houver).' },
   { evento: 'conquista.retirada', quando: 'Um ADM retira uma conquista.' },
+  { evento: 'perfil.pendente', quando: 'Alguém manda um estilo de perfil (cor, fundo, emojis) pra aprovação.' },
+  { evento: 'perfil.aprovado', quando: 'Um ADM aprova o estilo de perfil de alguém.' },
+  { evento: 'perfil.rejeitado', quando: 'Um ADM rejeita o estilo de perfil (com o motivo).' },
   { evento: 'teste', quando: 'Botão "Enviar evento de teste" deste painel.' },
 ];

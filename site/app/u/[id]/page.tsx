@@ -9,6 +9,8 @@ import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { CabecalhoPerfil } from '@/components/perfil/CabecalhoPerfil';
 import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
 import { Conquistas } from '@/components/perfil/Conquistas';
+import { MoldePerfil } from '@/components/perfil/MoldePerfil';
+import { repositorioPerfilEstilos } from '@/db/repositorios/perfil-estilos';
 import { repositorioCargos } from '@/db/repositorios/cargos';
 import { repositorioConquistas } from '@/db/repositorios/conquistas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
@@ -47,14 +49,16 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas] = await Promise.all([
+  const [{ historico, estatisticas }, personagens, recebidas, sessao, cargos, conquistas, estiloLinha] = await Promise.all([
     repositorioPartidas.perfilDoUsuario(id),
     listarPersonagensComCorrecoes(),
     repositorioPartidaAvaliacoes.listarRecebidas(id),
     auth(),
     repositorioCargos.cargosDoUsuario(id),
     repositorioConquistas.conquistasDoUsuario(id),
+    repositorioPerfilEstilos.buscar(id),
   ]);
+  const estilo = estiloLinha?.publicado ?? null;
   const souAdm = Boolean(sessao?.user?.papel);
   const souDono = sessao?.user?.discordId === id;
   const identidade = identidadeDe(usuario);
@@ -73,6 +77,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const titulo = tituloPorPartidas(estatisticas.total);
 
   return (
+    <MoldePerfil estilo={estilo}>
     <PainelComTrilhas as="article">
       <CabecalhoPerfil
         nome={identidade.nome}
@@ -84,6 +89,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
         reputacao={reputacao(resumo)}
         cargos={cargos}
         bio={usuario.bio}
+        emojis={estilo?.emojis}
         banner={banner}
         spritePersonagem={spriteDoBanner}
         editarHref={souDono ? '/conta/' : undefined}
@@ -172,5 +178,6 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
         )}
       </section>
     </PainelComTrilhas>
+    </MoldePerfil>
   );
 }
