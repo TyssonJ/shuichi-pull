@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export type ParticipanteAvaliavel = {
   discordId: string;
@@ -36,7 +37,7 @@ export function AvaliarParticipantes({
         await aoAvaliar(partidaId, avaliadoDiscordId, tipo, comentarios[avaliadoDiscordId] ?? null);
       }
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setCarregando(null);
     }

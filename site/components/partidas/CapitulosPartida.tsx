@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export type CapituloLinha = {
   numero: number;
@@ -45,7 +46,7 @@ function NovoCapituloForm({
       setVitima('');
       setAfk([]);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(false);
     }

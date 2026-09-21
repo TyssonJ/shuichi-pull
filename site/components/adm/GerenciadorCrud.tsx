@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type ReactNode } from 'react';
 import { BotaoMini, estiloInput } from './campos-form';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export type LinhaCrud = {
   id: string;
@@ -49,7 +50,7 @@ export function GerenciadorCrud({
     try {
       await aoExcluir(l.id, l.nome);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para remover. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para remover. Tenta de novo?'));
     }
   }
 
@@ -58,7 +59,7 @@ export function GerenciadorCrud({
     try {
       await aoRestaurar(id);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para restaurar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para restaurar. Tenta de novo?'));
     }
   }
 

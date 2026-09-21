@@ -6,6 +6,7 @@ import type { Texto } from '@/lib/schema';
 import type { Craft, Spawn } from '@/lib/schema-itens';
 import type { DadosItemExtra } from '@/lib/adm/item-extra';
 import { BotaoMini, Campo, Secao, estiloInput, paraNumero } from './campos-form';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export type LocalOpcao = {
   id: string; nome: Texto; andar: Texto | null;
@@ -126,7 +127,7 @@ export function FormularioItemAdm({
       });
       if (!inicial) setF(VAZIO);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(false);
     }

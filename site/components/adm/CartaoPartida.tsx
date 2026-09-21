@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 const ROTULO_STATUS: Record<string, string> = {
   agendada: 'AGENDADA', finalizada: 'FINALIZADA', cancelada: 'CANCELADA',
@@ -42,7 +43,7 @@ export function CartaoPartida({
       setNovoHost('');
       setAberto(false);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu certo.');
+      setErro(mensagemDeErro(err, 'Não deu certo.'));
     } finally {
       setCarregando(false);
     }

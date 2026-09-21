@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FUSO_SITE } from '@/lib/fuso';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export type ComentarioExibido = {
   id: number;
@@ -35,7 +36,7 @@ export function Comentarios({
       await aoComentar(eventoId, texto);
       setTexto('');
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para enviar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para enviar. Tenta de novo?'));
     } finally {
       setEnviando(false);
     }
@@ -47,7 +48,7 @@ export function Comentarios({
     try {
       await aoRemover(eventoId, id);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para apagar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para apagar. Tenta de novo?'));
     } finally {
       setRemovendoId(null);
     }

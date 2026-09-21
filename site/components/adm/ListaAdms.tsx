@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 type Adm = { discordId: string; nome: string; papel: 'adm' | 'chefe'; promovidoPor: string | null; criadoEm: Date };
 
@@ -22,7 +23,7 @@ export function ListaAdms({
       setDiscordId('');
       setNome('');
     } catch (e) {
-      setErro(e instanceof Error ? e.message : 'Não deu para adicionar. Tenta de novo?');
+      setErro(mensagemDeErro(e, 'Não deu para adicionar. Tenta de novo?'));
     }
   }
 
@@ -31,7 +32,7 @@ export function ListaAdms({
     try {
       await aoRebaixar(discordId);
     } catch (e) {
-      setErro(e instanceof Error ? e.message : 'Não deu para rebaixar. Tenta de novo?');
+      setErro(mensagemDeErro(e, 'Não deu para rebaixar. Tenta de novo?'));
     }
   }
 

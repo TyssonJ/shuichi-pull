@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Codigo } from '@/lib/eventos';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 const VAZIO: Codigo = { codigo: '', recompensa: '', descricao: '', expiraEm: null, fonte: null, iconeUrl: null };
 
@@ -21,7 +22,7 @@ export function FormularioCodigo({
     try {
       await aoSalvar(dados);
     } catch (e) {
-      setErro(e instanceof Error ? e.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(e, 'Não deu para salvar. Tenta de novo?'));
     }
   }
 

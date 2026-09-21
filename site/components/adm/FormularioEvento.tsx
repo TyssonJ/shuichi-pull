@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Evento } from '@/lib/eventos';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 const VAZIO: Evento = {
   id: '', tipo: 'noticia', titulo: '', data: '', ate: null, destaque: false,
@@ -24,7 +25,7 @@ export function FormularioEvento({
     try {
       await aoSalvar(dados);
     } catch (e) {
-      setErro(e instanceof Error ? e.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(e, 'Não deu para salvar. Tenta de novo?'));
     }
   }
 

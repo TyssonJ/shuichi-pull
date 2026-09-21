@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { DefinicaoConfig } from '@/lib/configuracoes';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 export function ListaToggles({
   toggles, valores, aoSalvar,
@@ -22,7 +23,7 @@ export function ListaToggles({
       await aoSalvar(chave, novo);
       setEstado((e) => ({ ...e, [chave]: novo }));
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(null);
     }

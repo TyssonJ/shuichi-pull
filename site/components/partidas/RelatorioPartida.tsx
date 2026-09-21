@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 type Resultado = 'vitoria_alunos' | 'vitoria_mestre' | 'tragedia';
 
@@ -48,7 +49,7 @@ export function RelatorioPartida({
       });
       setSalvo(true);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(false);
     }

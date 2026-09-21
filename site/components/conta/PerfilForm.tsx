@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 type Personagem = { id: string; nome: string };
 
@@ -32,7 +33,7 @@ export function PerfilForm({
       await aoSalvar({ uuidGmod: uuid.trim() || null, mains });
       setSalvo(true);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(false);
     }

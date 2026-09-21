@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { DadosPersonagemExtra } from '@/lib/adm/personagem-extra';
 import { BotaoMini, Campo, Secao, estiloInput, paraNumero } from './campos-form';
+import { mensagemDeErro } from '@/lib/acao-cliente';
 
 type LinhaEtiqueta = { pt: string; en: string; bom: boolean };
 
@@ -75,7 +76,7 @@ export function FormularioPersonagemAdm({
       });
       if (!inicial) setF(VAZIO);
     } catch (err) {
-      setErro(err instanceof Error ? err.message : 'Não deu para salvar. Tenta de novo?');
+      setErro(mensagemDeErro(err, 'Não deu para salvar. Tenta de novo?'));
     } finally {
       setSalvando(false);
     }
