@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
@@ -11,6 +12,7 @@ import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
 import { Conquistas } from '@/components/perfil/Conquistas';
 import { MoldePerfil } from '@/components/perfil/MoldePerfil';
 import { BlogDoPerfil } from '@/components/perfil/BlogDoPerfil';
+import { JunkoNoPerfil } from '@/components/perfil/JunkoNoPerfil';
 import { repositorioPerfilPosts } from '@/db/repositorios/perfil-posts';
 import { publicarPostAction, apagarPostAction } from '@/app/conta/post-acoes';
 import { repositorioPerfilEstilos } from '@/db/repositorios/perfil-estilos';
@@ -147,6 +149,11 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
           iconeUrl: c.iconeUrl, concedidaEm: formatarData(c.concedidaEm), motivo: c.motivo,
         }))}
       />
+
+      {/* O bot é externo e pode demorar: o resto do perfil não espera por ele. */}
+      <Suspense fallback={null}>
+        <JunkoNoPerfil discordId={id} />
+      </Suspense>
 
       <BlogDoPerfil
         posts={posts.map((p) => ({ id: p.id, texto: p.texto, anexos: p.anexos, quando: formatarData(p.criadoEm) }))}

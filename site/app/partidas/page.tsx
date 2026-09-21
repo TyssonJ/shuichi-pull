@@ -94,6 +94,9 @@ export default async function PaginaPartidas() {
               Escolha a sala, o seu personagem em 8-bit e entre — como titular, reserva ou numa
               vaga genérica.
             </p>
+            <Link href="/ranking/" className="mt-2 inline-block font-mono text-[10px] tracking-[.1em] text-[#5FBF85] hover:text-alter-green hover:underline">
+              🏆 RANKING DO JUNKO BOT →
+            </Link>
           </div>
 
           {discordId ? (

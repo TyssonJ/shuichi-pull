@@ -7,8 +7,9 @@ O site (`https://shuichipull.vercel.app`) e o bot do Discord conversam nas duas 
 - **Site → bot**: quando algo acontece no site (partida criada, UID enviado…), o site manda um **evento**
   (`POST <bot>/eventos`) para o bot reagir (avisar no Discord, dar cargo, etc.).
 
-O lado do site já está pronto. O bot precisa de duas coisas: **usar a chave** para chamar o site e
-**expor `POST /eventos`** para receber os avisos.
+O lado do site já está pronto. Para a integração completa o bot ainda precisa de duas coisas: **usar a chave**
+para chamar o site e **expor `POST /eventos`** para receber os avisos (hoje ele só tem as rotas de leitura da
+[seção 5](#5-o-que-o-site-já-lê-do-bot-rotas-que-o-bot-já-tem); `/eventos` e `/avaliacoes` dão 404).
 
 ---
 
@@ -233,3 +234,44 @@ curl -X POST -H "Authorization: Bearer $SHUICHI_API_KEY" -H "Content-Type: appli
   exibida nem registrada na auditoria.
 - O endereço do bot precisa ser `https` público (o painel recusa IP, `localhost` e rede interna).
 - Ações do bot aparecem na auditoria do site com autor `junko-bot`.
+
+---
+
+## 5. O que o site já lê do bot (rotas que o bot já tem)
+
+O bot (Python, `api.py`) publica duas rotas de **leitura pública** (sem chave, CORS aberto). O site as usa no
+cartão "Junko Bot" do perfil (`/u/{id}/`) e na página `/ranking/`. Nenhuma credencial do site é enviada a elas.
+
+> **As rotas do bot NÃO aceitam barra no final** (`/api/usuario/123/` dá 404; o correto é `/api/usuario/123`).
+> É o contrário das rotas do site, que exigem a barra.
+
+### `GET /api/usuario/{discordId}`
+`404` `{"erro": "Usuário não encontrado no banco de dados"}` se a pessoa nunca usou o bot.
+
+```json
+{
+  "user_id": "631190114504015892", "uuid": "2387", "jcoins": 905, "partidas": 9, "vitorias": 0, "mvps": 0,
+  "mains": "Mikan Tsumiki", "fundo_equipado": "Mikan1", "cor_borda": "#EC417A", "cor_titulo": "#EC417A",
+  "titulo_equipado": "Sobrevivente Novato", "last_daily": 1789893024, "daily_streak": 13,
+  "discord_name": "Fulano", "discord_avatar": "https://cdn.discordapp.com/avatars/…png?size=1024"
+}
+```
+O site usa `jcoins`, `partidas`, `vitorias`, `mvps`, `mains` (texto livre), `titulo_equipado` + `cor_titulo`,
+`daily_streak` e `last_daily` (segundos Unix). Os demais campos são ignorados.
+
+### `GET /api/leaderboard/{categoria}`
+`categoria` = `riqueza` (campo `jcoins`), `vitorias` (campo `vitorias`) ou `assassinatos` (campo `mvps` — apesar do nome
+da categoria, o número devolvido é o de MVPs; o site mostra como "MVPs"). Devolve o top 10; categoria inválida dá `400`.
+
+```json
+{ "categoria": "riqueza", "ranking": [{ "user_id": "5678…", "jcoins": 910, "discord_name": "Fulano" }] }
+```
+
+### Como o site trata o bot
+Timeout de 3 s, resposta reaproveitada por 60 s e validação de tudo que chega (item malformado é descartado; cor que não
+é `#rrggbb` é ignorada). Bot fora do ar, pessoa que nunca usou o bot ou resposta estranha: o cartão simplesmente não
+aparece no perfil e o placar mostra um aviso — o site nunca quebra por causa do bot. O endereço vem da mesma configuração
+do painel (`/adm/junko/`).
+
+> Atenção (decisão do dono do bot): estas rotas são públicas e devolvem também o `uuid` do jogador, a data do último resgate
+> diário e o link do avatar. O site não exibe o `uuid`, mas qualquer pessoa pode consultá-lo direto no bot.

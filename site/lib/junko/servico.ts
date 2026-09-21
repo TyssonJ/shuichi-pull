@@ -5,6 +5,14 @@ import { CFG_JUNKO, URL_JUNKO_PADRAO, validarUrlJunko } from './config';
 import { criarNotificador, type ConfigEnvio } from './enviar';
 import type { EventoJunko } from './eventos';
 
+/** Endereço do bot para LER dados públicos dele (perfil e ranking). Mesma regra
+ * de segurança da URL de envio: inválida ou ausente cai no endereço padrão. */
+export async function lerUrlDoBot(): Promise<string> {
+  const url = await repositorioConfiguracoes.obter(CFG_JUNKO.url);
+  const validada = url ? validarUrlJunko(url) : null;
+  return validada?.ok ? validada.valor : URL_JUNKO_PADRAO;
+}
+
 /** Lê a configuração de envio. A URL é revalidada na leitura, não só ao
  * salvar: se algo estranho entrar no banco, cai no endereço padrão. */
 export async function lerConfigEnvio(): Promise<ConfigEnvio> {
