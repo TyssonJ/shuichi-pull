@@ -3,6 +3,7 @@ import type { Item, Local } from './schema-itens';
 import { repositorioCorrecoes } from '@/db/repositorios/correcoes';
 import { repositorioItensAdm } from '@/db/repositorios/itens-adm';
 import { aplicarCorrecoes } from './correcoes-merge';
+import { mesclarSpawnsNosLocais } from './spawns-extras';
 
 // Separado de `itens.ts` de propósito: `itens.ts` é importado por
 // `lib/busca.ts`, que por sua vez é importado pelo componente de cliente
@@ -29,8 +30,12 @@ export async function buscarItemComCorrecoes(id: string): Promise<Item | null> {
 }
 
 export async function listarLocaisComCorrecoes(): Promise<Local[]> {
-  const correcoes = await repositorioCorrecoes.buscarCorrecoesPorColecao('locais');
-  return aplicarCorrecoes(listarLocais(), correcoes);
+  const [correcoes, extras] = await Promise.all([
+    repositorioCorrecoes.buscarCorrecoesPorColecao('locais'),
+    repositorioItensAdm.listarExtras(),
+  ]);
+  // Item criado pelo ADM com ponto de spawn também entra no mapa do local.
+  return mesclarSpawnsNosLocais(aplicarCorrecoes(listarLocais(), correcoes), extras);
 }
 
 export async function buscarLocalComCorrecoes(id: string): Promise<Local | null> {

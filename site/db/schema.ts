@@ -1,4 +1,6 @@
-import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique } from 'drizzle-orm/pg-core';
+import { pgTable, pgEnum, serial, text, boolean, integer, real, timestamp, unique, jsonb } from 'drizzle-orm/pg-core';
+import type { Craft, Spawn } from '../lib/schema-itens';
+import type { Etiqueta } from '../lib/schema';
 
 export const papelAdm = pgEnum('papel_adm', ['adm', 'chefe']);
 
@@ -68,6 +70,17 @@ export const itensExtras = pgTable('itens_extras', {
   peso: real('peso'),
   icone: text('icone'),
   descricaoPt: text('descricao_pt'),
+  // Campos do item completo — todos opcionais pra não invalidar os extras
+  // que já existem (criados só com o formulário rápido).
+  ramoPt: text('ramo_pt'),
+  ramoEn: text('ramo_en'),
+  descricaoEn: text('descricao_en'),
+  efeitoPt: text('efeito_pt'),
+  efeitoEn: text('efeito_en'),
+  lojaVendedor: text('loja_vendedor'),
+  lojaPreco: integer('loja_preco'),
+  craft: jsonb('craft').$type<Craft>(),
+  spawns: jsonb('spawns').$type<Spawn[]>(),
   autor: text('autor').notNull(),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
@@ -97,6 +110,11 @@ export const personagensExtras = pgTable('personagens_extras', {
   percepcao: integer('percepcao').notNull(),
   vida: integer('vida').notNull(),
   sprite: text('sprite'),
+  etiquetas: jsonb('etiquetas').$type<Etiqueta[]>(),
+  personalidade: text('personalidade'),
+  aparencia: text('aparencia'),
+  historia: text('historia'),
+  segredo: text('segredo'),
   autor: text('autor').notNull(),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
 });
@@ -140,6 +158,8 @@ export const partidas = pgTable('partidas', {
   dataHora: timestamp('data_hora', { withTimezone: true }).notNull(),
   regras: text('regras'),
   capaUrl: text('capa_url'),
+  // Quantos titulares a partida comporta (o Shinri Trial padrão é 16).
+  vagas: integer('vagas').notNull().default(16),
   status: statusPartida('status').notNull().default('agendada'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
   // Relatório pós-partida (AAR), preenchido pelo host ao finalizar — todos

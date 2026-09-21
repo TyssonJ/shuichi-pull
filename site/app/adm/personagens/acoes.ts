@@ -2,53 +2,52 @@
 
 import { revalidatePath } from 'next/cache';
 import { exigirAdm } from '@/lib/adm/sessao';
+import { gerarId } from '@/lib/adm/gerar-id';
+import { validarPersonagemExtra, type DadosPersonagemExtra } from '@/lib/adm/personagem-extra';
+import { listarPersonagens } from '@/lib/dados';
 import { repositorioPersonagensAdm } from '@/db/repositorios/personagens-adm';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
 
-const DIACRITICOS = new RegExp(String.fromCharCode(0x5b, 0x5c, 0x75, 0x30, 0x33, 0x30, 0x30, 0x2d, 0x5c, 0x75, 0x30, 0x33, 0x36, 0x66, 0x5d), 'g');
-
-function gerarId(nome: string): string {
-  return nome
-    .normalize('NFD')
-    .replace(DIACRITICOS, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function revalidarPersonagens(id?: string) {
+/** Só o que é estático precisa revalidar: partidas, conta e perfil já
+ * renderizam a cada acesso e leem o elenco atual sozinhos. */
+function revalidarPersonagens(id: string) {
   revalidatePath('/elenco');
-  if (id) revalidatePath(`/elenco/${id}`);
+  revalidatePath(`/elenco/${id}`);
   revalidatePath('/adm/personagens');
 }
 
-export async function criarPersonagemAction(args: {
-  nome: string; jogo: string; talentoPt: string; descricaoPt: string;
-  velocidade: number; mochila: number; percepcao: number; vida: number;
-  sprite: string | null;
-}) {
+export async function criarPersonagemAction(dados: DadosPersonagemExtra) {
   const sessao = await exigirAdm();
-  const id = gerarId(args.nome);
+  const id = gerarId(dados.nome);
   if (!id) throw new Error('Dá um nome pro personagem antes de salvar.');
 
-  await repositorioPersonagensAdm.criarExtra({
-    id,
-    nome: args.nome,
-    talentoPt: args.talentoPt,
-    talentoEn: args.talentoPt,
-    descricaoPt: args.descricaoPt,
-    descricaoEn: args.descricaoPt,
-    jogo: args.jogo,
-    velocidade: args.velocidade,
-    mochila: args.mochila,
-    percepcao: args.percepcao,
-    vida: args.vida,
-    sprite: args.sprite,
-    autor: sessao.discordId,
-  });
+  const extras = await repositorioPersonagensAdm.listarExtras();
+  if (listarPersonagens().some((p) => p.id === id) || extras.some((p) => p.id === id)) {
+    throw new Error(`Já existe um personagem com o id "${id}". Use outro nome, ou edite/restaure o existente.`);
+  }
+
+  const personagem = validarPersonagemExtra(id, dados);
+  await repositorioPersonagensAdm.criarExtra(personagem, sessao.discordId);
   await repositorioAuditoria.registrar({
     autor: sessao.discordId, acao: 'personagem.criar', alvo: id,
-    valorAntigo: null, valorNovo: args.nome,
+    valorAntigo: null, valorNovo: personagem.nome,
+  });
+  revalidarPersonagens(id);
+}
+
+export async function atualizarPersonagemAction(id: string, dados: DadosPersonagemExtra) {
+  const sessao = await exigirAdm();
+  const extras = await repositorioPersonagensAdm.listarExtras();
+  const atual = extras.find((p) => p.id === id);
+  if (!atual) {
+    throw new Error('Só personagens criados pelo painel podem ser editados aqui — os do guia usam "Corrigir campos".');
+  }
+
+  const personagem = validarPersonagemExtra(id, dados);
+  await repositorioPersonagensAdm.atualizarExtra(personagem);
+  await repositorioAuditoria.registrar({
+    autor: sessao.discordId, acao: 'personagem.editar', alvo: id,
+    valorAntigo: atual.nome, valorNovo: personagem.nome,
   });
   revalidarPersonagens(id);
 }
@@ -64,7 +63,11 @@ export async function excluirPersonagemAction(id: string, nome: string) {
 }
 
 export async function restaurarPersonagemAction(id: string) {
-  await exigirAdm();
+  const sessao = await exigirAdm();
   await repositorioPersonagensAdm.restaurar(id);
+  await repositorioAuditoria.registrar({
+    autor: sessao.discordId, acao: 'personagem.restaurar', alvo: id,
+    valorAntigo: null, valorNovo: id,
+  });
   revalidarPersonagens(id);
 }
