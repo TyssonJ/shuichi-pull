@@ -3,14 +3,25 @@
 import { useEffect, useState } from 'react';
 import { JanelaEgo } from './JanelaEgo';
 
-const LINHAS = [
-  'HOPE\'S PEAK ACADEMY — TERMINAL',
-  'carregando arquivo da comunidade BR/PT...',
-  '56 fichas de aluno · 162 itens · 39 locais',
-  'ALTER_EGO.exe iniciado',
-];
+/** Sempre 4 linhas, com ou sem números — o efeito da animação não depende da lista. */
+const TOTAL_DE_LINHAS = 4;
 
-export function Boot() {
+type Contagens = { alunos: number; itens: number; locais: number };
+
+/** Os números vêm do catálogo de verdade (com o que o ADM criou ou tirou): já
+ * mostrou "162 itens" fixo quando o catálogo tinha 139. */
+function linhasDaAbertura(c?: Contagens): string[] {
+  return [
+    'HOPE\'S PEAK ACADEMY — TERMINAL',
+    'carregando arquivo da comunidade BR/PT...',
+    c ? `${c.alunos} fichas de aluno · ${c.itens} itens · ${c.locais} locais` : 'fichas de aluno · itens · locais',
+    'ALTER_EGO.exe iniciado',
+  ];
+}
+
+export function Boot({ contagens }: { contagens?: Contagens } = {}) {
+  const LINHAS = linhasDaAbertura(contagens);
+
   const [visivel, setVisivel] = useState(false);
   const [linha, setLinha] = useState(0);
 
@@ -25,7 +36,7 @@ export function Boot() {
 
     const t = setInterval(() => {
       setLinha((n) => {
-        if (n >= LINHAS.length - 1) { clearInterval(t); setTimeout(encerrar, 900); return n; }
+        if (n >= TOTAL_DE_LINHAS - 1) { clearInterval(t); setTimeout(encerrar, 900); return n; }
         return n + 1;
       });
     }, 500);

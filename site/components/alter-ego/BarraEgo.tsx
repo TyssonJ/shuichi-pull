@@ -163,6 +163,18 @@ export function BarraEgo() {
     }
   }, [flutuanteAberta]);
 
+  // Menu do celular. Guarda EM QUE rota foi aberto: ao navegar, a rota muda e
+  // ele fecha sozinho, sem effect nem estado a sincronizar.
+  const [menuEm, setMenuEm] = useState<string | null>(null);
+  const menuAberto = menuEm !== null && menuEm === (pathname ?? '');
+
+  useEffect(() => {
+    if (!menuAberto) return;
+    const fechar = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuEm(null); };
+    window.addEventListener('keydown', fechar);
+    return () => window.removeEventListener('keydown', fechar);
+  }, [menuAberto]);
+
   return (
     <>
       <div ref={alvo} aria-hidden className="h-px" />
@@ -175,18 +187,18 @@ export function BarraEgo() {
           barraVisivel ? '' : 'pointer-events-none -translate-y-full opacity-0'
         }`}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex shrink-0 flex-col items-center gap-1.5">
-            <div className="w-[88px] overflow-hidden rounded-[4px] border-2 border-alter-green shadow-[0_0_12px_rgba(0,255,102,0.4)]">
+            <div className="w-[56px] overflow-hidden sm:w-[88px] rounded-[4px] border-2 border-alter-green shadow-[0_0_12px_rgba(0,255,102,0.4)]">
               <JanelaEgo estado={estado} variaveis={{ n: resultados.length }} compacta />
             </div>
-            <p className="flex items-center gap-1.5 font-mono text-[10px] tracking-[.1em] text-alter-green">
+            <p className="hidden items-center gap-1.5 font-mono text-[10px] tracking-[.1em] text-alter-green sm:flex">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-alter-green" aria-hidden />
               CORE: ONLINE
             </p>
           </div>
 
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <Busca
               id="busca-header" termo={termo} resultados={resultados} setTermo={setTermo}
               emFoco={buscaEmFoco} aoFocar={() => setBuscaEmFoco(true)} aoDesfocar={() => setBuscaEmFoco(false)}
@@ -200,6 +212,17 @@ export function BarraEgo() {
           </div>
 
           <NucleoDiscord />
+
+          <button
+            type="button"
+            aria-expanded={menuAberto}
+            aria-controls="menu-movel"
+            aria-label={menuAberto ? 'Fechar o menu' : 'Abrir o menu'}
+            onClick={() => setMenuEm(menuAberto ? null : pathname ?? '')}
+            className="shrink-0 rounded-[2px] border-2 border-execution-pink/60 px-2.5 py-1.5 font-mono text-[16px] font-bold leading-none text-execution-pink hover:bg-execution-pink/10 sm:hidden"
+          >
+            {menuAberto ? '✕' : '☰'}
+          </button>
 
           <nav aria-label="Navegação principal" className="hidden flex-wrap gap-2.5 sm:flex">
             {SECOES.map((s) => {
@@ -229,6 +252,29 @@ export function BarraEgo() {
             })}
           </nav>
         </div>
+
+        {menuAberto && (
+          <nav id="menu-movel" aria-label="Navegação principal (menu do celular)" className="mt-3 grid grid-cols-2 gap-2 sm:hidden">
+            {SECOES.map((s) => {
+              const ativa = pathname?.startsWith(s.url);
+              return (
+                <Link
+                  key={s.url}
+                  href={s.url}
+                  onClick={() => setMenuEm(null)}
+                  aria-current={ativa ? 'page' : undefined}
+                  className={`rounded-[2px] border-2 px-3 py-2.5 font-mono text-[12px] font-bold tracking-[.08em] ${
+                    ativa
+                      ? 'border-execution-pink bg-execution-pink/10 text-execution-pink'
+                      : 'border-execution-pink/30 text-[#D6D6E0] active:bg-execution-pink/10'
+                  }`}
+                >
+                  {s.numero} {'//'} {s.nome.toUpperCase()}
+                </Link>
+              );
+            })}
+          </nav>
+        )}
       </header>
 
       {!barraVisivel && !flutuanteAberta && (

@@ -46,7 +46,7 @@ function Grupo({ titulo, itens, caminho }: { titulo: string; itens: Item[]; cami
   return (
     <div>
       <p className="mb-1 px-2 font-mono text-[9px] tracking-[.22em] text-alter-green/60">{titulo}</p>
-      <ul className="flex flex-col gap-0.5">
+      <ul className="flex flex-wrap gap-1.5 md:flex-col md:gap-0.5">
         {itens.map((i) => {
           const ativo = estaAtivo(caminho, i.url);
           return (
@@ -54,10 +54,10 @@ function Grupo({ titulo, itens, caminho }: { titulo: string; itens: Item[]; cami
               <Link
                 href={i.url}
                 aria-current={ativo ? 'page' : undefined}
-                className={`block border-l-2 px-2.5 py-1.5 text-sm transition-colors ${
+                className={`block border px-2.5 py-1 text-[13px] transition-colors md:border-0 md:border-l-2 md:py-1.5 md:text-sm ${
                   ativo
                     ? 'border-execution-pink bg-execution-pink/10 font-bold text-execution-pink'
-                    : 'border-transparent text-neutral-300 hover:border-alter-green hover:bg-alter-green/10 hover:text-alter-green'
+                    : 'border-neutral-700 text-neutral-300 md:border-transparent hover:border-alter-green hover:bg-alter-green/10 hover:text-alter-green'
                 }`}
               >
                 {i.rotulo}

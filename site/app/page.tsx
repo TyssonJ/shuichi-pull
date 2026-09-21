@@ -3,21 +3,22 @@ import { Faixa } from '@/components/layout/Faixa';
 import { HeroTitulo } from '@/components/layout/HeroTitulo';
 import { Boot } from '@/components/alter-ego/Boot';
 import { listarPersonagensComCorrecoes } from '@/lib/dados-corrigidos';
-import { listarItensComCorrecoes } from '@/lib/itens-corrigidos';
+import { listarItensComCorrecoes, listarLocaisComCorrecoes } from '@/lib/itens-corrigidos';
 import { obterTextos } from '@/lib/textos';
 import { spriteDoPersonagem } from '@/lib/sprites';
 
 export default async function Inicio() {
-  const [personagens, itens, t] = await Promise.all([
+  const [personagens, itens, locais, t] = await Promise.all([
     listarPersonagensComCorrecoes(),
     listarItensComCorrecoes(),
+    listarLocaisComCorrecoes(),
     obterTextos(),
   ]);
   const total = personagens.length;
 
   return (
     <>
-      <Boot />
+      <Boot contagens={{ alunos: personagens.length, itens: itens.length, locais: locais.length }} />
 
       <section className="relative overflow-hidden bg-[#08090D] px-4 py-12 clip-hero-diagonal">
         <span

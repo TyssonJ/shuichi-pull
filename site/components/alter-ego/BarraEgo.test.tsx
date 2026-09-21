@@ -239,4 +239,44 @@ describe('BarraEgo — destaque de seção atual', () => {
     const falaSpan = linha.querySelector('span:last-child');
     expect(falaSpan).toHaveClass('text-dim');
   });
+
+  describe('menu do celular', () => {
+    it('começa fechado e abre com ☰, mostrando as 9 seções', () => {
+      render(<BarraEgo />);
+      expect(screen.queryByRole('navigation', { name: /menu do celular/i })).toBeNull();
+
+      fireEvent.click(screen.getByRole('button', { name: 'Abrir o menu' }));
+      const menu = screen.getByRole('navigation', { name: /menu do celular/i });
+      expect(menu.querySelectorAll('a')).toHaveLength(9);
+      expect(screen.getByRole('button', { name: 'Fechar o menu' })).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('marca a seção atual e fecha ao clicar de novo no botão', () => {
+      render(<BarraEgo />);
+      fireEvent.click(screen.getByRole('button', { name: 'Abrir o menu' }));
+      const atual = screen.getByRole('navigation', { name: /menu do celular/i }).querySelector('[aria-current="page"]');
+      expect(atual?.textContent).toMatch(/ELENCO/);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Fechar o menu' }));
+      expect(screen.queryByRole('navigation', { name: /menu do celular/i })).toBeNull();
+    });
+
+    it('fecha com Esc', () => {
+      render(<BarraEgo />);
+      fireEvent.click(screen.getByRole('button', { name: 'Abrir o menu' }));
+      fireEvent.keyDown(window, { key: 'Escape' });
+      expect(screen.queryByRole('navigation', { name: /menu do celular/i })).toBeNull();
+    });
+
+    it('fecha sozinho quando a rota muda (navegou)', () => {
+      const { rerender } = render(<BarraEgo />);
+      fireEvent.click(screen.getByRole('button', { name: 'Abrir o menu' }));
+      expect(screen.getByRole('navigation', { name: /menu do celular/i })).toBeInTheDocument();
+
+      vi.mocked(usePathname).mockReturnValue('/mapa/');
+      rerender(<BarraEgo />);
+      expect(screen.queryByRole('navigation', { name: /menu do celular/i })).toBeNull();
+      vi.mocked(usePathname).mockReturnValue('/elenco/');
+    });
+  });
 });
