@@ -2,10 +2,8 @@
 
 import { useState } from 'react';
 import { mensagemDeErro } from '@/lib/acao-cliente';
-
-const ROTULO_STATUS: Record<string, string> = {
-  agendada: 'AGENDADA', finalizada: 'FINALIZADA', cancelada: 'CANCELADA',
-};
+import { ROTULO_STATUS } from '@/lib/rotulos-partida';
+import { estaAberta, type StatusPartida } from '@/lib/status-partida';
 
 export function CartaoPartida({
   partidaId, titulo, hostNome, dataHora, status, totalParticipantes,
@@ -15,7 +13,7 @@ export function CartaoPartida({
   titulo: string;
   hostNome: string;
   dataHora: string;
-  status: 'agendada' | 'finalizada' | 'cancelada';
+  status: StatusPartida;
   totalParticipantes: number;
   aoCancelar: (partidaId: number) => Promise<void>;
   aoTransferirHost: (partidaId: number, novoHostDiscordId: string) => Promise<void>;
@@ -57,6 +55,7 @@ export function CartaoPartida({
         </a>
         <span className={`px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[.1em] ${
           status === 'agendada' ? 'border border-alter-green text-alter-green'
+          : status === 'em_andamento' ? 'border border-amber text-amber'
           : status === 'finalizada' ? 'border border-cyber-cyan text-cyber-cyan'
           : 'border border-execution-pink text-execution-pink'
         }`}>
@@ -68,7 +67,7 @@ export function CartaoPartida({
 
       {erro && <p role="alert" className="mt-2 text-xs text-red-400">{erro}</p>}
 
-      {status !== 'cancelada' && (
+      {estaAberta(status) && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <button
             type="button"

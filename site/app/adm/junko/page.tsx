@@ -2,12 +2,14 @@ import { repositorioConfiguracoes } from '@/db/repositorios/configuracoes';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
 import { sessaoAdm } from '@/lib/adm/sessao';
 import { CFG_JUNKO } from '@/lib/junko/config';
+import { CAMINHO_AVALIACOES_PADRAO } from '@/lib/junko/buscar-avaliacoes';
 import { lerConfigEnvio } from '@/lib/junko/servico';
 import { pingarBot } from '@/lib/junko/ping';
 import { formatarDataHoraBR } from '@/lib/fuso';
 import { PainelJunko } from '@/components/adm/PainelJunko';
 import {
   gerarChaveJunkoAction, salvarConfigJunkoAction, enviarTesteJunkoAction, verificarBotAction,
+  importarAvaliacoesDoBotAction,
 } from './acoes';
 
 export default async function AdmJunko() {
@@ -22,9 +24,11 @@ export default async function AdmJunko() {
   }
 
   const config = await lerConfigEnvio();
-  const [bot, chaveHash, linhas] = await Promise.all([
+  const [bot, chaveHash, caminhoSalvo, ultimaImportacao, linhas] = await Promise.all([
     pingarBot(config.url),
     repositorioConfiguracoes.obter(CFG_JUNKO.chaveHash),
+    repositorioConfiguracoes.obter(CFG_JUNKO.caminhoAvaliacoes),
+    repositorioConfiguracoes.obter(CFG_JUNKO.ultimaImportacao),
     repositorioAuditoria.listarAuditoria({ colecao: 'junko', limite: 15 }),
   ]);
 
@@ -50,10 +54,13 @@ export default async function AdmJunko() {
         chaveApiConfigurada={Boolean(chaveHash)}
         chaveSaidaConfigurada={Boolean(config.chave)}
         log={log}
+        caminhoAvaliacoesInicial={caminhoSalvo ?? CAMINHO_AVALIACOES_PADRAO}
+        ultimaImportacao={ultimaImportacao ? formatarDataHoraBR(new Date(ultimaImportacao)) : null}
         aoVerificar={verificarBotAction}
         aoGerarChave={gerarChaveJunkoAction}
         aoSalvar={salvarConfigJunkoAction}
         aoTestar={enviarTesteJunkoAction}
+        aoImportarAvaliacoes={importarAvaliacoesDoBotAction}
       />
     </div>
   );

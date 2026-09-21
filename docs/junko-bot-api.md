@@ -44,7 +44,9 @@ Erros de corpo devolvem `400` com `{"erro": "...", "problemas": ["campo: motivo"
 Confere URL e chave. → `{"ok": true, "site": "shuichipull", "agora": "…", "eventosAtivos": false}`
 
 ### `GET /api/junko/partidas/`
-Próximas partidas agendadas (até 20), com vagas e inscritos.
+Próximas partidas agendadas (`partidas`, até 20) e as que estão rolando agora (`emAndamento`), com vagas e inscritos.
+Cada partida traz `status` (`agendada` \| `em_andamento` \| `finalizada` \| `cancelada`), `iniciadaEm` (ISO, quando o host apertou
+"Começar") e `duracaoSegundos` (só depois de finalizada).
 
 ```json
 {
@@ -87,6 +89,35 @@ pessoa nunca entrou no site, `400` se o `personagemId` não existe no elenco.
 ### `DELETE /api/junko/partidas/{id}/inscricao/`
 Corpo: `{"discordId": "…"}` → tira a pessoa da partida.
 
+### `GET /api/junko/avaliacoes/?desde=<ISO>&limite=100`
+Avaliações dadas **no site** (0–5 estrelas + texto), das mais antigas pras mais novas. Anônimas: **nunca** trazem quem avaliou,
+e o que o próprio bot mandou não volta pra ele. `limite` até 200. Para paginar, use o `proximo` da resposta como `desde` da chamada seguinte
+(`null` = acabou).
+
+```json
+{ "avaliacoes": [{ "id": 7, "partidaId": 12, "avaliadoDiscordId": "5678…", "estrelas": 4,
+                   "comentario": "jogou muito bem", "criadoEm": "2026-09-21T15:00:00.000Z" }],
+  "proximo": null }
+```
+
+### `POST /api/junko/avaliacoes/`
+Manda avaliações que o bot tem pro site. Lote de até 100, **idempotente** pelo `externoId` (repetir atualiza, não duplica).
+
+```json
+{ "avaliacoes": [{ "externoId": "b-123", "avaliadoDiscordId": "5678…", "estrelas": 5,
+                   "comentario": "ótimo jogador", "avaliadorDiscordId": "1234…", "criadoEm": "2026-09-20T10:00:00Z" }] }
+```
+
+Só `externoId`, `avaliadoDiscordId` e `estrelas` (inteiro de 0 a 5) são obrigatórios; `comentario` (cortado em 300 caracteres), `avaliadorDiscordId`
+(guardado, **nunca exibido**) e `criadoEm` são opcionais. Item inválido não derruba o lote: volta em `ignoradas` com o motivo.
+Quem é avaliado precisa ter entrado no site ao menos uma vez.
+
+```json
+{ "ok": true, "importadas": 1, "ignoradas": [{ "externoId": "b-9", "motivo": "estrelas: estrelas precisa ser um inteiro de 0 a 5" }] }
+```
+
+As importadas aparecem no perfil da pessoa com o selo "via Junko" e entram na média.
+
 > Alterações feitas pelo bot **não** geram evento de volta para o bot (evita eco).
 
 ---
@@ -119,6 +150,7 @@ falha do bot atrapalhar quem está usando o site.
 | `evento` | Quando | `dados` |
 |---|---|---|
 | `partida.criada` | Host abre uma sala | `{ partida }` |
+| `partida.iniciada` | Host aperta "Começar" (partida fica em andamento) | `{ partida }` |
 | `partida.cancelada` | Host ou ADM cancela | `{ partida }` |
 | `partida.finalizada` | Host finaliza | `{ partida }` |
 | `inscricao.entrou` | Alguém entra numa partida | `{ partidaId, discordId, papel, personagemId }` |
@@ -126,10 +158,25 @@ falha do bot atrapalhar quem está usando o site.
 | `uid.enviado` | Jogador informa/troca o UID (fica `pendente`) | `{ discordId, uid }` |
 | `uid.status` | ADM aprova/bane/devolve o UID | `{ discordId, status }` |
 | `host.permissao` | ADM libera/revoga host | `{ discordId, podeSerHost }` |
+| `avaliacao.registrada` | Alguém avalia um colega (0–5 estrelas + texto) | `{ avaliacaoId, partidaId, avaliadoDiscordId, estrelas, comentario }` |
+| `avaliacao.removida` | Avaliação apagada (pelo autor ou ADM) | `{ partidaId, avaliadoDiscordId }` |
 | `teste` | Botão de teste do painel | `{}` |
 
-`partida` = `{ id, titulo, hostDiscordId, dataHora (ISO/UTC), vagas, url }`. `papel` = `participante` \| `reserva`.
-`status` = `pendente` \| `aprovado` \| `banido`.
+`partida` = `{ id, titulo, hostDiscordId, dataHora (ISO/UTC), vagas, url, status, iniciadaEm, duracaoSegundos }`. `iniciadaEm` só existe depois do "Começar";
+`duracaoSegundos` só em `partida.finalizada` (de partida que foi iniciada). O `avaliacao.*` **nunca** traz quem avaliou. `papel` = `participante` \| `reserva`.
+Nos eventos `uid.*`, `status` = `pendente` \| `aprovado` \| `banido` (o `status` dentro de `partida` é o da partida).
+
+### Avaliações que o site puxa do bot
+
+Além de você mandar (`POST /api/junko/avaliacoes/`), o chefe pode clicar em **Importar avaliações do bot agora** em `/adm/junko/`.
+O site faz `GET <endereço do bot><rota>` (rota padrão `/avaliacoes`, configurável no painel), com `?desde=<ISO da última importação>` e a credencial
+de saída no `Authorization`, e espera:
+
+```json
+{ "avaliacoes": [{ "externoId": "b-123", "avaliadoDiscordId": "5678…", "estrelas": 5, "comentario": "ótimo jogador" }] }
+```
+
+(uma lista direta também vale). Os mesmos campos e regras do `POST` acima. Se a rota ainda não existe (HTTP 404), o painel avisa.
 
 ### Exemplo de receptor (Python / aiohttp)
 

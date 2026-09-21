@@ -1,4 +1,4 @@
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, inArray, arrayContains } from 'drizzle-orm';
 import type { db as DbClient } from '../client';
 import { usuarios } from '../schema';
 
@@ -48,6 +48,36 @@ export function criarRepositorioUsuarios(db: Banco) {
       await db.update(usuarios)
         .set({ ...dados, atualizadoEm: new Date() })
         .where(eq(usuarios.discordId, discordId));
+    },
+
+    /** Apelido e ícone escolhidos pela pessoa (já validados e com o ícone
+     * resolvido pra endereço). Não mexe em discordNome/discordAvatar: esses
+     * são sempre os originais do Discord. */
+    async atualizarIdentidade(discordId: string, dados: {
+      apelido: string | null; avatarTipo: string | null; avatarValor: string | null; avatarUrl: string | null;
+    }) {
+      await db.update(usuarios).set({ ...dados, atualizadoEm: new Date() }).where(eq(usuarios.discordId, discordId));
+    },
+
+    /** Moderação: volta a pessoa pro nome e ícone do Discord. */
+    async resetarIdentidade(discordId: string) {
+      await db.update(usuarios)
+        .set({ apelido: null, avatarTipo: null, avatarValor: null, avatarUrl: null, atualizadoEm: new Date() })
+        .where(eq(usuarios.discordId, discordId));
+    },
+
+    /** Quem marcou esse personagem como main, do mais antigo pro mais novo. */
+    async quemJogaDeMain(personagemId: string): Promise<UsuarioLinha[]> {
+      return db.select().from(usuarios)
+        .where(arrayContains(usuarios.mains, [personagemId]))
+        .orderBy(usuarios.criadoEm);
+    },
+
+    /** Quais desses discordIds têm conta no site. */
+    async existentes(ids: string[]): Promise<Set<string>> {
+      if (ids.length === 0) return new Set();
+      const linhas = await db.select({ id: usuarios.discordId }).from(usuarios).where(inArray(usuarios.discordId, ids));
+      return new Set(linhas.map((l) => l.id));
     },
 
     async listarTodos(): Promise<UsuarioLinha[]> {

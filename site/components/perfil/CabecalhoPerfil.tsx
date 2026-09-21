@@ -36,10 +36,14 @@ export function BannerPerfil({ banner, spritePersonagem }: { banner: Banner; spr
 }
 
 export function CabecalhoPerfil({
-  nome, avatar, desde, titulo, reputacao, bio, banner, spritePersonagem,
+  nome, avatar, nomeOriginal = null, avatarOriginal = null, desde, titulo, reputacao, bio, banner, spritePersonagem, editarHref,
 }: {
+  /** Em destaque: o apelido e o ícone escolhidos no site (ou, sem eles, os do Discord). */
   nome: string;
   avatar: string | null;
+  /** Os do Discord, em tamanho menor ao lado — só quando a pessoa personalizou. */
+  nomeOriginal?: string | null;
+  avatarOriginal?: string | null;
   /** Texto já formatado, ex.: "21/09/2026". */
   desde: string;
   titulo: string | null;
@@ -47,10 +51,21 @@ export function CabecalhoPerfil({
   bio: string | null;
   banner: Banner;
   spritePersonagem: string | null;
+  /** Só o dono do perfil recebe: mostra o botão que leva ao editor. */
+  editarHref?: string;
 }) {
   return (
     <div className="clip-dossier-card relative overflow-hidden border-2 border-alter-green/40 bg-[#050805]">
       <BannerPerfil banner={banner} spritePersonagem={spritePersonagem} />
+
+      {editarHref && (
+        <a
+          href={editarHref}
+          className="absolute left-3 top-3 z-10 border-2 border-alter-green bg-[#050805]/80 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[.12em] text-alter-green backdrop-blur-sm hover:bg-alter-green hover:text-[#08090D]"
+        >
+          ✎ EDITAR PERFIL
+        </a>
+      )}
 
       <div className="relative px-4 pb-4">
         <p className="absolute right-4 top-2 font-mono text-[8px] tracking-[.25em] text-alter-green/70">
@@ -58,14 +73,30 @@ export function CabecalhoPerfil({
         </p>
 
         <div className="-mt-9 flex items-end gap-3">
-          {avatar ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={avatar} alt="" className="h-[72px] w-[72px] shrink-0 rounded-full border-[3px] border-alter-green bg-[#050805]" />
-          ) : (
-            <span className="h-[72px] w-[72px] shrink-0 rounded-full border-[3px] border-alter-green bg-[#0E0E13]" />
-          )}
+          <span className="relative shrink-0">
+            {avatar ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={avatar} alt="" className="h-[72px] w-[72px] rounded-full border-[3px] border-alter-green bg-[#050805] object-cover object-top" />
+            ) : (
+              <span className="block h-[72px] w-[72px] rounded-full border-[3px] border-alter-green bg-[#0E0E13]" />
+            )}
+            {avatarOriginal && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={avatarOriginal}
+                alt="Ícone original do Discord"
+                title="Ícone original do Discord"
+                className="absolute -bottom-1 -right-2 h-7 w-7 rounded-full border-2 border-[#050805] bg-[#050805]"
+              />
+            )}
+          </span>
           <div className="min-w-0 pb-1">
             <h1 className="truncate text-3xl font-black leading-none tracking-tight text-[#F2F2F5]">{nome}</h1>
+            {nomeOriginal && (
+              <p className="mt-0.5 truncate font-mono text-[10px] text-dim" title="Nome no Discord">
+                no Discord: <b className="text-[#B9B9C6]">{nomeOriginal}</b>
+              </p>
+            )}
             <p className="mt-1 font-mono text-[9px] tracking-[.1em] text-dim">NO ARQUIVO DESDE {desde}</p>
           </div>
         </div>

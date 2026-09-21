@@ -5,6 +5,8 @@ export const CFG_JUNKO = {
   chaveSaida: 'segredo.junko.chave_saida',
   url: 'junko.url',
   eventosAtivos: 'junko.eventos_ativos',
+  caminhoAvaliacoes: 'junko.caminho_avaliacoes',
+  ultimaImportacao: 'junko.avaliacoes_ultima_importacao',
 } as const;
 
 export const URL_JUNKO_PADRAO = 'https://junkobott.squareweb.app';

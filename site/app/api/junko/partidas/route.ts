@@ -7,14 +7,17 @@ const LIMITE = 20;
 /** Partida que começou há pouco ainda interessa (o lobby dá 15 min de folga). */
 const TOLERANCIA_MS = 15 * 60_000;
 
-/** Próximas partidas agendadas, com vagas e quem já entrou. */
+/** Próximas partidas agendadas e as que estão em andamento, com vagas e quem já entrou. */
 export async function GET(request: Request) {
   const negado = await exigirChaveJunko(request);
   if (negado) return negado;
 
-  const partidas = await repositorioPartidas.proximasAgendadas(new Date(Date.now() - TOLERANCIA_MS), LIMITE);
+  const [agendadas, rolando] = await Promise.all([
+    repositorioPartidas.proximasAgendadas(new Date(Date.now() - TOLERANCIA_MS), LIMITE),
+    repositorioPartidas.emAndamento(),
+  ]);
 
-  const lista = await Promise.all(partidas.map(async (p) => {
+  const detalhar = (partidas: typeof agendadas) => Promise.all(partidas.map(async (p) => {
     const inscritos = await repositorioPartidas.participantes(p.id);
     return {
       ...resumoDaPartida(p),
@@ -24,5 +27,5 @@ export async function GET(request: Request) {
     };
   }));
 
-  return Response.json({ partidas: lista });
+  return Response.json({ partidas: await detalhar(agendadas), emAndamento: await detalhar(rolando) });
 }

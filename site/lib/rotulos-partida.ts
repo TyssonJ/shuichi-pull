@@ -1,5 +1,5 @@
 export const ROTULO_STATUS: Record<string, string> = {
-  agendada: 'AGENDADA', finalizada: 'FINALIZADA', cancelada: 'CANCELADA',
+  agendada: 'AGENDADA', em_andamento: 'EM ANDAMENTO', finalizada: 'FINALIZADA', cancelada: 'CANCELADA',
 };
 
 /** Vocabulário do relatório pós-partida (valores internos: vitoria_alunos etc.). */

@@ -54,7 +54,7 @@ export default async function PaginaConta() {
   const elenco = await listarPersonagensComCorrecoes();
   const personagens = elenco.map((p) => ({ id: p.id, nome: p.nome }));
   const bannersDePersonagem = elenco.map((p) => ({
-    id: p.id, nome: p.nome, sprite: spriteInteiroDoPersonagem(p.id) ?? p.sprite,
+    id: p.id, nome: p.nome, sprite: spriteInteiroDoPersonagem(p.id) ?? p.sprite, retrato: p.sprite,
   }));
   const { estatisticas } = await repositorioPartidas.perfilDoUsuario(sessao.user.discordId);
 
@@ -98,6 +98,11 @@ export default async function PaginaConta() {
       <PersonalizarPerfil
         nome={sessao.user.name ?? 'Sem nome'}
         avatar={sessao.user.image ?? null}
+        apelidoInicial={usuario?.apelido ?? ''}
+        avatarInicial={{
+          tipo: usuario?.avatarTipo === 'personagem' || usuario?.avatarTipo === 'url' ? usuario.avatarTipo : 'discord',
+          valor: usuario?.avatarValor ?? '',
+        }}
         desde={usuario ? formatarDataBR(usuario.criadoEm, true) : ''}
         titulo={tituloPorPartidas(estatisticas.total)}
         bioInicial={usuario?.bio ?? ''}

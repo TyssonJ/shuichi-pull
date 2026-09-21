@@ -3,11 +3,14 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }));
 vi.mock('@/db/repositorios/configuracoes', () => ({ repositorioConfiguracoes: { obter: vi.fn() } }));
 vi.mock('@/db/repositorios/usuarios', () => ({
-  repositorioUsuarios: { buscar: vi.fn(), definirStatusUuid: vi.fn() },
+  repositorioUsuarios: { buscar: vi.fn(), definirStatusUuid: vi.fn(), existentes: vi.fn() },
+}));
+vi.mock('@/db/repositorios/partida-avaliacoes', () => ({
+  repositorioPartidaAvaliacoes: { listarDoSiteParaOBot: vi.fn(), importarDoJunko: vi.fn() },
 }));
 vi.mock('@/db/repositorios/partidas', () => ({
   repositorioPartidas: {
-    proximasAgendadas: vi.fn(), participantes: vi.fn(), buscar: vi.fn(), entrar: vi.fn(), sair: vi.fn(), perfilDoUsuario: vi.fn(),
+    proximasAgendadas: vi.fn(), emAndamento: vi.fn(), participantes: vi.fn(), buscar: vi.fn(), entrar: vi.fn(), sair: vi.fn(), perfilDoUsuario: vi.fn(),
   },
 }));
 vi.mock('@/db/repositorios/auditoria', () => ({ repositorioAuditoria: { registrar: vi.fn() } }));
@@ -23,12 +26,14 @@ import { repositorioConfiguracoes } from '@/db/repositorios/configuracoes';
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { repositorioPartidas } from '@/db/repositorios/partidas';
 import { repositorioAuditoria } from '@/db/repositorios/auditoria';
+import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { gerarChave, hashDaChave } from '@/lib/junko/chave';
 import { GET as statusGET } from './status/route';
 import { GET as partidasGET } from './partidas/route';
 import { GET as usuarioGET } from './usuarios/[discordId]/route';
 import { POST as uidPOST } from './usuarios/[discordId]/uid/route';
 import { POST as entrarPOST, DELETE as sairDELETE } from './partidas/[id]/inscricao/route';
+import { GET as avaliacoesGET, POST as avaliacoesPOST } from './avaliacoes/route';
 
 const chave = gerarChave();
 const DISCORD = '123456789012345678';
@@ -53,6 +58,7 @@ beforeEach(() => {
   vi.mocked(repositorioUsuarios.buscar).mockResolvedValue(usuario as never);
   vi.mocked(repositorioPartidas.buscar).mockResolvedValue(partida as never);
   vi.mocked(repositorioPartidas.participantes).mockResolvedValue([]);
+  vi.mocked(repositorioPartidas.emAndamento).mockResolvedValue([]);
 });
 
 describe('autenticação em todas as rotas', () => {
@@ -65,8 +71,11 @@ describe('autenticação em todas as rotas', () => {
       uidPOST(pedido({ status: 'banido' }, null), ctx({ discordId: DISCORD })),
       entrarPOST(pedido({ discordId: DISCORD }, null), ctx({ id: '5' })),
       sairDELETE(pedido({ discordId: DISCORD }, null, 'DELETE'), ctx({ id: '5' })),
+      avaliacoesGET(semChave),
+      avaliacoesPOST(pedido({ avaliacoes: [] }, null)),
     ]);
-    expect(respostas.map((r) => r.status)).toEqual([401, 401, 401, 401, 401, 401]);
+    expect(respostas.map((r) => r.status)).toEqual([401, 401, 401, 401, 401, 401, 401, 401]);
+    expect(repositorioPartidaAvaliacoes.importarDoJunko).not.toHaveBeenCalled();
     expect(repositorioUsuarios.definirStatusUuid).not.toHaveBeenCalled();
     expect(repositorioPartidas.entrar).not.toHaveBeenCalled();
     expect(repositorioPartidas.sair).not.toHaveBeenCalled();
@@ -101,6 +110,19 @@ describe('GET /partidas', () => {
       id: 5, vagas: 2, ocupadas: 1, reservas: 1, url: 'https://shuichipull.vercel.app/partidas/5/',
     });
     expect(corpo.partidas[0].inscritos).toHaveLength(3);
+    expect(corpo.emAndamento).toEqual([]);
+  });
+
+  it('lista à parte as partidas em andamento, com início e status', async () => {
+    vi.mocked(repositorioPartidas.proximasAgendadas).mockResolvedValue([]);
+    vi.mocked(repositorioPartidas.emAndamento).mockResolvedValue([
+      { ...partida, status: 'em_andamento', iniciadaEm: new Date('2026-09-22T00:05:00Z') },
+    ] as never);
+
+    const corpo = await (await partidasGET(pedido(undefined, undefined, 'GET'))).json();
+
+    expect(corpo.partidas).toEqual([]);
+    expect(corpo.emAndamento[0]).toMatchObject({ id: 5, status: 'em_andamento', iniciadaEm: '2026-09-22T00:05:00.000Z' });
   });
 });
 
@@ -201,5 +223,72 @@ describe('DELETE /partidas/[id]/inscricao', () => {
   it('partida inexistente: 404', async () => {
     vi.mocked(repositorioPartidas.buscar).mockResolvedValue(null);
     expect((await sairDELETE(pedido({ discordId: DISCORD }, undefined, 'DELETE'), ctx({ id: '5' }))).status).toBe(404);
+  });
+});
+
+describe('GET /avaliacoes (site → bot)', () => {
+  const linha = (id: number, dia: number) => ({
+    id, partidaId: 5, avaliadoDiscordId: DISCORD, estrelas: 4, comentario: 'bom', criadoEm: new Date(`2026-09-${dia}T12:00:00Z`),
+  });
+
+  it('devolve as avaliações do site SEM o avaliador, com datas ISO', async () => {
+    vi.mocked(repositorioPartidaAvaliacoes.listarDoSiteParaOBot).mockResolvedValue([linha(1, 10), linha(2, 11)]);
+    const corpo = await (await avaliacoesGET(pedido(undefined, undefined, 'GET'))).json();
+    expect(corpo.avaliacoes).toHaveLength(2);
+    expect(corpo.avaliacoes[0]).toEqual({
+      id: 1, partidaId: 5, avaliadoDiscordId: DISCORD, estrelas: 4, comentario: 'bom', criadoEm: '2026-09-10T12:00:00.000Z',
+    });
+    expect(JSON.stringify(corpo)).not.toMatch(/avaliador/i);
+    expect(corpo.proximo).toBeNull();
+  });
+
+  it('página cheia devolve o cursor; desde e limite são repassados (limite tem teto)', async () => {
+    vi.mocked(repositorioPartidaAvaliacoes.listarDoSiteParaOBot).mockResolvedValue([linha(1, 10), linha(2, 11)]);
+    const req = new Request('https://x.test/api/junko/avaliacoes/?desde=2026-09-01T00:00:00Z&limite=2', {
+      headers: { authorization: `Bearer ${chave}` },
+    });
+    const corpo = await (await avaliacoesGET(req)).json();
+    expect(corpo.proximo).toBe('2026-09-11T12:00:00.000Z');
+    expect(repositorioPartidaAvaliacoes.listarDoSiteParaOBot).toHaveBeenCalledWith(new Date('2026-09-01T00:00:00Z'), 2);
+
+    await avaliacoesGET(new Request('https://x.test/api/junko/avaliacoes/?limite=99999', { headers: { authorization: `Bearer ${chave}` } }));
+    expect(vi.mocked(repositorioPartidaAvaliacoes.listarDoSiteParaOBot).mock.calls.at(-1)?.[1]).toBe(200);
+  });
+
+  it('data inválida: 400', async () => {
+    const req = new Request('https://x.test/api/junko/avaliacoes/?desde=ontem', { headers: { authorization: `Bearer ${chave}` } });
+    expect((await avaliacoesGET(req)).status).toBe(400);
+  });
+});
+
+describe('POST /avaliacoes (bot → site)', () => {
+  const item = (extra: Record<string, unknown> = {}) => ({ externoId: 'b1', avaliadoDiscordId: DISCORD, estrelas: 5, comentario: 'ótimo', ...extra });
+
+  it('importa as válidas, ignora as ruins com motivo e audita como junko-bot', async () => {
+    vi.mocked(repositorioUsuarios.existentes).mockResolvedValue(new Set([DISCORD]));
+    const r = await avaliacoesPOST(pedido({ avaliacoes: [item(), item({ externoId: 'b2', estrelas: 9 })] }));
+    const corpo = await r.json();
+
+    expect(r.status).toBe(200);
+    expect(corpo.importadas).toBe(1);
+    expect(corpo.ignoradas).toEqual([{ externoId: 'b2', motivo: expect.stringContaining('0 a 5') }]);
+    expect(repositorioPartidaAvaliacoes.importarDoJunko).toHaveBeenCalledWith([
+      expect.objectContaining({ externoId: 'b1', avaliadoDiscordId: DISCORD, estrelas: 5, comentario: 'ótimo' }),
+    ]);
+    expect(repositorioAuditoria.registrar).toHaveBeenCalledWith(expect.objectContaining({ autor: 'junko-bot', acao: 'junko.avaliacoes_importar' }));
+    expect(revalidatePath).toHaveBeenCalledWith(`/u/${DISCORD}`);
+  });
+
+  it('avaliar quem nunca entrou no site é ignorado (e nada é gravado)', async () => {
+    vi.mocked(repositorioUsuarios.existentes).mockResolvedValue(new Set());
+    const corpo = await (await avaliacoesPOST(pedido({ avaliacoes: [item()] }))).json();
+    expect(corpo.importadas).toBe(0);
+    expect(corpo.ignoradas[0].motivo).toContain('ainda não entrou');
+    expect(repositorioPartidaAvaliacoes.importarDoJunko).not.toHaveBeenCalled();
+  });
+
+  it('corpo sem a lista "avaliacoes" ou que não é JSON: 400', async () => {
+    expect((await avaliacoesPOST(pedido({ outra: 1 }))).status).toBe(400);
+    expect((await avaliacoesPOST(pedido('{quebrado'))).status).toBe(400);
   });
 });

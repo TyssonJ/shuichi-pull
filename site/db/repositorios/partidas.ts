@@ -5,6 +5,7 @@ import {
   calcularEstatisticas, desfechoParaUsuario, foiBlackened, type Desfecho, type Estatisticas,
 } from '../../lib/estatisticas-usuario';
 import type { PartidaAvisada } from '../../lib/alerta-partida';
+import type { StatusPartida } from '../../lib/status-partida';
 
 type Banco = typeof DbClient;
 export type PartidaLinha = typeof partidas.$inferSelect;
@@ -56,8 +57,21 @@ export function criarRepositorioPartidas(db: Banco) {
       await db.update(partidas).set(dados).where(eq(partidas.id, id));
     },
 
-    async mudarStatus(id: number, status: 'agendada' | 'finalizada' | 'cancelada') {
-      await db.update(partidas).set({ status }).where(eq(partidas.id, id));
+    /** Além do status, carimba o horário: "começar" grava iniciadaEm e
+     * "finalizar" grava finalizadaEm — é daí que saem o cronômetro e a duração. */
+    async mudarStatus(id: number, status: StatusPartida, agora: Date = new Date()) {
+      const horarios =
+        status === 'em_andamento' ? { iniciadaEm: agora }
+        : status === 'finalizada' ? { finalizadaEm: agora }
+        : {};
+      await db.update(partidas).set({ status, ...horarios }).where(eq(partidas.id, id));
+    },
+
+    /** Partidas rolando agora, as mais antigas primeiro. */
+    async emAndamento(): Promise<PartidaLinha[]> {
+      return db.select().from(partidas)
+        .where(eq(partidas.status, 'em_andamento'))
+        .orderBy(asc(partidas.iniciadaEm));
     },
 
     /** Relatório pós-partida (AAR) — só faz sentido depois que a partida
@@ -85,6 +99,24 @@ export function criarRepositorioPartidas(db: Banco) {
           target: [partidaParticipantes.partidaId, partidaParticipantes.discordId],
           set: { personagemId, tipo },
         });
+    },
+
+    /** O host muda a inscrição de alguém que JÁ está na partida (personagem e/ou
+     * titular↔reserva). Diferente de `entrar`, nunca cria uma inscrição nova. */
+    async atualizarInscricao(
+      partidaId: number, discordId: string,
+      dados: { personagemId: string | null; tipo: 'participante' | 'reserva' },
+    ) {
+      await db.update(partidaParticipantes).set(dados).where(and(
+        eq(partidaParticipantes.partidaId, partidaId), eq(partidaParticipantes.discordId, discordId),
+      ));
+    },
+
+    /** Checklist do host: "já convidei essa pessoa pra party". */
+    async definirConvidado(partidaId: number, discordId: string, convidado: boolean) {
+      await db.update(partidaParticipantes).set({ convidado }).where(and(
+        eq(partidaParticipantes.partidaId, partidaId), eq(partidaParticipantes.discordId, discordId),
+      ));
     },
 
     async sair(partidaId: number, discordId: string) {

@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { identidadeDe } from '@/lib/identidade';
 import Link from 'next/link';
 import { auth } from '@/auth';
 import { buscarEvento } from '@/lib/eventos';
@@ -41,8 +42,9 @@ export default async function PaginaEvento({ params }: { params: Promise<{ id: s
     discordId: c.discordId,
     texto: c.texto,
     criadoEm: c.criadoEm.toISOString(),
-    autorNome: autores.get(c.discordId)?.discordNome ?? 'alguém',
-    autorAvatar: autores.get(c.discordId)?.discordAvatar ?? null,
+    autorNome: autores.get(c.discordId) ? identidadeDe(autores.get(c.discordId)!).nome : 'alguém',
+    autorNomeOriginal: autores.get(c.discordId) ? identidadeDe(autores.get(c.discordId)!).nomeOriginal : null,
+    autorAvatar: autores.get(c.discordId) ? identidadeDe(autores.get(c.discordId)!).avatar : null,
   }));
 
   return (

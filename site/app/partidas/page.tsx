@@ -9,9 +9,10 @@ import { iconeDoInscrito } from '@/lib/sprites-pixel';
 import { ID_MONOKUMA } from '@/lib/monokuma';
 import { ocupamVaga, vagasRestantes } from '@/lib/vagas';
 import { SELO_RESULTADO } from '@/lib/rotulos-partida';
+import { duracaoMs, formatarDuracao } from '@/lib/status-partida';
 import { PainelComTrilhas } from '@/components/layout/PainelComTrilhas';
 import { JanelaTerminal } from '@/components/mecanicas/JanelaTerminal';
-import { CartaoLobby, CartaoLobbyDestaque, type DadosCartaoLobby } from '@/components/partidas/CartaoLobby';
+import { CartaoLobby, CartaoLobbyDestaque, CartaoAoVivo, type DadosCartaoLobby } from '@/components/partidas/CartaoLobby';
 
 export const metadata = { title: 'Partidas — Shuichi Pull' };
 
@@ -60,11 +61,17 @@ export default async function PaginaPartidas() {
           : (i.personagemId && nomePorId.get(i.personagemId)) || 'vaga genérica',
       })),
       voceInscrito: !!discordId && inscritos.some((i) => i.discordId === discordId),
+      iniciadaEmIso: p.iniciadaEm ? p.iniciadaEm.toISOString() : null,
+      duracaoTexto: (() => {
+        const d = duracaoMs(p.iniciadaEm, p.finalizadaEm);
+        return d === null ? null : formatarDuracao(d);
+      })(),
     };
     return { partida: p, inscritos, dados };
   }));
 
   const agora = agoraMs();
+  const aoVivo = carregadas.filter((c) => c.partida.status === 'em_andamento');
   const agendadas = carregadas.filter((c) => c.partida.status === 'agendada');
   const finalizadas = carregadas.filter((c) => c.partida.status === 'finalizada').reverse();
 
@@ -113,14 +120,29 @@ export default async function PaginaPartidas() {
         </div>
       </JanelaTerminal>
 
-      {agendadas.length === 0 ? (
+      {aoVivo.length > 0 && (
+        <section className="mt-6" aria-label="Partidas ao vivo">
+          <h2 className="mb-3 flex items-center gap-2 font-mono text-[12px] tracking-[.2em] text-execution-pink">
+            <span className="h-px flex-1 bg-execution-pink/40" />
+            AO VIVO AGORA
+            <span className="h-px flex-1 bg-execution-pink/40" />
+          </h2>
+          <ul className="space-y-3">
+            {aoVivo.map((c) => (
+              <li key={c.partida.id}><CartaoAoVivo d={c.dados} /></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {agendadas.length === 0 && aoVivo.length === 0 ? (
         <div className="clip-dossier-card mt-6 border-2 border-dashed border-line bg-sur p-6 text-center">
           <p className="font-mono text-[13px] tracking-[.14em] text-dim">[ NENHUMA SALA ABERTA ]</p>
           <p className="mt-2 text-[13px] text-dim">
             O lobby está vazio. {discordId ? 'Abra a primeira sala.' : 'Conecte-se pra abrir a primeira sala.'}
           </p>
         </div>
-      ) : (
+      ) : agendadas.length === 0 ? null : (
         <>
           {proxima && (
             <section className="mt-6" aria-label="Próxima sessão">
@@ -166,6 +188,7 @@ export default async function PaginaPartidas() {
                     </span>
                   )}
                   <span className="ml-auto font-mono text-[11px] text-dim">
+                    {c.dados.duracaoTexto && <>duração {c.dados.duracaoTexto} · </>}
                     {c.dados.ocupadas} jogadores · {formatarDataBR(c.partida.dataHora)}
                   </span>
                 </Link>

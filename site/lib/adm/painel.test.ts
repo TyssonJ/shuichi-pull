@@ -4,9 +4,13 @@ import {
 } from './painel';
 
 describe('segmentosDeStatus', () => {
-  it('conta cada status, sempre nos três, mesmo zerados', () => {
-    const s = segmentosDeStatus([{ status: 'agendada' }, { status: 'agendada' }, { status: 'cancelada' }]);
-    expect(s.map((x) => [x.rotulo, x.valor])).toEqual([['Agendadas', 2], ['Finalizadas', 0], ['Canceladas', 1]]);
+  it('conta cada status, sempre nos quatro, mesmo zerados', () => {
+    const s = segmentosDeStatus([
+      { status: 'agendada' }, { status: 'agendada' }, { status: 'em_andamento' }, { status: 'cancelada' },
+    ]);
+    expect(s.map((x) => [x.rotulo, x.valor])).toEqual([
+      ['Agendadas', 2], ['Em andamento', 1], ['Finalizadas', 0], ['Canceladas', 1],
+    ]);
   });
 });
 

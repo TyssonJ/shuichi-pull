@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthConfig } from 'next-auth';
 import Discord from 'next-auth/providers/discord';
 import { repositorioAdms } from './db/repositorios/administradores';
+import { repositorioUsuarios } from './db/repositorios/usuarios';
 
 /** Resolve o papel atual de um discordId, sempre a partir da fonte de
  * verdade (banco), nunca de um valor cacheado — o atalho do chefe fundador
@@ -32,6 +33,16 @@ const callbacks = {
     const discordId = token.discordId as string | undefined;
     if (discordId) {
       token.papel = await resolvePapel(discordId);
+      // Apelido e ícone do site, pro cabeçalho. Falha do banco aqui não pode
+      // derrubar o login: sem isso o cabeçalho só mostra os dados do Discord.
+      try {
+        const u = await repositorioUsuarios.buscar(discordId);
+        token.apelido = u?.apelido ?? null;
+        token.avatarUrl = u?.avatarUrl ?? null;
+      } catch {
+        token.apelido = null;
+        token.avatarUrl = null;
+      }
     }
 
     return token;
@@ -39,6 +50,8 @@ const callbacks = {
   async session({ session, token }) {
     session.user.discordId = token.discordId as string;
     session.user.papel = token.papel as 'adm' | 'chefe' | null;
+    session.user.apelido = (token.apelido as string | null | undefined) ?? null;
+    session.user.avatarUrl = (token.avatarUrl as string | null | undefined) ?? null;
     return session;
   },
 } satisfies NextAuthConfig['callbacks'];

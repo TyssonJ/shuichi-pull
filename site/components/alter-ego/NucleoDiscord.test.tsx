@@ -32,7 +32,7 @@ describe('NucleoDiscord', () => {
   it('logado, mostra o avatar do Discord linkando pra conta', () => {
     render(<NucleoDiscord sessaoInicial={sessaoFalsa} />);
     const link = screen.getByRole('link', { name: /conta de makoto naegi/i });
-    expect(link).toHaveAttribute('href', '/conta/');
+    expect(link).toHaveAttribute('href', '/u/123/');
     expect(link.querySelector('img')).toHaveAttribute('src', 'https://exemplo.com/avatar.png');
   });
 
@@ -63,6 +63,26 @@ describe('NucleoDiscord', () => {
       pathnameMock.mockReturnValue('/adm/faq/');
       render(<NucleoDiscord sessaoInicial={adm} />);
       expect(screen.queryByRole('link', { name: /editar/i })).toBeNull();
+    });
+  });
+
+  describe('apelido e ícone escolhidos no site', () => {
+    const custom: Session = {
+      ...sessaoFalsa,
+      user: { ...sessaoFalsa.user, apelido: 'Shuichi', avatarUrl: '/sprites/elenco/shuichi.webp' },
+    };
+
+    it('mostra o ícone personalizado em destaque e o do Discord pequeno ao lado', () => {
+      render(<NucleoDiscord sessaoInicial={custom} />);
+      const link = screen.getByRole('link', { name: /conta de shuichi/i });
+      const imagens = [...link.querySelectorAll('img')].map((i) => i.getAttribute('src'));
+      expect(imagens).toEqual(['/sprites/elenco/shuichi.webp', 'https://exemplo.com/avatar.png']);
+      expect(link.querySelector('img[title="Seu ícone do Discord"]')).not.toBeNull();
+    });
+
+    it('sem personalização não repete o ícone do Discord', () => {
+      render(<NucleoDiscord sessaoInicial={sessaoFalsa} />);
+      expect(screen.getByRole('link', { name: /conta de makoto naegi/i }).querySelectorAll('img')).toHaveLength(1);
     });
   });
 });

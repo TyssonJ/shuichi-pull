@@ -19,6 +19,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ disc
   return Response.json({
     discordId: usuario.discordId,
     nome: usuario.discordNome,
+    /** Escolhido no site; `nome` é sempre o do Discord. */
+    apelido: usuario.apelido,
     uid: usuario.uuidGmod,
     uidStatus: usuario.uuidStatus,
     podeSerHost: usuario.podeSerHost,

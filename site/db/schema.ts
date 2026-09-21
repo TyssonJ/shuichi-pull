@@ -146,11 +146,20 @@ export const usuarios = pgTable('usuarios', {
   bio: text('bio'),
   bannerTipo: text('banner_tipo'),
   bannerValor: text('banner_valor'),
+  // Identidade no site, separada da do Discord (discordNome/discordAvatar são
+  // sempre os originais, atualizados a cada visita, e continuam aparecendo
+  // ao lado dos personalizados). avatarTipo/avatarValor guardam a escolha do
+  // editor ('personagem' | 'url'); avatarUrl é o endereço já resolvido que
+  // as telas usam, pra não precisar do elenco só pra desenhar um ícone.
+  apelido: text('apelido'),
+  avatarTipo: text('avatar_tipo'),
+  avatarValor: text('avatar_valor'),
+  avatarUrl: text('avatar_url'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
   atualizadoEm: timestamp('atualizado_em', { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const statusPartida = pgEnum('status_partida', ['agendada', 'finalizada', 'cancelada']);
+export const statusPartida = pgEnum('status_partida', ['agendada', 'em_andamento', 'finalizada', 'cancelada']);
 
 // Organização de partida: quem é o host, quando é, as regras — e quem
 // participa é a tabela partidaParticipantes logo abaixo, porque uma partida
@@ -168,6 +177,10 @@ export const partidas = pgTable('partidas', {
   vagas: integer('vagas').notNull().default(16),
   status: statusPartida('status').notNull().default('agendada'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+  // Quando o host apertou "Começar" e quando finalizou: alimentam o
+  // cronômetro ao vivo e a duração. Nulos em partida que não passou por aí.
+  iniciadaEm: timestamp('iniciada_em', { withTimezone: true }),
+  finalizadaEm: timestamp('finalizada_em', { withTimezone: true }),
   // Relatório pós-partida (AAR), preenchido pelo host ao finalizar — todos
   // opcionais porque uma partida pode ser marcada finalizada sem relatório.
   // O detalhe por capítulo (quem matou/morreu/ficou AFK em cada um) vive em
@@ -191,6 +204,8 @@ export const partidaParticipantes = pgTable('partida_participantes', {
   personagemId: text('personagem_id'),
   tipo: tipoParticipante('tipo').notNull().default('participante'),
   entradaEm: timestamp('entrada_em', { withTimezone: true }).notNull().defaultNow(),
+  // Checklist do host: "já convidei essa pessoa pra party".
+  convidado: boolean('convidado').notNull().default(false),
 }, (t) => ([
   unique('partida_participante_unico').on(t.partidaId, t.discordId),
 ]));
@@ -227,14 +242,24 @@ export const tipoAvaliacao = pgEnum('tipo_avaliacao', ['like', 'dislike']);
 // uma vez por partida (índice único); avaliar de novo substitui a anterior.
 export const partidaAvaliacoes = pgTable('partida_avaliacoes', {
   id: serial('id').primaryKey(),
-  partidaId: integer('partida_id').notNull().references(() => partidas.id, { onDelete: 'cascade' }),
+  // Nulo nas avaliações que vieram do Junko Bot sem partida do site.
+  partidaId: integer('partida_id').references(() => partidas.id, { onDelete: 'cascade' }),
   avaliadorDiscordId: text('avaliador_discord_id').notNull(),
   avaliadoDiscordId: text('avaliado_discord_id').notNull(),
-  tipo: tipoAvaliacao('tipo').notNull(),
+  // Substituído por `estrelas`. Fica nullable só pelas avaliações antigas.
+  tipo: tipoAvaliacao('tipo'),
+  // 0 a 5. O comentário é obrigatório para avaliações novas (validado na action).
+  estrelas: integer('estrelas').notNull(),
   comentario: text('comentario'),
   criadoEm: timestamp('criado_em', { withTimezone: true }).notNull().defaultNow(),
+  // De onde veio: 'site' (dada numa partida daqui) ou 'junko' (importada do
+  // bot). `externoId` é o id da avaliação no bot — é o que deixa a
+  // importação ser repetida sem duplicar.
+  origem: text('origem').notNull().default('site'),
+  externoId: text('externo_id'),
 }, (t) => ([
   unique('partida_avaliacao_unica').on(t.partidaId, t.avaliadorDiscordId, t.avaliadoDiscordId),
+  unique('partida_avaliacao_externa').on(t.origem, t.externoId),
 ]));
 
 export const auditoria = pgTable('auditoria', {

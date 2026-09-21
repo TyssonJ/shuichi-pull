@@ -1,6 +1,6 @@
 import { repositorioUsuarios } from '@/db/repositorios/usuarios';
 import { CartaoUsuario } from '@/components/adm/CartaoUsuario';
-import { definirStatusUuidAction, definirPodeSerHostAction } from './acoes';
+import { definirStatusUuidAction, definirPodeSerHostAction, resetarIdentidadeAction } from './acoes';
 
 export default async function AdmUsuarios() {
   const usuarios = await repositorioUsuarios.listarTodos();
@@ -23,11 +23,13 @@ export default async function AdmUsuarios() {
               discordId={u.discordId}
               discordNome={u.discordNome}
               discordAvatar={u.discordAvatar}
+              apelido={u.apelido}
               uuidGmod={u.uuidGmod}
               uuidStatus={u.uuidStatus}
               podeSerHost={u.podeSerHost}
               aoDefinirStatus={definirStatusUuidAction}
               aoDefinirPodeSerHost={definirPodeSerHostAction}
+              aoResetarIdentidade={resetarIdentidadeAction}
             />
           ))}
         </div>
@@ -41,11 +43,13 @@ export default async function AdmUsuarios() {
             discordId={u.discordId}
             discordNome={u.discordNome}
             discordAvatar={u.discordAvatar}
+              apelido={u.apelido}
             uuidGmod={u.uuidGmod}
             uuidStatus={u.uuidStatus}
             podeSerHost={u.podeSerHost}
             aoDefinirStatus={definirStatusUuidAction}
             aoDefinirPodeSerHost={definirPodeSerHostAction}
+              aoResetarIdentidade={resetarIdentidadeAction}
           />
         ))}
       </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BarraVagas } from './BarraVagas';
 import { Contagem } from './Contagem';
+import { Cronometro } from './Cronometro';
 import { IconesInscritos, type IconeInscrito } from './IconesInscritos';
 
 export type DadosCartaoLobby = {
@@ -15,6 +16,10 @@ export type DadosCartaoLobby = {
   reservas: number;
   inscritos: IconeInscrito[];
   voceInscrito: boolean;
+  /** Só em partida em andamento: quando o host apertou "Começar". */
+  iniciadaEmIso?: string | null;
+  /** Só em partida finalizada com início registrado: "1h 12min". */
+  duracaoTexto?: string | null;
 };
 
 function Capa({ url }: { url: string }) {
@@ -83,6 +88,42 @@ export function CartaoLobby({ d }: { d: DadosCartaoLobby }) {
         <div className="mt-3"><BarraVagas ocupadas={d.ocupadas} total={d.vagas} /></div>
         <div className="mt-2.5"><IconesInscritos inscritos={d.inscritos} max={10} /></div>
         {d.reservas > 0 && <p className="mt-1 font-mono text-[10px] text-amber">+{d.reservas} na reserva</p>}
+      </div>
+    </Link>
+  );
+}
+
+/** Partida rolando agora: o cronômetro é o protagonista, em rosa pulsante. */
+export function CartaoAoVivo({ d }: { d: DadosCartaoLobby }) {
+  return (
+    <Link
+      href={`/partidas/${d.id}/`}
+      className="clip-dossier-card group relative block overflow-hidden border-2 border-execution-pink bg-[#12060C] p-4 shadow-[0_0_24px_rgba(255,0,127,.25)] transition-colors hover:border-[#FF5FA8] sm:p-5"
+    >
+      {d.capaUrl && <Capa url={d.capaUrl} />}
+      <div aria-hidden className="crt-lines pointer-events-none absolute inset-0 opacity-30" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#12060C] via-[#12060C]/75 to-transparent" />
+
+      <div className="relative flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div className="min-w-0">
+          <p className="mb-1.5 flex items-center gap-2 font-mono text-[11px] font-bold tracking-[.2em] text-execution-pink">
+            <span aria-hidden className="h-2.5 w-2.5 animate-pulse rounded-full bg-execution-pink" />
+            AO VIVO
+            {d.voceInscrito && <span className="rounded-[2px] border border-alter-green px-1.5 py-px text-alter-green">VOCÊ ESTÁ NA PARTIDA</span>}
+          </p>
+          <h3 className="text-2xl font-black leading-tight tracking-tight text-[#F2F2F5] sm:text-3xl">{d.titulo}</h3>
+          <p className="mt-1 font-mono text-[11px] text-[#B9B9C6]">host: <b className="text-[#F2F2F5]">{d.hostNome}</b></p>
+          <div className="mt-3"><IconesInscritos inscritos={d.inscritos} max={12} /></div>
+        </div>
+
+        <div className="text-right">
+          <p className="font-mono text-[9px] tracking-[.2em] text-dim">TEMPO DE PARTIDA</p>
+          {d.iniciadaEmIso ? (
+            <Cronometro desdeIso={d.iniciadaEmIso} className="block font-mono text-4xl font-black tracking-tight text-execution-pink [text-shadow:0_0_16px_rgba(255,0,127,.5)] sm:text-5xl" />
+          ) : (
+            <span className="block font-mono text-4xl font-black text-execution-pink">--:--:--</span>
+          )}
+        </div>
       </div>
     </Link>
   );

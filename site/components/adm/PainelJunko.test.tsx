@@ -14,6 +14,9 @@ function montar(extra: Partial<React.ComponentProps<typeof PainelJunko>> = {}) {
     aoGerarChave: vi.fn().mockResolvedValue('jk_chave-de-teste'),
     aoSalvar: vi.fn().mockResolvedValue(undefined),
     aoTestar: vi.fn().mockResolvedValue({ enviado: true, status: 200 }),
+    caminhoAvaliacoesInicial: '/avaliacoes',
+    ultimaImportacao: null,
+    aoImportarAvaliacoes: vi.fn().mockResolvedValue({ ok: true, importadas: 0, ignoradas: [] }),
     ...extra,
   };
   render(<PainelJunko {...props} />);
@@ -52,7 +55,7 @@ describe('PainelJunko', () => {
     fireEvent.click(screen.getByRole('checkbox', { name: /Enviar eventos ao bot/ }));
     fireEvent.click(screen.getByRole('button', { name: 'Salvar' }));
     await waitFor(() => expect(p.aoSalvar).toHaveBeenCalledWith({
-      url: 'https://junkobott.squareweb.app', ativo: true, chaveSaida: null,
+      url: 'https://junkobott.squareweb.app', ativo: true, chaveSaida: null, caminhoAvaliacoes: '/avaliacoes',
     }));
     expect(await screen.findByText('Configuração salva.')).toBeInTheDocument();
   });
@@ -97,5 +100,29 @@ describe('PainelJunko', () => {
     expect(screen.getByText('partida.criada', { selector: 'code' })).toBeInTheDocument();
     expect(screen.getByText(/POST \/api\/junko\/partidas\/\{id\}\/inscricao\//)).toBeInTheDocument();
     expect(screen.getByText(/não deu pra conectar no bot/)).toBeInTheDocument();
+  });
+
+  it('importar avaliações: mostra quantas entraram e por que outras foram ignoradas', async () => {
+    const aoImportarAvaliacoes = vi.fn().mockResolvedValue({
+      ok: true, importadas: 3, ignoradas: [{ externoId: 'x9', motivo: 'a pessoa avaliada ainda não entrou no site' }],
+    });
+    montar({ aoImportarAvaliacoes });
+    fireEvent.click(screen.getByRole('button', { name: 'Importar avaliações do bot agora' }));
+    expect(await screen.findByText(/3 avaliações importadas/)).toBeInTheDocument();
+    expect(screen.getByText('1 ignorada(s)')).toBeInTheDocument();
+    expect(screen.getByText(/x9 — a pessoa avaliada/)).toBeInTheDocument();
+  });
+
+  it('importar avaliações: se o bot ainda não tem a rota, o motivo aparece', async () => {
+    montar({ aoImportarAvaliacoes: vi.fn().mockResolvedValue({ ok: false, erro: 'O bot ainda não tem a rota /avaliacoes (HTTP 404).' }) });
+    fireEvent.click(screen.getByRole('button', { name: 'Importar avaliações do bot agora' }));
+    expect(await screen.findByText(/ainda não tem a rota/)).toBeInTheDocument();
+  });
+
+  it('a rota das avaliações é salva junto com a configuração', async () => {
+    const p = montar();
+    fireEvent.change(screen.getByLabelText(/Rota das avaliações no bot/), { target: { value: '/api/ratings' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Salvar' }));
+    await waitFor(() => expect(p.aoSalvar).toHaveBeenCalledWith(expect.objectContaining({ caminhoAvaliacoes: '/api/ratings' })));
   });
 });

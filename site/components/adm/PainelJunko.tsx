@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { EstadoBot } from '@/lib/junko/ping';
 import type { ResultadoEnvio } from '@/lib/junko/enviar';
+import type { ResultadoImportacaoBot } from '@/app/adm/junko/acoes';
 import { ENDPOINTS_DO_SITE, EVENTOS_PARA_O_BOT } from '@/lib/junko/contrato';
 import { URL_SITE } from '@/lib/junko/config';
 import { desembrulhar, type Acao } from '@/lib/acao-cliente';
@@ -24,7 +25,8 @@ const mensagemDe = (e: unknown, padrao: string) => (e instanceof Error && e.mess
 
 export function PainelJunko({
   botInicial, urlInicial, ativoInicial, chaveApiConfigurada, chaveSaidaConfigurada, log,
-  aoVerificar, aoGerarChave, aoSalvar, aoTestar,
+  caminhoAvaliacoesInicial, ultimaImportacao,
+  aoVerificar, aoGerarChave, aoSalvar, aoTestar, aoImportarAvaliacoes,
 }: {
   botInicial: EstadoBot;
   urlInicial: string;
@@ -32,10 +34,14 @@ export function PainelJunko({
   chaveApiConfigurada: boolean;
   chaveSaidaConfigurada: boolean;
   log: LinhaLog[];
+  caminhoAvaliacoesInicial: string;
+  /** Texto já formatado da última importação, ou null se nunca rodou. */
+  ultimaImportacao: string | null;
   aoVerificar: () => Promise<EstadoBot>;
   aoGerarChave: () => Promise<string>;
-  aoSalvar: (dados: { url: string; ativo: boolean; chaveSaida: string | null }) => Acao;
+  aoSalvar: (dados: { url: string; ativo: boolean; chaveSaida: string | null; caminhoAvaliacoes?: string }) => Acao;
   aoTestar: () => Promise<ResultadoEnvio>;
+  aoImportarAvaliacoes: () => Promise<ResultadoImportacaoBot>;
 }) {
   const [bot, setBot] = useState(botInicial);
   const [verificando, setVerificando] = useState(false);
@@ -52,6 +58,10 @@ export function PainelJunko({
   const [temChaveSaida, setTemChaveSaida] = useState(chaveSaidaConfigurada);
   const [salvando, setSalvando] = useState(false);
   const [avisoConfig, setAvisoConfig] = useState<string | null>(null);
+
+  const [caminhoAval, setCaminhoAval] = useState(caminhoAvaliacoesInicial);
+  const [importando, setImportando] = useState(false);
+  const [importacao, setImportacao] = useState<ResultadoImportacaoBot | null>(null);
 
   const [testando, setTestando] = useState(false);
   const [resultadoTeste, setResultadoTeste] = useState<ResultadoEnvio | null>(null);
@@ -85,12 +95,19 @@ export function PainelJunko({
     setSalvando(true);
     try {
       const enviar = apagarChaveSaida ? '' : chaveSaida.trim() ? chaveSaida : null;
-      await desembrulhar(aoSalvar({ url, ativo, chaveSaida: enviar }));
+      await desembrulhar(aoSalvar({ url, ativo, chaveSaida: enviar, caminhoAvaliacoes: caminhoAval }));
       if (enviar !== null) setTemChaveSaida(enviar !== '');
       setChaveSaida('');
       setApagarChaveSaida(false);
       setAvisoConfig('Configuração salva.');
     } catch (err) { setErro(mensagemDe(err, 'Não deu para salvar.')); } finally { setSalvando(false); }
+  }
+
+  async function importar() {
+    setErro(null);
+    setImportacao(null);
+    setImportando(true);
+    try { setImportacao(await aoImportarAvaliacoes()); } catch (e) { setErro(mensagemDe(e, 'Não deu para importar.')); } finally { setImportando(false); }
   }
 
   async function testar() {
@@ -169,6 +186,9 @@ export function PainelJunko({
               apagar a credencial guardada
             </label>
           )}
+          <Campo rotulo="Rota das avaliações no bot" dica="O site puxa as avaliações do bot em <endereço><rota> (padrão /avaliacoes).">
+            <input value={caminhoAval} onChange={(e) => setCaminhoAval(e.target.value)} className={`${estiloInput} font-mono`} />
+          </Campo>
           <label className="flex items-start gap-2 text-[12px] text-neutral-300">
             <input type="checkbox" checked={ativo} onChange={(e) => setAtivo(e.target.checked)} className="mt-0.5" />
             <span>
@@ -196,6 +216,42 @@ export function PainelJunko({
               ? `✓ O bot recebeu o teste (HTTP ${resultadoTeste.status}).`
               : `✗ Não chegou: ${resultadoTeste.motivo ?? 'falha desconhecida'}.`}
           </p>
+        )}
+      </Cartao>
+
+      <Cartao titulo="3 · AVALIAÇÕES SITE ⇄ BOT">
+        <p className="text-[12px] leading-relaxed text-neutral-400">
+          <b>Do bot pro site:</b> o bot manda as avaliações dele em <code>POST /api/junko/avaliacoes/</code>, ou você puxa
+          agora pelo botão abaixo. Entram no perfil da pessoa com o selo &quot;via Junko&quot; e contam na média; repetir não duplica.
+          <br />
+          <b>Do site pro bot:</b> cada avaliação dada aqui vai como evento <code>avaliacao.registrada</code> e fica disponível
+          em <code>GET /api/junko/avaliacoes/</code>. Nos dois sentidos, <b>quem avaliou nunca é revelado</b>.
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <BotaoMini desabilitado={importando} aoClicar={() => void importar()}>
+            {importando ? 'Importando…' : 'Importar avaliações do bot agora'}
+          </BotaoMini>
+          <span className="font-mono text-[10px] text-neutral-500">
+            {ultimaImportacao ? `última importação: ${ultimaImportacao}` : 'nunca importou'}
+          </span>
+        </div>
+        {importacao && importacao.ok && (
+          <div role="status" className="font-mono text-[12px]">
+            <p className="text-alter-green">✓ {importacao.importadas} avaliaç{importacao.importadas === 1 ? 'ão importada' : 'ões importadas'}.</p>
+            {importacao.ignoradas.length > 0 && (
+              <details className="mt-1 text-amber">
+                <summary className="cursor-pointer">{importacao.ignoradas.length} ignorada(s)</summary>
+                <ul className="mt-1 space-y-0.5 text-[11px] text-neutral-400">
+                  {importacao.ignoradas.slice(0, 20).map((i, n) => (
+                    <li key={n}>{i.externoId ?? '?'} — {i.motivo}</li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </div>
+        )}
+        {importacao && !importacao.ok && (
+          <p role="status" className="font-mono text-[12px] text-red-300">✗ {importacao.erro}</p>
         )}
       </Cartao>
 

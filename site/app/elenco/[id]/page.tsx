@@ -7,6 +7,9 @@ import { Regua } from '@/components/dados/Regua';
 import { CarteirinhaEstudante } from '@/components/ficha/CarteirinhaEstudante';
 import { CofreAlterEgo } from '@/components/ficha/CofreAlterEgo';
 import { TelemetriaLateral } from '@/components/ficha/TelemetriaLateral';
+import { QuemJogaDeMain } from '@/components/ficha/QuemJogaDeMain';
+import { repositorioUsuarios } from '@/db/repositorios/usuarios';
+import { identidadeDe } from '@/lib/identidade';
 
 export function generateStaticParams() {
   return listarPersonagens().map((p) => ({ id: p.id }));
@@ -33,6 +36,10 @@ export default async function FichaPersonagem({
   const total = todos.length;
   const numero = todos.findIndex((x) => x.id === id) + 1;
   const corpoInteiro = spriteInteiroDoPersonagem(id);
+  const mains = (await repositorioUsuarios.quemJogaDeMain(id)).map((u) => {
+    const ident = identidadeDe(u);
+    return { discordId: u.discordId, nome: ident.nome, avatar: ident.avatar };
+  });
 
   return (
     <>
@@ -237,6 +244,8 @@ export default async function FichaPersonagem({
           )}
         </div>
       )}
+
+      <QuemJogaDeMain jogadores={mains} />
 
       {!p.traducaoRevisada && (
         <p className="mt-10 text-center font-mono text-[8px] text-dim xl:col-span-3">

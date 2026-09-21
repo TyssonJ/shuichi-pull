@@ -6,11 +6,12 @@ const COR = {
   verde: '#00FF66', ciano: '#00F0FF', rosa: '#FF007F', ambar: '#F59E0B', apagado: '#4A4A55',
 } as const;
 
-/** Partidas por status, na ordem que conta a história: abertas, feitas, canceladas. */
+/** Partidas por status, na ordem que conta a história: abertas, rolando, feitas, canceladas. */
 export function segmentosDeStatus(partidas: { status: string }[]): Segmento[] {
   const n = (s: string) => partidas.filter((p) => p.status === s).length;
   return [
     { rotulo: 'Agendadas', valor: n('agendada'), cor: COR.verde },
+    { rotulo: 'Em andamento', valor: n('em_andamento'), cor: COR.ambar },
     { rotulo: 'Finalizadas', valor: n('finalizada'), cor: COR.ciano },
     { rotulo: 'Canceladas', valor: n('cancelada'), cor: COR.rosa },
   ];

@@ -9,6 +9,9 @@ import { gerarChave, hashDaChave } from '@/lib/junko/chave';
 import { notificarJunko, lerConfigEnvio } from '@/lib/junko/servico';
 import { pingarBot, type EstadoBot } from '@/lib/junko/ping';
 import type { ResultadoEnvio } from '@/lib/junko/enviar';
+import { buscarAvaliacoesDoBot, validarCaminhoAvaliacoes, CAMINHO_AVALIACOES_PADRAO } from '@/lib/junko/buscar-avaliacoes';
+import { importarAvaliacoes } from '@/lib/junko/importar-avaliacoes';
+import type { AvaliacaoIgnorada } from '@/lib/junko/avaliacoes';
 import { executar, ErroDeNegocio } from '@/lib/acao';
 
 /**
@@ -32,11 +35,16 @@ async function salvarConfigJunkoAction_(dados: {
   ativo: boolean;
   /** Credencial que o bot exige pra receber eventos. null = não mexe; '' = apaga. */
   chaveSaida: string | null;
+  /** Rota do bot que devolve as avaliações dele. Omitido = não mexe. */
+  caminhoAvaliacoes?: string;
 }) {
   const sessao = await exigirChefe();
 
   const url = validarUrlJunko(dados.url);
   if (!url.ok) throw new ErroDeNegocio(url.erro);
+  const caminho = dados.caminhoAvaliacoes === undefined ? null : validarCaminhoAvaliacoes(dados.caminhoAvaliacoes);
+  if (caminho && !caminho.ok) throw new ErroDeNegocio(caminho.erro);
+  if (caminho?.ok) await repositorioConfiguracoes.definir(CFG_JUNKO.caminhoAvaliacoes, caminho.valor);
 
   await repositorioConfiguracoes.definir(CFG_JUNKO.url, url.valor);
   await repositorioConfiguracoes.definir(CFG_JUNKO.eventosAtivos, String(dados.ativo));
@@ -67,4 +75,34 @@ export async function verificarBotAction(): Promise<EstadoBot> {
 
 export async function salvarConfigJunkoAction(...args: Parameters<typeof salvarConfigJunkoAction_>) {
   return executar(() => salvarConfigJunkoAction_(...args));
+}
+
+export type ResultadoImportacaoBot =
+  | { ok: true; importadas: number; ignoradas: AvaliacaoIgnorada[] }
+  | { ok: false; erro: string };
+
+/**
+ * Puxa as avaliações do bot agora e grava no site (as que já vieram antes
+ * são atualizadas, não duplicadas). Só chefe. Não lança: o motivo de uma
+ * falha (bot fora do ar, rota ainda inexistente) volta pro painel mostrar.
+ */
+export async function importarAvaliacoesDoBotAction(): Promise<ResultadoImportacaoBot> {
+  const sessao = await exigirChefe();
+  const config = await lerConfigEnvio();
+  const [caminhoSalvo, desde] = await Promise.all([
+    repositorioConfiguracoes.obter(CFG_JUNKO.caminhoAvaliacoes),
+    repositorioConfiguracoes.obter(CFG_JUNKO.ultimaImportacao),
+  ]);
+
+  const busca = await buscarAvaliacoesDoBot({
+    url: config.url, chave: config.chave, desde,
+    caminho: caminhoSalvo ?? CAMINHO_AVALIACOES_PADRAO,
+  });
+  if (!busca.ok) return { ok: false, erro: busca.erro };
+
+  const comeco = new Date().toISOString();
+  const r = await importarAvaliacoes(busca.bruto, sessao.discordId);
+  await repositorioConfiguracoes.definir(CFG_JUNKO.ultimaImportacao, comeco);
+  revalidatePath('/adm/junko');
+  return { ok: true, importadas: r.importadas, ignoradas: r.ignoradas };
 }

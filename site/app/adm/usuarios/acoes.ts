@@ -27,3 +27,16 @@ export async function definirPodeSerHostAction(discordId: string, valor: boolean
   revalidatePath('/adm/usuarios');
   emitirEvento({ tipo: 'host.permissao', discordId, podeSerHost: valor });
 }
+
+/** Moderação: apelido ou ícone inadequado volta pro nome e ícone do Discord. */
+export async function resetarIdentidadeAction(discordId: string) {
+  const sessao = await exigirAdm();
+  const antes = await repositorioUsuarios.buscar(discordId);
+  await repositorioUsuarios.resetarIdentidade(discordId);
+  await repositorioAuditoria.registrar({
+    autor: sessao.discordId, acao: 'usuario.resetar_identidade', alvo: discordId,
+    valorAntigo: antes?.apelido ?? null, valorNovo: null,
+  });
+  revalidatePath('/adm/usuarios');
+  revalidatePath(`/u/${discordId}`);
+}

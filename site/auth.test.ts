@@ -16,6 +16,8 @@ vi.mock('@/db/repositorios/administradores', () => ({
   repositorioAdms: { buscarAdm: vi.fn() },
 }));
 
+vi.mock('@/db/repositorios/usuarios', () => ({ repositorioUsuarios: { buscar: vi.fn().mockResolvedValue(null) } }));
+
 import { repositorioAdms } from '@/db/repositorios/administradores';
 import { resolvePapel, jwtCallback } from './auth';
 

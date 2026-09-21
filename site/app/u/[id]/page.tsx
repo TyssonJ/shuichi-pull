@@ -11,8 +11,9 @@ import { AvaliacoesRecebidas } from '@/components/perfil/AvaliacoesRecebidas';
 import { repositorioPartidaAvaliacoes } from '@/db/repositorios/partida-avaliacoes';
 import { resumirAvaliacoes, reputacao } from '@/lib/avaliacoes-perfil';
 import { bannerDoRegistro } from '@/lib/perfil-visual';
+import { identidadeDe } from '@/lib/identidade';
 import { spriteInteiroDoPersonagem } from '@/lib/sprites';
-import { sessaoAdm } from '@/lib/adm/sessao';
+import { auth } from '@/auth';
 import { removerAvaliacaoAdmAction } from './acoes';
 
 const formatarData = (d: Date) => formatarDataBR(d, true);
@@ -20,7 +21,7 @@ const formatarData = (d: Date) => formatarDataBR(d, true);
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const usuario = await repositorioUsuarios.buscar(id);
-  return { title: usuario ? `${usuario.discordNome} — Shuichi Pull` : 'Perfil não encontrado — Shuichi Pull' };
+  return { title: usuario ? `${usuario.apelido ?? usuario.discordNome} — Shuichi Pull` : 'Perfil não encontrado — Shuichi Pull' };
 }
 
 function Estatistica({ valor, rotulo, cor }: { valor: number; rotulo: string; cor: string }) {
@@ -43,12 +44,15 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   const usuario = await repositorioUsuarios.buscar(id);
   if (!usuario) notFound();
 
-  const [{ historico, estatisticas }, personagens, recebidas, adm] = await Promise.all([
+  const [{ historico, estatisticas }, personagens, recebidas, sessao] = await Promise.all([
     repositorioPartidas.perfilDoUsuario(id),
     listarPersonagensComCorrecoes(),
     repositorioPartidaAvaliacoes.listarRecebidas(id),
-    sessaoAdm(),
+    auth(),
   ]);
+  const souAdm = Boolean(sessao?.user?.papel);
+  const souDono = sessao?.user?.discordId === id;
+  const identidade = identidadeDe(usuario);
   const resumo = resumirAvaliacoes(recebidas);
   const banner = bannerDoRegistro(usuario.bannerTipo, usuario.bannerValor, new Set(personagens.map((p) => p.id)));
   const personagemDoBanner = banner.tipo === 'personagem' ? personagens.find((p) => p.id === banner.valor) : undefined;
@@ -66,14 +70,17 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
   return (
     <PainelComTrilhas as="article">
       <CabecalhoPerfil
-        nome={usuario.discordNome}
-        avatar={usuario.discordAvatar}
+        nome={identidade.nome}
+        avatar={identidade.avatar}
+        nomeOriginal={identidade.nomeOriginal}
+        avatarOriginal={identidade.avatarOriginal}
         desde={formatarData(usuario.criadoEm)}
         titulo={titulo}
         reputacao={reputacao(resumo)}
         bio={usuario.bio}
         banner={banner}
         spritePersonagem={spriteDoBanner}
+        editarHref={souDono ? '/conta/' : undefined}
       />
 
       <section className="mt-6">
@@ -118,7 +125,7 @@ export default async function PerfilPublico({ params }: { params: Promise<{ id: 
         </section>
       )}
 
-      <AvaliacoesRecebidas resumo={resumo} moderar={adm !== null} aoRemover={removerAvaliacao} />
+      <AvaliacoesRecebidas resumo={resumo} moderar={souAdm} aoRemover={removerAvaliacao} />
 
       <section className="mt-6">
         <h2 className="mb-2 font-mono text-[10px] tracking-[.14em] text-dim">

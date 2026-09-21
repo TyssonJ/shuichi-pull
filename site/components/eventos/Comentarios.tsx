@@ -10,6 +10,8 @@ export type ComentarioExibido = {
   texto: string;
   criadoEm: string;
   autorNome: string;
+  /** Nome no Discord, quando a pessoa usa apelido — aparece pequeno ao lado. */
+  autorNomeOriginal?: string | null;
   autorAvatar: string | null;
 };
 
@@ -80,6 +82,9 @@ export function Comentarios({
                   >
                     {c.autorNome}
                   </a>
+                  {c.autorNomeOriginal && (
+                    <span className="ml-1 font-mono text-[8px] text-dim" title="Nome no Discord">({c.autorNomeOriginal})</span>
+                  )}
                   <span className="font-mono text-[8px] text-dim">
                     {new Date(c.criadoEm).toLocaleString('pt-BR', {
                       timeZone: FUSO_SITE, day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
