@@ -12,8 +12,8 @@ beforeEach(() => vi.clearAllMocks());
 describe('GET /api/partidas/estado', () => {
   it('devolve status e horários das partidas pedidas, sem cache', async () => {
     vi.mocked(repositorioPartidas.estados).mockResolvedValue([
-      { id: 14, status: 'em_andamento', iniciadaEm: new Date('2026-09-21T20:00:00Z'), finalizadaEm: null },
-      { id: 15, status: 'agendada', iniciadaEm: null, finalizadaEm: null },
+      { id: 14, status: 'em_andamento', iniciadaEm: new Date('2026-09-21T20:00:00Z') },
+      { id: 15, status: 'agendada', iniciadaEm: null },
     ] as never);
 
     const r = await pedir('?ids=14,15');
@@ -21,8 +21,8 @@ describe('GET /api/partidas/estado', () => {
     expect(r.headers.get('cache-control')).toBe('no-store');
     expect(await r.json()).toEqual({
       estados: {
-        '14': { status: 'em_andamento', iniciadaEm: '2026-09-21T20:00:00.000Z', finalizadaEm: null },
-        '15': { status: 'agendada', iniciadaEm: null, finalizadaEm: null },
+        '14': { status: 'em_andamento', iniciadaEm: '2026-09-21T20:00:00.000Z' },
+        '15': { status: 'agendada', iniciadaEm: null },
       },
     });
   });

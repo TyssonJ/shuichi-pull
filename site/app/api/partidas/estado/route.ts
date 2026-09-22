@@ -14,13 +14,9 @@ export async function GET(req: Request) {
   if (ids.length === 0) return Response.json({ erro: 'Passe ?ids=14,15.' }, { status: 400, headers: { 'Cache-Control': 'no-store' } });
 
   const linhas = await repositorioPartidas.estados(ids);
-  const estados: Record<string, { status: string; iniciadaEm: string | null; finalizadaEm: string | null }> = {};
+  const estados: Record<string, { status: string; iniciadaEm: string | null }> = {};
   for (const l of linhas) {
-    estados[String(l.id)] = {
-      status: l.status,
-      iniciadaEm: l.iniciadaEm ? l.iniciadaEm.toISOString() : null,
-      finalizadaEm: l.finalizadaEm ? l.finalizadaEm.toISOString() : null,
-    };
+    estados[String(l.id)] = { status: l.status, iniciadaEm: l.iniciadaEm ? l.iniciadaEm.toISOString() : null };
   }
   return Response.json({ estados }, { headers: { 'Cache-Control': 'no-store' } });
 }

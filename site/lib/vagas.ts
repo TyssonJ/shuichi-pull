@@ -15,11 +15,6 @@ export function ocupamVaga(inscritos: Inscrito[]): Inscrito[] {
   return inscritos.filter((i) => i.tipo === 'participante');
 }
 
-/** Quantos estão na reserva (não contam como vaga nem como participante). */
-export function contarReservas(inscritos: Inscrito[]): number {
-  return inscritos.filter((i) => i.tipo === 'reserva').length;
-}
-
 export function vagasRestantes(inscritos: Inscrito[], vagas: number): number {
   return Math.max(0, vagas - ocupamVaga(inscritos).length);
 }

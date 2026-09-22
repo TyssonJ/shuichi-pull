@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ocupamVaga, vagasRestantes, podeEntrarComoTitular, validarVagas, contarReservas, VAGAS_MAX } from './vagas';
+import { ocupamVaga, vagasRestantes, podeEntrarComoTitular, validarVagas, VAGAS_MAX } from './vagas';
 import { ID_MONOKUMA } from './monokuma';
 
 type I = Parameters<typeof ocupamVaga>[0][number];
@@ -11,12 +11,6 @@ describe('vagas', () => {
     const inscritos = [t('a'), t('b', 'makoto-naegi'), r('c'), t('host', ID_MONOKUMA)];
     expect(ocupamVaga(inscritos).map((i) => i.discordId)).toEqual(['a', 'b', 'host']);
     expect(vagasRestantes(inscritos, 16)).toBe(13);
-  });
-
-  it('conta as reservas à parte (não são participantes)', () => {
-    expect(contarReservas([t('a'), r('b'), r('c'), t('host', ID_MONOKUMA)])).toBe(2);
-    expect(contarReservas([t('a')])).toBe(0);
-    expect(contarReservas([])).toBe(0);
   });
 
   it('vagas restantes nunca fica negativa', () => {

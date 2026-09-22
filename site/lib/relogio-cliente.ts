@@ -1,9 +1,8 @@
-import { IDA_E_VOLTA_BOA_MS, deslocamentoDaAmostra, melhorAmostra, type AmostraDeRelogio } from './relogio';
+import { deslocamentoDaAmostra, type AmostraDeRelogio } from './relogio';
 
 /** Endereço que devolve a hora do servidor (o site usa barra no final). */
 export const CAMINHO_HORA = '/api/hora/';
 
-const MAX_AMOSTRAS = 3;
 /** Depois disso a diferença é medida de novo (relógios derivam, aparelho volta de suspensão). */
 const REVALIDAR_MS = 10 * 60 * 1000;
 
@@ -45,17 +44,11 @@ async function medir(buscar: typeof fetch): Promise<AmostraDeRelogio | null> {
   }
 }
 
-/** Mede a diferença (até 3 vezes; para cedo se a ida e volta for boa) e guarda a melhor. */
+/** Mede a diferença uma vez e guarda. */
 export async function sincronizarRelogio(buscar: typeof fetch = fetch): Promise<void> {
-  const amostras: AmostraDeRelogio[] = [];
-  for (let i = 0; i < MAX_AMOSTRAS; i += 1) {
-    const a = await medir(buscar);
-    if (a) amostras.push(a);
-    if (a && a.idaEVoltaMs <= IDA_E_VOLTA_BOA_MS) break;
-  }
-  const melhor = melhorAmostra(amostras);
-  if (melhor) {
-    deslocamento = deslocamentoDaAmostra(melhor);
+  const amostra = await medir(buscar);
+  if (amostra) {
+    deslocamento = deslocamentoDaAmostra(amostra);
     sincronizadoEm = Date.now();
   }
 }

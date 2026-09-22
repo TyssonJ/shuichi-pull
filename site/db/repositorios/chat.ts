@@ -38,19 +38,25 @@ export function criarRepositorioChat(db: Banco) {
     admId: administradores.discordId,
   };
 
-  function comAutor(l: { [K in keyof typeof campos]: unknown }): MensagemComAutor {
+  function consultaBase() {
+    return db.select(campos).from(chatMensagens)
+      .leftJoin(usuarios, eq(usuarios.discordId, chatMensagens.autorDiscordId))
+      .leftJoin(administradores, eq(administradores.discordId, chatMensagens.autorDiscordId));
+  }
+
+  function comAutor(l: Awaited<ReturnType<typeof consultaBase>>[number]): MensagemComAutor {
     return {
-      id: l.id as number,
-      sala: l.sala as string,
-      autorDiscordId: l.autorDiscordId as string,
-      texto: l.texto as string,
-      anexos: l.anexos as AnexoChat[],
-      criadoEm: l.criadoEm as Date,
+      id: l.id,
+      sala: l.sala,
+      autorDiscordId: l.autorDiscordId,
+      texto: l.texto,
+      anexos: l.anexos,
+      criadoEm: l.criadoEm,
       autor: {
-        discordNome: (l.discordNome as string | null) ?? null,
-        discordAvatar: (l.discordAvatar as string | null) ?? null,
-        apelido: (l.apelido as string | null) ?? null,
-        avatarUrl: (l.avatarUrl as string | null) ?? null,
+        discordNome: l.discordNome,
+        discordAvatar: l.discordAvatar,
+        apelido: l.apelido,
+        avatarUrl: l.avatarUrl,
         ehAdm: l.admId != null,
       },
     };
@@ -67,10 +73,7 @@ export function criarRepositorioChat(db: Banco) {
         gte(chatMensagens.criadoEm, opcoes.desde),
         opcoes.depoisDe !== undefined ? gt(chatMensagens.id, opcoes.depoisDe) : undefined,
       );
-      const base = db.select(campos).from(chatMensagens)
-        .leftJoin(usuarios, eq(usuarios.discordId, chatMensagens.autorDiscordId))
-        .leftJoin(administradores, eq(administradores.discordId, chatMensagens.autorDiscordId))
-        .where(filtro);
+      const base = consultaBase().where(filtro);
       if (opcoes.depoisDe !== undefined) return (await base.orderBy(asc(chatMensagens.id)).limit(opcoes.limite)).map(comAutor);
       return (await base.orderBy(desc(chatMensagens.id)).limit(opcoes.limite)).map(comAutor).reverse();
     },

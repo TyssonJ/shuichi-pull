@@ -5,7 +5,6 @@ import { Rodape } from '@/components/layout/Rodape';
 import { CamadaAmbiente } from '@/components/ambiente/CamadaAmbiente';
 import { AlertaGlobalPartida } from '@/components/partidas/AlertaGlobalPartida';
 import { ChatFlutuante } from '@/components/chat/ChatFlutuante';
-import { SugestaoModoLeve } from '@/components/layout/SugestaoModoLeve';
 import { SCRIPT_MODO_LEVE } from '@/lib/modo-leve';
 
 export const metadata: Metadata = {
@@ -29,7 +28,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Rodape />
         <AlertaGlobalPartida />
         <ChatFlutuante />
-        <SugestaoModoLeve />
       </body>
     </html>
   );

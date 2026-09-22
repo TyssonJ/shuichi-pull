@@ -12,7 +12,6 @@ export type PedidoDePerfil = {
   estilo: EstiloPerfil;
   /** "há 3 h" / data já formatada. */
   quando: string;
-  rejeitado?: boolean;
 };
 
 function Detalhes({ estilo }: { estilo: EstiloPerfil }) {

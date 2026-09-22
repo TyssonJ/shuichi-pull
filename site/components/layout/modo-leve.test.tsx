@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, act, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { BotaoModoLeve, BotaoModoLeveCompacto } from './BotaoModoLeve';
-import { SugestaoModoLeve } from './SugestaoModoLeve';
 import { CamadaAmbiente } from '@/components/ambiente/CamadaAmbiente';
 import { Boot } from '@/components/alter-ego/Boot';
 import { useMovimentoReduzido } from '@/lib/motion';
@@ -59,65 +58,6 @@ describe('botões do modo leve', () => {
     expect(screen.getAllByText('⚡ MODO LEVE: LIGADO')).toHaveLength(2);
     expect(rodape).toHaveTextContent('LIGADO');
     expect(screen.getByRole('button', { name: 'Modo leve' })).toHaveAttribute('aria-pressed', 'true');
-  });
-});
-
-describe('SugestaoModoLeve', () => {
-  /** Simula requestAnimationFrame com quadros de `ms` milissegundos até a medição acabar. */
-  function rodarMedicao(ms: number, quadros = 200) {
-    let agora = 1000;
-    const fila: FrameRequestCallback[] = [];
-    vi.spyOn(performance, 'now').mockImplementation(() => agora);
-    vi.stubGlobal('requestAnimationFrame', (cb: FrameRequestCallback) => { fila.push(cb); return fila.length; });
-    vi.stubGlobal('cancelAnimationFrame', () => {});
-    // Só os timeouts: o padrão também trocaria requestAnimationFrame/performance.now pelos falsos e apagaria os stubs acima.
-    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
-
-    render(<SugestaoModoLeve />);
-    act(() => { vi.advanceTimersByTime(3500); }); // espera a página assentar e começa a medir
-    for (let i = 0; i < quadros && fila.length > 0; i += 1) {
-      agora += ms;
-      const cb = fila.shift()!;
-      act(() => { cb(agora); });
-    }
-  }
-
-  it('aparelho lento (~15 fps): oferece o modo leve, e "ativar" liga', () => {
-    rodarMedicao(66);
-    expect(screen.getByRole('dialog', { name: 'Sugestão de modo leve' })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'ATIVAR MODO LEVE' }));
-    expect(leveNoHtml()).toBe(true);
-    expect(screen.queryByRole('dialog')).toBeNull();
-  });
-
-  it('"agora não" fecha e guarda a resposta (escolha = normal), pra não perguntar de novo', () => {
-    rodarMedicao(66);
-    fireEvent.click(screen.getByRole('button', { name: 'agora não' }));
-    expect(screen.queryByRole('dialog')).toBeNull();
-    expect(leveNoHtml()).toBe(false);
-    expect(localStorage.getItem(CHAVE_MODO_LEVE)).toBe('0');
-
-    cleanup();
-    rodarMedicao(66); // remonta (outra página): já escolheu, nem mede
-    expect(screen.queryByRole('dialog')).toBeNull();
-  });
-
-  it('aparelho rápido (60 fps): não incomoda', () => {
-    rodarMedicao(16);
-    expect(screen.queryByRole('dialog')).toBeNull();
-  });
-
-  it('já no modo leve (ou com escolha guardada): nem chega a medir', () => {
-    localStorage.setItem(CHAVE_MODO_LEVE, '1');
-    document.documentElement.setAttribute('data-leve', '1');
-    rodarMedicao(66);
-    expect(screen.queryByRole('dialog')).toBeNull();
-  });
-
-  it('aba oculta na hora de medir: não mede nem sugere', () => {
-    definirVisibilidade('hidden');
-    rodarMedicao(66);
-    expect(screen.queryByRole('dialog')).toBeNull();
   });
 });
 

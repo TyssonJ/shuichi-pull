@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { deslocamentoDaAmostra, melhorAmostra, IDA_E_VOLTA_BOA_MS } from './relogio';
+import { deslocamentoDaAmostra } from './relogio';
 import {
   agoraSincronizado, garantirSincronia, sincronizarRelogio, reiniciarRelogio, relogioJaSincronizado, CAMINHO_HORA,
 } from './relogio-cliente';
@@ -23,16 +23,6 @@ describe('deslocamentoDaAmostra', () => {
   });
 });
 
-describe('melhorAmostra', () => {
-  const a = (idaEVoltaMs: number) => ({ servidorMs: 1, idaEVoltaMs, aparelhoNaChegadaMs: 1 });
-
-  it('escolhe a de menor ida e volta, ignora inválidas e devolve null sem nenhuma', () => {
-    expect(melhorAmostra([a(300), a(80), a(120)])?.idaEVoltaMs).toBe(80);
-    expect(melhorAmostra([a(-5), a(Number.NaN), { servidorMs: Number.NaN, idaEVoltaMs: 10, aparelhoNaChegadaMs: 1 }])).toBeNull();
-    expect(melhorAmostra([])).toBeNull();
-  });
-});
-
 describe('relógio sincronizado do navegador', () => {
   let agoraDoAparelho: number;
   let agoraRelogioMonotonico: number;
@@ -46,7 +36,7 @@ describe('relógio sincronizado do navegador', () => {
   });
   afterEach(() => vi.restoreAllMocks());
 
-  /** Servidor à frente do aparelho em `diferenca` ms; cada ida e volta demora `viagem` ms. */
+  /** Servidor à frente do aparelho em `diferenca` ms; a ida e volta demora `viagem` ms. */
   function servidorFalso(diferenca: number, viagem: number) {
     return vi.fn(async () => {
       agoraRelogioMonotonico += viagem;
@@ -76,16 +66,11 @@ describe('relógio sincronizado do navegador', () => {
     expect(formatarCronometro(agoraSincronizado() - inicioDaPartida)).toBe('00:01:05');
   });
 
-  it('para cedo quando a ida e volta é boa; com rede lenta, tenta até 3 vezes e usa a melhor', async () => {
-    const rapido = servidorFalso(1000, IDA_E_VOLTA_BOA_MS - 50);
-    await sincronizarRelogio(rapido);
-    expect(rapido).toHaveBeenCalledTimes(1);
-
-    reiniciarRelogio();
-    const lento = servidorFalso(1000, 900);
-    await sincronizarRelogio(lento);
-    expect(lento).toHaveBeenCalledTimes(3);
-    expect(lento).toHaveBeenCalledWith(CAMINHO_HORA, { cache: 'no-store' });
+  it('mede uma vez só', async () => {
+    const buscar = servidorFalso(1000, 40);
+    await sincronizarRelogio(buscar);
+    expect(buscar).toHaveBeenCalledTimes(1);
+    expect(buscar).toHaveBeenCalledWith(CAMINHO_HORA, { cache: 'no-store' });
   });
 
   it('falha de rede, resposta ruim ou sem "agora": nunca lança e mantém o relógio do aparelho', async () => {

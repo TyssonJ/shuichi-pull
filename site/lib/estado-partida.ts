@@ -6,7 +6,7 @@
  * estado de tempos em tempos; isto decide se mudou (e a página precisa recarregar).
  */
 export type EstadoConhecido = { id: number; status: string; iniciadaEm: string | null };
-export type EstadoNoServidor = { status: string; iniciadaEm: string | null; finalizadaEm?: string | null };
+export type EstadoNoServidor = { status: string; iniciadaEm: string | null };
 
 /** Partida que ainda pode mudar (vale a pena ficar de olho). */
 export function estaEmMovimento(status: string): boolean {

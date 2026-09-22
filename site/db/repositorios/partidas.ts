@@ -68,11 +68,10 @@ export function criarRepositorioPartidas(db: Banco) {
     },
 
     /** Só o estado (status e horários) de várias partidas, pro monitor da página. */
-    async estados(ids: number[]): Promise<Pick<PartidaLinha, 'id' | 'status' | 'iniciadaEm' | 'finalizadaEm'>[]> {
+    async estados(ids: number[]): Promise<Pick<PartidaLinha, 'id' | 'status' | 'iniciadaEm'>[]> {
       if (ids.length === 0) return [];
-      return db.select({
-        id: partidas.id, status: partidas.status, iniciadaEm: partidas.iniciadaEm, finalizadaEm: partidas.finalizadaEm,
-      }).from(partidas).where(inArray(partidas.id, ids));
+      return db.select({ id: partidas.id, status: partidas.status, iniciadaEm: partidas.iniciadaEm })
+        .from(partidas).where(inArray(partidas.id, ids));
     },
 
     /** Partidas rolando agora, as mais antigas primeiro. */

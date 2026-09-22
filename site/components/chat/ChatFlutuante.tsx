@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { SalaChat } from './SalaChat';
 import { apagarMensagemAction, enviarMensagemAction } from '@/app/chat/acoes';
 import { EVENTO_ABRIR_CHAT, SALA_GERAL, type PersonagemChat } from '@/lib/chat';
-import { aoFicarOcioso } from '@/lib/ocioso';
 
 type SalaInfo = { id: string; nome: string };
 type Info = { eu: string; ehAdm: boolean; salas: SalaInfo[] };
@@ -33,8 +32,16 @@ export function ChatFlutuante() {
     }
   }, []);
 
-  // Nao compete com o carregamento da pagina: espera o navegador ficar ocioso.
-  useEffect(() => aoFicarOcioso(() => void carregarSalas()), [carregarSalas]);
+  // Não compete com o carregamento da página: espera o navegador ficar ocioso
+  // (sem requestIdleCallback, ex. Safari: roda logo em seguida).
+  useEffect(() => {
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(() => void carregarSalas(), { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(() => void carregarSalas(), 0);
+    return () => clearTimeout(t);
+  }, [carregarSalas]);
 
   const abrir = useCallback((salaPedida?: string) => {
     if (salaPedida) setSala(salaPedida);

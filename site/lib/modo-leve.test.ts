@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
   decidirModoLeve, lerSinaisDoAparelho, definirModoLeve, modoLeveAtivo, jaEscolheuModoLeve, SCRIPT_MODO_LEVE,
-  CHAVE_MODO_LEVE, EVENTO_MODO_LEVE, aparelhoSofrendo, type SinaisDoAparelho,
+  CHAVE_MODO_LEVE, EVENTO_MODO_LEVE, type SinaisDoAparelho,
 } from './modo-leve';
 
 const normal: SinaisDoAparelho = { reduzirMovimento: false, economiaDeDados: false, memoriaGB: 8, nucleos: 8 };
@@ -112,30 +112,5 @@ describe('no navegador', () => {
     expect(typeof s.reduzirMovimento).toBe('boolean');
     expect(s.economiaDeDados).toBe(false);
     expect(s.memoriaGB === null || typeof s.memoriaGB === 'number').toBe(true);
-  });
-});
-
-describe('aparelhoSofrendo', () => {
-  const quadros = (ms: number, n: number) => Array.from({ length: n }, () => ms);
-
-  it('60 fps e 30 fps são confortáveis; 15 fps sofre', () => {
-    expect(aparelhoSofrendo(quadros(16.7, 120))).toBe(false);
-    expect(aparelhoSofrendo(quadros(33, 60))).toBe(false);
-    expect(aparelhoSofrendo(quadros(66, 30))).toBe(true);
-  });
-
-  it('o limite é 25 fps (40 ms por quadro)', () => {
-    expect(aparelhoSofrendo(quadros(39, 40))).toBe(false);
-    expect(aparelhoSofrendo(quadros(45, 40))).toBe(true);
-  });
-
-  it('poucas amostras (aba oculta/congelada) não contam: nada é sugerido', () => {
-    expect(aparelhoSofrendo([])).toBe(false);
-    expect(aparelhoSofrendo(quadros(200, 10))).toBe(false);
-  });
-
-  it('os primeiros quadros (aquecimento) e valores inválidos são ignorados', () => {
-    expect(aparelhoSofrendo([500, 500, 500, ...quadros(16, 40)])).toBe(false);
-    expect(aparelhoSofrendo([...quadros(16, 40), Number.NaN, -5, 0])).toBe(false);
   });
 });

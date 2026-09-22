@@ -15,9 +15,6 @@ export type AmostraDeRelogio = {
   aparelhoNaChegadaMs: number;
 };
 
-/** Ida e volta abaixo disso já é boa o bastante: para de medir. */
-export const IDA_E_VOLTA_BOA_MS = 150;
-
 /**
  * Quantos ms somar ao relógio do aparelho pra obter o do servidor. A hora do
  * servidor foi lida em algum ponto entre o envio e a chegada; supondo ida e
@@ -26,11 +23,4 @@ export const IDA_E_VOLTA_BOA_MS = 150;
  */
 export function deslocamentoDaAmostra(a: AmostraDeRelogio): number {
   return a.servidorMs + a.idaEVoltaMs / 2 - a.aparelhoNaChegadaMs;
-}
-
-/** A amostra mais confiável é a de menor ida e volta (menos incerteza). */
-export function melhorAmostra(amostras: AmostraDeRelogio[]): AmostraDeRelogio | null {
-  const validas = amostras.filter((a) => Number.isFinite(a.servidorMs) && Number.isFinite(a.idaEVoltaMs) && a.idaEVoltaMs >= 0);
-  if (validas.length === 0) return null;
-  return validas.reduce((melhor, a) => (a.idaEVoltaMs < melhor.idaEVoltaMs ? a : melhor));
 }

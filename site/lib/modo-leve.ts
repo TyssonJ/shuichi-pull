@@ -73,22 +73,3 @@ export function jaEscolheuModoLeve(): boolean {
     return false;
   }
 }
-
-/** Abaixo disso (em quadros por segundo) o site está pesado pro aparelho. */
-export const FPS_MINIMO_CONFORTAVEL = 25;
-/** Quadros descartados no começo da medição (o primeiro costuma ser o mais lento). */
-const QUADROS_DE_AQUECIMENTO = 3;
-/** Menos amostras que isso = medição inválida (aba oculta, congelada…): não sugere nada. */
-const AMOSTRAS_MINIMAS = 20;
-
-/**
- * Dado o tempo (ms) entre quadros consecutivos medido com requestAnimationFrame,
- * o aparelho está sofrendo? Serve pra oferecer o modo leve a quem não sabe que
- * ele existe.
- */
-export function aparelhoSofrendo(intervalosMs: number[]): boolean {
-  const uteis = intervalosMs.slice(QUADROS_DE_AQUECIMENTO).filter((n) => Number.isFinite(n) && n > 0);
-  if (uteis.length < AMOSTRAS_MINIMAS) return false;
-  const media = uteis.reduce((a, b) => a + b, 0) / uteis.length;
-  return 1000 / media < FPS_MINIMO_CONFORTAVEL;
-}
