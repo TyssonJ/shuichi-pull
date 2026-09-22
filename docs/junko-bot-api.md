@@ -215,6 +215,12 @@ app.post('/eventos', express.json(), (req, res) => {
 });
 ```
 
+### Cliente pronto (Python)
+
+`docs/junko-bot-cliente.py` neste repositório é um cliente completo (classe `ShuichiPullClient`,
+aiohttp) com um método pra cada rota desta seção — cole no repositório do bot e use direto.
+Testado contra a produção (só faltando a chave de verdade).
+
 ### Exemplo de chamada ao site (curl)
 
 ```bash
