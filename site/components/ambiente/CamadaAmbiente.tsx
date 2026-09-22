@@ -6,14 +6,21 @@ import { useModoLeve } from '@/lib/use-modo-leve';
 const TEXTO_MARQUEE =
   'NON-STOP DEBATE // TRUTH BULLET // SHINRI TRIAL // CLASS TRIAL PROTOCOL // ';
 
-type Particula = { forma: string; esquerda: number; atraso: number; duracao: number };
+type Particula = { forma: string; tamanho: string; cor: string; esquerda: number; atraso: number; duracao: number };
+
+// As três cores de acento do site, em baixa opacidade — a mesma paleta que já
+// aparece nos selos, bordas e brilhos, só que flutuando ao fundo.
+const CORES = ['rgba(0,255,102,.35)', 'rgba(0,240,255,.35)', 'rgba(255,0,127,.3)'];
+const TAMANHOS = ['h-1 w-1', 'h-1.5 w-1.5', 'h-2 w-2'];
 
 // Sorteadas uma vez, no módulo — não a cada render, senão as partículas
 // "pulariam" de posição a cada re-render do layout.
-const PARTICULAS: Particula[] = Array.from({ length: 8 }, (_, i) => ({
+const PARTICULAS: Particula[] = Array.from({ length: 10 }, (_, i) => ({
   forma: i % 3 === 0 ? 'rotate-45' : i % 3 === 1 ? '' : 'rounded-full',
-  esquerda: (i * 7.3) % 100,
-  atraso: (i * 1.7) % 8,
+  tamanho: TAMANHOS[i % TAMANHOS.length],
+  cor: CORES[i % CORES.length],
+  esquerda: (i * 6.7) % 100,
+  atraso: (i * 1.9) % 10,
   duracao: 14 + (i % 5) * 3,
 }));
 
@@ -47,6 +54,15 @@ export function CamadaAmbiente() {
       {/* Halftone respirando. */}
       <div className="absolute inset-0 bg-halftone-pattern animate-ambient-glow" />
 
+      {/* Varredura digital: uma faixa fina desce a tela raramente (~1x a cada 26s),
+          tipo scanner de terminal invadido. Fica fora da tela quase todo o ciclo. */}
+      {!movimentoReduzido && (
+        <div
+          aria-hidden
+          className="animate-varredura absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-cyber-cyan/20 to-transparent mix-blend-screen"
+        />
+      )}
+
       {/* Marquee de fundo — texto duplicado para o loop não ter costura. */}
       <div className="absolute bottom-8 left-0 flex w-full overflow-hidden">
         <div className="flex animate-marquee-slow whitespace-nowrap text-8xl font-black uppercase tracking-widest text-white/[0.02]">
@@ -62,8 +78,11 @@ export function CamadaAmbiente() {
         <div
           key={i}
           data-testid="particula"
-          className={`particula-flutuante absolute h-1.5 w-1.5 bg-white/10 ${p.forma}`}
-          style={{ left: `${p.esquerda}%`, bottom: '-5%', '--duracao': `${p.duracao}s`, '--atraso': `${p.atraso}s` } as React.CSSProperties}
+          className={`particula-flutuante absolute ${p.tamanho} ${p.forma}`}
+          style={{
+            left: `${p.esquerda}%`, bottom: '-5%',
+            '--cor': p.cor, '--duracao': `${p.duracao}s`, '--atraso': `${p.atraso}s`,
+          } as React.CSSProperties}
         />
       ))}
     </div>

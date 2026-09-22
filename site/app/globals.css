@@ -102,6 +102,7 @@ body { overflow-x: hidden; }
   --animate-laser: laser-scan 3s ease-in-out infinite;
   --animate-monokuma-glitch: monokuma-glitch 0.4s steps(2, end) 2;
   --animate-monokuma-flash: monokuma-flash 0.5s ease-out;
+  --animate-varredura: varredura 26s ease-in-out infinite;
 
   @keyframes monokuma-glitch {
     0%, 100% { transform: translate(0); filter: none; }
@@ -139,6 +140,15 @@ body { overflow-x: hidden; }
     85% { opacity: 1; }
     100% { top: 100%; opacity: 0; }
   }
+  /* Varredura digital da camada de ambiente: uma faixa fina desce a tela de vez em
+     quando, tipo scanner de terminal invadido — a maior parte do ciclo ela fica fora
+     da tela (opacity 0), então o custo real é quase todo esse 1 elemento parado. */
+  @keyframes varredura {
+    0%, 90%, 100% { transform: translateY(-10%); opacity: 0; }
+    92% { opacity: 0.5; }
+    98% { transform: translateY(110vh); opacity: 0.5; }
+    99% { opacity: 0; }
+  }
 }
 
 @keyframes entrada-cartao {
@@ -148,18 +158,21 @@ body { overflow-x: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-ambient-glow, .animate-spin-slow, .animate-marquee-slow, .animate-crt-flicker,
-  .animate-monokuma-glitch, .animate-monokuma-flash {
+  .animate-monokuma-glitch, .animate-monokuma-flash, .animate-varredura {
     animation: none !important;
   }
 }
 
-/* Particulas da camada de ambiente: sobem e somem. So transform/opacity (vao pra GPU). */
+/* Particulas da camada de ambiente: sobem e somem, na cor de acento que o componente
+   escolher por partícula (--cor). So transform/opacity (vao pra GPU). */
 @keyframes particula-subir {
   0% { transform: translate3d(0, 0, 0); opacity: 0; }
-  10%, 90% { opacity: 0.3; }
+  10%, 90% { opacity: 1; }
   100% { transform: translate3d(0, -110vh, 0); opacity: 0; }
 }
 .particula-flutuante {
+  background: var(--cor, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 0 6px 1px var(--cor, transparent);
   animation: particula-subir var(--duracao, 16s) linear var(--atraso, 0s) infinite;
   will-change: transform, opacity;
 }
@@ -194,7 +207,8 @@ html[data-leve] [class*='shadow-[0_0'],
 html[data-leve] [style*='box-shadow'] {
   box-shadow: none !important;
 }
-/* Cartoes de lista nao precisam do "sobe ao passar o mouse" no modo leve. */
+/* Cartoes de lista nao precisam do "sobe ao passar o mouse" nem do brilho no modo leve. */
 html[data-leve] .group:hover {
   transform: none !important;
+  box-shadow: none !important;
 }

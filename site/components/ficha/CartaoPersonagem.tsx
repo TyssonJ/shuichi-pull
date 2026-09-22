@@ -13,7 +13,7 @@ export function CartaoPersonagem(
     <Link
       href={`/elenco/${p.id}/`}
       // content-visibility: o navegador pula os cartões fora da tela (a página tem ~56).
-      className="group relative block overflow-hidden rounded-[4px] border border-line bg-sur transition-colors [contain-intrinsic-size:auto_250px] [content-visibility:auto] hover:border-alter-green"
+      className="group relative block overflow-hidden rounded-[4px] border border-line bg-sur transition-[color,background-color,border-color,transform] duration-300 [contain-intrinsic-size:auto_250px] [content-visibility:auto] hover:-translate-y-1.5 hover:border-alter-green"
     >
       <span aria-hidden className="pointer-events-none absolute left-1 top-0.5 font-mono text-[9px] leading-none text-line">+</span>
       <span aria-hidden className="pointer-events-none absolute right-1 top-0.5 font-mono text-[9px] leading-none text-line">+</span>

@@ -23,10 +23,12 @@ function tierDoNivel(nivel: number): Tier {
 
 // Legendário pulsa em âmbar, raro/muito raro brilham em ciano/rosa elétrico
 // (mesma dupla de acento do resto do site), comum e não-classificado ficam
-// monocromáticos — igual etiqueta de evidência policial preto e branco.
-const ESTILO_TIER: Record<Tier, { borda: string; sombra?: string; pulso?: boolean }> = {
-  redacted: { borda: 'border-line/50 border-dashed' },
-  comum: { borda: 'border-line' },
+// monocromáticos — igual etiqueta de evidência policial preto e branco. Quem
+// não tem brilho permanente ganha um toque de cor só ao passar o mouse
+// (`acentoHover`), pra nenhum cartão ficar totalmente inerte.
+const ESTILO_TIER: Record<Tier, { borda: string; sombra?: string; pulso?: boolean; acentoHover?: string }> = {
+  redacted: { borda: 'border-line/50 border-dashed', acentoHover: '122,122,136' },
+  comum: { borda: 'border-line', acentoHover: '0,255,102' },
   raro: { borda: 'border-cyber-cyan/50', sombra: '0 0 15px rgba(0,240,255,0.22)' },
   muitoRaro: { borda: 'border-execution-pink/50', sombra: '0 0 15px rgba(255,0,127,0.22)' },
   lendario: { borda: 'border-amber/60', sombra: '0 0 20px rgba(245,158,11,0.3)', pulso: true },
@@ -42,9 +44,12 @@ export function CartaoItem({ item }: { item: ItemResumo }) {
       href={`/itens/${item.id}/`}
       // Sem backdrop-blur: com ~140 cartões era um blur de fundo por cartão (caro pra GPU)
       // sobre um fundo quase transparente, sem diferença visível. `content-visibility` deixa
-      // o navegador pular o que está fora da tela.
-      className={`group relative block overflow-hidden rounded-[4px] border bg-white/[0.02] p-2.5 transition-transform duration-300 [contain-intrinsic-size:auto_112px] [content-visibility:auto] hover:-translate-y-1 ${estilo.borda}`}
-      style={{ boxShadow: estilo.sombra }}
+      // o navegador pular o que está fora da tela. hover:shadow só entra pra quem não tem
+      // brilho permanente (senão o inline `sombra` abaixo, de especificidade maior, o esconderia).
+      className={`group relative block overflow-hidden rounded-[4px] border bg-white/[0.02] p-2.5 transition-[transform,box-shadow] duration-300 [contain-intrinsic-size:auto_112px] [content-visibility:auto] hover:-translate-y-1.5 ${estilo.borda} ${
+        estilo.acentoHover ? 'hover:shadow-[0_10px_26px_-10px_rgba(var(--acento),0.55)]' : ''
+      }`}
+      style={{ boxShadow: estilo.sombra, ...(estilo.acentoHover ? { '--acento': estilo.acentoHover } : {}) } as React.CSSProperties}
     >
       {estilo.pulso && (
         <span
